@@ -17,29 +17,32 @@ export function CourseCard({ course }: CourseCardProps) {
     const dept = DEPARTMENTS.find((d) => d.id === course.departmentId)
 
     return (
-        <Card className="hover:shadow-md transition-shadow">
-            <CardHeader>
-                <div className="flex justify-between items-start">
+        <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary/50 hover:border-l-primary">
+            <CardHeader className="pb-3">
+                <div className="flex justify-between items-start gap-4">
                     <div className="space-y-1">
-                        <CardTitle className="flex items-center gap-2">
-                            <span className="font-bold text-primary">{course.code}</span>
-                            <span className="text-lg font-normal text-foreground/80">{course.title}</span>
+                        <div className="flex items-center gap-2 mb-1">
+                            <Badge variant="outline" className="font-mono text-xs">{course.code}</Badge>
+                            {course.credits && <Badge variant="secondary" className="text-xs">{course.credits} Cr</Badge>}
+                        </div>
+                        <CardTitle className="text-xl font-bold leading-tight group-hover:text-primary transition-colors">
+                            {course.title}
                         </CardTitle>
-                        <CardDescription>{dept?.name} Department</CardDescription>
+                        <CardDescription className="text-sm font-medium">{dept?.name}</CardDescription>
+                        <p className="text-xs text-muted-foreground line-clamp-2 mt-2">{course.description}</p>
                     </div>
-                    <Badge variant="secondary">{course.credits} Credits</Badge>
                 </div>
             </CardHeader>
-            <CardContent className="grid gap-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <UserIcon className="h-4 w-4" />
-                    <span>{course.instructor || "Instructor TBA"}</span>
+            <CardContent className="grid gap-3 pt-2">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 p-2 rounded-md">
+                    <UserIcon className="h-4 w-4 text-primary" />
+                    <span className="font-medium">{course.instructor || "Instructor TBA"}</span>
                 </div>
 
                 {course.examDate && (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CalendarIcon className="h-4 w-4" />
-                        <span>Final Exam: {course.examDate}</span>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 p-2 rounded-md">
+                        <CalendarIcon className="h-4 w-4 text-primary" />
+                        <span className="font-medium">Final: {course.examDate}</span>
                     </div>
                 )}
             </CardContent>

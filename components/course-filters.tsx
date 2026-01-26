@@ -3,9 +3,7 @@
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
@@ -39,29 +37,27 @@ export function CourseFilters({
     setSemester,
 }: CourseFiltersProps) {
 
-    const filteredDepartments = college
+    const filteredDepartments = college && college !== 'all'
         ? DEPARTMENTS.filter((d) => d.collegeId === college)
         : DEPARTMENTS
 
     return (
-        <div className="space-y-4 p-4 border rounded-lg bg-card">
-            <h2 className="font-semibold text-lg">Filters</h2>
-
+        <div className="space-y-6">
             <div className="grid gap-2">
-                <Label htmlFor="search">Search</Label>
+                <Label className="text-sm font-medium">Search</Label>
                 <Input
-                    id="search"
-                    placeholder="Course code or title..."
+                    placeholder="Keywords..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
+                    className="bg-background"
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-4">
                 <div className="grid gap-2">
-                    <Label>Year</Label>
+                    <Label className="text-sm font-medium">Academic Year</Label>
                     <Select value={year} onValueChange={setYear}>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-background">
                             <SelectValue placeholder="Select Year" />
                         </SelectTrigger>
                         <SelectContent>
@@ -72,9 +68,9 @@ export function CourseFilters({
                     </Select>
                 </div>
                 <div className="grid gap-2">
-                    <Label>Semester</Label>
+                    <Label className="text-sm font-medium">Semester</Label>
                     <Select value={semester} onValueChange={setSemester}>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-background">
                             <SelectValue placeholder="Select Semester" />
                         </SelectTrigger>
                         <SelectContent>
@@ -86,37 +82,39 @@ export function CourseFilters({
                 </div>
             </div>
 
-            <div className="grid gap-2">
-                <Label>College</Label>
-                <Select value={college} onValueChange={(val) => {
-                    setCollege(val)
-                    setDepartment("all") // Reset dept when college changes
-                }}>
-                    <SelectTrigger>
-                        <SelectValue placeholder="All Colleges" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">All Colleges</SelectItem>
-                        {COLLEGES.map((c) => (
-                            <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
+            <div className="space-y-4 pt-4 border-t">
+                <div className="grid gap-2">
+                    <Label className="text-sm font-medium">College</Label>
+                    <Select value={college} onValueChange={(val) => {
+                        setCollege(val)
+                        setDepartment("all")
+                    }}>
+                        <SelectTrigger className="bg-background">
+                            <SelectValue placeholder="All Colleges" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">All Colleges</SelectItem>
+                            {COLLEGES.map((c) => (
+                                <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
 
-            <div className="grid gap-2">
-                <Label>Department</Label>
-                <Select value={department} onValueChange={setDepartment} disabled={!college || college === 'all'}>
-                    <SelectTrigger>
-                        <SelectValue placeholder="All Departments" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">All Departments</SelectItem>
-                        {filteredDepartments.map((d) => (
-                            <SelectItem key={d.id} value={d.id}>{d.name}</SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                <div className="grid gap-2">
+                    <Label className="text-sm font-medium">Department</Label>
+                    <Select value={department} onValueChange={setDepartment} disabled={!college || college === 'all'}>
+                        <SelectTrigger className="bg-background">
+                            <SelectValue placeholder="All Departments" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="all">All Departments</SelectItem>
+                            {filteredDepartments.map((d) => (
+                                <SelectItem key={d.id} value={d.id}>{d.name}</SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
         </div>
     )
