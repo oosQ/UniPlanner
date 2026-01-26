@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className="antialiased min-h-screen bg-background font-sans text-foreground">
+            <body className="antialiased min-h-screen bg-background font-sans text-foreground bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50/50 via-background to-background dark:from-indigo-950/20 dark:via-background dark:to-background">
                 <Providers>
                     {children}
                 </Providers>
