@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Providers } from "@/components/providers";
 
 export const metadata: Metadata = {
     title: "UniPlanner",
@@ -15,7 +16,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="antialiased min-h-screen bg-background font-sans text-foreground">
-                {children}
+                <Providers>
+                    {children}
+                </Providers>
             </body>
         </html>
     );
