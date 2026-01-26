@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { COLLEGES, DEPARTMENTS } from "@/lib/mock-data"
+import { useQuery } from "@tanstack/react-query"
+import { College, Department } from "@/lib/mock-data" // Only types
 
 interface CourseFiltersProps {
     search: string
@@ -22,6 +23,12 @@ interface CourseFiltersProps {
     setYear: (value: string) => void
     semester: string
     setSemester: (value: string) => void
+}
+
+async function fetchColleges() {
+    const res = await fetch('/api/colleges')
+    if (!res.ok) throw new Error("Failed to fetch colleges")
+    return res.json()
 }
 
 export function CourseFilters({
@@ -37,9 +44,15 @@ export function CourseFilters({
     setSemester,
 }: CourseFiltersProps) {
 
-    const filteredDepartments = college && college !== 'all'
-        ? DEPARTMENTS.filter((d) => d.collegeId === college)
-        : DEPARTMENTS
+    const { data: colleges } = useQuery<College[]>({
+        queryKey: ['colleges'],
+        queryFn: fetchColleges
+    })
+
+    // Derive departments from the selected college
+    const selectedCollegeData = colleges?.find(c => c.id === college)
+    // @ts-ignore - mock data types mismatch slightly with Prisma types where departments is an array
+    const departments = selectedCollegeData?.departments || []
 
     return (
         <div className="space-y-6">
@@ -94,7 +107,7 @@ export function CourseFilters({
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="all">All Colleges</SelectItem>
-                            {COLLEGES.map((c) => (
+                            {colleges?.map((c) => (
                                 <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>
                             ))}
                         </SelectContent>
@@ -109,7 +122,7 @@ export function CourseFilters({
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="all">All Departments</SelectItem>
-                            {filteredDepartments.map((d) => (
+                            {departments.map((d: Department) => (
                                 <SelectItem key={d.id} value={d.id}>{d.name}</SelectItem>
                             ))}
                         </SelectContent>

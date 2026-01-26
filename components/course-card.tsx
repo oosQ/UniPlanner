@@ -36,7 +36,9 @@ export function CourseCard({ course }: CourseCardProps) {
             <CardContent className="grid gap-3 pt-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground bg-muted/30 p-2 rounded-md">
                     <UserIcon className="h-4 w-4 text-primary" />
-                    <span className="font-medium">{course.instructor || "Instructor TBA"}</span>
+                    <span className="font-medium">
+                        {(typeof course.instructor === 'object' ? course.instructor?.name : course.instructor) || "Instructor TBA"}
+                    </span>
                 </div>
 
                 {course.examDate && (

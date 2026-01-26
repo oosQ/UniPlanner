@@ -1,0 +1,2886 @@
+{
+  "colleges": [
+    {
+      "id": "IT",
+      "name": "College of Information Technology"
+    },
+    {
+      "id": "ENG",
+      "name": "College of Engineering"
+    },
+    {
+      "id": "BUS",
+      "name": "College of Business Administration"
+    },
+    {
+      "id": "SCI",
+      "name": "College of Science"
+    },
+    {
+      "id": "ARTS",
+      "name": "College of Arts"
+    }
+  ],
+  "departments": [
+    {
+      "id": "CS",
+      "name": "Computer Science",
+      "collegeId": "IT"
+    },
+    {
+      "id": "IS",
+      "name": "Information Systems",
+      "collegeId": "IT"
+    },
+    {
+      "id": "CE",
+      "name": "Computer Engineering",
+      "collegeId": "IT"
+    },
+    {
+      "id": "MECH",
+      "name": "Mechanical Engineering",
+      "collegeId": "ENG"
+    },
+    {
+      "id": "CIVIL",
+      "name": "Civil Engineering",
+      "collegeId": "ENG"
+    },
+    {
+      "id": "CHEM",
+      "name": "Chemical Engineering",
+      "collegeId": "ENG"
+    },
+    {
+      "id": "MGT",
+      "name": "Management",
+      "collegeId": "BUS"
+    },
+    {
+      "id": "ACC",
+      "name": "Accounting",
+      "collegeId": "BUS"
+    },
+    {
+      "id": "MKT",
+      "name": "Marketing",
+      "collegeId": "BUS"
+    },
+    {
+      "id": "MATH",
+      "name": "Mathematics",
+      "collegeId": "SCI"
+    },
+    {
+      "id": "PHY",
+      "name": "Physics",
+      "collegeId": "SCI"
+    },
+    {
+      "id": "HIST",
+      "name": "History",
+      "collegeId": "ARTS"
+    }
+  ],
+  "courses": [
+    {
+      "code": "CS 296",
+      "title": "Computer Science Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 296. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "12311",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "CS 348",
+      "title": "Computer Science Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 348. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Bob Jones",
+      "sections": [
+        {
+          "crn": "46287",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "CS 281",
+      "title": "Computer Science Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 281. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "11542",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "92514",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "40614",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "CS 262",
+      "title": "Computer Science Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 262. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Eve Black",
+      "sections": [
+        {
+          "crn": "79114",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "70156",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "43274",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "CS 442",
+      "title": "Computer Science Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 442. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "34991",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "62357",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "58753",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "CS 118",
+      "title": "Computer Science Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 118. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "39760",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "60796",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "26406",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "CS 424",
+      "title": "Computer Science Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 424. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "25961",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "62869",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "CS 167",
+      "title": "Computer Science Topic 8",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 167. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "35581",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "98112",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "65579",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "CS 230",
+      "title": "Computer Science Topic 9",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 230. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Jack King",
+      "sections": [
+        {
+          "crn": "50311",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "30664",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "CS 253",
+      "title": "Computer Science Topic 10",
+      "credits": 3,
+      "description": "This is a placeholder description for CS 253. It covers fundamental concepts of Computer Science.",
+      "departmentId": "CS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "90085",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "IS 321",
+      "title": "Information Systems Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 321. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "46517",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "62819",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        }
+      ]
+    },
+    {
+      "code": "IS 475",
+      "title": "Information Systems Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 475. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Jack King",
+      "sections": [
+        {
+          "crn": "59271",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "47069",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        }
+      ]
+    },
+    {
+      "code": "IS 280",
+      "title": "Information Systems Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 280. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "56663",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "61735",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "70850",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "IS 372",
+      "title": "Information Systems Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 372. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "41868",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "44490",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "IS 149",
+      "title": "Information Systems Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 149. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "53763",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "41962",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "62286",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        }
+      ]
+    },
+    {
+      "code": "IS 233",
+      "title": "Information Systems Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 233. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "54449",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "IS 478",
+      "title": "Information Systems Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for IS 478. It covers fundamental concepts of Information Systems.",
+      "departmentId": "IS",
+      "collegeId": "IT",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "86025",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "50627",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "33730",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        }
+      ]
+    },
+    {
+      "code": "CE 406",
+      "title": "Computer Engineering Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for CE 406. It covers fundamental concepts of Computer Engineering.",
+      "departmentId": "CE",
+      "collegeId": "IT",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "55094",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "84417",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "CE 355",
+      "title": "Computer Engineering Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for CE 355. It covers fundamental concepts of Computer Engineering.",
+      "departmentId": "CE",
+      "collegeId": "IT",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "97059",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "30718",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "CE 120",
+      "title": "Computer Engineering Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for CE 120. It covers fundamental concepts of Computer Engineering.",
+      "departmentId": "CE",
+      "collegeId": "IT",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "24256",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "46495",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        },
+        {
+          "crn": "15117",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "CE 262",
+      "title": "Computer Engineering Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for CE 262. It covers fundamental concepts of Computer Engineering.",
+      "departmentId": "CE",
+      "collegeId": "IT",
+      "instructorName": "Dr. Ivy Lee",
+      "sections": [
+        {
+          "crn": "23238",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "70722",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "36877",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        }
+      ]
+    },
+    {
+      "code": "CE 379",
+      "title": "Computer Engineering Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for CE 379. It covers fundamental concepts of Computer Engineering.",
+      "departmentId": "CE",
+      "collegeId": "IT",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "31271",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        }
+      ]
+    },
+    {
+      "code": "MECH 211",
+      "title": "Mechanical Engineering Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 211. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "98835",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "97995",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "86306",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        }
+      ]
+    },
+    {
+      "code": "MECH 355",
+      "title": "Mechanical Engineering Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 355. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "30661",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "MECH 223",
+      "title": "Mechanical Engineering Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 223. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "69985",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "56348",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        }
+      ]
+    },
+    {
+      "code": "MECH 403",
+      "title": "Mechanical Engineering Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 403. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "25827",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        },
+        {
+          "crn": "43986",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "50523",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "MECH 468",
+      "title": "Mechanical Engineering Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 468. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "19650",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "89068",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        }
+      ]
+    },
+    {
+      "code": "MECH 394",
+      "title": "Mechanical Engineering Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 394. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Bob Jones",
+      "sections": [
+        {
+          "crn": "38243",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "18829",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "MECH 432",
+      "title": "Mechanical Engineering Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 432. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "96756",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "30200",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "72443",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "MECH 447",
+      "title": "Mechanical Engineering Topic 8",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 447. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "15696",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        }
+      ]
+    },
+    {
+      "code": "MECH 205",
+      "title": "Mechanical Engineering Topic 9",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 205. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "57099",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "30670",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "51437",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "MECH 335",
+      "title": "Mechanical Engineering Topic 10",
+      "credits": 3,
+      "description": "This is a placeholder description for MECH 335. It covers fundamental concepts of Mechanical Engineering.",
+      "departmentId": "MECH",
+      "collegeId": "ENG",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "68229",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "40010",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "17957",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 416",
+      "title": "Civil Engineering Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 416. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Alice Smith",
+      "sections": [
+        {
+          "crn": "76607",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "42125",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        },
+        {
+          "crn": "96853",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 350",
+      "title": "Civil Engineering Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 350. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Eve Black",
+      "sections": [
+        {
+          "crn": "45430",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "43031",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "19585",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 313",
+      "title": "Civil Engineering Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 313. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "58810",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "90048",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "73625",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 458",
+      "title": "Civil Engineering Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 458. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "39561",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 207",
+      "title": "Civil Engineering Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 207. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "55198",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 301",
+      "title": "Civil Engineering Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 301. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Bob Jones",
+      "sections": [
+        {
+          "crn": "49278",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "88021",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 322",
+      "title": "Civil Engineering Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 322. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "85840",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "59043",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "CIVIL 171",
+      "title": "Civil Engineering Topic 8",
+      "credits": 3,
+      "description": "This is a placeholder description for CIVIL 171. It covers fundamental concepts of Civil Engineering.",
+      "departmentId": "CIVIL",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "95298",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 353",
+      "title": "Chemical Engineering Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 353. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Jack King",
+      "sections": [
+        {
+          "crn": "93291",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "46548",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 316",
+      "title": "Chemical Engineering Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 316. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "50674",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "39370",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 491",
+      "title": "Chemical Engineering Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 491. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Bob Jones",
+      "sections": [
+        {
+          "crn": "84079",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        },
+        {
+          "crn": "41578",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 174",
+      "title": "Chemical Engineering Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 174. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "79395",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 164",
+      "title": "Chemical Engineering Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 164. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "61135",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "11117",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "33402",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 269",
+      "title": "Chemical Engineering Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 269. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Ivy Lee",
+      "sections": [
+        {
+          "crn": "92407",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "42761",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "71230",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 450",
+      "title": "Chemical Engineering Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 450. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "13482",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "92163",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "91110",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 229",
+      "title": "Chemical Engineering Topic 8",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 229. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "10207",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "92589",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "CHEM 403",
+      "title": "Chemical Engineering Topic 9",
+      "credits": 3,
+      "description": "This is a placeholder description for CHEM 403. It covers fundamental concepts of Chemical Engineering.",
+      "departmentId": "CHEM",
+      "collegeId": "ENG",
+      "instructorName": "Dr. Ivy Lee",
+      "sections": [
+        {
+          "crn": "75968",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "MGT 179",
+      "title": "Management Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for MGT 179. It covers fundamental concepts of Management.",
+      "departmentId": "MGT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "18223",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "25647",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "MGT 364",
+      "title": "Management Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for MGT 364. It covers fundamental concepts of Management.",
+      "departmentId": "MGT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Ivy Lee",
+      "sections": [
+        {
+          "crn": "41201",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "51937",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "MGT 132",
+      "title": "Management Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for MGT 132. It covers fundamental concepts of Management.",
+      "departmentId": "MGT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Ivy Lee",
+      "sections": [
+        {
+          "crn": "63899",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "MGT 189",
+      "title": "Management Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for MGT 189. It covers fundamental concepts of Management.",
+      "departmentId": "MGT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "48385",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "44069",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "MGT 214",
+      "title": "Management Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for MGT 214. It covers fundamental concepts of Management.",
+      "departmentId": "MGT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "29383",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "ACC 228",
+      "title": "Accounting Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 228. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Eve Black",
+      "sections": [
+        {
+          "crn": "51216",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        }
+      ]
+    },
+    {
+      "code": "ACC 271",
+      "title": "Accounting Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 271. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "63663",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "59028",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "ACC 228",
+      "title": "Accounting Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 228. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Alice Smith",
+      "sections": [
+        {
+          "crn": "78433",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "13191",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        }
+      ]
+    },
+    {
+      "code": "ACC 327",
+      "title": "Accounting Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 327. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Bob Jones",
+      "sections": [
+        {
+          "crn": "54599",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        },
+        {
+          "crn": "89680",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        },
+        {
+          "crn": "60154",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "ACC 346",
+      "title": "Accounting Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 346. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "24906",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "77852",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "ACC 206",
+      "title": "Accounting Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 206. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "83101",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "ACC 470",
+      "title": "Accounting Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 470. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "63109",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "83062",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "ACC 253",
+      "title": "Accounting Topic 8",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 253. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "50844",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "67327",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "ACC 449",
+      "title": "Accounting Topic 9",
+      "credits": 3,
+      "description": "This is a placeholder description for ACC 449. It covers fundamental concepts of Accounting.",
+      "departmentId": "ACC",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "22682",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "MKT 345",
+      "title": "Marketing Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for MKT 345. It covers fundamental concepts of Marketing.",
+      "departmentId": "MKT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "87057",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "MKT 163",
+      "title": "Marketing Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for MKT 163. It covers fundamental concepts of Marketing.",
+      "departmentId": "MKT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "89706",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        },
+        {
+          "crn": "32139",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "38714",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "MKT 338",
+      "title": "Marketing Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for MKT 338. It covers fundamental concepts of Marketing.",
+      "departmentId": "MKT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "63057",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        },
+        {
+          "crn": "62306",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "MKT 153",
+      "title": "Marketing Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for MKT 153. It covers fundamental concepts of Marketing.",
+      "departmentId": "MKT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Alice Smith",
+      "sections": [
+        {
+          "crn": "31521",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "14566",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "MKT 197",
+      "title": "Marketing Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for MKT 197. It covers fundamental concepts of Marketing.",
+      "departmentId": "MKT",
+      "collegeId": "BUS",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "73955",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        },
+        {
+          "crn": "31339",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "77238",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        }
+      ]
+    },
+    {
+      "code": "MATH 111",
+      "title": "Mathematics Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for MATH 111. It covers fundamental concepts of Mathematics.",
+      "departmentId": "MATH",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "13462",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        },
+        {
+          "crn": "33331",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        }
+      ]
+    },
+    {
+      "code": "MATH 188",
+      "title": "Mathematics Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for MATH 188. It covers fundamental concepts of Mathematics.",
+      "departmentId": "MATH",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "17840",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "71655",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "MATH 297",
+      "title": "Mathematics Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for MATH 297. It covers fundamental concepts of Mathematics.",
+      "departmentId": "MATH",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Eve Black",
+      "sections": [
+        {
+          "crn": "72092",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "18936",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        },
+        {
+          "crn": "11520",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    },
+    {
+      "code": "MATH 211",
+      "title": "Mathematics Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for MATH 211. It covers fundamental concepts of Mathematics.",
+      "departmentId": "MATH",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "31207",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        },
+        {
+          "crn": "34581",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        },
+        {
+          "crn": "81744",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        }
+      ]
+    },
+    {
+      "code": "MATH 449",
+      "title": "Mathematics Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for MATH 449. It covers fundamental concepts of Mathematics.",
+      "departmentId": "MATH",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Eve Black",
+      "sections": [
+        {
+          "crn": "75797",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        },
+        {
+          "crn": "26032",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "31331",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "MATH 215",
+      "title": "Mathematics Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for MATH 215. It covers fundamental concepts of Mathematics.",
+      "departmentId": "MATH",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Ivy Lee",
+      "sections": [
+        {
+          "crn": "63243",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Bob Jones"
+        },
+        {
+          "crn": "32426",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "81570",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "PHY 429",
+      "title": "Physics Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 429. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "22718",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "53158",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "PHY 386",
+      "title": "Physics Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 386. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "60727",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "99146",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        }
+      ]
+    },
+    {
+      "code": "PHY 351",
+      "title": "Physics Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 351. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "13504",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "PHY 331",
+      "title": "Physics Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 331. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "60353",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        },
+        {
+          "crn": "51559",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        },
+        {
+          "crn": "79665",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        }
+      ]
+    },
+    {
+      "code": "PHY 350",
+      "title": "Physics Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 350. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Kelly Scott",
+      "sections": [
+        {
+          "crn": "82937",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "70122",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. David White"
+        }
+      ]
+    },
+    {
+      "code": "PHY 129",
+      "title": "Physics Topic 6",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 129. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "87295",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "PHY 486",
+      "title": "Physics Topic 7",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 486. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Frank Green",
+      "sections": [
+        {
+          "crn": "91761",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        }
+      ]
+    },
+    {
+      "code": "PHY 454",
+      "title": "Physics Topic 8",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 454. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Jack King",
+      "sections": [
+        {
+          "crn": "88672",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Ivy Lee"
+        },
+        {
+          "crn": "38699",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "PHY 308",
+      "title": "Physics Topic 9",
+      "credits": 3,
+      "description": "This is a placeholder description for PHY 308. It covers fundamental concepts of Physics.",
+      "departmentId": "PHY",
+      "collegeId": "SCI",
+      "instructorName": "Dr. Bob Jones",
+      "sections": [
+        {
+          "crn": "27155",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Eve Black"
+        }
+      ]
+    },
+    {
+      "code": "HIST 124",
+      "title": "History Topic 1",
+      "credits": 3,
+      "description": "This is a placeholder description for HIST 124. It covers fundamental concepts of History.",
+      "departmentId": "HIST",
+      "collegeId": "ARTS",
+      "instructorName": "Dr. Charlie Brown",
+      "sections": [
+        {
+          "crn": "27369",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Henry Ford"
+        },
+        {
+          "crn": "28136",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Frank Green"
+        },
+        {
+          "crn": "72912",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Jack King"
+        }
+      ]
+    },
+    {
+      "code": "HIST 379",
+      "title": "History Topic 2",
+      "credits": 3,
+      "description": "This is a placeholder description for HIST 379. It covers fundamental concepts of History.",
+      "departmentId": "HIST",
+      "collegeId": "ARTS",
+      "instructorName": "Dr. Henry Ford",
+      "sections": [
+        {
+          "crn": "71042",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        },
+        {
+          "crn": "80917",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        }
+      ]
+    },
+    {
+      "code": "HIST 364",
+      "title": "History Topic 3",
+      "credits": 3,
+      "description": "This is a placeholder description for HIST 364. It covers fundamental concepts of History.",
+      "departmentId": "HIST",
+      "collegeId": "ARTS",
+      "instructorName": "Dr. David White",
+      "sections": [
+        {
+          "crn": "87214",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Liam Turner"
+        }
+      ]
+    },
+    {
+      "code": "HIST 166",
+      "title": "History Topic 4",
+      "credits": 3,
+      "description": "This is a placeholder description for HIST 166. It covers fundamental concepts of History.",
+      "departmentId": "HIST",
+      "collegeId": "ARTS",
+      "instructorName": "Dr. Liam Turner",
+      "sections": [
+        {
+          "crn": "42503",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Charlie Brown"
+        }
+      ]
+    },
+    {
+      "code": "HIST 101",
+      "title": "History Topic 5",
+      "credits": 3,
+      "description": "This is a placeholder description for HIST 101. It covers fundamental concepts of History.",
+      "departmentId": "HIST",
+      "collegeId": "ARTS",
+      "instructorName": "Dr. Grace Hall",
+      "sections": [
+        {
+          "crn": "80104",
+          "section": "01",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Kelly Scott"
+        },
+        {
+          "crn": "27305",
+          "section": "02",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "MW",
+          "time": "09:30-10:45",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Alice Smith"
+        },
+        {
+          "crn": "33827",
+          "section": "03",
+          "semester": "First",
+          "year": "2024-2025",
+          "days": "UTH",
+          "time": "08:00-08:50",
+          "examDate": "2025-01-15 08:30",
+          "instructorName": "Dr. Grace Hall"
+        }
+      ]
+    }
+  ]
+}

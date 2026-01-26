@@ -3,11 +3,25 @@
 import { useState } from "react"
 import { CourseCard } from "@/components/course-card"
 import { CourseFilters } from "@/components/course-filters"
-import { COURSES } from "@/lib/mock-data"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { FilterIcon, SearchIcon, BookOpen } from "lucide-react"
+import { FilterIcon, SearchIcon, BookOpen, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { useQuery } from "@tanstack/react-query"
+import { Course } from "@/lib/mock-data" // Keep types for now, or move to types.ts later
+
+async function fetchCourses(search: string, college: string, department: string, year: string, semester: string) {
+    const params = new URLSearchParams()
+    if (search) params.append("search", search)
+    if (college && college !== "all") params.append("collegeId", college)
+    if (department && department !== "all") params.append("departmentId", department)
+    if (year) params.append("year", year)
+    if (semester) params.append("semester", semester)
+
+    const res = await fetch(`/api/courses?${params.toString()}`)
+    if (!res.ok) throw new Error("Failed to fetch courses")
+    return res.json()
+}
 
 export default function CatalogPage() {
     const [search, setSearch] = useState("")
@@ -16,25 +30,12 @@ export default function CatalogPage() {
     const [year, setYear] = useState("2024-2025")
     const [semester, setSemester] = useState("First")
 
-    // Filter Logic
-    const filteredCourses = COURSES.filter((course) => {
-        // Search
-        if (search && !course.code.toLowerCase().includes(search.toLowerCase()) && !course.title.toLowerCase().includes(search.toLowerCase())) {
-            return false
-        }
-        // College
-        if (college !== "all" && course.collegeId !== college) {
-            return false
-        }
-        // Department
-        if (department !== "all" && course.departmentId !== department) {
-            return false
-        }
-        return true
+    const { data: courses, isLoading, isError } = useQuery<Course[]>({
+        queryKey: ['courses', search, college, department, year, semester],
+        queryFn: () => fetchCourses(search, college, department, year, semester),
     })
 
-    // Sort by code (default)
-    filteredCourses.sort((a, b) => a.code.localeCompare(b.code))
+    // Debounce search could be added here for optimization
 
     return (
         <div className="min-h-screen bg-background">
@@ -101,16 +102,26 @@ export default function CatalogPage() {
                     <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-2">
                             <BookOpen className="h-5 w-5 text-primary" />
-                            <span className="font-semibold text-lg">{filteredCourses.length} Courses Found</span>
+                            <span className="font-semibold text-lg">
+                                {isLoading ? "Loading..." : `${courses?.length || 0} Courses Found`}
+                            </span>
                         </div>
                         <span className="text-sm text-muted-foreground bg-secondary/50 px-3 py-1 rounded-full">
                             {semester} {year}
                         </span>
                     </div>
 
-                    {filteredCourses.length > 0 ? (
+                    {isLoading ? (
+                        <div className="flex justify-center py-12">
+                            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                        </div>
+                    ) : isError ? (
+                        <div className="text-center py-12 text-destructive">
+                            Failed to load courses. Please try again.
+                        </div>
+                    ) : courses && courses.length > 0 ? (
                         <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-                            {filteredCourses.map((course) => (
+                            {courses.map((course) => (
                                 <CourseCard key={course.id} course={course} />
                             ))}
                         </div>

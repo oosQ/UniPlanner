@@ -20,7 +20,7 @@ export interface Course {
     description: string
     departmentId: string
     collegeId: string
-    instructor?: string
+    instructor?: string | { name: string } | null
     examDate?: string
 }
 
