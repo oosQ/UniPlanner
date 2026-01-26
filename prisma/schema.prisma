@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model College {
+  id          String       @id @default(uuid())
+  name        String
+  departments Department[]
+  courses     Course[]
+}
+
+model Department {
+  id        String    @id @default(uuid())
+  name      String
+  collegeId String
+  college   College   @relation(fields: [collegeId], references: [id])
+  courses   Course[]
+}
+
+model Instructor {
+  id       String          @id @default(uuid())
+  name     String
+  email    String?
+  sections CourseSection[]
+  courses  Course[] // Optional: if instructor is coordinator
+}
+
+model Course {
+  id           String          @id @default(uuid())
+  code         String          @unique
+  title        String
+  credits      Int
+  description  String?
+  departmentId String
+  department   Department      @relation(fields: [departmentId], references: [id])
+  collegeId    String
+  college      College         @relation(fields: [collegeId], references: [id])
+  sections     CourseSection[]
+  instructorId String?
+  instructor   Instructor?     @relation(fields: [instructorId], references: [id]) // Optional default instructor
+  
+  // Extra fields from scraping
+  prerequisites String?
+}
+
+model CourseSection {
+  id           String      @id @default(uuid())
+  crn          String      @unique
+  section      String      // e.g., "01"
+  semester     String      // "First", "Second", "Summer"
+  year         String      // "2024-2025"
+  days         String?     // "UTH"
+  time         String?     // "08:00-09:15"
+  room         String?
+  examDate     String?
+  
+  courseId     String
+  course       Course      @relation(fields: [courseId], references: [id])
+  
+  instructorId String?
+  instructor   Instructor? @relation(fields: [instructorId], references: [id])
+}
