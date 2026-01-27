@@ -1,0 +1,612 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+ <script src="js/jquery-3.2.1.js">
+</script> 
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+<title>UOB Course Schedule</title>
+<style type="text/css">
+<!--
+* {
+    box-sizing: border-box;
+}
+body {
+	background-color: #FFF;
+	background-image: url(Images/bg.jpg);
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.resp {
+   float: left;
+   margin: 5px;
+   padding: 5px;
+   max-width: 200px;
+   height: 300px;
+   
+}   
+.vert {
+    display: flex;
+    align-items: center;
+}
+
+.fdiv{
+	max-width: 100%;
+    height: auto;
+/*	padding:20px; */
+	
+      margin: 20px auto;
+}
+
+.sdiv{
+	margin: 0px;
+}
+.mainDiv{
+	display:inline-block;
+	margin: 0 auto;
+  text-align: left;
+  width: 50%;
+}-->
+.secContainer{
+	margin-bottom:5px;
+    line-height: 1.7rem;
+}
+
+.secContainer:nth-of-type(odd) {
+    background: #cfd8dc;
+	padding:5px;
+	width:100%;
+	border-radius: 10px;
+}
+.secContainer:nth-of-type(even) {
+    background: #cfd8dc;
+	padding:5px;
+	width:100%;
+	border-radius: 10px;
+}
+.banner{
+	  max-width: 100%;
+    height: auto;
+	margin-bottom:5%;
+}
+body {
+	background-color: #FFF;
+	background-image: url(Images/bg.jpg);
+	
+}
+
+.footer{
+	     background: #cfad78 ; 
+     border: 0px ; 
+   margin-bottom: 0; 
+    table-layout: auto; 
+	margin-top: 0; 
+     margin-bottom: 0;
+	 
+}
+
+.icons{
+	
+	width:36px;
+	height: 36px;
+	
+}
+
+@media only screen and (max-width: 640px){
+body {
+     padding-top: 0px !important;
+}
+}
+</style>
+<!--<link href="style.css" rel="stylesheet" type="text/css" />-->
+
+
+<meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,maximum-scale=1" name="viewport">
+  <meta name="description" content="Class search by section and term.">
+  <meta name="keywords" content="schedule of classes, term, courses, classes">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+
+
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/foundation-icons.css">
+<script src="jq/lib/jquery-1.11.1.js"></script>
+<script src="jq/dist/jquery.validate.min.js"></script>
+<script src="jq/dist/additional-methods.min.js"></script>
+
+  <!-- Fundation Init--->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta class="foundation-data-attribute-namespace"><meta class="foundation-mq-xxlarge"><meta class="foundation-mq-xlarge-only"><meta class="foundation-mq-xlarge"><meta class="foundation-mq-large-only"><meta class="foundation-mq-large"><meta class="foundation-mq-medium-only"><meta class="foundation-mq-medium"><meta class="foundation-mq-small-only"><meta class="foundation-mq-small"><style></style>
+
+  
+
+  
+
+
+  
+
+
+  <!-- Fundation End--->
+
+ 
+  <link href="css/base.css" media="all" rel="stylesheet">
+  <link href="css/style.css" media="all" rel="stylesheet">
+  <link href="/css/style.print.css" media="print" rel="stylesheet">
+ 
+  <script>/* html5shiv */ (function(){var t='abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video'.split(' ');for(var i=t.length;i--;)document.createElement(t[i])})();</script>
+
+  
+<!-- Commons components -->
+
+  
+
+</head>
+
+
+<body class=" responsive wd-show-sidebar">
+
+<div class="pwrapper">
+
+<div class="pwrapper-wrapper">
+
+
+<div class="clearfix cwrapper wrapper" id="container">
+
+
+<div class="grids isu-content" id="content" role="main">
+        
+
+
+    
+
+<link rel="stylesheet" href="/css/chosen.css">
+<script src="js/chosen.jquery.js"></script>
+
+
+<div id="soc_content">
+
+
+
+
+<div id="available"  style="display: block;">
+<div class="banner" style="margin:10px;">
+ <img src="Images/Header.jpg" width="1040" height="208" alt="Header" /><br />
+<p style="font-weight:bold;">Dear Student,
+
+If you have any concerns about scheduling courses, Please login to the following feedback form using your university email account (xxxxxxxx@stu.uob.edu.bh) and fill it.</p>
+
+<a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=tTdhAhPj0UabLwJuy1DIQrcbe9bBd1JDqznmrLPuUc9UOTdUQlVBU0hNMjBVTlQ4SFgwNEZVMVJGUSQlQCN0PWcu" style="font-weight:bold;">Feedback Form</a>
+
+<br><br>
+
+<a href="https://usis.uob.edu.bh/uob_sis_prod/UI/StudentView/planner.html" target="_blank" style="color: #2b0fc5;background-color:greenyellow; height:25px; display:inline-block; font-weight:bold;font-family:arial;text-decoration: underline;">
+Click here to try the new experimental graphical schedule planner feature</a>
+
+<br><br>
+
+<!--<a href="https://sis.uob.edu.bh" style="font-weight:bold;">For any suggestions/comments, please use the inquires link in online registration page </a>-->
+  
+</div>
+<form  action="/index.php" method="post" name="sisForm" id="sisForm">
+
+<!--<div class="w3-row-padding mainDiv" >-->
+<div class="row">
+
+<div class="large-3 column">
+  
+ 
+    <label style="font-size: 15px;font-weight: bold;"> Year: </label><label id="testt" style="font-size: 15px;font-weight: bold;">  </label>
+	 </div>
+	<div class="large-6 column end">
+	
+	
+<script>
+/*var year = document.getElementById('year'),
+    sem = document.getElementById('sem');
+
+year.onchange = function (e) {
+  var val = e.target.value;
+  empty(sem);
+  for (var i = 0; i < 3; i += 1) {
+    addOption(val + '' + (i + 1), sem);
+  }
+};
+
+function empty(select) {
+  select.innerHTML = '';
+}
+
+function addOption(val, select) {
+  var option = document.createElement('option');
+  option.value = val;
+  option.innerHTML = val;
+  select.appendChild(option);
+}*/
+
+</script>
+
+<select style="border: 2px solid #ccc; width: 100%;" name="year" id="year" required >
+  <option value="" disabled hidden selected>Please Choose...</option>
+
+<option value="2025" > 2025/2026 </option>   
+<option value="2024" > 2024/2025 </option>   
+<option value="2023" > 2023/2024 </option> 
+
+
+ 
+</select> 
+
+</div>
+</div><br>
+
+<div class="row">
+
+<div class="large-3 column">
+  
+ 
+    <label style="font-size: 15px;font-weight: bold;"> Semester: </label>
+	 </div>
+	<div class="large-6 column end">
+	
+	
+
+<select style="border: 2px solid #ccc; width: 100%;" name="sem" id="sem" required >
+  <option value="" disabled hidden selected>Please Choose...</option>
+ 
+ <option value="1" > First Semester </option>
+ <option value="2" > Second Semester </option>
+ <option value="3" > Summer Semester </option>
+
+ 
+ 
+</select> 
+
+</div>
+</div><br>
+
+
+
+<div class="row" >
+   <div class="large-3 column">
+    <label style="font-size: 15px;font-weight: bold;"> Search By: </label></div>
+     <div class="large-3 column "> <input type="radio" name="type"  value="CC"  required>  Course Code </div>
+     <div class="large-3 column end"> <input type="radio" name="type" value="CD"  required> College and Department <div id="errorTxt"></div>
+	 
+</div>
+</div><br>
+<div class="row">
+  <div class="large-3 column">
+    <label style="font-size: 15px;font-weight: bold;"> Course Code: </label>
+	</div>
+	 <div class="large-6 column end">
+	<input style="background-color: #fff;width: 100%;border: 2px solid #ccc;" type="text" name="code" id="code" required > 
+  </div>
+  </div><br>
+  
+<div class="row">
+<div class="large-3 column">
+  
+ 
+    <label style="font-size: 15px;font-weight: bold;"> College: </label>
+	 </div>
+	<div class="large-6 column end">
+	
+	
+
+<select style="border: 2px solid #ccc; width: 100%;" name="college" id="college"  onchange="showUser(this.value)" required>
+  <option value="" disabled hidden selected>Please Choose...</option>
+     
+ <option value="7" > College of Information Technology </option>
+ 
+    
+     
+ <option value="1" > College of Arts </option>
+ 
+    
+     
+ <option value="10" > College of Law </option>
+ 
+    
+     
+ <option value="3" > College of Engineering </option>
+ 
+    
+     
+ <option value="30" > College of Physical Education </option>
+ 
+    
+     
+ <option value="15" > College of Health and Sport Sciences </option>
+ 
+    
+     
+ <option value="35" > Languages Institute </option>
+ 
+    
+     
+ <option value="9" > College of Applied Studies </option>
+ 
+    
+     
+ <option value="4" > College of Science </option>
+ 
+    
+     
+ <option value="2" > College of Business Administration </option>
+ 
+    
+  </select> 
+	
+	<!--<select style="border: 2px solid #ccc; width: 100%;" name="college" id="college"  onchange="document.getElementById('dept').value='';if(this.value != 0) {this.form.submit();}">
+      <option value="" disabled hidden selected>Please Choose...</option>
+
+    
+   
+<option value="2"  College of Business Administration</option>
+ <option value="1" College of Arts</option>
+<option value="4" College of Science</option>
+<option value="7" College of Information Technology</option>
+<option value="35" Languages Institute</option>
+<option value="10" College of Law</option>
+<option value="15" College of Health Sciences</option>
+<option value="30" College of Physical Education</option>
+</select>-->
+ </div>
+ </div>
+ 
+ <br>
+<script>
+  
+
+
+  /*$('#college').change(function(){
+   // $('#code, #college, #dept').attr('disabled', 'disabled');
+    $('form').submit();
+});*/
+</script>
+ 
+  <div class="row">
+<div class="large-3 column">
+  
+
+<label style="font-size: 15px;font-weight: bold;"> Department: </label>
+ </div>
+ <div class="large-6 column end">
+<select style="border: 2px solid #ccc;width: 100%;" name="dept" id="dept" required >
+  <option value="" disabled hidden selected>Please Choose...</option>
+  </select> 
+</div>
+ </div><br>
+ <div class="row">
+ <div class="large-6 column end">
+  <input class="small secondary radius button" style="font-weight:bold;" type="submit" value="Search" id="btnsubmit" > <!-- onclick="submitForm()" -->
+  <input class="small secondary radius button" style="font-weight:bold;" type="button" value="Clear" id="clr" >
+ </div>
+ </div><br>
+ <!--</div>-->
+
+<script>
+   $(document).ready(function(){
+    
+      //$('#code, #college, #dept').attr('disabled', 'disabled');
+      var radValue = $("input[name='type']:checked").val();
+      if (!$("input[name='type']:checked").val()) {
+   $('#code, #college, #dept').attr('disabled', 'disabled');
+}
+     
+else if(radValue=="CC"){
+    $("#college").val("");
+    $("#dept").val("");
+	//$('#dept').empty();
+    $('#college, #dept').attr('disabled', 'disabled');
+    $('#code').removeAttr('disabled');
+	
+   }
+
+else if(radValue=="CD"){
+    
+    $('#college, #dept').removeAttr('disabled');
+     $('#code').val("");
+	 
+    $('#code').attr('disabled', 'disabled');
+}
+      else{
+        $('#code, #college, #dept').attr('disabled', 'disabled');
+      }
+      
+//$(document).ready(function(){
+ //$('#college, #dept,#code ').attr('disabled', 'disabled');
+
+ $("input[type=radio][name='type']").on('change', function () {
+  
+var radValue = $("input[name='type']:checked").val();
+   
+if(radValue == "CC"){
+    $("#college").val("");
+    $("#dept").val("");
+    $('#college, #dept').attr('disabled', 'disabled');
+    $('#code').removeAttr('disabled');
+   }
+
+else if(radValue=="CD"){
+    
+    $('#college, #dept').removeAttr('disabled');
+     $('#code').val("");
+    $('#code').attr('disabled', 'disabled');
+}
+});
+ $("#clr").on('click', function () {
+	 $("#dept").val("");
+	 $('#code').val("");
+	 $('#college').val("");
+	 $('#year').val("");
+	 $('#sem').val("");
+	 $("input:radio").attr("checked", false);
+	 $("#resultsTable").html("");
+	 });
+});
+  
+  
+  function submitForm() {
+   // Get the first form with the name
+   // Hopefully there is only one, but there are more, select the correct index
+   var frm = document.getElementsByName('sisForm')[0];
+   frm.submit(); // Submit
+   //frm.reset();  // Reset
+     //document.getElementById("dept").options.length = 0;
+   //return false; // Prevent page refresh
+}
+
+	/* $(document).ready(function(){
+    //$('.sendButton').attr('disabled',true);
+    $('#code').keyup(function(){
+        $('#btnsubmit').prop('disabled', this.value == "" ? true : false);   
+    })
+	
+	 $('#dept').change(function(){
+        $('#btnsubmit').prop('disabled', this.value == "" ? true : false);   
+    })
+	
+	$('#year, #sem').change(function(){
+        if(($('#year').val().length !=0) && ($('#sem').val().length !=0) )
+            $('.btnsubmit').attr('disabled', false);            
+        else
+            $('.btnsubmit').attr('disabled',true);   
+    })
+	
+	
+});*/
+
+/*$(document).ready(function() {
+$("#btnsubmit").attr('disabled', 'disabled');
+//$("#year, #sem").change(function() {
+	$("form > input").keyup(function() {
+// To Disable Submit Button
+$("#btnsubmit").attr('disabled', 'disabled');
+// Validating Fields
+var year = $("#year").val();
+var sem = $("#sem").val();
+
+
+if ( year != null ) {
+
+if ( sem != null){
+if ($("input[name='type']:checked").val()) {
+$("#btnsubmit").removeAttr('disabled');
+}
+}
+
+}
+});
+
+});
+
+$(document).ready(function() {
+  validate();
+  $('input').on('keyup', validate);
+});
+
+function validate() {
+  var inputsWithValues = 0;
+  
+  // get all input fields except for type='submit'
+  var myInputs = $("input:not([type='submit']):not([type='text']):not([type='button'])");
+
+  myInputs.each(function(e) {
+    // if it has a value, increment the counter
+	var xxx = $(this).val() ;
+    if (xxx != null) {
+      inputsWithValues += 1;
+    }
+  });
+alert (myInputs.length);
+  if (inputsWithValues == myInputs.length) {
+    $("input[type=submit]").prop("disabled", false);
+  } else {
+    $("input[type=submit]").prop("disabled", true);
+  }
+}*/
+$("#sisForm").validate();
+/*$("#sisForm").validate({
+     //all your other options here
+        errorLabelContainer: '#errorTxt'
+});*/
+
+$("#year, #sem").change(function() {
+	$("#resultsTable").html("");
+	});
+
+	
+	
+   
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("dept").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("dept").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","getdept.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+ 
+  </script>
+
+
+
+
+
+</form>
+
+<script >
+
+</script>
+  
+
+
+ 
+
+
+</div>
+</div>
+</div>
+</div>
+<table class="footer" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#cfad78">
+           <tr>
+             <td width="33%"> </td>
+             <td width="33%"><div align="center" class="CopyRight">All Rights Reserved for UOB (2017)</div></td>
+             <td width="33%"><table class="footer" border="0" align="right" cellpadding="0" cellspacing="5">
+               <tr>
+                 <!--<td  width="36"><a href="https://www.facebook.com/uobedubh" target="_blank"><img class="icons" src="images/Facebook.png" alt="FaceBook" width="36" height="36" border="0"></a></td>
+                 <td class="icons" width="36"><a href="https://twitter.com/uobedubh" target="_blank"><img src="images/twitter.png" alt="twitter" width="36" height="37" border="0"></a></td>
+                 <td class="icons" width="36"><a href="https://www.youtube.com/user/uobedubh" target="_blank"><img src="images/Youtube.png" alt="Youtube" width="36" height="36" border="0"></a></td>
+                 <td class="icons" width="36"><a href="https://www.instagram.com/uobedubh/" target="_blank"><img src="images/instagram.png" alt="instagram" width="36" height="36" border="0"></a></td>-->
+               </tr>
+             </table></td>
+           </tr>
+         </table>
+</div>
+</div>
+</div>
+
+</body>
+</html>
