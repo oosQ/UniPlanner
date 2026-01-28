@@ -1,7 +1,8 @@
+
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
     title: "UniPlanner",
@@ -17,6 +18,7 @@ export default function RootLayout({
         <html lang="en">
             <body className="antialiased min-h-screen bg-background font-sans text-foreground bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50/50 via-background to-background dark:from-indigo-950/20 dark:via-background dark:to-background">
                 <Providers>
+                    <Navbar />
                     {children}
                 </Providers>
             </body>

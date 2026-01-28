@@ -19,7 +19,7 @@ export default async function InstructorListPage() {
                     {instructors.map((instructor) => (
                         <Link
                             key={instructor.id}
-                            href={`/catalog/instructor/${instructor.id}`}
+                            href={`/instructor/${instructor.id}`}
                             className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden group"
                         >
                             <div className="p-6 flex flex-col items-center text-center">
