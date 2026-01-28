@@ -28,7 +28,7 @@ export default function CatalogPage() {
     const [college, setCollege] = useState("all")
     const [department, setDepartment] = useState("all")
     const [year, setYear] = useState("2024-2025")
-    const [semester, setSemester] = useState("First")
+    const [semester, setSemester] = useState("Second")
 
     const { data: courses, isLoading, isError } = useQuery<Course[]>({
         queryKey: ['courses', search, college, department, year, semester],

@@ -26,11 +26,22 @@ model Department {
 }
 
 model Instructor {
-  id       String          @id @default(uuid())
+  id       Int             @id @default(autoincrement())
   name     String
   email    String?
   sections CourseSection[]
   courses  Course[] // Optional: if instructor is coordinator
+  
+  // Scraped Data
+  photoUrl      String?
+  office        String?
+  profileUrl    String?
+  
+  // New requirements
+  degree        String?  // e.g. Professor
+  role          String?  // e.g. Instructor - user requested
+  phone         String?  // 8 digits
+  college       String?  // e.g. CIT
 }
 
 model Course {
@@ -44,7 +55,7 @@ model Course {
   collegeId    String
   college      College         @relation(fields: [collegeId], references: [id])
   sections     CourseSection[]
-  instructorId String?
+  instructorId Int?
   instructor   Instructor?     @relation(fields: [instructorId], references: [id]) // Optional default instructor
   
   // Extra fields from scraping
@@ -61,10 +72,16 @@ model CourseSection {
   time         String?     // "08:00-09:15"
   room         String?
   examDate     String?
+
+  // Scraped Data
+  availableSeats Int?
+  examRoom       String?
+  sectionStatus  String? // OPEN, CLOSED, etc
+  classType      String? // LEC, LAB, etc
   
   courseId     String
   course       Course      @relation(fields: [courseId], references: [id])
   
-  instructorId String?
+  instructorId Int?
   instructor   Instructor? @relation(fields: [instructorId], references: [id])
 }
