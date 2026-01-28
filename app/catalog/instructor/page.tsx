@@ -42,6 +42,12 @@ export default async function InstructorListPage() {
                                     </p>
                                 )}
 
+                                {instructor.department && (
+                                    <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
+                                        {instructor.department}
+                                    </p>
+                                )}
+
                                 {instructor.college && (
                                     <p className="mt-2 inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600">
                                         {instructor.college}

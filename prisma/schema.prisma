@@ -42,6 +42,8 @@ model Instructor {
   role          String?  // e.g. Instructor - user requested
   phone         String?  // 8 digits
   college       String?  // e.g. CIT
+  department    String?  // e.g. Computer Science
+  biography     String?  // Description
 }
 
 model Course {

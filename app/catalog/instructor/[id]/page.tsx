@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 
 export default async function InstructorPage(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
-    // Parse numeric ID
     const id = parseInt(params.id)
 
     if (isNaN(id)) return notFound()
@@ -19,12 +18,13 @@ export default async function InstructorPage(props: { params: Promise<{ id: stri
 
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+            <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
 
-                {/* Top Banner / Avatar */}
+                {/* Top Banner */}
                 <div className="relative h-40 bg-gradient-to-r from-emerald-600 to-teal-700">
-                    <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 p-2 bg-white rounded-full shadow-lg">
-                        <div className="relative w-32 h-32 rounded-full overflow-hidden bg-gray-100 border-4 border-white">
+                    {/* Avatar positioning */}
+                    <div className="absolute -bottom-16 left-8 p-1.5 bg-white rounded-2xl shadow-lg">
+                        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-gray-100">
                             <Image
                                 src={instructor.photoUrl || "/placeholder-avatar.png"}
                                 alt={instructor.name}
@@ -35,61 +35,82 @@ export default async function InstructorPage(props: { params: Promise<{ id: stri
                     </div>
                 </div>
 
-                {/* Main Info */}
-                <div className="pt-20 pb-8 px-6 text-center">
+                {/* Content Section */}
+                <div className="pt-20 pb-8 px-8">
+                    <div className="flex flex-col md:flex-row justify-between items-start">
 
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{instructor.name}</h1>
+                        {/* Name & Titles */}
+                        <div className="space-y-2 mt-4 ml-2">
+                            <h1 className="text-3xl font-bold text-gray-900">{instructor.name}</h1>
 
-                    <div className="space-y-1 mb-6">
-                        {instructor.degree && (
-                            <span className="block text-lg text-emerald-700 font-medium">
-                                {instructor.degree}
-                            </span>
-                        )}
-                        {instructor.role && (
-                            <span className="block text-sm text-gray-500 uppercase tracking-wider font-semibold">
-                                {instructor.role}
-                            </span>
-                        )}
-                        {instructor.college && (
-                            <span className="inline-block mt-2 px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-medium">
-                                {instructor.college}
-                            </span>
-                        )}
+                            <div className="flex flex-col gap-1">
+                                {instructor.degree && (
+                                    <span className="text-lg text-emerald-700 font-medium">
+                                        {instructor.degree}
+                                    </span>
+                                )}
+                                {instructor.department && (
+                                    <span className="text-md text-gray-600 font-medium">
+                                        {instructor.department}
+                                    </span>
+                                )}
+
+                                <div className="flex gap-2">
+                                    {instructor.role && (
+                                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold border border-gray-200 px-2 py-0.5 rounded-md self-start">
+                                            {instructor.role}
+                                        </span>
+                                    )}
+                                    {instructor.college && (
+                                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold border border-gray-200 px-2 py-0.5 rounded-md self-start">
+                                            {instructor.college}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Contact Box (right side on desktop) */}
+                        <div className="mt-8 md:mt-0 md:ml-8 bg-gray-50 p-5 rounded-xl border border-gray-100 min-w-[250px]">
+                            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Contact Details</h3>
+                            <div className="space-y-3">
+                                <div className="flex flex-col">
+                                    <span className="text-xs text-gray-500">Email</span>
+                                    <a href={`mailto:${instructor.email}`} className="text-sm font-medium text-emerald-600 hover:underline break-all">
+                                        {instructor.email}
+                                    </a>
+                                </div>
+                                {instructor.phone && (
+                                    <div className="flex flex-col">
+                                        <span className="text-xs text-gray-500">Phone</span>
+                                        <span className="text-sm font-medium text-gray-800">{instructor.phone}</span>
+                                    </div>
+                                )}
+                                {instructor.office && (
+                                    <div className="flex flex-col">
+                                        <span className="text-xs text-gray-500">Office</span>
+                                        <span className="text-sm font-medium text-gray-800">{instructor.office}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Grid for Contact Details */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 max-w-2xl mx-auto text-left bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <hr className="my-8 border-gray-100" />
 
-                        {/* Email */}
-                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                            <span className="text-xs text-gray-400 uppercase font-bold mb-1">Email</span>
-                            <a href={`mailto:${instructor.email}`} className="text-sm font-medium text-emerald-600 hover:underline break-all">
-                                {instructor.email}
-                            </a>
-                        </div>
+                    {/* Biography / Description */}
+                    {instructor.biography && (
+                        <section className="mb-8">
+                            <h2 className="text-xl font-bold text-gray-900 mb-4">Description</h2>
+                            <div className="prose prose-emerald max-w-none text-gray-600 leading-relaxed">
+                                <p>{instructor.biography}</p>
+                            </div>
+                        </section>
+                    )}
 
-                        {/* Office */}
-                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                            <span className="text-xs text-gray-400 uppercase font-bold mb-1">Office</span>
-                            <span className="text-sm font-medium text-gray-800">
-                                {instructor.office || "N/A"}
-                            </span>
-                        </div>
-
-                        {/* Phone */}
-                        <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                            <span className="text-xs text-gray-400 uppercase font-bold mb-1">Phone</span>
-                            <span className="text-sm font-medium text-gray-800">
-                                {instructor.phone || "N/A"}
-                            </span>
-                        </div>
-
-                    </div>
-
-                    {/* View Profile Link */}
+                    {/* Link Footer */}
                     {instructor.profileUrl && (
-                        <div className="mt-8">
+                        <div className="mt-4 pt-4 border-t border-gray-50">
                             <a href={instructor.profileUrl} target="_blank" className="inline-flex items-center text-sm text-gray-400 hover:text-emerald-600 transition-colors">
                                 <span>View Official Page at UOB</span>
                                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
