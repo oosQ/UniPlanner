@@ -1,4 +1,3 @@
-
 "use client"
 
 import Link from "next/link"
@@ -6,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { GraduationCap, BookOpen, Users } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -47,7 +47,7 @@ export function Navbar() {
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-emerald-600 px-3 py-2 rounded-md",
                   route.active
-                    ? "text-emerald-700 bg-emerald-50"
+                    ? "text-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400"
                     : "text-muted-foreground"
                 )}
               >
@@ -56,9 +56,12 @@ export function Navbar() {
             ))}
           </div>
 
-          <Button size="sm" className="hidden md:inline-flex bg-emerald-600 hover:bg-emerald-700">
-            Sign In
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button size="sm" className="hidden md:inline-flex bg-emerald-600 hover:bg-emerald-700">
+              Sign In
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
