@@ -2,65 +2,131 @@
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import Image from "next/image"
+import { InstructorFilter } from "@/components/instructor-filter"
+import { Prisma } from "@prisma/client"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Search } from "lucide-react"
 
 export const dynamic = 'force-dynamic'
 
-export default async function InstructorListPage() {
+interface PageProps {
+    searchParams: Promise<{
+        search?: string
+        department?: string
+    }>
+}
+
+export default async function InstructorListPage(props: PageProps) {
+    const searchParams = await props.searchParams;
+    const { search, department } = searchParams;
+
+    // Build filter
+    const where: Prisma.InstructorWhereInput = {}
+
+    if (search) {
+        where.OR = [
+            { name: { contains: search } }, // Case insensitive in SQLite usually, but depends on collation
+            // { email: { contains: search } } // Optional: search email too
+        ]
+    }
+
+    if (department && department !== "all") {
+        where.department = department
+    }
+
+    // Fetch data
     const instructors = await prisma.instructor.findMany({
+        where,
         orderBy: { name: 'asc' }
     })
 
-    return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <h1 className="text-3xl font-bold text-gray-900 mb-8">All Instructors</h1>
+    // Fetch unique departments for the dropdown
+    const distinctDepts = await prisma.instructor.findMany({
+        where: { department: { not: null } },
+        select: { department: true },
+        distinct: ['department'],
+        orderBy: { department: 'asc' }
+    })
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {instructors.map((instructor) => (
+    // Filter out nulls and duplicates (though distinct handles duplicates)
+    const departments = distinctDepts
+        .map(d => d.department)
+        .filter((d): d is string => !!d);
+
+    return (
+        <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">All Instructors</h1>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                        Showing {instructors.length} results
+                    </div>
+                </div>
+
+                <InstructorFilter departments={departments} />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
+                    {instructors.map((instructor, index) => (
                         <Link
                             key={instructor.id}
                             href={`/instructor/${instructor.id}`}
-                            className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden group"
+                            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-md border-2 border-gray-200 dark:border-gray-800 rounded-2xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 group relative overflow-hidden"
+                            style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'both' }}
                         >
-                            <div className="p-6 flex flex-col items-center text-center">
-                                <div className="relative w-24 h-24 mb-4 rounded-full overflow-hidden bg-gray-100 group-hover:scale-105 transition-transform duration-200">
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent dark:from-emerald-900/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <div className="relative w-28 h-28 mb-5 rounded-full p-1 bg-gradient-to-br from-gray-100 to-white dark:from-slate-700 dark:to-slate-800 shadow-inner group-hover:scale-105 transition-transform duration-300 ring-1 ring-gray-100 dark:ring-slate-700 group-hover:ring-emerald-200 dark:group-hover:ring-emerald-800">
+                                <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-50 dark:bg-slate-800">
                                     <Image
                                         src={instructor.photoUrl || "/placeholder-avatar.png"}
                                         alt={instructor.name}
                                         fill
                                         className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                 </div>
+                            </div>
 
-                                <h3 className="text-lg font-semibold text-gray-900 line-clamp-1 group-hover:text-emerald-600 transition-colors">
+                            <div className="relative z-10 w-full">
+                                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 line-clamp-1 mb-1 group-hover:text-emerald-700 transition-colors">
                                     {instructor.name}
                                 </h3>
 
                                 {instructor.degree && (
-                                    <p className="text-xs text-indigo-600 font-medium mt-1 line-clamp-1">
+                                    <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2 uppercase tracking-wide">
                                         {instructor.degree}
                                     </p>
                                 )}
 
-                                {instructor.department && (
-                                    <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
-                                        {instructor.department}
-                                    </p>
-                                )}
-
-                                {instructor.college && (
-                                    <p className="mt-2 inline-flex px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600">
-                                        {instructor.college}
-                                    </p>
-                                )}
+                                <div className="space-y-1">
+                                    {(instructor.college || instructor.department) && (
+                                        <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mt-1">
+                                            {[instructor.college, instructor.department].filter(Boolean).join(" - ")}
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                         </Link>
                     ))}
 
                     {instructors.length === 0 && (
-                        <p className="col-span-full text-center text-gray-500 py-12">
-                            No instructors found. Run the scraper to identify instructors.
-                        </p>
+                        <div className="col-span-full flex flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in duration-500">
+                            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                                <Search className="w-8 h-8 text-gray-400" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-gray-900">No instructors found</h3>
+                            <p className="text-gray-500 max-w-sm mt-2">
+                                We couldn't find any instructors matching your search. Try adjusting your filters.
+                            </p>
+                            <Button
+                                variant="outline"
+                                className="mt-6"
+                                onClick={() => window.location.href = '/instructor'}
+                            >
+                                Clear all filters
+                            </Button>
+                        </div>
                     )}
                 </div>
             </div>
