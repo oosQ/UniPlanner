@@ -8,13 +8,13 @@ import re
 # Configuration
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'prisma', 'dev.db')
 COLLEGES = {
-    # 'CAS': 'http://cas.uob.edu.bh',
-    # 'Arts': 'http://arts.uob.edu.bh',
-    # 'Business': 'http://cob.uob.edu.bh',
-    # 'Engineering': 'http://engineering.uob.edu.bh',
+    'CAS': 'http://cas.uob.edu.bh',
+    'Arts': 'http://arts.uob.edu.bh',
+    'Business': 'http://cob.uob.edu.bh',
+    'Engineering': 'http://engineering.uob.edu.bh',
     'IT': 'http://cit.uob.edu.bh',
-    # 'Law': 'http://law.uob.edu.bh',
-    # 'Science': 'http://science.uob.edu.bh'
+    'Law': 'http://law.uob.edu.bh',
+    'Science': 'http://science.uob.edu.bh'
 }
 
 def get_db_connection():

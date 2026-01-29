@@ -14,21 +14,25 @@ interface PageProps {
     searchParams: Promise<{
         search?: string
         department?: string
+        college?: string
     }>
 }
 
 export default async function InstructorListPage(props: PageProps) {
     const searchParams = await props.searchParams;
-    const { search, department } = searchParams;
+    const { search, department, college } = searchParams;
 
     // Build filter
     const where: Prisma.InstructorWhereInput = {}
 
     if (search) {
         where.OR = [
-            { name: { contains: search } }, // Case insensitive in SQLite usually, but depends on collation
-            // { email: { contains: search } } // Optional: search email too
+            { name: { contains: search } },
         ]
+    }
+
+    if (college && college !== "all") {
+        where.college = college
     }
 
     if (department && department !== "all") {
@@ -41,15 +45,29 @@ export default async function InstructorListPage(props: PageProps) {
         orderBy: { name: 'asc' }
     })
 
-    // Fetch unique departments for the dropdown
+    // Fetch unique colleges
+    const distinctColleges = await prisma.instructor.findMany({
+        where: { college: { not: null } },
+        select: { college: true },
+        distinct: ['college'],
+        orderBy: { college: 'asc' }
+    })
+
+    const colleges = distinctColleges
+        .map(c => c.college)
+        .filter((c): c is string => !!c);
+
+    // Fetch unique departments (scoped to selected college if present)
     const distinctDepts = await prisma.instructor.findMany({
-        where: { department: { not: null } },
+        where: {
+            department: { not: null },
+            ...(college && college !== "all" ? { college } : {})
+        },
         select: { department: true },
         distinct: ['department'],
         orderBy: { department: 'asc' }
     })
 
-    // Filter out nulls and duplicates (though distinct handles duplicates)
     const departments = distinctDepts
         .map(d => d.department)
         .filter((d): d is string => !!d);
@@ -64,7 +82,7 @@ export default async function InstructorListPage(props: PageProps) {
                     </div>
                 </div>
 
-                <InstructorFilter departments={departments} />
+                <InstructorFilter departments={departments} colleges={colleges} />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
                     {instructors.map((instructor, index) => (
