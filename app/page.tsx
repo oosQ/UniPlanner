@@ -22,7 +22,7 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto">
-                    <Link href="/catalog" className="flex-1">
+                    <Link href="/courses" className="flex-1">
                         <Button size="lg" className="w-full h-14 text-lg bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-500/20">
                             <BookOpen className="mr-2 h-5 w-5" />
                             Browse Courses

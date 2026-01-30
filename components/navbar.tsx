@@ -12,10 +12,10 @@ export function Navbar() {
 
   const routes = [
     {
-      href: "/catalog",
+      href: "/courses",
       label: "Courses",
       icon: BookOpen,
-      active: pathname === "/catalog",
+      active: pathname === "/courses",
     },
     {
       href: "/instructor",

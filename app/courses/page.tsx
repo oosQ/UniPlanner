@@ -38,6 +38,7 @@ export default function CatalogPage() {
     const [sortBy, setSortBy] = useState("level-asc") // level-asc, level-desc, code
     const [filterDept, setFilterDept] = useState("ALL")
     const [filterLevel, setFilterLevel] = useState("ALL")
+    const [hideFull, setHideFull] = useState(false)
     const [resultFilter, setResultFilter] = useState("") // Text search
 
     const [departments, setDepartments] = useState<{ value: string; label: string }[]>([])
@@ -78,6 +79,7 @@ export default function CatalogPage() {
         setResultFilter("")
         setFilterDept("ALL")
         setFilterLevel("ALL")
+        setHideFull(false)
         setSortBy("level-asc")
 
         const formData = new FormData()
@@ -139,10 +141,21 @@ export default function CatalogPage() {
 
     // 2. Filter and Sort
     const processedCourses = courses
-        .map(course => ({
-            ...course,
-            parsed: parseCourseCode(course.code)
-        }))
+        .map(course => {
+            const parsed = parseCourseCode(course.code)
+
+            // If hiding full courses, filter out sections with 0 seats
+            let sections = course.sections
+            if (hideFull) {
+                sections = sections.filter(s => (parseInt(s.availableSeats) || 0) > 0)
+            }
+
+            return {
+                ...course,
+                parsed,
+                sections
+            }
+        })
         .filter(course => {
             // Text Filter
             const textMatch =
@@ -155,6 +168,9 @@ export default function CatalogPage() {
 
             // Level Filter
             if (filterLevel !== "ALL" && course.parsed.levelLabel !== filterLevel) return false
+
+            // Hide Full Filter (Hide if no sections left)
+            if (hideFull && course.sections.length === 0) return false
 
             return true
         })
@@ -208,7 +224,7 @@ export default function CatalogPage() {
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="space-y-1">
                         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Course Catalog</h1>
-                        <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and schedules</p>
+                        <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and build yourschedules</p>
                     </div>
 
                     {/* Settings Popover */}
@@ -216,7 +232,7 @@ export default function CatalogPage() {
                         <PopoverTrigger asChild>
                             <Button variant="outline" className="gap-2">
                                 <Settings2 className="w-4 h-4" />
-                                <span className="hidden sm:inline">Settings</span>
+                                <span className="hidden sm:inline">Filter</span>
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-80" align="end">
@@ -424,6 +440,21 @@ export default function CatalogPage() {
                                 </div>
 
                             </div>
+
+                            {/* Hide Full Toggle */}
+                            <div className="flex items-center space-x-2 pt-2">
+                                <input
+                                    type="checkbox"
+                                    id="hideFull"
+                                    checked={hideFull}
+                                    onChange={(e) => setHideFull(e.target.checked)}
+                                    className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-800"
+                                />
+                                <Label htmlFor="hideFull" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-slate-600 dark:text-slate-300">
+                                    Hide 0 seats courses
+                                </Label>
+                            </div>
+
                         </div>
                     )}
 
@@ -589,7 +620,7 @@ export default function CatalogPage() {
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
