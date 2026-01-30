@@ -8,9 +8,9 @@ UniPlanner is a full-stack web application designed to help UOB students plan th
 
 ### Tech Stack
 
-- **Frontend:** Next.js (App Router), TypeScript, TailwindCSS, shadcn/ui, TanStack Query
-- **Backend:** Next.js API Routes (via App Router) / NestJS (TBD)
-- **Database:** PostgreSQL + Prisma ORM
+- **Frontend:** Next.js (App Router), TypeScript, TailwindCSS, shadcn/ui
+- **Backend:** Next.js API Routes
+- **Database:** SQLite (Dev) / PostgreSQL (Prod) + Prisma ORM
 - **Deployment:** Vercel
 
 ## Getting Started
@@ -29,22 +29,14 @@ UniPlanner is a full-stack web application designed to help UOB students plan th
     # or
     pnpm install
     ```
-3.  Run the development server:
+3.  Generate the database client:
+    ```bash
+    npm run db:generate
+    ```
+4.  Run the development server:
     ```bash
     npm run dev
     # or
     pnpm dev
     ```
-4.  Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-## Milestones
-
-- [x] Milestone 0: Repo setup + architecture
-- [ ] Milestone 1: Course catalog UI (mock data)
-- [ ] Milestone 2: Database + Prisma schema + API
-- [ ] Milestone 3: Ingestion script
-- [ ] Milestone 4: Instructor pages
-- [ ] Milestone 5: Schedule builder v1
-- [ ] Milestone 6: Export (PDF + ICS)
-- [ ] Milestone 7: Upload major plan + extraction
-- [ ] Milestone 8: Recommendation engine + AI assistant
+5.  Open [http://localhost:3000](http://localhost:3000) with your browser.
