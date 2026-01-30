@@ -15,7 +15,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className="antialiased min-h-screen font-sans text-foreground bg-slate-100 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-200/40 via-slate-100 to-slate-200 dark:bg-slate-950 dark:from-indigo-950/30 dark:via-slate-950 dark:to-slate-950">
                 <Providers>
                     <Navbar />

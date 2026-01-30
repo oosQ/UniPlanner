@@ -137,13 +137,12 @@ export default async function InstructorListPage(props: PageProps) {
                             <p className="text-gray-500 max-w-sm mt-2">
                                 We couldn't find any instructors matching your search. Try adjusting your filters.
                             </p>
-                            <Button
-                                variant="outline"
-                                className="mt-6"
-                                onClick={() => window.location.href = '/instructor'}
+                            <Link
+                                href="/instructor"
+                                className="mt-6 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
                             >
                                 Clear all filters
-                            </Button>
+                            </Link>
                         </div>
                     )}
                 </div>
