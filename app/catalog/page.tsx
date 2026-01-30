@@ -1,7 +1,7 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -102,6 +102,26 @@ export default function CatalogPage() {
         course.code.toLowerCase().includes(resultFilter.toLowerCase()) ||
         course.title.toLowerCase().includes(resultFilter.toLowerCase())
     )
+
+    // Helper for seats color
+    const getSeatColor = (seatsStr: string, status: string | undefined) => {
+        const isOpen = status?.includes("OPEN")
+        const seats = parseInt(seatsStr) || 0
+
+        if (!isOpen || seats === 0) return "text-red-600 dark:text-red-400"
+        if (seats < 10) return "text-amber-600 dark:text-amber-400"
+        return "text-emerald-600 dark:text-emerald-400"
+    }
+
+    // Helper for progress bar color
+    const getProgressBarColor = (seatsStr: string, status: string | undefined) => {
+        const isOpen = status?.includes("OPEN")
+        const seats = parseInt(seatsStr) || 0
+
+        if (!isOpen || seats === 0) return "bg-red-500"
+        if (seats < 10) return "bg-amber-500"
+        return "bg-emerald-500"
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
@@ -245,133 +265,186 @@ export default function CatalogPage() {
                 </div>
 
                 {/* Results Section */}
-                <div className="space-y-6">
+                <div className="space-y-8">
 
-                    {/* Filter Input for Results */}
+                    {/* Filter Input */}
                     {courses.length > 0 && (
-                        <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-top-2">
-                            <div className="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-lg">
-                                <Filter className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                        <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-in fade-in slide-in-from-top-2">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-2.5 rounded-lg text-blue-600 dark:text-blue-400">
+                                <Filter className="w-5 h-5" />
                             </div>
                             <div className="flex-1">
                                 <Input
-                                    placeholder="Filter results by course code (e.g. ITAAI, ITIS)..."
+                                    placeholder="Quickly filter by course code (e.g. ITAAI, ITIS)..."
                                     value={resultFilter}
                                     onChange={(e) => setResultFilter(e.target.value)}
-                                    className="border-0 shadow-none focus-visible:ring-0 bg-transparent text-lg placeholder:text-slate-400"
+                                    className="border-0 shadow-none focus-visible:ring-0 bg-transparent text-lg placeholder:text-slate-400 p-0 h-auto"
                                 />
                             </div>
-                            <div className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                            <div className="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300">
                                 {filteredCourses.length} results
                             </div>
                         </div>
                     )}
 
                     {error && (
-                        <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900 flex items-center justify-center">
+                        <div className="p-6 rounded-xl bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900 text-center font-medium">
                             {error}
                         </div>
                     )}
 
                     {courses.length > 0 && filteredCourses.length === 0 && (
-                        <div className="text-center py-12 text-slate-500 dark:text-slate-400">
-                            No courses match your filter "{resultFilter}".
+                        <div className="text-center py-20">
+                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
+                                <Search className="w-8 h-8 text-slate-400" />
+                            </div>
+                            <h3 className="text-lg font-medium text-slate-900 dark:text-white">No matching courses</h3>
+                            <p className="text-slate-500 dark:text-slate-400 mt-1">
+                                No courses found matching "{resultFilter}".
+                            </p>
                         </div>
                     )}
 
-                    {filteredCourses.map((course, idx) => (
-                        <div key={`${course.code}-${idx}`} className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both" style={{ animationDelay: `${idx * 50}ms` }}>
-                            {/* Course Header */}
-                            <div className="bg-slate-50 dark:bg-slate-800/80 px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                <div>
-                                    <div className="flex items-center gap-3">
-                                        <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-sm font-bold tracking-wide">
-                                            {course.code}
-                                        </span>
-                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">{course.title}</h3>
+                    <div className="grid gap-6">
+                        {filteredCourses.map((course, idx) => (
+                            <div
+                                key={`${course.code}-${idx}`}
+                                className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+                                style={{ animationDelay: `${idx * 50}ms` }}
+                            >
+                                {/* Course Header */}
+                                <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-start justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/20">
+                                    <div className="space-y-1">
+                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                                            <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-md text-sm font-bold bg-blue-600 text-white shadow-sm tracking-wide">
+                                                {course.code}
+                                            </span>
+                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                                                {course.title}
+                                            </h3>
+                                        </div>
+                                        {course.prereqs && (
+                                            <div className="flex items-start gap-1.5 text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                                <BookOpen className="w-4 h-4 mt-0.5 shrink-0 text-slate-400" />
+                                                <span className="leading-snug">Prereqs: <span className="font-medium text-slate-700 dark:text-slate-300">{course.prereqs}</span></span>
+                                            </div>
+                                        )}
                                     </div>
-                                    {course.prereqs && (
-                                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 flex items-start gap-1">
-                                            <BookOpen className="w-4 h-4 mt-0.5 shrink-0" />
-                                            <span>Prereqs: {course.prereqs}</span>
-                                        </p>
-                                    )}
+                                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400 uppercase tracking-wider shrink-0">
+                                        {course.sections.length} Section{course.sections.length !== 1 ? 's' : ''}
+                                    </div>
+                                </div>
+
+                                {/* Sections */}
+                                <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                                    {course.sections.map((section, sIdx) => {
+                                        const isOpen = section.status?.includes("OPEN");
+                                        return (
+                                            <div key={sIdx} className="p-5 sm:p-6 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                                                    {/* Section Info */}
+                                                    <div className="md:col-span-2 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-2">
+                                                        <div className="text-center md:text-left">
+                                                            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Section</div>
+                                                            <div className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tabular-nums tracking-tight">
+                                                                {section.section}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="flex flex-col items-end md:items-start gap-2">
+                                                            <div className={`px-2.5 py-1 rounded-full text-xs font-bold ring-1 ring-inset ${isOpen
+                                                                    ? "bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-900/20 dark:text-emerald-400 dark:ring-emerald-500/20"
+                                                                    : "bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-900/20 dark:text-red-400 dark:ring-red-500/20"
+                                                                }`}>
+                                                                {section.status || "Unknown"}
+                                                            </div>
+                                                            {section.classType && (
+                                                                <span className="inline-flex items-center rounded-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 text-xs font-medium text-slate-600 dark:text-slate-300">
+                                                                    {section.classType}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Instructor & Location */}
+                                                    <div className="md:col-span-4 space-y-4">
+                                                        <div>
+                                                            <div className="flex items-center gap-2 text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-wider mb-1">
+                                                                <Users className="w-3.5 h-3.5" />
+                                                                Instructor
+                                                            </div>
+                                                            <Link
+                                                                href={`/instructor?search=${encodeURIComponent(section.instructor)}`}
+                                                                className="font-medium text-slate-900 dark:text-slate-100 text-sm leading-snug hover:text-emerald-600 dark:hover:text-emerald-400 hover:underline transition-colors block line-clamp-1"
+                                                                title={section.instructor}
+                                                            >
+                                                                {section.instructor}
+                                                            </Link>
+                                                        </div>
+                                                        <div>
+                                                            <div className="flex items-center gap-2 text-xs font-semibold text-pink-600 dark:text-pink-400 uppercase tracking-wider mb-1">
+                                                                <MapPin className="w-3.5 h-3.5" />
+                                                                Location
+                                                            </div>
+                                                            <div className="font-medium text-slate-900 dark:text-slate-100 text-sm">
+                                                                {section.location || "TBA"}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Schedule */}
+                                                    <div className="md:col-span-3 space-y-1">
+                                                        <div className="flex items-center gap-2 text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-1">
+                                                            <Clock className="w-3.5 h-3.5" />
+                                                            Schedule
+                                                        </div>
+                                                        <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                                                            {section.days || "TBA"}
+                                                        </div>
+                                                        <div className="text-sm text-slate-500 dark:text-slate-400">
+                                                            {section.time || "TBA"}
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Exam & Seats */}
+                                                    <div className="md:col-span-3 flex flex-col justify-between gap-4">
+                                                        <div className="space-y-1">
+                                                            <div className="flex items-center gap-2 text-xs font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-wider mb-1">
+                                                                <Calendar className="w-3.5 h-3.5" />
+                                                                Exam
+                                                            </div>
+                                                            <div className="text-sm font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">
+                                                                {section.examDate || "TBA"}
+                                                            </div>
+                                                            {section.examRoom && section.examRoom !== "To be announced" && (
+                                                                <div className="text-xs text-slate-500">
+                                                                    Room: {section.examRoom}
+                                                                </div>
+                                                            )}
+                                                        </div>
+
+                                                        <div className="flex items-center gap-2 pt-2 md:pt-0">
+                                                            <div className={`flex-1 h-2 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800`}>
+                                                                <div
+                                                                    className={`h-full rounded-full transition-all duration-500 ${getProgressBarColor(section.availableSeats, section.status)}`}
+                                                                    style={{ width: isOpen ? '60%' : '100%' }} // Static width for visual flair
+                                                                />
+                                                            </div>
+                                                            <div className={`text-xs font-bold whitespace-nowrap ${getSeatColor(section.availableSeats, section.status)}`}>
+                                                                {section.availableSeats} Seats
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
-
-                            {/* Sections */}
-                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
-                                {course.sections.map((section, sIdx) => (
-                                    <div key={sIdx} className="p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
-                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                            {/* Logic/Meta */}
-                                            <div className="space-y-2">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Section</span>
-                                                    <span className="text-lg font-bold text-slate-900 dark:text-white">{section.section}</span>
-                                                </div>
-                                                <div className={`inline-flex px-2 py-1 rounded text-xs font-bold uppercase ${section.status?.includes("OPEN")
-                                                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                                                    : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
-                                                    }`}>
-                                                    {section.status || "Unknown"}
-                                                </div>
-                                                {section.classType && (
-                                                    <div className="mt-1 text-xs text-slate-500 font-medium">
-                                                        {section.classType}
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            {/* Instructor */}
-                                            <div className="space-y-1">
-                                                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                                                    <Users className="w-4 h-4" />
-                                                    <span>Instructor</span>
-                                                </div>
-                                                <p className="font-medium text-slate-900 dark:text-slate-200 line-clamp-1" title={section.instructor}>
-                                                    {section.instructor}
-                                                </p>
-                                            </div>
-
-                                            {/* Schedule */}
-                                            <div className="space-y-1">
-                                                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                                                    <Clock className="w-4 h-4" />
-                                                    <span>Schedule</span>
-                                                </div>
-                                                <p className="font-medium text-slate-900 dark:text-slate-200">
-                                                    {section.days} <br />
-                                                    <span className="text-sm text-slate-500">{section.time}</span>
-                                                </p>
-                                                <div className="flex items-center gap-1 text-xs text-slate-500 mt-1">
-                                                    <MapPin className="w-3 h-3" />
-                                                    {section.location}
-                                                </div>
-                                            </div>
-
-                                            {/* Exam */}
-                                            <div className="space-y-1">
-                                                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                                                    <Calendar className="w-4 h-4" />
-                                                    <span>Exam</span>
-                                                </div>
-                                                <p className="text-sm font-medium text-slate-900 dark:text-slate-200">
-                                                    {section.examDate || "TBA"}
-                                                </p>
-                                                {section.examRoom && (
-                                                    <p className="text-xs text-slate-500">Room: {section.examRoom}</p>
-                                                )}
-                                                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-2">
-                                                    {section.availableSeats} Seats Available
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
 
             </div>
