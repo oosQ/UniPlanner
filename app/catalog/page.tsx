@@ -34,8 +34,11 @@ export default function CatalogPage() {
     const [college, setCollege] = useState("7")
     const [dept, setDept] = useState("51")
 
-    // Result Filtering State
-    const [resultFilter, setResultFilter] = useState("")
+    // Filter & Sort State
+    const [sortBy, setSortBy] = useState("level-asc") // level-asc, level-desc, code
+    const [filterDept, setFilterDept] = useState("ALL")
+    const [filterLevel, setFilterLevel] = useState("ALL")
+    const [resultFilter, setResultFilter] = useState("") // Text search
 
     const [departments, setDepartments] = useState<{ value: string; label: string }[]>([])
     const [courses, setCourses] = useState<Course[]>([])
@@ -70,7 +73,12 @@ export default function CatalogPage() {
         setLoading(true)
         setError("")
         setCourses([])
-        setResultFilter("") // Reset local filter on new search
+
+        // Reset filters on new search
+        setResultFilter("")
+        setFilterDept("ALL")
+        setFilterLevel("ALL")
+        setSortBy("level-asc")
 
         const formData = new FormData()
         formData.append("year", year)
@@ -97,11 +105,80 @@ export default function CatalogPage() {
         }
     }
 
-    // Filtered courses based on local search input
-    const filteredCourses = courses.filter(course =>
-        course.code.toLowerCase().includes(resultFilter.toLowerCase()) ||
-        course.title.toLowerCase().includes(resultFilter.toLowerCase())
-    )
+    // --- Helpers for Parsing & Logic ---
+
+    const parseCourseCode = (code: string) => {
+        // Remove spaces
+        const cleanCode = code.replace(/\s+/g, "").toUpperCase()
+        // Match letters at start, then numbers
+        const match = cleanCode.match(/^([A-Z]+)(\d+)/)
+
+        if (!match) return { dept: "Other", level: 999, levelLabel: "Other", num: 9999 }
+
+        const deptStr = match[1]
+        const numStr = match[2]
+        const num = parseInt(numStr, 10)
+
+        // Level logic: hundreds place (1xx -> 1, 2xx -> 2)
+        // If > 499 or < 100, treat as "Other" (or specifically > 4 as user requested)
+        let level = Math.floor(num / 100)
+
+        let levelLabel = level.toString()
+        if (level > 4 || level < 1) {
+            levelLabel = "Other"
+            level = 999 // Push to end if sorting by level
+        }
+
+        return { dept: deptStr, level, levelLabel, num }
+    }
+
+    // --- Derived State Calculation ---
+
+    // 1. Extract unique departments from the current search results for the dropdown
+    const availableDepts = Array.from(new Set(courses.map(c => parseCourseCode(c.code).dept))).sort()
+
+    // 2. Filter and Sort
+    const processedCourses = courses
+        .map(course => ({
+            ...course,
+            parsed: parseCourseCode(course.code)
+        }))
+        .filter(course => {
+            // Text Filter
+            const textMatch =
+                course.code.toLowerCase().includes(resultFilter.toLowerCase()) ||
+                course.title.toLowerCase().includes(resultFilter.toLowerCase())
+            if (!textMatch) return false
+
+            // Dept Filter
+            if (filterDept !== "ALL" && course.parsed.dept !== filterDept) return false
+
+            // Level Filter
+            if (filterLevel !== "ALL" && course.parsed.levelLabel !== filterLevel) return false
+
+            return true
+        })
+        .sort((a, b) => {
+            if (sortBy === "code") {
+                return a.code.localeCompare(b.code)
+            }
+            if (sortBy === "level-asc") {
+                // Primary: Level
+                if (a.parsed.level !== b.parsed.level) return a.parsed.level - b.parsed.level
+                // Secondary: Dept
+                const deptCompare = a.parsed.dept.localeCompare(b.parsed.dept)
+                if (deptCompare !== 0) return deptCompare
+                // Tertiary: Number
+                return a.parsed.num - b.parsed.num
+            }
+            if (sortBy === "level-desc") {
+                if (a.parsed.level !== b.parsed.level) return b.parsed.level - a.parsed.level
+                const deptCompare = a.parsed.dept.localeCompare(b.parsed.dept)
+                if (deptCompare !== 0) return deptCompare
+                return b.parsed.num - a.parsed.num
+            }
+            return 0
+        })
 
     // Helper for seats color
     const getSeatColor = (seatsStr: string, status: string | undefined) => {
@@ -267,22 +344,85 @@ export default function CatalogPage() {
                 {/* Results Section */}
                 <div className="space-y-8">
 
-                    {/* Filter Input */}
+                    {/* Toolbar: Filters & Sort */}
                     {courses.length > 0 && (
-                        <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-in fade-in slide-in-from-top-2">
-                            <div className="bg-blue-50 dark:bg-blue-900/20 p-2.5 rounded-lg text-blue-600 dark:text-blue-400">
-                                <Filter className="w-5 h-5" />
+                        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-in fade-in slide-in-from-top-2 space-y-4">
+
+                            {/* Top Row: Text Search & Counts */}
+                            <div className="flex items-center gap-4">
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-2.5 rounded-lg text-blue-600 dark:text-blue-400">
+                                    <Filter className="w-5 h-5" />
+                                </div>
+                                <div className="flex-1">
+                                    <Input
+                                        placeholder="Quickly filter by text..."
+                                        value={resultFilter}
+                                        onChange={(e) => setResultFilter(e.target.value)}
+                                        className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm focus-visible:ring-emerald-500/20 text-base"
+                                    />
+                                </div>
+                                <div className="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300">
+                                    {processedCourses.length} results
+                                </div>
                             </div>
-                            <div className="flex-1">
-                                <Input
-                                    placeholder="Quickly filter by course code (e.g. ITAAI, ITIS)..."
-                                    value={resultFilter}
-                                    onChange={(e) => setResultFilter(e.target.value)}
-                                    className="border-0 shadow-none focus-visible:ring-0 bg-transparent text-lg placeholder:text-slate-400 p-0 h-auto"
-                                />
-                            </div>
-                            <div className="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300">
-                                {filteredCourses.length} results
+
+                            <hr className="border-slate-100 dark:border-slate-800" />
+
+                            {/* Bottom Row: Dropdowns */}
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                                {/* 1. Sort By */}
+                                <div className="space-y-1">
+                                    <Label className="text-xs text-slate-500">Sort By</Label>
+                                    <Select value={sortBy} onValueChange={setSortBy}>
+                                        <SelectTrigger className="h-9">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="level-asc">Level (Low to High)</SelectItem>
+                                            <SelectItem value="level-desc">Level (High to Low)</SelectItem>
+                                            <SelectItem value="code">Course Code</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                {/* 2. Department Filter */}
+                                <div className="space-y-1">
+                                    <Label className="text-xs text-slate-500">Department</Label>
+                                    <Select value={filterDept} onValueChange={(val) => {
+                                        setFilterDept(val)
+                                        // Reset level when dept changes if strict behavior desired, but keeping it is flexible
+                                    }}>
+                                        <SelectTrigger className="h-9">
+                                            <SelectValue placeholder="All Departments" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="ALL">All Departments</SelectItem>
+                                            {availableDepts.map(d => (
+                                                <SelectItem key={d} value={d}>{d}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                {/* 3. Level Filter */}
+                                <div className="space-y-1">
+                                    <Label className="text-xs text-slate-500">Level</Label>
+                                    <Select value={filterLevel} onValueChange={setFilterLevel}>
+                                        <SelectTrigger className="h-9">
+                                            <SelectValue placeholder="All Levels" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="ALL">All Levels</SelectItem>
+                                            <SelectItem value="1">Level 1</SelectItem>
+                                            <SelectItem value="2">Level 2</SelectItem>
+                                            <SelectItem value="3">Level 3</SelectItem>
+                                            <SelectItem value="4">Level 4</SelectItem>
+                                            <SelectItem value="Other">Other (&gt;400)</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
                             </div>
                         </div>
                     )}
@@ -293,7 +433,7 @@ export default function CatalogPage() {
                         </div>
                     )}
 
-                    {courses.length > 0 && filteredCourses.length === 0 && (
+                    {courses.length > 0 && processedCourses.length === 0 && (
                         <div className="text-center py-20">
                             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
                                 <Search className="w-8 h-8 text-slate-400" />
@@ -306,7 +446,7 @@ export default function CatalogPage() {
                     )}
 
                     <div className="grid gap-6">
-                        {filteredCourses.map((course, idx) => (
+                        {processedCourses.map((course, idx) => (
                             <div
                                 key={`${course.code}-${idx}`}
                                 className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
@@ -354,8 +494,8 @@ export default function CatalogPage() {
 
                                                         <div className="flex flex-col items-end md:items-start gap-2">
                                                             <div className={`px-2.5 py-1 rounded-full text-xs font-bold ring-1 ring-inset ${isOpen
-                                                                    ? "bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-900/20 dark:text-emerald-400 dark:ring-emerald-500/20"
-                                                                    : "bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-900/20 dark:text-red-400 dark:ring-red-500/20"
+                                                                ? "bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-900/20 dark:text-emerald-400 dark:ring-emerald-500/20"
+                                                                : "bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-900/20 dark:text-red-400 dark:ring-red-500/20"
                                                                 }`}>
                                                                 {section.status || "Unknown"}
                                                             </div>
@@ -377,6 +517,8 @@ export default function CatalogPage() {
                                                             <Link
                                                                 href={`/instructor?search=${encodeURIComponent(section.instructor)}`}
                                                                 className="font-medium text-slate-900 dark:text-slate-100 text-sm leading-snug hover:text-emerald-600 dark:hover:text-emerald-400 hover:underline transition-colors block line-clamp-1"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
                                                                 title={section.instructor}
                                                             >
                                                                 {section.instructor}
