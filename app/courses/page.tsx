@@ -12,18 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { getDepartments, searchCourses, Course } from "@/app/actions/uob-proxy"
 import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter } from "lucide-react"
 
-const COLLEGES = [
-    { value: "7", label: "College of Information Technology" },
-    { value: "1", label: "College of Arts" },
-    { value: "10", label: "College of Law" },
-    { value: "3", label: "College of Engineering" },
-    { value: "30", label: "College of Physical Education" },
-    { value: "15", label: "College of Health And Sport Sciences" },
-    { value: "35", label: "Languages Institute" },
-    { value: "9", label: "College of Applied Studies" },
-    { value: "4", label: "College of Science" },
-    { value: "2", label: "College of Business Administration" },
-]
+import { COLLEGES } from "@/lib/config"
 
 export default function CatalogPage() {
     // State

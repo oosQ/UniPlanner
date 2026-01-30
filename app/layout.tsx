@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     description: "Bahrain University Course Planner",
 };
 
+import NextTopLoader from "nextjs-toploader";
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -16,7 +18,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className="antialiased min-h-screen font-sans text-foreground bg-slate-100 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-200/40 via-slate-100 to-slate-200 dark:bg-slate-950 dark:from-indigo-950/30 dark:via-slate-950 dark:to-slate-950">
+            <body suppressHydrationWarning className="antialiased min-h-screen font-sans text-foreground bg-slate-100 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-200/40 via-slate-100 to-slate-200 dark:bg-slate-950 dark:from-indigo-950/30 dark:via-slate-950 dark:to-slate-950">
+                <NextTopLoader color="#10b981" showSpinner={true} />
                 <Providers>
                     <Navbar />
                     {children}
