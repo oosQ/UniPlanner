@@ -12,6 +12,7 @@ export interface CourseSection {
     days: string
     time: string
     location: string
+    classType?: string
     status: string
 }
 
@@ -139,22 +140,54 @@ export async function searchCourses(formData: FormData) {
                 const examDateFull = $table.find(".row:contains('Exam Date:')").find(".large-10").text().trim()
                 // Example: "2026-05-13 - 17:30 - 20:30" or "0"
 
-                // Time & Days
-                // These are in a nested table.noMargin at the bottom of .secContainer
-                const days = $sec.find("td.section_time_days:contains('Day:')").text().replace("Day:", "").trim()
-                const time = $sec.find("td.section_time_days:contains('Time:')").text().replace("Time:", "").trim()
-                const location = $sec.find("td.section_time_times:contains('Location:')").text().replace("Location:", "").trim()
+                // Helper to extract text relative to a label within a context
+                const getTextAfterLabel = (context: cheerio.Cheerio, label: string) => {
+                    let el = context.find(`font:contains('${label}')`).first()
+                    if (el.length > 0) {
+                        return el[0].nextSibling?.nodeValue?.trim() || el.parent().text().replace(label, "").trim()
+                    }
+                    return context.find(`td:contains('${label}')`).first().text().replace(label, "").trim()
+                }
+
+                // Schedule Info is in table.noMargin siblings AFTER .secContainer
+                // There can be multiple tables (e.g. one for each day)
+                const daysList: string[] = []
+                const timesList: string[] = []
+                const locsList: string[] = []
+                const typesList: string[] = []
+
+                const $scheduleTables = $sec.nextUntil(".secContainer", "table.noMargin")
+
+                $scheduleTables.each((_, tbl) => {
+                    const $tbl = $(tbl)
+                    const day = getTextAfterLabel($tbl, "Day:")
+                    const time = getTextAfterLabel($tbl, "Time:")
+                    const loc = getTextAfterLabel($tbl, "Location:")
+                    const type = getTextAfterLabel($tbl, "Class Type:")
+
+                    if (day) daysList.push(day)
+                    if (time) timesList.push(time)
+                    if (loc) locsList.push(loc)
+                    if (type) typesList.push(type)
+                })
+
+                // Join them or just take unique ones
+                const days = [...new Set(daysList)].join(" / ")
+                const time = [...new Set(timesList)].join(" / ")
+                const location = [...new Set(locsList)].join(" / ")
+                const classType = [...new Set(typesList)].join(" / ")
 
                 sections.push({
                     section,
                     instructor,
                     availableSeats,
                     examDate: examDateFull,
-                    examTime: "", // usually part of exam date string
+                    examTime: "",
                     examRoom,
                     days,
                     time,
                     location,
+                    classType,
                     status
                 })
             })

@@ -311,11 +311,16 @@ export default function CatalogPage() {
                                                     <span className="text-lg font-bold text-slate-900 dark:text-white">{section.section}</span>
                                                 </div>
                                                 <div className={`inline-flex px-2 py-1 rounded text-xs font-bold uppercase ${section.status?.includes("OPEN")
-                                                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                                                        : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                                                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                                                    : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                                                     }`}>
                                                     {section.status || "Unknown"}
                                                 </div>
+                                                {section.classType && (
+                                                    <div className="mt-1 text-xs text-slate-500 font-medium">
+                                                        {section.classType}
+                                                    </div>
+                                                )}
                                             </div>
 
                                             {/* Instructor */}
