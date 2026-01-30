@@ -1,152 +1,322 @@
+
 "use client"
 
-import { useState } from "react"
-import { CourseCard } from "@/components/course-card"
-import { CourseFilters } from "@/components/course-filters"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { FilterIcon, SearchIcon, BookOpen, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
-import { useQuery } from "@tanstack/react-query"
-import { Course } from "@/lib/mock-data" // Keep types for now, or move to types.ts later
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { getDepartments, searchCourses, Course } from "@/app/actions/uob-proxy"
+import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen } from "lucide-react"
 
-async function fetchCourses(search: string, college: string, department: string, year: string, semester: string) {
-    const params = new URLSearchParams()
-    if (search) params.append("search", search)
-    if (college && college !== "all") params.append("collegeId", college)
-    if (department && department !== "all") params.append("departmentId", department)
-    if (year) params.append("year", year)
-    if (semester) params.append("semester", semester)
-
-    const res = await fetch(`/api/courses?${params.toString()}`)
-    if (!res.ok) throw new Error("Failed to fetch courses")
-    return res.json()
-}
+const COLLEGES = [
+    { value: "7", label: "College of Information Technology" },
+    { value: "1", label: "College of Arts" },
+    { value: "10", label: "College of Law" },
+    { value: "3", label: "College of Engineering" },
+    { value: "30", label: "College of Physical Education" },
+    { value: "15", label: "College of Health And Sport Sciences" },
+    { value: "35", label: "Languages Institute" },
+    { value: "9", label: "College of Applied Studies" },
+    { value: "4", label: "College of Science" },
+    { value: "2", label: "College of Business Administration" },
+]
 
 export default function CatalogPage() {
-    const [search, setSearch] = useState("")
-    const [college, setCollege] = useState("all")
-    const [department, setDepartment] = useState("all")
-    const [year, setYear] = useState("2024-2025")
-    const [semester, setSemester] = useState("Second")
+    // State
+    const [year, setYear] = useState("2025")
+    const [sem, setSem] = useState("2")
+    const [searchType, setSearchType] = useState("CD") // CC or CD
+    const [code, setCode] = useState("")
+    const [college, setCollege] = useState("7")
+    const [dept, setDept] = useState("51")
 
-    const { data: courses, isLoading, isError } = useQuery<Course[]>({
-        queryKey: ['courses', search, college, department, year, semester],
-        queryFn: () => fetchCourses(search, college, department, year, semester),
-    })
+    const [departments, setDepartments] = useState<{ value: string; label: string }[]>([])
+    const [courses, setCourses] = useState<Course[]>([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
 
-    // Debounce search could be added here for optimization
+    // Initial Dept Fetch
+    useEffect(() => {
+        if (college) {
+            handleCollegeChange(college)
+        }
+    }, []) // Run once on mount to load default college's departments
+
+    const handleCollegeChange = async (val: string) => {
+        setCollege(val)
+        // Reset Dept
+        setDept("")
+        try {
+            const depts = await getDepartments(val)
+            setDepartments(depts)
+            // If default college (7) is selected, and we have default dept (51), set it
+            // Otherwise, reset. But for initial load, we might want to preserve 51 if it's in the list
+            if (val === "7") {
+                setDept("51")
+            }
+        } catch (err) {
+            console.error("Failed to fetch departments", err)
+        }
+    }
+
+    const handleSearch = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setLoading(true)
+        setError("")
+        setCourses([])
+
+        const formData = new FormData()
+        formData.append("year", year)
+        formData.append("sem", sem)
+        formData.append("type", searchType)
+
+        if (searchType === "CC") {
+            formData.append("code", code)
+        } else {
+            formData.append("college", college)
+            formData.append("dept", dept)
+        }
+
+        try {
+            const results = await searchCourses(formData)
+            setCourses(results)
+            if (results.length === 0) {
+                setError("No courses found matching your criteria.")
+            }
+        } catch (err) {
+            setError("An error occurred while searching. Please try again.")
+        } finally {
+            setLoading(false)
+        }
+    }
 
     return (
-        <div className="min-h-screen bg-background">
-            {/* Hero Header */}
-            <div className="bg-primary/5 border-b pb-8 pt-12 px-4 md:px-8">
-                <div className="container mx-auto max-w-6xl">
-                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                        Course Catalog
-                    </h1>
-                    <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-                        Explore the complete University of Bahrain course offerings. Plan your schedule, check prerequisites, and find instructor details.
-                    </p>
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-5xl mx-auto space-y-8">
 
-                    <div className="flex gap-4 items-center">
-                        <div className="relative w-full max-w-md">
-                            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                            <Input
-                                placeholder="Quick search by code or title..."
-                                className="pl-9 bg-background/50 backdrop-blur-sm border-primary/20 focus-visible:ring-primary/30"
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                            />
-                        </div>
-                        {/* Mobile Filter Toggle */}
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="outline" className="md:hidden">
-                                    <FilterIcon className="mr-2 h-4 w-4" /> Filters
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="left">
-                                <SheetHeader className="mb-4">
-                                    <SheetTitle>Filters</SheetTitle>
-                                </SheetHeader>
-                                <CourseFilters
-                                    search={search} setSearch={setSearch}
-                                    college={college} setCollege={setCollege}
-                                    department={department} setDepartment={setDepartment}
-                                    year={year} setYear={setYear}
-                                    semester={semester} setSemester={setSemester}
-                                />
-                            </SheetContent>
-                        </Sheet>
-                    </div>
+                {/* Header */}
+                <div className="text-center space-y-2">
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Course Catalog</h1>
+                    <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and schedules</p>
                 </div>
-            </div>
 
-            <div className="container mx-auto max-w-6xl py-8 px-4 flex flex-col md:flex-row gap-8">
-                {/* Desktop Sidebar */}
-                <aside className="hidden md:block w-72 flex-shrink-0 sticky top-8 h-fit">
-                    <div className="bg-card border rounded-xl shadow-sm p-6">
-                        <CourseFilters
-                            search={search} setSearch={setSearch}
-                            college={college} setCollege={setCollege}
-                            department={department} setDepartment={setDepartment}
-                            year={year} setYear={setYear}
-                            semester={semester} setSemester={setSemester}
-                        />
-                    </div>
-                </aside>
+                {/* Search Card */}
+                <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8">
+                    <form onSubmit={handleSearch} className="space-y-6">
 
-                {/* Main Content */}
-                <main className="flex-1">
-                    <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center gap-2">
-                            <BookOpen className="h-5 w-5 text-primary" />
-                            <span className="font-semibold text-lg">
-                                {isLoading ? "Loading..." : `${courses?.length || 0} Courses Found`}
-                            </span>
-                        </div>
-                        <span className="text-sm text-muted-foreground bg-secondary/50 px-3 py-1 rounded-full">
-                            {semester} {year}
-                        </span>
-                    </div>
-
-                    {isLoading ? (
-                        <div className="flex justify-center py-12">
-                            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                        </div>
-                    ) : isError ? (
-                        <div className="text-center py-12 text-destructive">
-                            Failed to load courses. Please try again.
-                        </div>
-                    ) : courses && courses.length > 0 ? (
-                        <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-                            {courses.map((course) => (
-                                <CourseCard key={course.id} course={course} />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center justify-center py-16 text-center border-2 border-dashed rounded-xl bg-muted/20">
-                            <div className="bg-muted p-4 rounded-full mb-4">
-                                <SearchIcon className="h-8 w-8 text-muted-foreground" />
+                        {/* Year & Sem Row */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <Label htmlFor="year">Academic Year</Label>
+                                <Select value={year} onValueChange={setYear}>
+                                    <SelectTrigger id="year">
+                                        <SelectValue placeholder="Select Year" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="2025">2025/2026</SelectItem>
+                                        <SelectItem value="2024">2024/2025</SelectItem>
+                                        <SelectItem value="2023">2023/2024</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">No courses found</h3>
-                            <p className="text-muted-foreground max-w-sm mb-6">
-                                We couldn't find any courses matching "{search}" in the selected filters.
-                            </p>
-                            <Button
-                                onClick={() => {
-                                    setSearch("")
-                                    setCollege("all")
-                                    setDepartment("all")
-                                }}
-                                variant="secondary"
-                            >
-                                Clear all filters
+
+                            <div className="space-y-2">
+                                <Label htmlFor="sem">Semester</Label>
+                                <Select value={sem} onValueChange={setSem}>
+                                    <SelectTrigger id="sem">
+                                        <SelectValue placeholder="Select Semester" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="1">First Semester</SelectItem>
+                                        <SelectItem value="2">Second Semester</SelectItem>
+                                        <SelectItem value="3">Summer Semester</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        {/* Search Type Radio */}
+                        <div className="space-y-3">
+                            <Label>Search By</Label>
+                            <RadioGroup value={searchType} onValueChange={setSearchType} className="flex gap-6">
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="CC" id="CC" />
+                                    <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="CD" id="CD" />
+                                    <Label htmlFor="CD" className="font-normal cursor-pointer">College & Department</Label>
+                                </div>
+                            </RadioGroup>
+                        </div>
+
+                        {/* Dynamic Inputs */}
+                        <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800 transition-all">
+                            {searchType === "CC" ? (
+                                <div className="space-y-2">
+                                    <Label htmlFor="code">Course Code</Label>
+                                    <Input
+                                        id="code"
+                                        placeholder="e.g. ITIS460"
+                                        value={code}
+                                        onChange={(e) => setCode(e.target.value)}
+                                        className="max-w-md bg-white dark:bg-slate-900"
+                                    />
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="college">College</Label>
+                                        <Select value={college} onValueChange={handleCollegeChange}>
+                                            <SelectTrigger id="college" className="bg-white dark:bg-slate-900">
+                                                <SelectValue placeholder="Select College" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {COLLEGES.map(c => (
+                                                    <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <Label htmlFor="dept">Department</Label>
+                                        <Select value={dept} onValueChange={setDept} disabled={departments.length === 0}>
+                                            <SelectTrigger id="dept" className="bg-white dark:bg-slate-900">
+                                                <SelectValue placeholder={departments.length === 0 ? "Select a college first" : "Select Department"} />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {departments.map(d => (
+                                                    <SelectItem key={d.value} value={d.value}>{d.label}</SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Submit */}
+                        <div className="flex justify-end">
+                            <Button type="submit" size="lg" className="px-8 bg-emerald-600 hover:bg-emerald-700 text-white" disabled={loading}>
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Searching...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Search className="mr-2 h-4 w-4" />
+                                        Search Courses
+                                    </>
+                                )}
                             </Button>
                         </div>
+
+                    </form>
+                </div>
+
+                {/* Results */}
+                <div className="space-y-6">
+                    {error && (
+                        <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900 flex items-center justify-center">
+                            {error}
+                        </div>
                     )}
-                </main>
+
+                    {courses.map((course, idx) => (
+                        <div key={`${course.code}-${idx}`} className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both" style={{ animationDelay: `${idx * 100}ms` }}>
+                            {/* Course Header */}
+                            <div className="bg-slate-50 dark:bg-slate-800/80 px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <div>
+                                    <div className="flex items-center gap-3">
+                                        <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-sm font-bold tracking-wide">
+                                            {course.code}
+                                        </span>
+                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white">{course.title}</h3>
+                                    </div>
+                                    {course.prereqs && (
+                                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 flex items-start gap-1">
+                                            <BookOpen className="w-4 h-4 mt-0.5 shrink-0" />
+                                            <span>Prereqs: {course.prereqs}</span>
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Sections */}
+                            <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                                {course.sections.map((section, sIdx) => (
+                                    <div key={sIdx} className="p-6 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                            {/* Logic/Meta */}
+                                            <div className="space-y-2">
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Section</span>
+                                                    <span className="text-lg font-bold text-slate-900 dark:text-white">{section.section}</span>
+                                                </div>
+                                                <div className={`inline-flex px-2 py-1 rounded text-xs font-bold uppercase ${section.status?.includes("OPEN")
+                                                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                                                        : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                                                    }`}>
+                                                    {section.status || "Unknown"}
+                                                </div>
+                                            </div>
+
+                                            {/* Instructor */}
+                                            <div className="space-y-1">
+                                                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                                                    <Users className="w-4 h-4" />
+                                                    <span>Instructor</span>
+                                                </div>
+                                                <p className="font-medium text-slate-900 dark:text-slate-200 line-clamp-1" title={section.instructor}>
+                                                    {section.instructor}
+                                                </p>
+                                            </div>
+
+                                            {/* Schedule */}
+                                            <div className="space-y-1">
+                                                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                                                    <Clock className="w-4 h-4" />
+                                                    <span>Schedule</span>
+                                                </div>
+                                                <p className="font-medium text-slate-900 dark:text-slate-200">
+                                                    {section.days} <br />
+                                                    <span className="text-sm text-slate-500">{section.time}</span>
+                                                </p>
+                                                <div className="flex items-center gap-1 text-xs text-slate-500 mt-1">
+                                                    <MapPin className="w-3 h-3" />
+                                                    {section.location}
+                                                </div>
+                                            </div>
+
+                                            {/* Exam */}
+                                            <div className="space-y-1">
+                                                <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                                                    <Calendar className="w-4 h-4" />
+                                                    <span>Exam</span>
+                                                </div>
+                                                <p className="text-sm font-medium text-slate-900 dark:text-slate-200">
+                                                    {section.examDate || "TBA"}
+                                                </p>
+                                                {section.examRoom && (
+                                                    <p className="text-xs text-slate-500">Room: {section.examRoom}</p>
+                                                )}
+                                                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-2">
+                                                    {section.availableSeats} Seats Available
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
             </div>
         </div>
     )
