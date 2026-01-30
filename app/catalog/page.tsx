@@ -8,8 +8,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { getDepartments, searchCourses, Course } from "@/app/actions/uob-proxy"
-import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen } from "lucide-react"
+import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter } from "lucide-react"
 
 const COLLEGES = [
     { value: "7", label: "College of Information Technology" },
@@ -33,6 +34,9 @@ export default function CatalogPage() {
     const [college, setCollege] = useState("7")
     const [dept, setDept] = useState("51")
 
+    // Result Filtering State
+    const [resultFilter, setResultFilter] = useState("")
+
     const [departments, setDepartments] = useState<{ value: string; label: string }[]>([])
     const [courses, setCourses] = useState<Course[]>([])
     const [loading, setLoading] = useState(false)
@@ -53,7 +57,6 @@ export default function CatalogPage() {
             const depts = await getDepartments(val)
             setDepartments(depts)
             // If default college (7) is selected, and we have default dept (51), set it
-            // Otherwise, reset. But for initial load, we might want to preserve 51 if it's in the list
             if (val === "7") {
                 setDept("51")
             }
@@ -67,6 +70,7 @@ export default function CatalogPage() {
         setLoading(true)
         setError("")
         setCourses([])
+        setResultFilter("") // Reset local filter on new search
 
         const formData = new FormData()
         formData.append("year", year)
@@ -93,62 +97,83 @@ export default function CatalogPage() {
         }
     }
 
+    // Filtered courses based on local search input
+    const filteredCourses = courses.filter(course =>
+        course.code.toLowerCase().includes(resultFilter.toLowerCase()) ||
+        course.title.toLowerCase().includes(resultFilter.toLowerCase())
+    )
+
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto space-y-8">
 
                 {/* Header */}
-                <div className="text-center space-y-2">
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Course Catalog</h1>
-                    <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and schedules</p>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="space-y-1">
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Course Catalog</h1>
+                        <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and schedules</p>
+                    </div>
+
+                    {/* Settings Popover */}
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button variant="outline" className="gap-2">
+                                <Settings2 className="w-4 h-4" />
+                                <span className="hidden sm:inline">Settings</span>
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80" align="end">
+                            <div className="space-y-4">
+                                <h4 className="font-medium leading-none">Catalog Settings</h4>
+                                <p className="text-sm text-slate-500 dark:text-slate-400">Adjust academic year and semester</p>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="year">Academic Year</Label>
+                                    <Select value={year} onValueChange={setYear}>
+                                        <SelectTrigger id="year">
+                                            <SelectValue placeholder="Select Year" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="2025">2025/2026</SelectItem>
+                                            <SelectItem value="2024">2024/2025</SelectItem>
+                                            <SelectItem value="2023">2023/2024</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="sem">Semester</Label>
+                                    <Select value={sem} onValueChange={setSem}>
+                                        <SelectTrigger id="sem">
+                                            <SelectValue placeholder="Select Semester" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="1">First Semester</SelectItem>
+                                            <SelectItem value="2">Second Semester</SelectItem>
+                                            <SelectItem value="3">Summer Semester</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
                 </div>
 
                 {/* Search Card */}
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8">
                     <form onSubmit={handleSearch} className="space-y-6">
 
-                        {/* Year & Sem Row */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <Label htmlFor="year">Academic Year</Label>
-                                <Select value={year} onValueChange={setYear}>
-                                    <SelectTrigger id="year">
-                                        <SelectValue placeholder="Select Year" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="2025">2025/2026</SelectItem>
-                                        <SelectItem value="2024">2024/2025</SelectItem>
-                                        <SelectItem value="2023">2023/2024</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label htmlFor="sem">Semester</Label>
-                                <Select value={sem} onValueChange={setSem}>
-                                    <SelectTrigger id="sem">
-                                        <SelectValue placeholder="Select Semester" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="1">First Semester</SelectItem>
-                                        <SelectItem value="2">Second Semester</SelectItem>
-                                        <SelectItem value="3">Summer Semester</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                        </div>
-
                         {/* Search Type Radio */}
                         <div className="space-y-3">
                             <Label>Search By</Label>
                             <RadioGroup value={searchType} onValueChange={setSearchType} className="flex gap-6">
                                 <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="CC" id="CC" />
-                                    <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
                                     <RadioGroupItem value="CD" id="CD" />
                                     <Label htmlFor="CD" className="font-normal cursor-pointer">College & Department</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="CC" id="CC" />
+                                    <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
                                 </div>
                             </RadioGroup>
                         </div>
@@ -219,16 +244,43 @@ export default function CatalogPage() {
                     </form>
                 </div>
 
-                {/* Results */}
+                {/* Results Section */}
                 <div className="space-y-6">
+
+                    {/* Filter Input for Results */}
+                    {courses.length > 0 && (
+                        <div className="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-top-2">
+                            <div className="bg-emerald-100 dark:bg-emerald-900/30 p-2 rounded-lg">
+                                <Filter className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                            </div>
+                            <div className="flex-1">
+                                <Input
+                                    placeholder="Filter results by course code (e.g. ITAAI, ITIS)..."
+                                    value={resultFilter}
+                                    onChange={(e) => setResultFilter(e.target.value)}
+                                    className="border-0 shadow-none focus-visible:ring-0 bg-transparent text-lg placeholder:text-slate-400"
+                                />
+                            </div>
+                            <div className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                                {filteredCourses.length} results
+                            </div>
+                        </div>
+                    )}
+
                     {error && (
                         <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900 flex items-center justify-center">
                             {error}
                         </div>
                     )}
 
-                    {courses.map((course, idx) => (
-                        <div key={`${course.code}-${idx}`} className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both" style={{ animationDelay: `${idx * 100}ms` }}>
+                    {courses.length > 0 && filteredCourses.length === 0 && (
+                        <div className="text-center py-12 text-slate-500 dark:text-slate-400">
+                            No courses match your filter "{resultFilter}".
+                        </div>
+                    )}
+
+                    {filteredCourses.map((course, idx) => (
+                        <div key={`${course.code}-${idx}`} className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both" style={{ animationDelay: `${idx * 50}ms` }}>
                             {/* Course Header */}
                             <div className="bg-slate-50 dark:bg-slate-800/80 px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
                                 <div>
