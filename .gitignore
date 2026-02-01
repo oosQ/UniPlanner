@@ -32,5 +32,5 @@ ts-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# environment variables
+# environment variables (IMPORTANT)
 .env
