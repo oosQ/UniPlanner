@@ -23,11 +23,41 @@ export interface Course {
     sections: CourseSection[]
 }
 
+export async function checkWebsiteAvailability(): Promise<{ available: boolean; message?: string }> {
+    try {
+        const response = await fetch("http://ucs.uob.edu.bh/index.php", {
+            method: "HEAD",
+            signal: AbortSignal.timeout(8000) // 8 second timeout for availability check
+        })
+        
+        if (!response.ok) {
+            return {
+                available: false,
+                message: "UCS course system is currently unavailable. Please try again later."
+            }
+        }
+        
+        return { available: true }
+    } catch (error) {
+        return {
+            available: false,
+            message: "Unable to connect to UCS website. The service may be temporarily unavailable. Please check your internet connection and try again later."
+        }
+    }
+}
+
 export async function getDepartments(collegeId: string) {
     if (!collegeId) return []
 
     try {
-        const response = await fetch(`http://ucs.uob.edu.bh/getdept.php?q=${collegeId}`)
+        const response = await fetch(`http://ucs.uob.edu.bh/getdept.php?q=${collegeId}`, {
+            signal: AbortSignal.timeout(10000) // 10 second timeout
+        })
+        
+        if (!response.ok) {
+            throw new Error(`UCS website returned status ${response.status}`)
+        }
+        
         const html = await response.text()
         const $ = cheerio.load(html)
         const departments: { value: string; label: string }[] = []
@@ -42,8 +72,13 @@ export async function getDepartments(collegeId: string) {
 
         return departments
     } catch (error) {
-        console.error("Error fetching departments:", error)
-        return []
+        if (error instanceof Error) {
+            if (error.name === 'TimeoutError' || error.message.includes('fetch')) {
+                throw new Error(" Unable to connect to UCS website. The service may be temporarily unavailable. Please try again later.")
+            }
+            throw new Error(` UCS website error: ${error.message}`)
+        }
+        throw new Error(" Unable to fetch departments from UCS website. Please check your connection and try again.")
     }
 }
 
@@ -71,32 +106,20 @@ export async function searchCourses(formData: FormData) {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             body: body.toString(),
+            signal: AbortSignal.timeout(15000) // 15 second timeout
         })
+        
+        if (!response.ok) {
+            throw new Error(`UOB website returned status ${response.status}`)
+        }
 
         const html = await response.text()
         const $ = cheerio.load(html)
         const courses: Course[] = []
 
-        // Parse Results
-        // Based on the HTML structure provided
-        // Each course is in a table.courseRowClass, or we iterate through tables
-
         $("table.courseRowClass").each((_, table) => {
             const $table = $(table)
-
-            // 1. Extract Header (Code + Title)
-            // Header is in <thead> -> <th> -> spans
-            // Structure: <span>CODE</span><span></span><span>(</span><span>TITLE</span><span>)</span>
-
             const headerText = $table.find("thead th").text().trim() // "IT699 (M.SC. THESIS)"
-
-            // Regex to parse "CODE (TITLE)"
-            // But checking the HTML provided: 
-            // <span style="color:#900">IT699</span> ... (<span>M.SC. THESIS</span>)
-
-            // Let's rely on text content for now and basic split
-            // Or try to select specific spans if consistent
-
             let code = ""
             let title = ""
 
@@ -117,28 +140,11 @@ export async function searchCourses(formData: FormData) {
                 const $sec = $(container)
 
                 const section = $sec.find(".row").first().find("span").last().text().trim() // Section: 01
-
-                // Instructor
-                // Row 2 -> Col 1 -> span style green: Instructor -> sibling span
-                // Actually easier to search by text "Instructor:"
-
                 const instructor = $sec.find("span:contains('Instructor:')").next().text().trim()
                 const availableSeats = $sec.find(".noSeats").text().trim()
                 const status = $sec.find("span:contains('Section Status:')").next().text().trim()
-
-                // Exam Room is in the same row
                 const examRoom = $sec.find("span:contains('Exam Room:')").next().text().trim()
-
-                // Exam Date from the parent row above secContainer? 
-                // In HTML: <div class="row"><div ...>Exam Date:</div>...<div>DATE<br></div></div>
-                // It is OUTSIDE .secContainer, usually shared for the course?
-                // Wait, in provided HTML, Exam Date is inside the <tr> <td> colspan=2 structure, BEFORE .secContainer(s).
-                // But if there are multiple sections, does it repeat?
-                // The provided HTML shows one course row per course, containing multiple sections? NO.
-                // The logical structure: Table -> TBody -> TR -> TD -> Rows (Prereqs, ExamDate) -> secContainer (Section 1) -> secContainer (Section 2)...
-
                 const examDateFull = $table.find(".row:contains('Exam Date:')").find(".large-10").text().trim()
-                // Example: "2026-05-13 - 17:30 - 20:30" or "0"
 
                 // Helper to extract text relative to a label within a context
                 const getTextAfterLabel = (context: cheerio.Cheerio, label: string) => {
@@ -149,8 +155,6 @@ export async function searchCourses(formData: FormData) {
                     return context.find(`td:contains('${label}')`).first().text().replace(label, "").trim()
                 }
 
-                // Schedule Info is in table.noMargin siblings AFTER .secContainer
-                // There can be multiple tables (e.g. one for each day)
                 const daysList: string[] = []
                 const timesList: string[] = []
                 const locsList: string[] = []
@@ -208,7 +212,12 @@ export async function searchCourses(formData: FormData) {
         return courses
 
     } catch (error) {
-        console.error("Search error:", error)
-        return []
+        if (error instanceof Error) {
+            if (error.name === 'TimeoutError' || error.message.includes('fetch')) {
+                throw new Error(" Unable to connect to UCS website. The service may be temporarily unavailable. Please try again later.")
+            }
+            throw new Error(`UCS website error: ${error.message}`)
+        }
+        throw new Error("Unable to search courses on UCS website. Please check your connection and try again.")
     }
 }

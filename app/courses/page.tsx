@@ -9,8 +9,8 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { getDepartments, searchCourses, Course } from "@/app/actions/uob-proxy"
-import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter } from "lucide-react"
+import { getDepartments, searchCourses, Course, checkWebsiteAvailability } from "@/app/actions/uob-proxy"
+import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter, AlertCircle } from "lucide-react"
 
 import { COLLEGES } from "@/lib/config"
 
@@ -34,6 +34,25 @@ export default function CatalogPage() {
     const [courses, setCourses] = useState<Course[]>([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    
+    // Website availability check
+    const [checkingAvailability, setCheckingAvailability] = useState(true)
+    const [websiteAvailable, setWebsiteAvailable] = useState(true)
+    const [availabilityMessage, setAvailabilityMessage] = useState("")
+
+    // Check website availability on mount
+    useEffect(() => {
+        const checkAvailability = async () => {
+            setCheckingAvailability(true)
+            const result = await checkWebsiteAvailability()
+            setWebsiteAvailable(result.available)
+            if (!result.available && result.message) {
+                setAvailabilityMessage(result.message)
+            }
+            setCheckingAvailability(false)
+        }
+        checkAvailability()
+    }, [])
 
     // Initial Dept Fetch
     useEffect(() => {
@@ -54,7 +73,7 @@ export default function CatalogPage() {
                 setDept("51")
             }
         } catch (err) {
-            console.error("Failed to fetch departments", err)
+            setError(err instanceof Error ? err.message : "Failed to fetch departments")
         }
     }
 
@@ -90,7 +109,7 @@ export default function CatalogPage() {
                 setError("No courses found matching your criteria.")
             }
         } catch (err) {
-            setError("An error occurred while searching. Please try again.")
+            setError(err instanceof Error ? err.message : "An error occurred while searching. Please try again.")
         } finally {
             setLoading(false)
         }
@@ -209,172 +228,206 @@ export default function CatalogPage() {
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto space-y-8">
 
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="space-y-1">
-                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Course Catalog</h1>
-                        <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and build yourschedules</p>
+                {/* Website Availability Check */}
+                {checkingAvailability && (
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-12">
+                        <div className="flex flex-col items-center justify-center space-y-4">
+                            <Loader2 className="w-12 h-12 animate-spin text-emerald-600" />
+                            <h3 className="text-lg font-medium text-slate-900 dark:text-white">Checking UOB Website Availability</h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">Please wait while we connect to the course system...</p>
+                        </div>
                     </div>
+                )}
 
-                    {/* Settings Popover */}
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button variant="outline" className="gap-2">
-                                <Settings2 className="w-4 h-4" />
-                                <span className="hidden sm:inline">Filter</span>
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-80" align="end">
-                            <div className="space-y-4">
-                                <h4 className="font-medium leading-none">Catalog Settings</h4>
-                                <p className="text-sm text-slate-500 dark:text-slate-400">Adjust academic year and semester</p>
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="year">Academic Year</Label>
-                                    <Select value={year} onValueChange={setYear}>
-                                        <SelectTrigger id="year">
-                                            <SelectValue placeholder="Select Year" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="2025">2025/2026</SelectItem>
-                                            <SelectItem value="2024">2024/2025</SelectItem>
-                                            <SelectItem value="2023">2023/2024</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="sem">Semester</Label>
-                                    <Select value={sem} onValueChange={setSem}>
-                                        <SelectTrigger id="sem">
-                                            <SelectValue placeholder="Select Semester" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="1">First Semester</SelectItem>
-                                            <SelectItem value="2">Second Semester</SelectItem>
-                                            <SelectItem value="3">Summer Semester</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                {/* Website Unavailable Message */}
+                {!checkingAvailability && !websiteAvailable && (
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-red-200 dark:border-red-900 p-8">
+                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div className="p-4 rounded-full bg-red-50 dark:bg-red-900/20">
+                                <AlertCircle className="w-12 h-12 text-red-600 dark:text-red-400" />
                             </div>
-                        </PopoverContent>
-                    </Popover>
-                </div>
-
-                {/* Search Card */}
-                <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8">
-                    <form onSubmit={handleSearch} className="space-y-6">
-
-                        {/* Search Type Radio */}
-                        <div className="space-y-3">
-                            <Label>Search By</Label>
-                            <RadioGroup value={searchType} onValueChange={setSearchType} className="flex gap-6">
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="CD" id="CD" />
-                                    <Label htmlFor="CD" className="font-normal cursor-pointer">College & Department</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="CC" id="CC" />
-                                    <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
-                                </div>
-                            </RadioGroup>
-                        </div>
-
-                        {/* Dynamic Inputs */}
-                        <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800 transition-all">
-                            {searchType === "CC" ? (
-                                <div className="space-y-2">
-                                    <Label htmlFor="code">Course Code</Label>
-                                    <Input
-                                        id="code"
-                                        placeholder="e.g. ITIS460"
-                                        value={code}
-                                        onChange={(e) => setCode(e.target.value)}
-                                        className="max-w-md bg-white dark:bg-slate-900"
-                                    />
-                                </div>
-                            ) : (
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="college">College</Label>
-                                        <Select value={college} onValueChange={handleCollegeChange}>
-                                            <SelectTrigger id="college" className="bg-white dark:bg-slate-900">
-                                                <SelectValue placeholder="Select College" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {COLLEGES.map(c => (
-                                                    <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="dept">Department</Label>
-                                        <Select value={dept} onValueChange={setDept} disabled={departments.length === 0}>
-                                            <SelectTrigger id="dept" className="bg-white dark:bg-slate-900">
-                                                <SelectValue placeholder={departments.length === 0 ? "Select a college first" : "Select Department"} />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {departments.map(d => (
-                                                    <SelectItem key={d.value} value={d.value}>{d.label}</SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Submit */}
-                        <div className="flex justify-end">
-                            <Button type="submit" size="lg" className="px-8 bg-emerald-600 hover:bg-emerald-700 text-white" disabled={loading}>
-                                {loading ? (
-                                    <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Searching...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Search className="mr-2 h-4 w-4" />
-                                        Search Courses
-                                    </>
-                                )}
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Website Unavailable</h3>
+                            <p className="text-red-600 dark:text-red-400 max-w-md">{availabilityMessage}</p>
+                            <Button 
+                                onClick={() => window.location.reload()} 
+                                variant="outline"
+                                className="mt-4"
+                            >
+                                Try Again
                             </Button>
                         </div>
+                    </div>
+                )}
 
-                    </form>
-                </div>
-
-                {/* Results Section */}
-                <div className="space-y-8">
-
-                    {/* Toolbar: Filters & Sort */}
-                    {courses.length > 0 && (
-                        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-in fade-in slide-in-from-top-2 space-y-4">
-
-                            {/* Top Row: Text Search & Counts */}
-                            <div className="flex items-center gap-4">
-                                <div className="bg-blue-50 dark:bg-blue-900/20 p-2.5 rounded-lg text-blue-600 dark:text-blue-400">
-                                    <Filter className="w-5 h-5" />
-                                </div>
-                                <div className="flex-1">
-                                    <Input
-                                        placeholder="Quickly filter by text..."
-                                        value={resultFilter}
-                                        onChange={(e) => setResultFilter(e.target.value)}
-                                        className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm focus-visible:ring-emerald-500/20 text-base"
-                                    />
-                                </div>
-                                <div className="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300">
-                                    {processedCourses.length} results
-                                </div>
+                {/* Main Content - Only show if website is available */}
+                {!checkingAvailability && websiteAvailable && (
+                    <>
+                        {/* Header */}
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div className="space-y-1">
+                                <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Course Catalog</h1>
+                                <p className="text-slate-500 dark:text-slate-400">Search for courses, sections, and build yourschedules</p>
                             </div>
 
-                            <hr className="border-slate-100 dark:border-slate-800" />
+                            {/* Settings Popover */}
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button variant="outline" className="gap-2">
+                                        <Settings2 className="w-4 h-4" />
+                                        <span className="hidden sm:inline">Filter</span>
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-80" align="end">
+                                    <div className="space-y-4">
+                                        <h4 className="font-medium leading-none">Catalog Settings</h4>
+                                        <p className="text-sm text-slate-500 dark:text-slate-400">Adjust academic year and semester</p>
 
-                            {/* Bottom Row: Dropdowns */}
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="year">Academic Year</Label>
+                                            <Select value={year} onValueChange={setYear}>
+                                                <SelectTrigger id="year">
+                                                    <SelectValue placeholder="Select Year" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="2025">2025/2026</SelectItem>
+                                                    <SelectItem value="2024">2024/2025</SelectItem>
+                                                    <SelectItem value="2023">2023/2024</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label htmlFor="sem">Semester</Label>
+                                            <Select value={sem} onValueChange={setSem}>
+                                                <SelectTrigger id="sem">
+                                                    <SelectValue placeholder="Select Semester" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="1">First Semester</SelectItem>
+                                                    <SelectItem value="2">Second Semester</SelectItem>
+                                                    <SelectItem value="3">Summer Semester</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+
+                        {/* Search Card */}
+                        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8">
+                            <form onSubmit={handleSearch} className="space-y-6">
+
+                                {/* Search Type Radio */}
+                                <div className="space-y-3">
+                                    <Label>Search By</Label>
+                                    <RadioGroup value={searchType} onValueChange={setSearchType} className="flex gap-6">
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="CD" id="CD" />
+                                            <Label htmlFor="CD" className="font-normal cursor-pointer">College & Department</Label>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <RadioGroupItem value="CC" id="CC" />
+                                            <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
+                                        </div>
+                                    </RadioGroup>
+                                </div>
+
+                                {/* Dynamic Inputs */}
+                                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800 transition-all">
+                                    {searchType === "CC" ? (
+                                        <div className="space-y-2">
+                                            <Label htmlFor="code">Course Code</Label>
+                                            <Input
+                                                id="code"
+                                                placeholder="e.g. ITIS460"
+                                                value={code}
+                                                onChange={(e) => setCode(e.target.value)}
+                                                className="max-w-md bg-white dark:bg-slate-900"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="space-y-2">
+                                                <Label htmlFor="college">College</Label>
+                                                <Select value={college} onValueChange={handleCollegeChange}>
+                                                    <SelectTrigger id="college" className="bg-white dark:bg-slate-900">
+                                                        <SelectValue placeholder="Select College" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {COLLEGES.map(c => (
+                                                            <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                <Label htmlFor="dept">Department</Label>
+                                                <Select value={dept} onValueChange={setDept} disabled={departments.length === 0}>
+                                                    <SelectTrigger id="dept" className="bg-white dark:bg-slate-900">
+                                                        <SelectValue placeholder={departments.length === 0 ? "Select a college first" : "Select Department"} />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {departments.map(d => (
+                                                            <SelectItem key={d.value} value={d.value}>{d.label}</SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Submit */}
+                                <div className="flex justify-end">
+                                    <Button type="submit" size="lg" className="px-8 bg-emerald-600 hover:bg-emerald-700 text-white" disabled={loading}>
+                                        {loading ? (
+                                            <>
+                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                Searching...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Search className="mr-2 h-4 w-4" />
+                                                Search Courses
+                                            </>
+                                        )}
+                                    </Button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        {/* Results Section */}
+                        <div className="space-y-8">
+
+                            {/* Toolbar: Filters & Sort */}
+                            {courses.length > 0 && (
+                                <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm animate-in fade-in slide-in-from-top-2 space-y-4">
+
+                                    {/* Top Row: Text Search & Counts */}
+                                    <div className="flex items-center gap-4">
+                                        <div className="bg-blue-50 dark:bg-blue-900/20 p-2.5 rounded-lg text-blue-600 dark:text-blue-400">
+                                            <Filter className="w-5 h-5" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <Input
+                                                placeholder="Quickly filter by text..."
+                                                value={resultFilter}
+                                                onChange={(e) => setResultFilter(e.target.value)}
+                                                className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm focus-visible:ring-emerald-500/20 text-base"
+                                            />
+                                        </div>
+                                        <div className="text-sm font-medium px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300">
+                                            {processedCourses.length} results
+                                        </div>
+                                    </div>
+
+                                    <hr className="border-slate-100 dark:border-slate-800" />
+
+                                    {/* Bottom Row: Dropdowns */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
 
                                 {/* 1. Sort By */}
                                 <div className="space-y-1">
@@ -391,120 +444,119 @@ export default function CatalogPage() {
                                     </Select>
                                 </div>
 
-                                {/* 2. Department Filter */}
-                                <div className="space-y-1">
-                                    <Label className="text-xs text-slate-500">Department</Label>
-                                    <Select value={filterDept} onValueChange={(val) => {
-                                        setFilterDept(val)
-                                        // Reset level when dept changes if strict behavior desired, but keeping it is flexible
-                                    }}>
-                                        <SelectTrigger className="h-9">
-                                            <SelectValue placeholder="All Departments" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="ALL">All Departments</SelectItem>
-                                            {availableDepts.map(d => (
-                                                <SelectItem key={d} value={d}>{d}</SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                                <div className="space-y-1">
+                                                    <Label className="text-xs text-slate-500">Department</Label>
+                                                    <Select value={filterDept} onValueChange={(val) => {
+                                                        setFilterDept(val)
+                                                        // Reset level when dept changes if strict behavior desired, but keeping it is flexible
+                                                    }}>
+                                                        <SelectTrigger className="h-9">
+                                                            <SelectValue placeholder="All Departments" />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            <SelectItem value="ALL">All Departments</SelectItem>
+                                                            {availableDepts.map(d => (
+                                                                <SelectItem key={d} value={d}>{d}</SelectItem>
+                                                            ))}
+                                                        </SelectContent>
+                                                    </Select>
+                                                </div>
 
-                                {/* 3. Level Filter */}
-                                <div className="space-y-1">
-                                    <Label className="text-xs text-slate-500">Level</Label>
-                                    <Select value={filterLevel} onValueChange={setFilterLevel}>
-                                        <SelectTrigger className="h-9">
-                                            <SelectValue placeholder="All Levels" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="ALL">All Levels</SelectItem>
-                                            <SelectItem value="1">Level 1</SelectItem>
-                                            <SelectItem value="2">Level 2</SelectItem>
-                                            <SelectItem value="3">Level 3</SelectItem>
-                                            <SelectItem value="4">Level 4</SelectItem>
-                                            <SelectItem value="Other">Other (&gt;400)</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                                                {/* 3. Level Filter */}
+                                                <div className="space-y-1">
+                                                    <Label className="text-xs text-slate-500">Level</Label>
+                                                    <Select value={filterLevel} onValueChange={setFilterLevel}>
+                                                        <SelectTrigger className="h-9">
+                                                            <SelectValue placeholder="All Levels" />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            <SelectItem value="ALL">All Levels</SelectItem>
+                                                            <SelectItem value="1">Level 1</SelectItem>
+                                                            <SelectItem value="2">Level 2</SelectItem>
+                                                            <SelectItem value="3">Level 3</SelectItem>
+                                                            <SelectItem value="4">Level 4</SelectItem>
+                                                            <SelectItem value="Other">Other (&gt;400)</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </div>
 
-                            </div>
-
-                            {/* Hide Full Toggle */}
-                            <div className="flex items-center space-x-2 pt-2">
-                                <input
-                                    type="checkbox"
-                                    id="hideFull"
-                                    checked={hideFull}
-                                    onChange={(e) => setHideFull(e.target.checked)}
-                                    className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-800"
-                                />
-                                <Label htmlFor="hideFull" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-slate-600 dark:text-slate-300">
-                                    Hide 0 seats courses
-                                </Label>
-                            </div>
-
-                        </div>
-                    )}
-
-                    {error && (
-                        <div className="p-6 rounded-xl bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900 text-center font-medium">
-                            {error}
-                        </div>
-                    )}
-
-                    {courses.length > 0 && processedCourses.length === 0 && (
-                        <div className="text-center py-20">
-                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
-                                <Search className="w-8 h-8 text-slate-400" />
-                            </div>
-                            <h3 className="text-lg font-medium text-slate-900 dark:text-white">No matching courses</h3>
-                            <p className="text-slate-500 dark:text-slate-400 mt-1">
-                                No courses found matching "{resultFilter}".
-                            </p>
-                        </div>
-                    )}
-
-                    <div className="grid gap-6">
-                        {processedCourses.map((course, idx) => (
-                            <div
-                                key={`${course.code}-${idx}`}
-                                className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
-                                style={{ animationDelay: `${idx * 50}ms` }}
-                            >
-                                {/* Course Header */}
-                                <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-start justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/20">
-                                    <div className="space-y-1">
-                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                                            <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-md text-sm font-bold bg-blue-600 text-white shadow-sm tracking-wide">
-                                                {course.code}
-                                            </span>
-                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
-                                                {course.title}
-                                            </h3>
-                                        </div>
-                                        {course.prereqs && (
-                                            <div className="flex items-start gap-1.5 text-sm text-slate-500 dark:text-slate-400 mt-2">
-                                                <BookOpen className="w-4 h-4 mt-0.5 shrink-0 text-slate-400" />
-                                                <span className="leading-snug">Prereqs: <span className="font-medium text-slate-700 dark:text-slate-300">{course.prereqs}</span></span>
                                             </div>
-                                        )}
-                                    </div>
-                                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400 uppercase tracking-wider shrink-0">
-                                        {course.sections.length} Section{course.sections.length !== 1 ? 's' : ''}
-                                    </div>
-                                </div>
 
-                                {/* Sections */}
-                                <div className="divide-y divide-slate-100 dark:divide-slate-800">
-                                    {course.sections.map((section, sIdx) => {
-                                        const isOpen = section.status?.includes("OPEN");
-                                        return (
-                                            <div key={sIdx} className="p-5 sm:p-6 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
-                                                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                                            {/* Hide Full Toggle */}
+                                            <div className="flex items-center space-x-2 pt-2">
+                                                <input
+                                                    type="checkbox"
+                                                    id="hideFull"
+                                                    checked={hideFull}
+                                                    onChange={(e) => setHideFull(e.target.checked)}
+                                                    className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-800"
+                                                />
+                                                <Label htmlFor="hideFull" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-slate-600 dark:text-slate-300">
+                                                    Hide 0 seats courses
+                                                </Label>
+                                            </div>
 
-                                                    {/* Section Info */}
-                                                    <div className="md:col-span-2 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-2">
+                                        </div>
+                                    )}
+
+                                    {error && (
+                                        <div className="p-6 rounded-xl bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900 text-center font-medium">
+                                            {error}
+                                        </div>
+                                    )}
+
+                                    {courses.length > 0 && processedCourses.length === 0 && (
+                                        <div className="text-center py-20">
+                                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 mb-4">
+                                                <Search className="w-8 h-8 text-slate-400" />
+                                            </div>
+                                            <h3 className="text-lg font-medium text-slate-900 dark:text-white">No matching courses</h3>
+                                            <p className="text-slate-500 dark:text-slate-400 mt-1">
+                                                No courses found matching "{resultFilter}".
+                                            </p>
+                                        </div>
+                                    )}
+
+                                    <div className="grid gap-6">
+                                        {processedCourses.map((course, idx) => (
+                                            <div
+                                                key={`${course.code}-${idx}`}
+                                                className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden animate-in fade-in slide-in-from-bottom-4 fill-mode-both"
+                                                style={{ animationDelay: `${idx * 50}ms` }}
+                                            >
+                                                {/* Course Header */}
+                                                <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-start justify-between gap-4 bg-slate-50/50 dark:bg-slate-800/20">
+                                                    <div className="space-y-1">
+                                                        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                                                            <span className="inline-flex items-center justify-center px-2.5 py-0.5 rounded-md text-sm font-bold bg-blue-600 text-white shadow-sm tracking-wide">
+                                                                {course.code}
+                                                            </span>
+                                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                                                                {course.title}
+                                                            </h3>
+                                                        </div>
+                                                        {course.prereqs && (
+                                                            <div className="flex items-start gap-1.5 text-sm text-slate-500 dark:text-slate-400 mt-2">
+                                                                <BookOpen className="w-4 h-4 mt-0.5 shrink-0 text-slate-400" />
+                                                                <span className="leading-snug">Prereqs: <span className="font-medium text-slate-700 dark:text-slate-300">{course.prereqs}</span></span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400 uppercase tracking-wider shrink-0">
+                                                        {course.sections.length} Section{course.sections.length !== 1 ? 's' : ''}
+                                                    </div>
+                                                </div>
+
+                                                {/* Sections */}
+                                                <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                                                    {course.sections.map((section, sIdx) => {
+                                                        const isOpen = section.status?.includes("OPEN");
+                                                        return (
+                                                            <div key={sIdx} className="p-5 sm:p-6 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                                                                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                                                                    {/* Section Info */}
+                                                                    <div className="md:col-span-2 flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-2">
                                                         <div className="text-center md:text-left">
                                                             <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-0.5">Section</div>
                                                             <div className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tabular-nums tracking-tight">
@@ -600,16 +652,18 @@ export default function CatalogPage() {
                                                     </div>
 
                                                 </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
                                             </div>
-                                        )
-                                    })}
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            </>
+                        )}
+
                     </div>
                 </div>
-
-            </div >
-        </div >
-    )
-}
+            )
+        }

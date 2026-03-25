@@ -17,26 +17,38 @@ UniPlanner is a full-stack web application designed to help UOB students plan th
 
 ### Prerequisites
 
-- Node.js (via WSL on Windows recommended)
-- pnpm or npm
+- Node.js 20+ (via WSL on Windows recommended)
+- npm or pnpm
 
-### Installation
+### Installation & Running the Web Application
 
-1.  Clone the repository.
-2.  Install dependencies:
+1.  **Clone the repository**
+    ```bash
+    git clone <repository-url>
+    cd UniPlanner
+    ```
+
+2.  **Install dependencies**
     ```bash
     npm install
-    # or
-    pnpm install
     ```
-3.  Generate the database client:
+
+3.  **Setup the database**
     ```bash
-    npm run db:generate
+    # Generate Prisma client
+    npx prisma generate
+    
+    # Create/sync the database
+    npx prisma db push
     ```
-4.  Run the development server:
+
+4.  **Run the development server**
     ```bash
     npm run dev
-    # or
-    pnpm dev
     ```
-5.  Open [http://localhost:3000](http://localhost:3000) with your browser.
+    
+    The application will start on [http://localhost:3000](http://localhost:3000)
+
+5.  **Open your browser** and navigate to [http://localhost:3000](http://localhost:3000)
+
+For production, configure a PostgreSQL database in your deployment platform.
