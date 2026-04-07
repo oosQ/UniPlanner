@@ -25,7 +25,7 @@ export interface Course {
 
 export async function checkWebsiteAvailability(): Promise<{ available: boolean; message?: string }> {
     try {
-        const response = await fetch("http://ucs.uob.edu.bh/index.php", {
+        const response = await fetch("https://ucs.uob.edu.bh/index.php", {
             method: "HEAD",
             signal: AbortSignal.timeout(8000) // 8 second timeout for availability check
         })
@@ -50,7 +50,7 @@ export async function getDepartments(collegeId: string) {
     if (!collegeId) return []
 
     try {
-        const response = await fetch(`http://ucs.uob.edu.bh/getdept.php?q=${collegeId}`, {
+        const response = await fetch(`https://ucs.uob.edu.bh/getdept.php?q=${collegeId}`, {
             signal: AbortSignal.timeout(10000) // 10 second timeout
         })
         
@@ -72,13 +72,17 @@ export async function getDepartments(collegeId: string) {
 
         return departments
     } catch (error) {
+        console.error('getDepartments error:', error)
         if (error instanceof Error) {
-            if (error.name === 'TimeoutError' || error.message.includes('fetch')) {
-                throw new Error(" Unable to connect to UCS website. The service may be temporarily unavailable. Please try again later.")
+            if (error.name === 'TimeoutError') {
+                throw new Error("Request timed out while connecting to UCS website. Please try again later.")
             }
-            throw new Error(` UCS website error: ${error.message}`)
+            if (error.message.includes('fetch failed') || error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
+                throw new Error(`Unable to connect to UCS website: ${error.message}. The service may be temporarily unavailable.`)
+            }
+            throw new Error(`UCS website error: ${error.message}`)
         }
-        throw new Error(" Unable to fetch departments from UCS website. Please check your connection and try again.")
+        throw new Error("Unable to fetch departments from UCS website. Please check your connection and try again.")
     }
 }
 
@@ -100,7 +104,7 @@ export async function searchCourses(formData: FormData) {
             body.append("dept", formData.get("dept") as string)
         }
 
-        const response = await fetch("http://ucs.uob.edu.bh/index.php", {
+        const response = await fetch("https://ucs.uob.edu.bh/index.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -212,9 +216,13 @@ export async function searchCourses(formData: FormData) {
         return courses
 
     } catch (error) {
+        console.error('searchCourses error:', error)
         if (error instanceof Error) {
-            if (error.name === 'TimeoutError' || error.message.includes('fetch')) {
-                throw new Error(" Unable to connect to UCS website. The service may be temporarily unavailable. Please try again later.")
+            if (error.name === 'TimeoutError') {
+                throw new Error("Request timed out while searching courses on UCS website. Please try again later.")
+            }
+            if (error.message.includes('fetch failed') || error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
+                throw new Error(`Unable to connect to UCS website: ${error.message}. The service may be temporarily unavailable.`)
             }
             throw new Error(`UCS website error: ${error.message}`)
         }
