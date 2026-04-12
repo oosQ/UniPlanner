@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { GraduationCap, BookOpen, Users } from "lucide-react"
+import { GraduationCap, BookOpen, Users, FileText } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navbar() {
@@ -22,6 +22,12 @@ export function Navbar() {
       label: "Instructors",
       icon: Users,
       active: pathname.startsWith("/instructor"),
+    },
+    {
+      href: "/transcript",
+      label: "Transcript",
+      icon: FileText,
+      active: pathname === "/transcript",
     },
   ]
 
