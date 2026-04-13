@@ -4,8 +4,9 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
+import { Badge } from "@/components/ui/badge"
 import { TranscriptParseResult } from "@/lib/types"
-import { Upload, FileText, Loader2, AlertCircle, CheckCircle2 } from "lucide-react"
+import { Upload, FileText, Loader2, AlertCircle, CheckCircle2, User, GraduationCap, TrendingUp, BookOpen } from "lucide-react"
 
 export default function TranscriptPage() {
     const [file, setFile] = useState<File | null>(null)
@@ -115,39 +116,199 @@ export default function TranscriptPage() {
 
             {/* Results Section */}
             {result && (
-                <Card className="p-6">
-                    {result.success ? (
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-                                <CheckCircle2 className="h-5 w-5" />
-                                <h2 className="text-lg font-semibold">Transcript Extracted Successfully</h2>
-                            </div>
+                <div className="space-y-6">
+                    {result.success && result.data ? (
+                        <>
+                            {/* Student Info Card */}
+                            <Card className="p-6">
+                                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-4">
+                                    <CheckCircle2 className="h-5 w-5" />
+                                    <h2 className="text-lg font-semibold">Transcript Parsed Successfully</h2>
+                                </div>
 
-                            {/* Stage 2: Display raw text for debugging */}
-                            {result.rawText && (
-                                <div className="space-y-2">
-                                    <Label className="text-sm font-medium">Extracted Text (Debug View):</Label>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="flex items-start gap-3">
+                                        <User className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                        <div>
+                                            <Label className="text-xs text-muted-foreground">Student Name</Label>
+                                            <p className="font-medium">{result.data.studentName || "N/A"}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <FileText className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                        <div>
+                                            <Label className="text-xs text-muted-foreground">Student Number</Label>
+                                            <p className="font-medium">{result.data.studentNumber || "N/A"}</p>
+                                        </div>
+                                    </div>
+                                    {result.data.program && (
+                                        <div className="flex items-start gap-3 md:col-span-2">
+                                            <GraduationCap className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">Program</Label>
+                                                <p className="font-medium">{result.data.program}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {result.data.academicAdvisor && (
+                                        <div className="flex items-start gap-3">
+                                            <User className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">Academic Advisor</Label>
+                                                <p className="font-medium">{result.data.academicAdvisor}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Cumulative Summary */}
+                                {result.data.cumulative && (
+                                    <div className="mt-6 pt-6 border-t">
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <TrendingUp className="h-5 w-5 text-emerald-600" />
+                                            <h3 className="font-semibold">Cumulative Summary</h3>
+                                        </div>
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">Credits Attended</Label>
+                                                <p className="text-xl font-bold">{result.data.cumulative.creditsAttended}</p>
+                                            </div>
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">Credits Passed</Label>
+                                                <p className="text-xl font-bold text-emerald-600">{result.data.cumulative.creditsPassed}</p>
+                                            </div>
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">CGPA</Label>
+                                                <p className="text-xl font-bold text-blue-600">{result.data.cumulative.cgpa.toFixed(2)}</p>
+                                            </div>
+                                            {(result.data.cumulative.mcgpa ?? 0) > 0 && (
+                                                <div>
+                                                    <Label className="text-xs text-muted-foreground">Major GPA</Label>
+                                                    <p className="text-xl font-bold">{result.data.cumulative.mcgpa?.toFixed(2)}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </Card>
+
+                            {/* Semesters */}
+                            {result.data.semesters.map((semester, idx) => (
+                                <Card key={idx} className="p-6">
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div>
+                                            <h3 className="text-lg font-semibold">{semester.semesterName}</h3>
+                                            {semester.program && (
+                                                <p className="text-sm text-muted-foreground mt-1">{semester.program}</p>
+                                            )}
+                                        </div>
+                                        <div className="text-right">
+                                            {semester.sgpa !== undefined && (
+                                                <div className="text-sm">
+                                                    <span className="text-muted-foreground">SGPA: </span>
+                                                    <span className="font-bold text-blue-600">{semester.sgpa.toFixed(2)}</span>
+                                                </div>
+                                            )}
+                                            {semester.semesterCreditsAttended !== undefined && (
+                                                <div className="text-xs text-muted-foreground">
+                                                    {semester.semesterCreditsPassed}/{semester.semesterCreditsAttended} credits passed
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* Courses Table */}
+                                    {semester.courses.length > 0 && (
+                                        <div className="overflow-x-auto">
+                                            <table className="w-full text-sm">
+                                                <thead>
+                                                    <tr className="border-b">
+                                                        <th className="text-left py-2 px-2">Course Code</th>
+                                                        <th className="text-left py-2 px-2">Course Name</th>
+                                                        <th className="text-center py-2 px-2">Credits</th>
+                                                        <th className="text-center py-2 px-2">Grade</th>
+                                                        <th className="text-center py-2 px-2">Status</th>
+                                                        <th className="text-center py-2 px-2">Rep</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {semester.courses.map((course, courseIdx) => (
+                                                        <tr key={courseIdx} className="border-b hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                                            <td className="py-2 px-2 font-mono text-xs">{course.courseCode}</td>
+                                                            <td className="py-2 px-2">{course.courseName}</td>
+                                                            <td className="py-2 px-2 text-center">{course.creditHours}</td>
+                                                            <td className="py-2 px-2 text-center">
+                                                                <Badge variant={
+                                                                    course.grade.startsWith("A") ? "default" :
+                                                                    course.grade.startsWith("B") ? "secondary" :
+                                                                    course.grade === "W" ? "destructive" :
+                                                                    "outline"
+                                                                }>
+                                                                    {course.grade}
+                                                                </Badge>
+                                                            </td>
+                                                            <td className="py-2 px-2 text-center">
+                                                                {course.status === "W" && (
+                                                                    <Badge variant="destructive">Withdrawn</Badge>
+                                                                )}
+                                                                {course.repeated && !course.status && (
+                                                                    <Badge variant="outline">Repeated</Badge>
+                                                                )}
+                                                                {!course.status && !course.repeated && "-"}
+                                                            </td>
+                                                            <td className="py-2 px-2 text-center">
+                                                                <span className="font-medium">{course.repeatCount ?? 0}</span>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    )}
+
+                                    {semester.courses.length === 0 && (
+                                        <div className="text-center py-8 text-muted-foreground">
+                                            No courses found for this semester
+                                        </div>
+                                    )}
+                                </Card>
+                            ))}
+
+                            {/* Debug Section - Collapsible */}
+                            <details className="group">
+                                <summary className="cursor-pointer list-none">
+                                    <Card className="p-4 hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-sm font-medium text-muted-foreground">
+                                                🔍 View Raw Text (Debug)
+                                            </span>
+                                            <span className="text-xs text-muted-foreground group-open:rotate-180 transition-transform">
+                                                ▼
+                                            </span>
+                                        </div>
+                                    </Card>
+                                </summary>
+                                <Card className="p-4 mt-2">
                                     <div className="bg-slate-100 dark:bg-slate-900 p-4 rounded-lg max-h-96 overflow-y-auto">
                                         <pre className="text-xs whitespace-pre-wrap font-mono">
                                             {result.rawText}
                                         </pre>
                                     </div>
-                                    <p className="text-sm text-muted-foreground">
-                                         Stage 2: Raw text extraction complete. Parsing into structured data will be added in Stage 3.
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+                                </Card>
+                            </details>
+                        </>
                     ) : (
-                        <div className="flex items-start gap-3 text-red-600 dark:text-red-400">
-                            <AlertCircle className="h-5 w-5 mt-0.5" />
-                            <div>
-                                <h2 className="text-lg font-semibold mb-1">Error</h2>
-                                <p className="text-sm">{result.error}</p>
+                        <Card className="p-6">
+                            <div className="flex items-start gap-3 text-red-600 dark:text-red-400">
+                                <AlertCircle className="h-5 w-5 mt-0.5" />
+                                <div>
+                                    <h2 className="text-lg font-semibold mb-1">Error</h2>
+                                    <p className="text-sm">{result.error}</p>
+                                </div>
                             </div>
-                        </div>
+                        </Card>
                     )}
-                </Card>
+                </div>
             )}
 
             {/* Info Section */}

@@ -4,6 +4,7 @@ import { promisify } from "util"
 import { writeFile, unlink } from "fs/promises"
 import path from "path"
 import os from "os"
+import { parseUOBTranscript } from "@/lib/transcript-utils"
 
 const execAsync = promisify(exec)
 
@@ -54,15 +55,14 @@ export async function POST(request: Request) {
         await unlink(tempFilePath)
         tempFilePath = null
 
-        // Stage 2: Return raw text for debugging
+        // Parse the raw text into structured data
+        const parsedData = parseUOBTranscript(rawText)
+
+        // Return both raw text (for debugging) and parsed data
         return NextResponse.json({
             success: true,
             rawText,
-            data: {
-                studentName: "",
-                studentNumber: "",
-                semesters: []
-            }
+            data: parsedData
         })
 
     } catch (error) {

@@ -7,6 +7,7 @@ export interface ParsedCourse {
     grade: string
     status?: string // e.g., "W" for withdrawn, "Enrolled", etc.
     repeated?: boolean
+    repeatCount?: number // How many times the course was repeated
 }
 
 export interface Semester {
@@ -23,14 +24,13 @@ export interface CumulativeSummary {
     creditsPassed: number
     cgpa: number // Cumulative GPA
     mcgpa?: number // Major CGPA
-    igpa?: number // Institution GPA
 }
 
 export interface ParsedTranscript {
     studentName: string
     studentNumber: string
     college?: string
-    program?: string
+    program?: string // e.g., "Bachelor of Science in Information Systems - 2017"
     dateOfAdmission?: string
     academicAdvisor?: string
     semesters: Semester[]
