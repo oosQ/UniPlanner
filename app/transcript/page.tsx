@@ -5,8 +5,19 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
 import { TranscriptParseResult } from "@/lib/types"
-import { Upload, FileText, Loader2, AlertCircle, CheckCircle2, User, GraduationCap, TrendingUp, BookOpen, Award, Calendar, Target, BarChart3 } from "lucide-react"
+import { Upload, FileText, Loader2, AlertCircle, CheckCircle2, User, GraduationCap, TrendingUp, BookOpen, Award, Calendar, Target, BarChart3, Search, XCircle } from "lucide-react"
+
+// Helper function to get GPA classification
+function getGPAClassification(gpa: number): { text: string; className: string } {
+    if (gpa >= 3.90) return { text: "First Class Honors", className: "bg-yellow-100 dark:bg-yellow-950 text-yellow-800 dark:text-yellow-200 border-yellow-300 dark:border-yellow-700" }
+    if (gpa >= 3.70) return { text: "Second Class Honors", className: "bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-700" }
+    if (gpa >= 3.50) return { text: "Distinction", className: "bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-200 border-emerald-300 dark:border-emerald-700" }
+    if (gpa >= 3.00) return { text: "Very Good", className: "bg-green-100 dark:bg-green-950 text-green-800 dark:text-green-200 border-green-300 dark:border-green-700" }
+    if (gpa >= 2.00) return { text: "Good", className: "bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-600" }
+    return { text: "", className: "" }
+}
 
 // Helper function to calculate statistics
 function calculateStats(semesters: any[]) {
@@ -59,6 +70,8 @@ export default function TranscriptPage() {
     const [file, setFile] = useState<File | null>(null)
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState<TranscriptParseResult | null>(null)
+    const [searchQuery, setSearchQuery] = useState("")
+    const [showSuggestions, setShowSuggestions] = useState(false)
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0]
@@ -93,6 +106,46 @@ export default function TranscriptPage() {
         } finally {
             setLoading(false)
         }
+    }
+
+    // Filter semesters based on search query
+    const getFilteredSemesters = (semesters: any[]) => {
+        if (!searchQuery.trim()) return semesters
+        
+        const query = searchQuery.toLowerCase().trim()
+        return semesters.map(semester => ({
+            ...semester,
+            courses: semester.courses.filter((course: any) => 
+                course.courseCode.toLowerCase().includes(query) ||
+                course.courseName.toLowerCase().includes(query)
+            )
+        })).filter(semester => semester.courses.length > 0)
+    }
+
+    // Get course suggestions based on search query
+    const getSuggestions = () => {
+        if (!result?.data?.semesters || searchQuery.length < 1) return []
+        
+        const query = searchQuery.toLowerCase().trim()
+        const suggestions: Array<{code: string, name: string}> = []
+        const seen = new Set<string>()
+        
+        result.data.semesters.forEach(semester => {
+            semester.courses.forEach((course: any) => {
+                const key = course.courseCode
+                if (!seen.has(key) && 
+                    (course.courseCode.toLowerCase().includes(query) || 
+                     course.courseName.toLowerCase().includes(query))) {
+                    seen.add(key)
+                    suggestions.push({
+                        code: course.courseCode,
+                        name: course.courseName
+                    })
+                }
+            })
+        })
+        
+        return suggestions.slice(0, 8) // Limit to 8 suggestions
     }
 
     return (
@@ -233,12 +286,21 @@ export default function TranscriptPage() {
                                     )}
                                 </div>
 
-                                {result.data.cumulative && (
+                                {result.data.cumulative && (() => {
+                                    const classification = getGPAClassification(result.data.cumulative.cgpa)
+                                    return (
                                     <div className="mt-6 pt-6 border-t border-blue-200 dark:border-blue-800">
                                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                            <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-blue-100 dark:border-blue-900">
-                                                <Label className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">CGPA</Label>
+                                            <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-blue-100 dark:border-blue-900 relative">
+                                                <Label className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">GPA</Label>
                                                 <p className="text-2xl font-bold text-blue-700 dark:text-blue-300 mt-1">{result.data.cumulative.cgpa.toFixed(2)}</p>
+                                                {classification.text && (
+                                                    <div className="absolute bottom-3 right-3">
+                                                        <Badge className={`text-sm font-semibold px-3 py-1 ${classification.className}`}>
+                                                            {classification.text}
+                                                        </Badge>
+                                                    </div>
+                                                )}
                                             </div>
                                             {(result.data.cumulative.mcgpa ?? 0) > 0 && (
                                                 <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-emerald-100 dark:border-emerald-900">
@@ -252,12 +314,14 @@ export default function TranscriptPage() {
                                             </div>
                                         </div>
                                     </div>
-                                )}
+                                    )
+                                })()}
                             </Card>
 
                             {/* Academic Statistics */}
                             {result.data.semesters.length > 0 && (() => {
                                 const stats = calculateStats(result.data.semesters)
+                                
                                 return (
                                     <div className="space-y-4">
                                         <div className="flex items-center gap-2">
@@ -266,7 +330,7 @@ export default function TranscriptPage() {
                                         </div>
 
                                         {/* Quick Stats Grid */}
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                                             <Card className="p-4 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 border-emerald-200 dark:border-emerald-800">
                                                 <div className="flex items-center gap-3">
                                                     <div className="p-2 bg-emerald-600 rounded-lg">
@@ -314,51 +378,129 @@ export default function TranscriptPage() {
                                                     </div>
                                                 </div>
                                             </Card>
+
+                                            {stats.withdrawnCourses > 0 && (
+                                                <Card className="p-4 bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-950/20 dark:to-rose-950/20 border-red-200 dark:border-red-800">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="p-2 bg-red-600 rounded-lg">
+                                                            <XCircle className="h-4 w-4 text-white" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-2xl font-bold text-red-700 dark:text-red-300">{stats.withdrawnCourses}</p>
+                                                            <p className="text-xs text-red-600 dark:text-red-400 font-medium">Dropped</p>
+                                                        </div>
+                                                    </div>
+                                                </Card>
+                                            )}
                                         </div>
 
                                         {/* Grade Distribution */}
                                         <Card className="p-6">
-                                            <h4 className="font-semibold mb-4 flex items-center gap-2">
+                                            <h4 className="font-semibold mb-6 flex items-center gap-2">
                                                 <TrendingUp className="h-4 w-4 text-emerald-600" />
                                                 Grade Distribution
                                             </h4>
-                                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                                                {stats.gradeDistribution.map(([grade, count]) => (
-                                                    <div key={grade} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg border">
-                                                        <span className="font-semibold text-sm">{grade}</span>
-                                                        <Badge variant="secondary" className="ml-2">{count}</Badge>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                            {stats.gradeDistribution.length === 0 && (
+                                            {stats.gradeDistribution.length > 0 ? (
+                                                <div className="grid md:grid-cols-2 gap-6">
+                                                    {stats.gradeDistribution.map(([grade, count]) => {
+                                                        const maxCount = Math.max(...stats.gradeDistribution.map(([, c]) => c as number))
+                                                        const percentage = (count as number / maxCount) * 100
+                                                        
+                                                        return (
+                                                            <div key={grade} className="space-y-2">
+                                                                <div className="flex items-center justify-between">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-sm">
+                                                                            <span className="text-white font-bold text-sm">{grade}</span>
+                                                                        </div>
+                                                                        <span className="text-sm font-semibold text-muted-foreground">{count} course{count !== 1 ? 's' : ''}</span>
+                                                                    </div>
+                                                                    <Badge variant="secondary" className="font-bold">{count}</Badge>
+                                                                </div>
+                                                                <div className="relative h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                                                    <div 
+                                                                        className="absolute inset-y-0 left-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-700 ease-out"
+                                                                        style={{ width: `${percentage}%` }}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            ) : (
                                                 <p className="text-sm text-muted-foreground text-center py-4">No grades recorded yet</p>
                                             )}
                                         </Card>
-
-                                        {/* Additional Stats */}
-                                        {(stats.withdrawnCourses > 0 || stats.repeatedCourses > 0) && (
-                                            <div className="grid md:grid-cols-2 gap-4">
-                                                {stats.withdrawnCourses > 0 && (
-                                                    <Card className="p-4 border-red-200 dark:border-red-800">
-                                                        <div className="flex items-center justify-between">
-                                                            <span className="text-sm font-medium text-muted-foreground">Withdrawn Courses</span>
-                                                            <Badge variant="destructive">{stats.withdrawnCourses}</Badge>
-                                                        </div>
-                                                    </Card>
-                                                )}
-                                                {stats.repeatedCourses > 0 && (
-                                                    <Card className="p-4 border-orange-200 dark:border-orange-800">
-                                                        <div className="flex items-center justify-between">
-                                                            <span className="text-sm font-medium text-muted-foreground">Repeated Courses</span>
-                                                            <Badge variant="outline" className="border-orange-600 text-orange-600">{stats.repeatedCourses}</Badge>
-                                                        </div>
-                                                    </Card>
-                                                )}
-                                            </div>
-                                        )}
                                     </div>
                                 )
                             })()}
+
+                            {/* Search Input */}
+                            <Card className="p-6">
+                                <div className="flex items-center gap-3 relative">
+                                    <Search className="h-5 w-5 text-muted-foreground" />
+                                    <div className="flex-1 relative">
+                                        <Input
+                                            type="text"
+                                            placeholder="Search by course code or name (e.g., 'ACC 112' or 'ACCOUNTING')..."
+                                            value={searchQuery}
+                                            onChange={(e) => {
+                                                setSearchQuery(e.target.value)
+                                                setShowSuggestions(true)
+                                            }}
+                                            onFocus={() => setShowSuggestions(true)}
+                                            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                                            className="w-full"
+                                        />
+                                        
+                                        {/* Suggestions Dropdown */}
+                                        {showSuggestions && searchQuery && getSuggestions().length > 0 && (
+                                            <Card className="absolute top-full left-0 right-0 mt-2 z-50 max-h-64 overflow-y-auto shadow-lg">
+                                                <div className="py-2">
+                                                    {getSuggestions().map((suggestion, idx) => (
+                                                        <button
+                                                            key={idx}
+                                                            onClick={() => {
+                                                                setSearchQuery(suggestion.code)
+                                                                setShowSuggestions(false)
+                                                            }}
+                                                            className="w-full px-4 py-2 text-left hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                                        >
+                                                            <div className="flex items-center gap-3">
+                                                                <span className="font-mono text-xs font-semibold text-blue-600 dark:text-blue-400 min-w-[80px]">
+                                                                    {suggestion.code}
+                                                                </span>
+                                                                <span className="text-sm text-muted-foreground truncate">
+                                                                    {suggestion.name}
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </Card>
+                                        )}
+                                    </div>
+                                    {searchQuery && (
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => {
+                                                setSearchQuery("")
+                                                setShowSuggestions(false)
+                                            }}
+                                            className="text-muted-foreground hover:text-foreground"
+                                        >
+                                            Clear
+                                        </Button>
+                                    )}
+                                </div>
+                                
+                                {searchQuery && getFilteredSemesters(result.data.semesters).length === 0 && (
+                                    <div className="mt-4 text-center text-sm text-muted-foreground">
+                                        No courses found matching "{searchQuery}"
+                                    </div>
+                                )}
+                            </Card>
 
                             {/* Semesters */}
                             <div className="space-y-4">
@@ -367,7 +509,7 @@ export default function TranscriptPage() {
                                     <h3 className="text-lg font-semibold">Semester Details</h3>
                                 </div>
                                 
-                                {result.data.semesters.map((semester, idx) => (
+                                {getFilteredSemesters(result.data.semesters).map((semester, idx) => (
                                     <Card key={idx} className="p-6 hover:shadow-md transition-shadow border-l-4 border-l-blue-500">
                                         <div className="flex items-start justify-between mb-4">
                                             <div className="flex-1">
@@ -409,7 +551,7 @@ export default function TranscriptPage() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {semester.courses.map((course, courseIdx) => (
+                                                    {semester.courses.map((course: any, courseIdx: number) => (
                                                         <tr key={courseIdx} className={`border-b last:border-0 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors ${
                                                             course.status === "W" ? "bg-red-50 dark:bg-red-950/20" : ""
                                                         }`}>
