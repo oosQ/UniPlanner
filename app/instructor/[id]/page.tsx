@@ -1,8 +1,8 @@
 
 import { ExpandableText } from "@/components/expandable-text"
 import { prisma } from "@/lib/prisma"
-import Image from "next/image"
 import { notFound } from "next/navigation"
+import { InstructorAvatar } from "@/components/instructor-avatar"
 
 export default async function InstructorPage(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
@@ -26,10 +26,9 @@ export default async function InstructorPage(props: { params: Promise<{ id: stri
                     {/* Avatar positioning */}
                     <div className="absolute -bottom-16 left-8 p-1.5 bg-white dark:bg-slate-900 rounded-2xl shadow-lg">
                         <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800">
-                            <Image
-                                src={instructor.photoUrl || "/placeholder-avatar.png"}
+                            <InstructorAvatar
+                                src={instructor.photoUrl}
                                 alt={instructor.name}
-                                fill
                                 className="object-cover"
                             />
                         </div>

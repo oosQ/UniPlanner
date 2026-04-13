@@ -1,12 +1,12 @@
 
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
-import Image from "next/image"
 import { InstructorFilter } from "@/components/instructor-filter"
 import { Prisma } from "@prisma/client"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Search } from "lucide-react"
+import { InstructorAvatar } from "@/components/instructor-avatar"
 
 export const dynamic = 'force-dynamic'
 
@@ -96,10 +96,9 @@ export default async function InstructorListPage(props: PageProps) {
 
                             <div className="relative w-28 h-28 mb-5 rounded-full p-1 bg-gradient-to-br from-gray-100 to-white dark:from-slate-700 dark:to-slate-800 shadow-inner group-hover:scale-105 transition-transform duration-300 ring-1 ring-gray-100 dark:ring-slate-700 group-hover:ring-emerald-200 dark:group-hover:ring-emerald-800">
                                 <div className="relative w-full h-full rounded-full overflow-hidden bg-gray-50 dark:bg-slate-800">
-                                    <Image
-                                        src={instructor.photoUrl || "/placeholder-avatar.png"}
+                                    <InstructorAvatar
+                                        src={instructor.photoUrl}
                                         alt={instructor.name}
-                                        fill
                                         className="object-cover"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
