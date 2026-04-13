@@ -119,14 +119,22 @@ export default function TranscriptPage() {
                 <div className="space-y-6">
                     {result.success && result.data ? (
                         <>
-                            {/* Student Info Card */}
-                            <Card className="p-6">
-                                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-4">
+                            {/* Success Message */}
+                            <Card className="p-4">
+                                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                                     <CheckCircle2 className="h-5 w-5" />
                                     <h2 className="text-lg font-semibold">Transcript Parsed Successfully</h2>
                                 </div>
+                            </Card>
 
-                                <div className="grid md:grid-cols-2 gap-4">
+                            {/* Student Info Card */}
+                            <Card className="p-6">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <User className="h-5 w-5 text-blue-600" />
+                                    <h3 className="font-semibold text-base">Student Information</h3>
+                                </div>
+
+                                <div className="grid md:grid-cols-3 gap-4">
                                     <div className="flex items-start gap-3">
                                         <User className="h-5 w-5 text-muted-foreground mt-0.5" />
                                         <div>
@@ -141,12 +149,39 @@ export default function TranscriptPage() {
                                             <p className="font-medium">{result.data.studentNumber || "N/A"}</p>
                                         </div>
                                     </div>
+                                    {result.data.cumulative && (
+                                        <div className="flex items-start gap-3">
+                                            <TrendingUp className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">CGPA</Label>
+                                                <p className="font-medium text-blue-600 text-lg">{result.data.cumulative.cgpa.toFixed(2)}</p>
+                                            </div>
+                                        </div>
+                                    )}
                                     {result.data.program && (
                                         <div className="flex items-start gap-3 md:col-span-2">
                                             <GraduationCap className="h-5 w-5 text-muted-foreground mt-0.5" />
                                             <div>
                                                 <Label className="text-xs text-muted-foreground">Program</Label>
                                                 <p className="font-medium">{result.data.program}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {result.data.cumulative && (result.data.cumulative.mcgpa ?? 0) > 0 && (
+                                        <div className="flex items-start gap-3">
+                                            <TrendingUp className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">Major GPA</Label>
+                                                <p className="font-medium text-emerald-600 text-lg">{result.data.cumulative.mcgpa?.toFixed(2)}</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {result.data.cumulative && (
+                                        <div className="flex items-start gap-3">
+                                            <BookOpen className="h-5 w-5 text-muted-foreground mt-0.5" />
+                                            <div>
+                                                <Label className="text-xs text-muted-foreground">Total Credits</Label>
+                                                <p className="font-medium text-lg">{result.data.cumulative.creditsPassed}</p>
                                             </div>
                                         </div>
                                     )}
@@ -160,36 +195,6 @@ export default function TranscriptPage() {
                                         </div>
                                     )}
                                 </div>
-
-                                {/* Cumulative Summary */}
-                                {result.data.cumulative && (
-                                    <div className="mt-6 pt-6 border-t">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <TrendingUp className="h-5 w-5 text-emerald-600" />
-                                            <h3 className="font-semibold">Cumulative Summary</h3>
-                                        </div>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">Credits Attended</Label>
-                                                <p className="text-xl font-bold">{result.data.cumulative.creditsAttended}</p>
-                                            </div>
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">Credits Passed</Label>
-                                                <p className="text-xl font-bold text-emerald-600">{result.data.cumulative.creditsPassed}</p>
-                                            </div>
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">CGPA</Label>
-                                                <p className="text-xl font-bold text-blue-600">{result.data.cumulative.cgpa.toFixed(2)}</p>
-                                            </div>
-                                            {(result.data.cumulative.mcgpa ?? 0) > 0 && (
-                                                <div>
-                                                    <Label className="text-xs text-muted-foreground">Major GPA</Label>
-                                                    <p className="text-xl font-bold">{result.data.cumulative.mcgpa?.toFixed(2)}</p>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
                             </Card>
 
                             {/* Semesters */}
@@ -233,15 +238,17 @@ export default function TranscriptPage() {
                                                 </thead>
                                                 <tbody>
                                                     {semester.courses.map((course, courseIdx) => (
-                                                        <tr key={courseIdx} className="border-b hover:bg-slate-50 dark:hover:bg-slate-900/50">
+                                                        <tr key={courseIdx} className={`border-b hover:bg-slate-50 dark:hover:bg-slate-900/50 ${
+                                                            course.status === "W" ? "bg-red-50 dark:bg-red-950/20" : ""
+                                                        }`}>
                                                             <td className="py-2 px-2 font-mono text-xs">{course.courseCode}</td>
                                                             <td className="py-2 px-2">{course.courseName}</td>
                                                             <td className="py-2 px-2 text-center">{course.creditHours}</td>
                                                             <td className="py-2 px-2 text-center">
                                                                 <Badge variant={
+                                                                    course.grade === "N/A" && course.status === "W" ? "destructive" :
                                                                     course.grade.startsWith("A") ? "default" :
                                                                     course.grade.startsWith("B") ? "secondary" :
-                                                                    course.grade === "W" ? "destructive" :
                                                                     "outline"
                                                                 }>
                                                                     {course.grade}
@@ -249,7 +256,7 @@ export default function TranscriptPage() {
                                                             </td>
                                                             <td className="py-2 px-2 text-center">
                                                                 {course.status === "W" && (
-                                                                    <Badge variant="destructive">Withdrawn</Badge>
+                                                                    <Badge variant="destructive">W</Badge>
                                                                 )}
                                                                 {course.repeated && !course.status && (
                                                                     <Badge variant="outline">Repeated</Badge>
