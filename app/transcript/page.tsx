@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
-import { parseTranscript } from "@/app/actions/transcript-parser"
 import { TranscriptParseResult } from "@/lib/types"
 import { Upload, FileText, Loader2, AlertCircle, CheckCircle2 } from "lucide-react"
 
@@ -31,7 +30,12 @@ export default function TranscriptPage() {
             const formData = new FormData()
             formData.append("transcript", file)
 
-            const parseResult = await parseTranscript(formData)
+            const response = await fetch("/api/transcript", {
+                method: "POST",
+                body: formData,
+            })
+
+            const parseResult: TranscriptParseResult = await response.json()
             setResult(parseResult)
         } catch (error) {
             setResult({
