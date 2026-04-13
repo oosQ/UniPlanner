@@ -6,7 +6,54 @@ import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { TranscriptParseResult } from "@/lib/types"
-import { Upload, FileText, Loader2, AlertCircle, CheckCircle2, User, GraduationCap, TrendingUp, BookOpen } from "lucide-react"
+import { Upload, FileText, Loader2, AlertCircle, CheckCircle2, User, GraduationCap, TrendingUp, BookOpen, Award, Calendar, Target, BarChart3 } from "lucide-react"
+
+// Helper function to calculate statistics
+function calculateStats(semesters: any[]) {
+    const gradeDistribution: Record<string, number> = {}
+    let totalCourses = 0
+    let completedCourses = 0
+    let withdrawnCourses = 0
+    let repeatedCourses = 0
+    
+    semesters.forEach(semester => {
+        semester.courses.forEach((course: any) => {
+            totalCourses++
+            
+            if (course.status === "W") {
+                withdrawnCourses++
+            } else if (course.grade && course.grade !== "N/A") {
+                completedCourses++
+                gradeDistribution[course.grade] = (gradeDistribution[course.grade] || 0) + 1
+            }
+            
+            if (course.repeated) {
+                repeatedCourses++
+            }
+        })
+    })
+    
+    // Calculate grade points for distribution
+    const gradeOrder = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"]
+    const sortedGrades = Object.entries(gradeDistribution)
+        .sort(([a], [b]) => {
+            const aIndex = gradeOrder.indexOf(a)
+            const bIndex = gradeOrder.indexOf(b)
+            return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex)
+        })
+    
+    const successRate = totalCourses > 0 ? ((completedCourses / totalCourses) * 100).toFixed(1) : "0"
+    
+    return {
+        totalCourses,
+        completedCourses,
+        withdrawnCourses,
+        repeatedCourses,
+        totalSemesters: semesters.length,
+        gradeDistribution: sortedGrades,
+        successRate
+    }
+}
 
 export default function TranscriptPage() {
     const [file, setFile] = useState<File | null>(null)
@@ -49,32 +96,49 @@ export default function TranscriptPage() {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-6xl">
+        <div className="container mx-auto px-4 py-8 max-w-7xl">
             {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold mb-2">Transcript Analyzer</h1>
-                <p className="text-muted-foreground">
-                    Upload your University of Bahrain academic transcript to analyze your academic progress
+            <div className="mb-8 text-center">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                    <div className="p-3 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg">
+                        <GraduationCap className="h-8 w-8 text-white" />
+                    </div>
+                </div>
+                <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+                    Transcript Analyzer
+                </h1>
+                <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Upload your University of Bahrain academic transcript to analyze your academic progress and get detailed insights
                 </p>
             </div>
 
             {/* Upload Section */}
-            <Card className="p-6 mb-6">
-                <div className="space-y-4">
+            <Card className="p-8 mb-8 border-2 shadow-sm">
+                <div className="space-y-6">
                     <div>
-                        <Label htmlFor="transcript-upload" className="text-base font-semibold mb-2 block">
+                        <Label htmlFor="transcript-upload" className="text-lg font-semibold mb-3 block flex items-center gap-2">
+                            <FileText className="h-5 w-5 text-emerald-600" />
                             Upload Transcript PDF
                         </Label>
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
                             <div className="flex-1">
                                 <label
                                     htmlFor="transcript-upload"
-                                    className="flex items-center gap-3 px-4 py-3 border-2 border-dashed rounded-lg cursor-pointer hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors"
+                                    className="flex items-center gap-3 px-6 py-4 border-2 border-dashed rounded-xl cursor-pointer hover:border-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-all duration-200 group"
                                 >
-                                    <FileText className="h-5 w-5 text-muted-foreground" />
-                                    <span className="text-sm text-muted-foreground">
-                                        {file ? file.name : "Choose a PDF file (max 10MB)"}
-                                    </span>
+                                    <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800 transition-colors">
+                                        <Upload className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <span className="text-sm font-medium block">
+                                            {file ? file.name : "Choose a PDF file"}
+                                        </span>
+                                        {!file && (
+                                            <span className="text-xs text-muted-foreground">
+                                                Maximum file size: 10MB
+                                            </span>
+                                        )}
+                                    </div>
                                     <input
                                         id="transcript-upload"
                                         type="file"
@@ -87,17 +151,18 @@ export default function TranscriptPage() {
                             <Button
                                 onClick={handleUpload}
                                 disabled={!file || loading}
-                                className="bg-emerald-600 hover:bg-emerald-700"
+                                size="lg"
+                                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md h-full md:h-auto md:min-h-[60px] px-8"
                             >
                                 {loading ? (
                                     <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Processing...
+                                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                        Analyzing...
                                     </>
                                 ) : (
                                     <>
-                                        <Upload className="mr-2 h-4 w-4" />
-                                        Analyze
+                                        <BarChart3 className="mr-2 h-5 w-5" />
+                                        Analyze Transcript
                                     </>
                                 )}
                             </Button>
@@ -120,141 +185,246 @@ export default function TranscriptPage() {
                     {result.success && result.data ? (
                         <>
                             {/* Success Message */}
-                            <Card className="p-4">
-                                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-                                    <CheckCircle2 className="h-5 w-5" />
-                                    <h2 className="text-lg font-semibold">Transcript Parsed Successfully</h2>
+                            <Card className="p-6 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border-emerald-200 dark:border-emerald-800 shadow-sm">
+                                <div className="flex items-center gap-3">
+                                    <div className="p-2 bg-emerald-600 rounded-lg shadow-sm">
+                                        <CheckCircle2 className="h-6 w-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-lg font-bold text-emerald-900 dark:text-emerald-100">
+                                            Transcript Analyzed Successfully!
+                                        </h2>
+                                        <p className="text-sm text-emerald-700 dark:text-emerald-300">
+                                            Your academic data has been processed and is ready for review
+                                        </p>
+                                    </div>
                                 </div>
                             </Card>
 
                             {/* Student Info Card */}
-                            <Card className="p-6">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <User className="h-5 w-5 text-blue-600" />
-                                    <h3 className="font-semibold text-base">Student Information</h3>
+                            <Card className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200 dark:border-blue-800">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <div className="p-2 bg-blue-600 rounded-lg">
+                                        <User className="h-5 w-5 text-white" />
+                                    </div>
+                                    <h3 className="font-bold text-lg">Student Information</h3>
                                 </div>
 
-                                <div className="grid md:grid-cols-3 gap-4">
-                                    <div className="flex items-start gap-3">
-                                        <User className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                        <div>
-                                            <Label className="text-xs text-muted-foreground">Student Name</Label>
-                                            <p className="font-medium">{result.data.studentName || "N/A"}</p>
-                                        </div>
+                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div className="space-y-1">
+                                        <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Student Name</Label>
+                                        <p className="font-semibold text-base">{result.data.studentName || "N/A"}</p>
                                     </div>
-                                    <div className="flex items-start gap-3">
-                                        <FileText className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                        <div>
-                                            <Label className="text-xs text-muted-foreground">Student Number</Label>
-                                            <p className="font-medium">{result.data.studentNumber || "N/A"}</p>
-                                        </div>
+                                    <div className="space-y-1">
+                                        <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Student Number</Label>
+                                        <p className="font-semibold text-base">{result.data.studentNumber || "N/A"}</p>
                                     </div>
-                                    {result.data.cumulative && (
-                                        <div className="flex items-start gap-3">
-                                            <TrendingUp className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">CGPA</Label>
-                                                <p className="font-medium text-blue-600 text-lg">{result.data.cumulative.cgpa.toFixed(2)}</p>
-                                            </div>
+                                    {result.data.academicAdvisor && (
+                                        <div className="space-y-1">
+                                            <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Academic Advisor</Label>
+                                            <p className="font-semibold text-base">{result.data.academicAdvisor}</p>
                                         </div>
                                     )}
                                     {result.data.program && (
-                                        <div className="flex items-start gap-3 md:col-span-2">
-                                            <GraduationCap className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">Program</Label>
-                                                <p className="font-medium">{result.data.program}</p>
-                                            </div>
-                                        </div>
-                                    )}
-                                    {result.data.cumulative && (result.data.cumulative.mcgpa ?? 0) > 0 && (
-                                        <div className="flex items-start gap-3">
-                                            <TrendingUp className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">Major GPA</Label>
-                                                <p className="font-medium text-emerald-600 text-lg">{result.data.cumulative.mcgpa?.toFixed(2)}</p>
-                                            </div>
-                                        </div>
-                                    )}
-                                    {result.data.cumulative && (
-                                        <div className="flex items-start gap-3">
-                                            <BookOpen className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">Total Credits</Label>
-                                                <p className="font-medium text-lg">{result.data.cumulative.creditsPassed}</p>
-                                            </div>
-                                        </div>
-                                    )}
-                                    {result.data.academicAdvisor && (
-                                        <div className="flex items-start gap-3">
-                                            <User className="h-5 w-5 text-muted-foreground mt-0.5" />
-                                            <div>
-                                                <Label className="text-xs text-muted-foreground">Academic Advisor</Label>
-                                                <p className="font-medium">{result.data.academicAdvisor}</p>
-                                            </div>
+                                        <div className="space-y-1 md:col-span-2 lg:col-span-3">
+                                            <Label className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Program</Label>
+                                            <p className="font-semibold text-base">{result.data.program}</p>
                                         </div>
                                     )}
                                 </div>
-                            </Card>
 
-                            {/* Semesters */}
-                            {result.data.semesters.map((semester, idx) => (
-                                <Card key={idx} className="p-6">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div>
-                                            <h3 className="text-lg font-semibold">{semester.semesterName}</h3>
-                                            {semester.program && (
-                                                <p className="text-sm text-muted-foreground mt-1">{semester.program}</p>
-                                            )}
-                                        </div>
-                                        <div className="text-right">
-                                            {semester.sgpa !== undefined && (
-                                                <div className="text-sm">
-                                                    <span className="text-muted-foreground">SGPA: </span>
-                                                    <span className="font-bold text-blue-600">{semester.sgpa.toFixed(2)}</span>
+                                {result.data.cumulative && (
+                                    <div className="mt-6 pt-6 border-t border-blue-200 dark:border-blue-800">
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                            <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-blue-100 dark:border-blue-900">
+                                                <Label className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">CGPA</Label>
+                                                <p className="text-2xl font-bold text-blue-700 dark:text-blue-300 mt-1">{result.data.cumulative.cgpa.toFixed(2)}</p>
+                                            </div>
+                                            {(result.data.cumulative.mcgpa ?? 0) > 0 && (
+                                                <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-emerald-100 dark:border-emerald-900">
+                                                    <Label className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Major GPA</Label>
+                                                    <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-300 mt-1">{result.data.cumulative.mcgpa?.toFixed(2)}</p>
                                                 </div>
                                             )}
-                                            {semester.semesterCreditsAttended !== undefined && (
-                                                <div className="text-xs text-muted-foreground">
-                                                    {semester.semesterCreditsPassed}/{semester.semesterCreditsAttended} credits passed
-                                                </div>
-                                            )}
+                                            <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-purple-100 dark:border-purple-900">
+                                                <Label className="text-xs font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wide">Total Credits</Label>
+                                                <p className="text-2xl font-bold text-purple-700 dark:text-purple-300 mt-1">{result.data.cumulative.creditsPassed}</p>
+                                            </div>
                                         </div>
                                     </div>
+                                )}
+                            </Card>
+
+                            {/* Academic Statistics */}
+                            {result.data.semesters.length > 0 && (() => {
+                                const stats = calculateStats(result.data.semesters)
+                                return (
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-2">
+                                            <BarChart3 className="h-5 w-5 text-emerald-600" />
+                                            <h3 className="text-lg font-semibold">Academic Statistics</h3>
+                                        </div>
+
+                                        {/* Quick Stats Grid */}
+                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                            <Card className="p-4 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 border-emerald-200 dark:border-emerald-800">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 bg-emerald-600 rounded-lg">
+                                                        <BookOpen className="h-4 w-4 text-white" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-300">{stats.totalCourses}</p>
+                                                        <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">Total Courses</p>
+                                                    </div>
+                                                </div>
+                                            </Card>
+
+                                            <Card className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200 dark:border-blue-800">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 bg-blue-600 rounded-lg">
+                                                        <Calendar className="h-4 w-4 text-white" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">{stats.totalSemesters}</p>
+                                                        <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Semesters</p>
+                                                    </div>
+                                                </div>
+                                            </Card>
+
+                                            <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/20 dark:to-violet-950/20 border-purple-200 dark:border-purple-800">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 bg-purple-600 rounded-lg">
+                                                        <Target className="h-4 w-4 text-white" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">{stats.successRate}%</p>
+                                                        <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">Success Rate</p>
+                                                    </div>
+                                                </div>
+                                            </Card>
+
+                                            <Card className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-amber-200 dark:border-amber-800">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 bg-amber-600 rounded-lg">
+                                                        <Award className="h-4 w-4 text-white" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-2xl font-bold text-amber-700 dark:text-amber-300">{stats.completedCourses}</p>
+                                                        <p className="text-xs text-amber-600 dark:text-amber-400 font-medium">Completed</p>
+                                                    </div>
+                                                </div>
+                                            </Card>
+                                        </div>
+
+                                        {/* Grade Distribution */}
+                                        <Card className="p-6">
+                                            <h4 className="font-semibold mb-4 flex items-center gap-2">
+                                                <TrendingUp className="h-4 w-4 text-emerald-600" />
+                                                Grade Distribution
+                                            </h4>
+                                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                                                {stats.gradeDistribution.map(([grade, count]) => (
+                                                    <div key={grade} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg border">
+                                                        <span className="font-semibold text-sm">{grade}</span>
+                                                        <Badge variant="secondary" className="ml-2">{count}</Badge>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            {stats.gradeDistribution.length === 0 && (
+                                                <p className="text-sm text-muted-foreground text-center py-4">No grades recorded yet</p>
+                                            )}
+                                        </Card>
+
+                                        {/* Additional Stats */}
+                                        {(stats.withdrawnCourses > 0 || stats.repeatedCourses > 0) && (
+                                            <div className="grid md:grid-cols-2 gap-4">
+                                                {stats.withdrawnCourses > 0 && (
+                                                    <Card className="p-4 border-red-200 dark:border-red-800">
+                                                        <div className="flex items-center justify-between">
+                                                            <span className="text-sm font-medium text-muted-foreground">Withdrawn Courses</span>
+                                                            <Badge variant="destructive">{stats.withdrawnCourses}</Badge>
+                                                        </div>
+                                                    </Card>
+                                                )}
+                                                {stats.repeatedCourses > 0 && (
+                                                    <Card className="p-4 border-orange-200 dark:border-orange-800">
+                                                        <div className="flex items-center justify-between">
+                                                            <span className="text-sm font-medium text-muted-foreground">Repeated Courses</span>
+                                                            <Badge variant="outline" className="border-orange-600 text-orange-600">{stats.repeatedCourses}</Badge>
+                                                        </div>
+                                                    </Card>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            })()}
+
+                            {/* Semesters */}
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2 mt-6">
+                                    <Calendar className="h-5 w-5 text-blue-600" />
+                                    <h3 className="text-lg font-semibold">Semester Details</h3>
+                                </div>
+                                
+                                {result.data.semesters.map((semester, idx) => (
+                                    <Card key={idx} className="p-6 hover:shadow-md transition-shadow border-l-4 border-l-blue-500">
+                                        <div className="flex items-start justify-between mb-4">
+                                            <div className="flex-1">
+                                                <h3 className="text-lg font-bold text-blue-700 dark:text-blue-300">{semester.semesterName}</h3>
+                                                {semester.program && (
+                                                    <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
+                                                        <GraduationCap className="h-3 w-3" />
+                                                        {semester.program}
+                                                    </p>
+                                                )}
+                                            </div>
+                                            <div className="text-right bg-blue-50 dark:bg-blue-950/30 px-4 py-2 rounded-lg">
+                                                {semester.sgpa !== undefined && (
+                                                    <div className="text-sm">
+                                                        <span className="text-xs text-muted-foreground block">SGPA</span>
+                                                        <span className="font-bold text-xl text-blue-600 dark:text-blue-400">{semester.sgpa.toFixed(2)}</span>
+                                                    </div>
+                                                )}
+                                                {semester.semesterCreditsAttended !== undefined && (
+                                                    <div className="text-xs text-muted-foreground mt-1">
+                                                        {semester.semesterCreditsPassed}/{semester.semesterCreditsAttended} credits
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
 
                                     {/* Courses Table */}
                                     {semester.courses.length > 0 && (
-                                        <div className="overflow-x-auto">
+                                        <div className="overflow-x-auto rounded-lg border">
                                             <table className="w-full text-sm">
-                                                <thead>
+                                                <thead className="bg-slate-50 dark:bg-slate-900">
                                                     <tr className="border-b">
-                                                        <th className="text-left py-2 px-2">Course Code</th>
-                                                        <th className="text-left py-2 px-2">Course Name</th>
-                                                        <th className="text-center py-2 px-2">Credits</th>
-                                                        <th className="text-center py-2 px-2">Grade</th>
-                                                        <th className="text-center py-2 px-2">Status</th>
-                                                        <th className="text-center py-2 px-2">Rep</th>
+                                                        <th className="text-left py-3 px-4 font-semibold text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">Course Code</th>
+                                                        <th className="text-left py-3 px-4 font-semibold text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">Course Name</th>
+                                                        <th className="text-center py-3 px-4 font-semibold text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">Credits</th>
+                                                        <th className="text-center py-3 px-4 font-semibold text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">Grade</th>
+                                                        <th className="text-center py-3 px-4 font-semibold text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">Status</th>
+                                                        <th className="text-center py-3 px-4 font-semibold text-xs uppercase tracking-wide text-slate-600 dark:text-slate-400">Rep</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {semester.courses.map((course, courseIdx) => (
-                                                        <tr key={courseIdx} className={`border-b hover:bg-slate-50 dark:hover:bg-slate-900/50 ${
+                                                        <tr key={courseIdx} className={`border-b last:border-0 hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors ${
                                                             course.status === "W" ? "bg-red-50 dark:bg-red-950/20" : ""
                                                         }`}>
-                                                            <td className="py-2 px-2 font-mono text-xs">{course.courseCode}</td>
-                                                            <td className="py-2 px-2">{course.courseName}</td>
-                                                            <td className="py-2 px-2 text-center">{course.creditHours}</td>
-                                                            <td className="py-2 px-2 text-center">
+                                                            <td className="py-3 px-4 font-mono text-xs font-semibold text-blue-600 dark:text-blue-400">{course.courseCode}</td>
+                                                            <td className="py-3 px-4 font-medium">{course.courseName}</td>
+                                                            <td className="py-3 px-4 text-center font-semibold">{course.creditHours}</td>
+                                                            <td className="py-3 px-4 text-center">
                                                                 <Badge variant={
                                                                     course.grade === "N/A" && course.status === "W" ? "destructive" :
-                                                                    course.grade.startsWith("A") ? "default" :
-                                                                    course.grade.startsWith("B") ? "secondary" :
                                                                     "outline"
-                                                                }>
+                                                                } className="font-semibold">
                                                                     {course.grade}
                                                                 </Badge>
                                                             </td>
-                                                            <td className="py-2 px-2 text-center">
+                                                            <td className="py-3 px-4 text-center">
                                                                 {course.status === "W" && (
                                                                     <Badge variant="destructive">W</Badge>
                                                                 )}
@@ -263,8 +433,8 @@ export default function TranscriptPage() {
                                                                 )}
                                                                 {!course.status && !course.repeated && "-"}
                                                             </td>
-                                                            <td className="py-2 px-2 text-center">
-                                                                <span className="font-medium">{course.repeatCount ?? 0}</span>
+                                                            <td className="py-3 px-4 text-center">
+                                                                <span className="font-semibold text-slate-700 dark:text-slate-300">{course.repeatCount ?? 0}</span>
                                                             </td>
                                                         </tr>
                                                     ))}
@@ -280,29 +450,7 @@ export default function TranscriptPage() {
                                     )}
                                 </Card>
                             ))}
-
-                            {/* Debug Section - Collapsible */}
-                            <details className="group">
-                                <summary className="cursor-pointer list-none">
-                                    <Card className="p-4 hover:bg-slate-50 dark:hover:bg-slate-900/50">
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-sm font-medium text-muted-foreground">
-                                                🔍 View Raw Text (Debug)
-                                            </span>
-                                            <span className="text-xs text-muted-foreground group-open:rotate-180 transition-transform">
-                                                ▼
-                                            </span>
-                                        </div>
-                                    </Card>
-                                </summary>
-                                <Card className="p-4 mt-2">
-                                    <div className="bg-slate-100 dark:bg-slate-900 p-4 rounded-lg max-h-96 overflow-y-auto">
-                                        <pre className="text-xs whitespace-pre-wrap font-mono">
-                                            {result.rawText}
-                                        </pre>
-                                    </div>
-                                </Card>
-                            </details>
+                            </div>
                         </>
                     ) : (
                         <Card className="p-6">

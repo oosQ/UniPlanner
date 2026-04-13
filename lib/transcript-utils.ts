@@ -196,25 +196,98 @@ function extractSemesterData(lines: string[], startIndex: number) {
         coursesStart = startIndex + 3 // Fallback
     }
 
-    // Check if this is a table-formatted semester (orientation level format)
-    // In table format: all course codes come first, then "Credit Hrs." header, then course data
+    // Detect semester format
     let isTableFormat = false
-    for (let j = coursesStart; j < Math.min(coursesStart + 15, endIndex); j++) {
-        if (lines[j].trim() === "Credit Hrs." || lines[j].trim() === "Credit Hrs") {
-            // Check if we've seen compact course codes before this header
+    let isVerticalFormat = false
+    let hasGradesBeforeCourses = false
+    
+    for (let j = coursesStart; j < Math.min(coursesStart + 20, endIndex); j++) {
+        const line = lines[j].trim()
+        
+        // Format 1: Table format (orientation) - compact course codes before Credit Hrs header
+        if (line === "Credit Hrs." || line === "Credit Hrs") {
             for (let k = coursesStart; k < j; k++) {
                 if (/^[A-Z]+\s+\d{3}$/.test(lines[k].trim())) {
                     isTableFormat = true
                     break
                 }
             }
+            
+            // Format 2: Vertical format - course code appears before "Course Name" header
+            // Check if we have a course code before this header
+            for (let k = coursesStart; k < j; k++) {
+                if (/^[A-Z]{2,10}$/.test(lines[k].trim()) && k + 1 < j && /^\d{3}$/.test(lines[k + 1].trim())) {
+                    // Check if "Course Name" header appears after the course code
+                    for (let m = k; m < j; m++) {
+                        if (lines[m].trim() === "Course Name") {
+                            isVerticalFormat = true
+                            break
+                        }
+                    }
+                }
+            }
             break
+        }
+        
+        // Format 3: Columnar format - ALL grades appear as values after "Grade" header, before ALL course data
+        // Check if we have 2+ grades in sequence - that indicates true columnar format
+        if (line === "Grade" && j + 3 < endIndex) {
+            const nextLine = lines[j + 1].trim()
+            const lineAfterNext = lines[j + 2].trim()
+            // Check if we have 2 consecutive grades (not course codes)
+            if ((/^[A-F][+-]?$/.test(nextLine) || nextLine === "I") && 
+                (/^[A-F][+-]?$/.test(lineAfterNext) || lineAfterNext === "I" || lineAfterNext === "W") &&
+                !/^[A-Z]{2,10}$/.test(lineAfterNext)) {
+                hasGradesBeforeCourses = true
+                break
+            }
         }
     }
     
-    // Handle table-formatted semesters separately  
+    // Handle different formats
+    if (isVerticalFormat) {
+        return extractVerticalFormattedCourses(lines, coursesStart, endIndex, startIndex)
+    }
+    
     if (isTableFormat) {
         return extractTableFormattedCourses(lines, coursesStart, endIndex, startIndex)
+    }
+    
+    if (hasGradesBeforeCourses) {
+        return extractColumnarFormattedCourses(lines, coursesStart, endIndex, startIndex)
+    }
+
+    // Check if there are any pre-listed grades after "Grade" header (even if just 1)
+    const preListedGrades: string[] = []
+    let gradeHeaderIndex = -1
+    
+    for (let j = coursesStart; j < Math.min(coursesStart + 15, endIndex); j++) {
+        const line = lines[j].trim()
+        if (line === "Grade") {
+            gradeHeaderIndex = j
+            // Collect grades after "Grade" header until we hit a course code
+            for (let k = j + 1; k < Math.min(j + 10, endIndex); k++) {
+                const gradeLine = lines[k].trim()
+                if (gradeLine === "") continue
+                
+                // If we hit a course prefix, stop collecting
+                if (/^[A-Z]{2,10}$/.test(gradeLine)) {
+                    // Check if next line is a course number
+                    if (k + 1 < endIndex && /^\d{3}/.test(lines[k + 1].trim())) {
+                        break
+                    }
+                }
+                
+                // Collect valid grades
+                if (/^[A-F][+-]?$/.test(gradeLine) || gradeLine === "I" || gradeLine === "IP" || gradeLine === "P" || gradeLine === "F") {
+                    preListedGrades.push(gradeLine)
+                } else if (gradeLine !== "Grade") {
+                    // If it's not a grade and not a blank, we're done
+                    break
+                }
+            }
+            break
+        }
     }
 
     // Parse courses line by line, handling multi-line course codes
@@ -261,6 +334,15 @@ function extractSemesterData(lines: string[], startIndex: number) {
         i++
     }
     
+    // First, assign pre-listed grades to courses without inline grades (in order)
+    let preGradeIndex = 0
+    for (const course of courses) {
+        if ((!course.grade || course.grade === "" || course.grade === "N/A") && preGradeIndex < preListedGrades.length) {
+            course.grade = preListedGrades[preGradeIndex]
+            preGradeIndex++
+        }
+    }
+    
     // Now handle Status/Rep section where additional grades/statuses appear
     // For courses without grades, the grade or status appears in the Status section
     const statusSectionStart = i
@@ -279,8 +361,8 @@ function extractSemesterData(lines: string[], startIndex: number) {
             continue
         }
         
-        // Collect status/grade values (W, grades like B-, A+, etc.)
-        if (line === "W" || /^[A-F][+-]?$/.test(line) || line === "IP" || line === "P" || line === "F") {
+        // Collect status/grade values (W, I, grades like B-, A+, etc.)
+        if (line === "W" || /^[A-F][+-]?$/.test(line) || line === "IP" || line === "I" || line === "P" || line === "F") {
             statusValues.push(line)
         }
     }
@@ -294,7 +376,7 @@ function extractSemesterData(lines: string[], startIndex: number) {
             if (value === "W") {
                 course.status = "W"
                 course.grade = "N/A"
-            } else if (/^[A-F][+-]?$/.test(value) || value === "IP" || value === "P" || value === "F") {
+            } else if (/^[A-F][+-]?$/.test(value) || value === "IP" || value === "I" || value === "P" || value === "F") {
                 course.grade = value
             }
             
@@ -339,6 +421,285 @@ function extractSemesterData(lines: string[], startIndex: number) {
         }
     }
 
+    return { courses, creditsAttended, creditsPassed, sgpa }
+}
+
+function extractVerticalFormattedCourses(lines: string[], coursesStart: number, endIndex: number, semesterStart: number) {
+    // Handle vertical-format semesters where course data appears in vertical order
+    // Example: Course code, then headers, then credit hours, grade, course name
+    
+    const courses: ParsedCourse[] = []
+    let i = coursesStart
+    
+    while (i < endIndex) {
+        const line = lines[i].trim()
+        
+        // Stop at semester summary
+        if (line.includes("Semester Cr. Attended")) {
+            break
+        }
+        
+        // Look for course code (PREFIX on one line, NUMBER on next)
+        if (/^[A-Z]{2,10}$/.test(line) && i + 1 < endIndex && /^\d{3}$/.test(lines[i + 1].trim())) {
+            const coursePrefix = line
+            const courseNumber = lines[i + 1].trim()
+            const courseCode = `${coursePrefix} ${courseNumber}`
+            i += 2
+            
+            // Skip headers (Course Name, Credit Hrs., Grade, etc.)
+            while (i < endIndex) {
+                const headerLine = lines[i].trim()
+                if (headerLine === "Course Name" || headerLine === "Credit Hrs." || 
+                    headerLine === "Credit Hrs" || headerLine === "Grade") {
+                    i++
+                } else {
+                    break
+                }
+            }
+            
+            // Next values in order: credit hours, grade, course name
+            let creditHours = 0
+            let grade = ""
+            let courseName = ""
+            
+            // Get credit hours
+            if (i < endIndex && /^\d+$/.test(lines[i].trim())) {
+                creditHours = parseInt(lines[i].trim(), 10)
+                i++
+            }
+            
+            // Get grade
+            if (i < endIndex) {
+                const gradeLine = lines[i].trim()
+                if (/^[A-F][+-]?$/.test(gradeLine) || gradeLine === "I" || gradeLine === "IP" || 
+                    gradeLine === "P" || gradeLine === "F" || gradeLine === "W") {
+                    grade = gradeLine
+                    i++
+                }
+            }
+            
+            // Get course name (one or more lines until we hit Status/Rep/next course)
+            while (i < endIndex) {
+                const nameLine = lines[i].trim()
+                
+                if (nameLine === "Status" || nameLine === "Rep." || nameLine === "Semester Cr. Attended" || 
+                    nameLine === "" || /^[A-Z]{2,10}$/.test(nameLine)) {
+                    break
+                }
+                
+                if (nameLine) {
+                    courseName += (courseName ? " " : "") + nameLine
+                }
+                
+                i++
+            }
+            
+            courses.push({
+                courseCode,
+                courseName: courseName.trim(),
+                creditHours,
+                grade: grade || "N/A",
+                status: undefined,
+                repeated: false,
+                repeatCount: 0
+            })
+        } else {
+            i++
+        }
+    }
+    
+    // Extract semester summary
+    let creditsAttended = 0
+    let creditsPassed = 0
+    let sgpa = 0
+    
+    for (let j = semesterStart; j < endIndex; j++) {
+        const line = lines[j].trim()
+        
+        if (line === "Semester Cr. Attended:" && j + 2 < endIndex) {
+            const valueIndex = lines[j + 1].trim() === "" ? j + 2 : j + 1
+            if (valueIndex < endIndex) {
+                const value = lines[valueIndex].trim()
+                if (/^\d+$/.test(value)) {
+                    creditsAttended = parseInt(value, 10)
+                }
+            }
+        }
+        
+        if (line === "Passed:" && j + 2 < endIndex && !lines[j - 1]?.includes("Cumulative")) {
+            const valueIndex = lines[j + 1].trim() === "" ? j + 2 : j + 1
+            if (valueIndex < endIndex) {
+                const value = lines[valueIndex].trim()
+                if (/^\d+$/.test(value)) {
+                    creditsPassed = parseInt(value, 10)
+                }
+            }
+        }
+        
+        if (line === "SGPA:" && j + 2 < endIndex) {
+            const valueIndex = lines[j + 1].trim() === "" ? j + 2 : j + 1
+            if (valueIndex < endIndex) {
+                const value = lines[valueIndex].trim()
+                if (/^[\d.]+$/.test(value)) {
+                    sgpa = parseFloat(value)
+                }
+            }
+        }
+    }
+    
+    return { courses, creditsAttended, creditsPassed, sgpa }
+}
+
+function extractColumnarFormattedCourses(lines: string[], coursesStart: number, endIndex: number, semesterStart: number) {
+    // Handle columnar-format semesters where grades appear in a separate column before course data
+    // Example: Grade header, then A-, then course codes ACC 112...
+    
+    const courses: ParsedCourse[] = []
+    const grades: string[] = []
+    let i = coursesStart
+    
+    // First, collect all grades from the Grade column
+    let foundGradeHeader = false
+    while (i < endIndex) {
+        const line = lines[i].trim()
+        
+        if (line === "Grade") {
+            foundGradeHeader = true
+            i++
+            continue
+        }
+        
+        // After finding Grade header, collect grade values until we hit course codes
+        if (foundGradeHeader) {
+            if (/^[A-F][+-]?$/.test(line) || line === "I" || line === "IP" || line === "P" || line === "F") {
+                grades.push(line)
+                i++
+            } else if (/^[A-Z]{2,10}$/.test(line)) {
+                // Hit first course code, stop collecting grades
+                break
+            } else {
+                i++
+            }
+        } else {
+            i++
+        }
+    }
+    
+    // Now parse courses normally
+    while (i < endIndex) {
+        const line = lines[i].trim()
+
+        // Stop when we hit semester summary or status section
+        if (line.includes("Semester Cr. Attended") || line === "Status" || line === "Rep.") {
+            break
+        }
+        
+        // Skip column headers
+        if (line === "Course No." || line === "Course Name" || line === "Credit Hrs." || 
+            line === "Grade" || line === "Status" || line === "Rep." || line === "Enrolled") {
+            i++
+            continue
+        }
+
+        // Look for course code pattern (normal format only in columnar)
+        if (/^[A-Z]{2,10}$/.test(line) && line !== "Status" && line !== "Grade") {
+            // Peek ahead - next line should be a course number
+            if (i + 1 < endIndex && /^\d{3}/.test(lines[i + 1].trim())) {
+                const courseData = extractCourseFromLines(lines, i, endIndex)
+                if (courseData) {
+                    courses.push(courseData.course)
+                    i = courseData.nextIndex
+                    continue
+                }
+            }
+        }
+
+        i++
+    }
+    
+    // Assign pre-collected grades to courses
+    for (let j = 0; j < Math.min(courses.length, grades.length); j++) {
+        if (courses[j].grade === "N/A" || courses[j].grade === "") {
+            courses[j].grade = grades[j]
+        }
+    }
+    
+    // Handle Status/Rep section for any remaining missing grades/statuses
+    const statusSectionStart = i
+    const statusValues: string[] = []
+    
+    for (let j = statusSectionStart; j < endIndex && j < statusSectionStart + 20; j++) {
+        const line = lines[j].trim()
+        
+        if (line.includes("Semester Cr.")) {
+            break
+        }
+        
+        if (line === "Status" || line === "Rep." || line === "Grade" || line === "") {
+            continue
+        }
+        
+        if (line === "W" || /^[A-F][+-]?$/.test(line) || line === "IP" || line === "I" || line === "P" || line === "F") {
+            statusValues.push(line)
+        }
+    }
+    
+    // Assign status values to courses without grades, in order
+    let statusIndex = 0
+    for (const course of courses) {
+        if ((!course.grade || course.grade === "" || course.grade === "N/A") && statusIndex < statusValues.length) {
+            const value = statusValues[statusIndex]
+            
+            if (value === "W") {
+                course.status = "W"
+                course.grade = "N/A"
+            } else if (/^[A-F][+-]?$/.test(value) || value === "IP" || value === "I" || value === "P" || value === "F") {
+                course.grade = value
+            }
+            
+            statusIndex++
+        }
+    }
+    
+    // Extract semester summary
+    let creditsAttended = 0
+    let creditsPassed = 0
+    let sgpa = 0
+    
+    for (let j = semesterStart; j < endIndex; j++) {
+        const line = lines[j].trim()
+        
+        if (line === "Semester Cr. Attended:" && j + 2 < endIndex) {
+            const valueIndex = lines[j + 1].trim() === "" ? j + 2 : j + 1
+            if (valueIndex < endIndex) {
+                const value = lines[valueIndex].trim()
+                if (/^\d+$/.test(value)) {
+                    creditsAttended = parseInt(value, 10)
+                }
+            }
+        }
+        
+        if (line === "Passed:" && j + 2 < endIndex && !lines[j - 1]?.includes("Cumulative")) {
+            const valueIndex = lines[j + 1].trim() === "" ? j + 2 : j + 1
+            if (valueIndex < endIndex) {
+                const value = lines[valueIndex].trim()
+                if (/^\d+$/.test(value)) {
+                    creditsPassed = parseInt(value, 10)
+                }
+            }
+        }
+        
+        if (line === "SGPA:" && j + 2 < endIndex) {
+            const valueIndex = lines[j + 1].trim() === "" ? j + 2 : j + 1
+            if (valueIndex < endIndex) {
+                const value = lines[valueIndex].trim()
+                if (/^[\d.]+$/.test(value)) {
+                    sgpa = parseFloat(value)
+                }
+            }
+        }
+    }
+    
     return { courses, creditsAttended, creditsPassed, sgpa }
 }
 
@@ -400,6 +761,13 @@ function extractTableFormattedCourses(lines: string[], coursesStart: number, end
         while (i < endIndex) {
             const line = lines[i].trim()
             
+            // Skip column headers
+            if (line === "Course Name" || line === "Credit Hrs." || line === "Credit Hrs" || 
+                line === "Grade" || line === "Status" || line === "Rep.") {
+                i++
+                continue
+            }
+            
             // Stop if we hit credit hours (single digit 0-9)
             if (/^\d+$/.test(line) && line.length <= 2) {
                 break
@@ -431,7 +799,7 @@ function extractTableFormattedCourses(lines: string[], coursesStart: number, end
         // Get grade
         const gradeLine = lines[i].trim()
         let grade = ""
-        if (/^[A-FW][+-]?$/.test(gradeLine) || gradeLine === "IP" || gradeLine === "P" || gradeLine === "F") {
+        if (/^[A-FW][+-]?$/.test(gradeLine) || gradeLine === "IP" || gradeLine === "I" || gradeLine === "P" || gradeLine === "F") {
             grade = gradeLine
             i++
         }
@@ -538,6 +906,13 @@ function extractCourseFromLines(lines: string[], startIndex: number, endIndex: n
     while (i < endIndex) {
         const line = lines[i].trim()
         
+        // Skip column headers
+        if (line === "Course Name" || line === "Credit Hrs." || line === "Credit Hrs" || 
+            line === "Grade" || line === "Status" || line === "Rep.") {
+            i++
+            continue
+        }
+        
         // Stop if we hit credit hours (a single digit line)
         if (/^\d+$/.test(line)) {
             break
@@ -584,8 +959,8 @@ function extractCourseFromLines(lines: string[], startIndex: number, endIndex: n
     if (i < endIndex) {
         const gradeLine = lines[i].trim()
         
-        // Check if this looks like a valid grade
-        if (/^[A-FW][+-]?$/.test(gradeLine) || gradeLine === "IP" || gradeLine === "P" || gradeLine === "F") {
+        // Check if this looks like a valid grade (added I for Incomplete)
+        if (/^[A-FW][+-]?$/.test(gradeLine) || gradeLine === "IP" || gradeLine === "I" || gradeLine === "P" || gradeLine === "F") {
             grade = gradeLine
             i++
         } else if (gradeLine === "W") {
@@ -596,11 +971,11 @@ function extractCourseFromLines(lines: string[], startIndex: number, endIndex: n
         } else if (/^[A-Z]{2,10}$/.test(gradeLine) && i + 1 < endIndex && /^\d{3}/.test(lines[i + 1].trim())) {
             // This looks like the next course code (PREFIX + NUMBER on next line)
             // Course has no grade - likely withdrawn
-            grade = "" // Will be set to N/A if status is W
+            grade = "" // Will be set later from Status section
             // Don't increment i - leave it for the next course
         } else if (/^[A-Z]+\s+\d{3}$/.test(gradeLine)) {
             // This looks like the next course code (compact format)
-            // Course  has no grade - likely withdrawn  
+            // Course has no grade - likely withdrawn  
             grade = ""
             // Don't increment i
         } else if (gradeLine === "Status" || gradeLine === "Rep." || gradeLine === "Semester Cr. Attended") {
