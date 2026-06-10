@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { authService, UserSession } from "@/lib/auth-service"
 import { supabase, isSupabaseConfigured } from "@/lib/supabase"
 import { readStoredPlan, readStoredTranscript, writeStoredPlan, writeStoredTranscript } from "@/lib/storage"
@@ -22,7 +22,6 @@ import {
     TrendingUp, 
     RefreshCw, 
     FileText, 
-    LogOut,
     AlertCircle,
     BarChart3,
     Upload
@@ -68,6 +67,7 @@ const GRADE_OPTIONS = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "
 
 export default function DashboardPage() {
     const router = useRouter()
+    const searchParams = useSearchParams()
     
     // States
     const [user, setUser] = useState<UserSession | null>(null)
@@ -90,6 +90,8 @@ export default function DashboardPage() {
     const [profileSaving, setProfileSaving] = useState(false)
     const [profileError, setProfileError] = useState("")
     const [profileSuccess, setProfileSuccess] = useState("")
+    const [historySearch, setHistorySearch] = useState("")
+    const [historyFilter, setHistoryFilter] = useState<"all" | "repeatable" | "withdrawn">("all")
 
     useEffect(() => {
         // Auth check
@@ -141,6 +143,13 @@ export default function DashboardPage() {
         setProfileFullName(user.fullName)
         setProfileUsername(user.username)
     }, [user])
+
+    useEffect(() => {
+        const tab = searchParams.get("tab")
+        if (tab === "profile" || tab === "settings" || tab === "history" || tab === "simulator" || tab === "remaining" || tab === "plan") {
+            setActiveTab(tab)
+        }
+    }, [searchParams])
 
     const handleSignOut = async () => {
         await authService.signOut()
@@ -435,6 +444,54 @@ export default function DashboardPage() {
         return points !== undefined && points <= GRADE_POINTS["C-"]
     }
 
+    const gradeOrder = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"]
+    const historyQuery = historySearch.trim().toLowerCase()
+
+    const historyGradeDistribution = transcript
+        ? Object.entries(
+            transcript.semesters.flatMap(sem => sem.courses).reduce<Record<string, number>>((acc, course) => {
+                const grade = course.grade?.toUpperCase()
+                if (grade && GRADE_POINTS[grade] !== undefined) {
+                    acc[grade] = (acc[grade] || 0) + 1
+                }
+                return acc
+            }, {})
+        ).sort((a, b) => gradeOrder.indexOf(a[0]) - gradeOrder.indexOf(b[0]))
+        : []
+
+    const historyRepeatableCourses = transcript
+        ? transcript.semesters.flatMap(sem =>
+            sem.courses
+                .filter(course => isRepeatableGrade(course.grade))
+                .map(course => ({ ...course, semesterName: sem.semesterName }))
+        )
+        : []
+
+    const historyTrendPoints = transcript
+        ? transcript.semesters
+            .map((sem, index) => ({ x: index, y: sem.sgpa ?? null, label: sem.semesterName }))
+            .filter(point => point.y !== null)
+        : []
+
+    const filteredHistorySemesters = transcript
+        ? transcript.semesters
+            .map(sem => ({
+                ...sem,
+                courses: sem.courses.filter(course => {
+                    const matchesQuery = !historyQuery ||
+                        course.courseCode.toLowerCase().includes(historyQuery) ||
+                        course.courseName.toLowerCase().includes(historyQuery) ||
+                        sem.semesterName.toLowerCase().includes(historyQuery)
+
+                    if (!matchesQuery) return false
+                    if (historyFilter === "repeatable") return isRepeatableGrade(course.grade)
+                    if (historyFilter === "withdrawn") return course.status === "W"
+                    return true
+                })
+            }))
+            .filter(sem => sem.courses.length > 0)
+        : []
+
     const normalizedSimulatorSearch = simulatorSearch.trim().toLowerCase()
 
     const matchesSimulatorSearch = (course: SimulatorCourse) => {
@@ -564,29 +621,12 @@ export default function DashboardPage() {
                 <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                     <Button
                         variant="outline"
-                        onClick={() => setActiveTab("profile")}
-                        className="w-full bg-card hover:bg-slate-100 dark:hover:bg-slate-800 sm:w-auto"
-                    >
-                        Edit Profile
-                    </Button>
-                    <Button
-                        variant="outline"
                         onClick={() => setActiveTab("settings")}
                         className="w-full bg-card hover:bg-slate-100 dark:hover:bg-slate-800 sm:w-auto"
                     >
                         <Upload className="h-4 w-4 mr-2" />
                         Upload / Update Info
                     </Button>
-                    {!user?.isGuest && (
-                        <Button
-                            variant="destructive"
-                            onClick={handleSignOut}
-                            className="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold sm:w-auto"
-                        >
-                            <LogOut className="h-4 w-4 mr-2" />
-                            Sign Out
-                        </Button>
-                    )}
                 </div>
             </div>
 
@@ -1022,11 +1062,179 @@ export default function DashboardPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-6">
-                            {transcript.semesters.map((sem, sIdx) => (
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <Card className="border border-slate-200 dark:border-slate-800/80">
+                                    <CardContent className="p-4">
+                                        <p className="text-xs uppercase font-bold tracking-wider text-muted-foreground">Recorded Semesters</p>
+                                        <p className="text-3xl font-black mt-2">{transcript.semesters.length}</p>
+                                    </CardContent>
+                                </Card>
+                                <Card className="border border-slate-200 dark:border-slate-800/80">
+                                    <CardContent className="p-4">
+                                        <p className="text-xs uppercase font-bold tracking-wider text-muted-foreground">Repeatable Courses</p>
+                                        <p className="text-3xl font-black mt-2">{historyRepeatableCourses.length}</p>
+                                    </CardContent>
+                                </Card>
+                                <Card className="border border-slate-200 dark:border-slate-800/80">
+                                    <CardContent className="p-4">
+                                        <p className="text-xs uppercase font-bold tracking-wider text-muted-foreground">Grades Counted</p>
+                                        <p className="text-3xl font-black mt-2">{historyGradeDistribution.reduce((sum, [, count]) => sum + count, 0)}</p>
+                                    </CardContent>
+                                </Card>
+                            </div>
+
+                            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                                <Card className="xl:col-span-2 border border-slate-200 dark:border-slate-800/80">
+                                    <CardHeader className="pb-3">
+                                        <CardTitle className="text-base">Grade Distribution</CardTitle>
+                                        <CardDescription>How often each recorded grade appears in your transcript.</CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                        {historyGradeDistribution.length === 0 ? (
+                                            <p className="text-sm text-muted-foreground">No final grades available yet.</p>
+                                        ) : (
+                                            <svg viewBox={`0 0 520 ${historyGradeDistribution.length * 44 + 20}`} className="w-full h-auto">
+                                                {historyGradeDistribution.map(([grade, count], index) => {
+                                                    const maxCount = Math.max(...historyGradeDistribution.map(([, currentCount]) => currentCount))
+                                                    const barWidth = maxCount > 0 ? (count / maxCount) * 320 : 0
+                                                    const y = index * 44 + 10
+                                                    return (
+                                                        <g key={grade} transform={`translate(0, ${y})`}>
+                                                            <text x="0" y="18" className="fill-current text-[13px] font-bold text-slate-700 dark:text-slate-300">
+                                                                {grade}
+                                                            </text>
+                                                            <rect x="56" y="2" rx="10" ry="10" width="340" height="22" className="fill-slate-200 dark:fill-slate-800" />
+                                                            <rect x="56" y="2" rx="10" ry="10" width={barWidth} height="22" fill="url(#gradeBar)" />
+                                                            <text x="410" y="18" className="fill-current text-[12px] font-semibold text-slate-600 dark:text-slate-400">
+                                                                {count} courses
+                                                            </text>
+                                                        </g>
+                                                    )
+                                                })}
+                                                <defs>
+                                                    <linearGradient id="gradeBar" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                        <stop offset="0%" stopColor="#10b981" />
+                                                        <stop offset="100%" stopColor="#2563eb" />
+                                                    </linearGradient>
+                                                </defs>
+                                            </svg>
+                                        )}
+                                    </CardContent>
+                                </Card>
+
+                                <Card className="border border-slate-200 dark:border-slate-800/80">
+                                    <CardHeader className="pb-3">
+                                        <CardTitle className="text-base">Repeatable Courses</CardTitle>
+                                        <CardDescription>Courses with grades of `C-` or below.</CardDescription>
+                                    </CardHeader>
+                                    <CardContent className="space-y-3">
+                                        {historyRepeatableCourses.length === 0 ? (
+                                            <p className="text-sm text-muted-foreground">No repeatable courses found.</p>
+                                        ) : (
+                                            historyRepeatableCourses.slice(0, 6).map((course, index) => (
+                                                <div key={`${course.courseCode}-${index}`} className="rounded-lg border border-amber-200/70 dark:border-amber-900/50 bg-amber-50/60 dark:bg-amber-950/10 p-3">
+                                                    <div className="flex items-start justify-between gap-3">
+                                                        <div className="min-w-0">
+                                                            <p className="font-mono text-xs font-bold text-amber-700 dark:text-amber-300">{course.courseCode}</p>
+                                                            <p className="text-sm font-medium">{course.courseName}</p>
+                                                            <p className="text-[11px] text-muted-foreground mt-1">{course.semesterName}</p>
+                                                        </div>
+                                                        <Badge className="bg-amber-500 text-white font-bold">{course.grade}</Badge>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        )}
+                                    </CardContent>
+                                </Card>
+                            </div>
+
+                            <Card className="border border-slate-200 dark:border-slate-800/80">
+                                <CardHeader className="pb-3">
+                                    <CardTitle className="text-base">Semester SGPA Trend</CardTitle>
+                                    <CardDescription>Recorded semester GPA changes across your transcript.</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    {historyTrendPoints.length < 2 ? (
+                                        <p className="text-sm text-muted-foreground">Not enough SGPA values to draw a trend yet.</p>
+                                    ) : (
+                                        <svg viewBox="0 0 640 220" className="w-full h-auto">
+                                            <line x1="44" y1="180" x2="612" y2="180" stroke="currentColor" className="text-slate-300 dark:text-slate-700" strokeWidth="1.5" />
+                                            <line x1="44" y1="20" x2="44" y2="180" stroke="currentColor" className="text-slate-300 dark:text-slate-700" strokeWidth="1.5" />
+                                            {Array.from({ length: 5 }).map((_, index) => {
+                                                const y = 180 - index * 40
+                                                const label = (index).toFixed(0)
+                                                return (
+                                                    <g key={index}>
+                                                        <line x1="44" y1={y} x2="612" y2={y} stroke="currentColor" className="text-slate-200 dark:text-slate-800" strokeDasharray="4 4" />
+                                                        <text x="16" y={y + 4} className="fill-current text-[11px] text-slate-500 dark:text-slate-400">{label}</text>
+                                                    </g>
+                                                )
+                                            })}
+                                            <polyline
+                                                fill="none"
+                                                stroke="#10b981"
+                                                strokeWidth="4"
+                                                strokeLinejoin="round"
+                                                strokeLinecap="round"
+                                                points={historyTrendPoints.map((point, index) => {
+                                                    const x = 44 + (index / Math.max(1, historyTrendPoints.length - 1)) * 568
+                                                    const y = 180 - ((point.y as number) / 4) * 160
+                                                    return `${x},${y}`
+                                                }).join(" ")}
+                                            />
+                                            {historyTrendPoints.map((point, index) => {
+                                                const x = 44 + (index / Math.max(1, historyTrendPoints.length - 1)) * 568
+                                                const y = 180 - ((point.y as number) / 4) * 160
+                                                return (
+                                                    <g key={point.label}>
+                                                        <circle cx={x} cy={y} r="5" fill="#2563eb" />
+                                                        <text x={x} y="202" textAnchor="middle" className="fill-current text-[10px] text-slate-500 dark:text-slate-400">
+                                                            {index + 1}
+                                                        </text>
+                                                        <text x={x} y={y - 12} textAnchor="middle" className="fill-current text-[10px] font-semibold text-slate-700 dark:text-slate-300">
+                                                            {(point.y as number).toFixed(2)}
+                                                        </text>
+                                                    </g>
+                                                )
+                                            })}
+                                        </svg>
+                                    )}
+                                </CardContent>
+                            </Card>
+
+                            <div className="flex flex-col gap-3 md:flex-row">
+                                <Input
+                                    value={historySearch}
+                                    onChange={(e) => setHistorySearch(e.target.value)}
+                                    placeholder="Search by semester, course code, or title"
+                                    className="md:max-w-sm"
+                                />
+                                <div className="flex flex-wrap gap-2">
+                                    {[
+                                        { key: "all", label: "All Courses" },
+                                        { key: "repeatable", label: "Repeatable" },
+                                        { key: "withdrawn", label: "Withdrawn" }
+                                    ].map((filter) => (
+                                        <Button
+                                            key={filter.key}
+                                            type="button"
+                                            variant={historyFilter === filter.key ? "default" : "outline"}
+                                            onClick={() => setHistoryFilter(filter.key as typeof historyFilter)}
+                                            className={historyFilter === filter.key ? "bg-indigo-600 hover:bg-indigo-700" : ""}
+                                        >
+                                            {filter.label}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {filteredHistorySemesters.length === 0 ? (
+                                <p className="text-sm text-muted-foreground text-center py-8">No academic history matches your current filters.</p>
+                            ) : filteredHistorySemesters.map((sem, sIdx) => (
                                 <div key={sIdx} className="space-y-3">
-                                    <div className="flex justify-between items-center border-b pb-1">
+                                    <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center border-b pb-1">
                                         <h3 className="text-sm font-bold text-indigo-600 dark:text-indigo-400">{sem.semesterName}</h3>
-                                        <Badge variant="outline" className="border-indigo-200 text-indigo-700 bg-indigo-50/20">
+                                        <Badge variant="outline" className="border-indigo-200 text-indigo-700 bg-indigo-50/20 w-fit">
                                             GPA: {sem.sgpa?.toFixed(2) || "N/A"} | Attended Credits: {sem.semesterCreditsAttended || 0}
                                         </Badge>
                                     </div>
@@ -1035,12 +1243,19 @@ export default function DashboardPage() {
                                         {sem.courses.map((course, cIdx) => (
                                             <div key={cIdx} className="flex justify-between items-center p-2.5 bg-slate-50/50 dark:bg-slate-900/30 border rounded-lg hover:border-indigo-400/30 transition-colors">
                                                 <div className="min-w-0 pr-2">
-                                                    <p className="font-mono text-xs font-bold text-slate-700 dark:text-slate-350">{course.courseCode}</p>
+                                                    <div className="flex flex-wrap items-center gap-2">
+                                                        <p className="font-mono text-xs font-bold text-slate-700 dark:text-slate-350">{course.courseCode}</p>
+                                                        {isRepeatableGrade(course.grade) && (
+                                                            <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
+                                                                Repeatable
+                                                            </span>
+                                                        )}
+                                                    </div>
                                                     <p className="text-[11px] text-muted-foreground truncate max-w-[220px]">{course.courseName}</p>
                                                 </div>
                                                 <div className="flex items-center gap-2 shrink-0">
                                                     <span className="text-xs text-muted-foreground font-semibold">{course.creditHours} CR</span>
-                                                    <Badge className="bg-indigo-600 text-white font-bold scale-90">
+                                                    <Badge className={`${isRepeatableGrade(course.grade) ? "bg-amber-500" : "bg-indigo-600"} text-white font-bold scale-90`}>
                                                         {course.grade}
                                                     </Badge>
                                                 </div>
