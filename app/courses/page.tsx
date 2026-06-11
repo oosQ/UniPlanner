@@ -9,8 +9,14 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { getDepartments, searchCourses, Course, checkWebsiteAvailability } from "@/app/actions/uob-proxy"
-import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter, AlertCircle } from "lucide-react"
+import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter, AlertCircle, Plus, AlertTriangle, CheckCircle2, Trash2, ArrowRight } from "lucide-react"
+import { readStoredSchedules, addSectionToSchedule, removeSectionFromSchedule, readStoredPlan, readStoredTranscript } from "@/lib/storage"
+import { authService } from "@/lib/auth-service"
+import { FALLBACK_ELECTIVES } from "@/lib/fallback-electives"
+import { checkTimeClash, checkExamClash } from "@/lib/schedule-utils"
 
 import { COLLEGES } from "@/lib/config"
 
@@ -39,6 +45,223 @@ export default function CatalogPage() {
     const [checkingAvailability, setCheckingAvailability] = useState(true)
     const [websiteAvailable, setWebsiteAvailable] = useState(true)
     const [availabilityMessage, setAvailabilityMessage] = useState("")
+
+    // Notification state for schedule actions
+    const [notification, setNotification] = useState<{ message: string; type: "success" | "warning" | "error" } | null>(null)
+    const [savedSchedules, setSavedSchedules] = useState<Record<string, any>>({})
+
+    const [user, setUser] = useState<any>(null)
+    const [hasPlanAndTranscript, setHasPlanAndTranscript] = useState(false)
+    const [showRemainingOnly, setShowRemainingOnly] = useState(false)
+    const [remainingCourses, setRemainingCourses] = useState<Set<string>>(new Set())
+    const [remainingCourseOptions, setRemainingCourseOptions] = useState<{ code: string; title: string }[]>([])
+    const [selectedRemainingCodes, setSelectedRemainingCodes] = useState<Set<string>>(new Set())
+    const [activeScheduleId, setActiveScheduleId] = useState("schedule-1")
+    const [plan, setPlan] = useState<any>(null)
+
+    useEffect(() => {
+        setSavedSchedules(readStoredSchedules())
+        
+        const currentUser = authService.getCurrentUser()
+        setUser(currentUser)
+        
+        const planData = readStoredPlan<any>()
+        setPlan(planData)
+        const transcript = readStoredTranscript<any>()
+        setHasPlanAndTranscript(!!(planData && transcript))
+
+        const calculateRemaining = (p: any, t: any) => {
+            const completedSet = new Set<string>()
+            const inProgressSet = new Set<string>()
+            
+            if (t && t.semesters) {
+                for (const sem of t.semesters) {
+                    if (!sem || !sem.courses) continue
+                    for (const course of sem.courses) {
+                        if (course.courseCode && course.status !== "W") {
+                            const clean = course.courseCode.replace(/\s+/g, "").toUpperCase()
+                            if (course.grade && !["F", "FX", "U", "I", "IP"].includes(course.grade.toUpperCase())) {
+                                completedSet.add(clean)
+                            } else if (["I", "IP"].includes(course.grade.toUpperCase()) || !course.grade || course.grade === "N/A" || course.grade === "Enrolled") {
+                                inProgressSet.add(clean)
+                            }
+                        }
+                    }
+                }
+            }
+
+            const remaining = new Set<string>()
+            const remainingOptions: { code: string; title: string }[] = []
+            const addedOptions = new Set<string>()
+            if (p && p.semesters) {
+                let selectedElectives: Record<string, string> = {}
+                try {
+                    const stored = localStorage.getItem("selectedElectives")
+                    if (stored) {
+                        selectedElectives = JSON.parse(stored)
+                    }
+                } catch (e) {
+                    console.error(e)
+                }
+
+                p.semesters.forEach((sem: any, sIdx: number) => {
+                    if (!sem || !sem.courses) return
+                    const semName = sem.semesterName || `Semester ${sIdx + 1}`
+                    sem.courses.forEach((course: any, cIdx: number) => {
+                        const isPlaceholder = course.code.includes("XX") || course.code.includes("XXX") || (course.title || "").toLowerCase().includes("elective")
+                        const key = `${semName}_${course.code}_cIdx` // wait, key in dashboard has index: `${semName}_${course.code}_${cIdx}`
+                        // Let's make sure the key format is identical: `${semName}_${course.code}_${cIdx}`
+                        const keyFormat = `${semName}_${course.code}_${cIdx}`
+                        const selectedCode = selectedElectives[keyFormat]
+                        
+                        let resolvedCode = course.code
+                        if (isPlaceholder && selectedCode) {
+                            resolvedCode = selectedCode
+                        }
+                        
+                        const cleanResolved = resolvedCode.replace(/\s+/g, "").toUpperCase()
+                        if (!completedSet.has(cleanResolved) && !inProgressSet.has(cleanResolved)) {
+                            remaining.add(cleanResolved)
+                            if (!addedOptions.has(cleanResolved) && !cleanResolved.includes("XX") && !cleanResolved.includes("XXX")) {
+                                addedOptions.add(cleanResolved)
+                                remainingOptions.push({
+                                    code: resolvedCode,
+                                    title: course.title || resolvedCode
+                                })
+                            }
+                        }
+                    })
+                })
+            }
+            return { remaining, remainingOptions }
+        }
+
+        const remainingData = calculateRemaining(planData, transcript)
+        setRemainingCourses(remainingData.remaining)
+        setRemainingCourseOptions(remainingData.remainingOptions)
+
+        const handleStorageChange = () => {
+            setSavedSchedules(readStoredSchedules())
+            setUser(authService.getCurrentUser())
+            
+            const p = readStoredPlan<any>()
+            setPlan(p)
+            const t = readStoredTranscript<any>()
+            setHasPlanAndTranscript(!!(p && t))
+            const nextRemainingData = calculateRemaining(p, t)
+            setRemainingCourses(nextRemainingData.remaining)
+            setRemainingCourseOptions(nextRemainingData.remainingOptions)
+            setSelectedRemainingCodes(prev => {
+                const next = new Set<string>()
+                prev.forEach(code => {
+                    if (nextRemainingData.remaining.has(code)) next.add(code)
+                })
+                return next
+            })
+        }
+        window.addEventListener("storage", handleStorageChange)
+        return () => window.removeEventListener("storage", handleStorageChange)
+    }, [])
+
+    const handleRemoveSection = (scheduleId: string, courseCode: string) => {
+        removeSectionFromSchedule(scheduleId, courseCode)
+        setSavedSchedules(readStoredSchedules())
+        setNotification({
+            message: `Removed ${courseCode} from ${savedSchedules[scheduleId]?.name || "schedule"}.`,
+            type: "success"
+        })
+        setTimeout(() => {
+            setNotification(null)
+        }, 4000)
+    }
+
+    const getSchedulesWithSection = (courseCode: string, sectionNum: string) => {
+        const matchingSchedules: string[] = []
+        const cleanCode = (c: string) => c.replace(/\s+/g, "").toUpperCase()
+        const targetCode = cleanCode(courseCode)
+        
+        Object.entries(savedSchedules).forEach(([id, schedule]) => {
+            const hasSection = schedule.sections?.some(
+                (s: any) => cleanCode(s.courseCode) === targetCode && s.section === sectionNum
+            )
+            if (hasSection) {
+                matchingSchedules.push(schedule.name)
+            }
+        })
+        return matchingSchedules
+    }
+
+    const getSchedulesWithCourse = (courseCode: string) => {
+        const matchingSchedules: string[] = []
+        const cleanCode = (c: string) => c.replace(/\s+/g, "").toUpperCase()
+        const targetCode = cleanCode(courseCode)
+        
+        Object.entries(savedSchedules).forEach(([id, schedule]) => {
+            const hasCourse = schedule.sections?.some(
+                (s: any) => cleanCode(s.courseCode) === targetCode
+            )
+            if (hasCourse) {
+                matchingSchedules.push(schedule.name)
+            }
+        })
+        return matchingSchedules
+    }
+
+    const handleAddSection = (scheduleId: string, scheduleName: string, section: any, courseCode: string, courseTitle: string) => {
+        const scheduledSec = {
+            courseCode,
+            courseTitle,
+            section: section.section,
+            instructor: section.instructor,
+            days: section.days,
+            time: section.time,
+            examDate: section.examDate,
+            examRoom: section.examRoom,
+            location: section.location,
+            classType: section.classType
+        }
+
+        const schedules = readStoredSchedules()
+        const schedule = schedules[scheduleId]
+        const clashes: string[] = []
+
+        if (schedule) {
+            const cleanCode = (c: string) => c.replace(/\s+/g, "").toUpperCase()
+            const cleanTarget = cleanCode(courseCode)
+
+            for (const existing of schedule.sections) {
+                // Skip if it's the same course (which will be replaced)
+                if (cleanCode(existing.courseCode) === cleanTarget) {
+                    continue
+                }
+                if (checkTimeClash(scheduledSec, existing)) {
+                    clashes.push(`Time overlap with ${existing.courseCode} (Sec ${existing.section})`)
+                }
+                if (checkExamClash(scheduledSec, existing)) {
+                    clashes.push(`Exam clash with ${existing.courseCode} (Sec ${existing.section})`)
+                }
+            }
+        }
+
+        addSectionToSchedule(scheduleId, scheduledSec)
+        setSavedSchedules(readStoredSchedules())
+
+        if (clashes.length > 0) {
+            setNotification({
+                message: `Added ${courseCode} section ${section.section} to ${scheduleName}, but warning:\n• ${clashes.join("\n• ")}`,
+                type: "warning"
+            })
+        } else {
+            setNotification({
+                message: `Successfully added ${courseCode} section ${section.section} to ${scheduleName}!`,
+                type: "success"
+            })
+        }
+
+        setTimeout(() => {
+            setNotification(prev => prev && prev.message.includes(section.section) && prev.message.includes(courseCode) ? null : prev)
+        }, 6000)
+    }
 
     // Check website availability on mount
     useEffect(() => {
@@ -77,6 +300,26 @@ export default function CatalogPage() {
         }
     }
 
+    const toggleRemainingSearchCode = (courseCode: string) => {
+        const clean = courseCode.replace(/\s+/g, "").toUpperCase()
+        setSelectedRemainingCodes(prev => {
+            const next = new Set(prev)
+            if (next.has(clean)) {
+                next.delete(clean)
+            } else {
+                next.add(clean)
+            }
+            return next
+        })
+    }
+
+    const setAllRemainingSearchCodes = (selected: boolean) => {
+        setSelectedRemainingCodes(selected
+            ? new Set(remainingCourseOptions.map(course => course.code.replace(/\s+/g, "").toUpperCase()))
+            : new Set()
+        )
+    }
+
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
@@ -90,20 +333,43 @@ export default function CatalogPage() {
         setHideFull(false)
         setSortBy("level-asc")
 
-        const formData = new FormData()
-        formData.append("year", year)
-        formData.append("sem", sem)
-        formData.append("type", searchType)
-
-        if (searchType === "CC") {
-            formData.append("code", code)
-        } else {
-            formData.append("college", college)
-            formData.append("dept", dept)
-        }
-
         try {
-            const results = await searchCourses(formData)
+            let results: Course[] = []
+
+            if (selectedRemainingCodes.size > 0) {
+                const selectedCodes = Array.from(selectedRemainingCodes)
+                const searches = selectedCodes.map(async (courseCode) => {
+                    const formData = new FormData()
+                    formData.append("year", year)
+                    formData.append("sem", sem)
+                    formData.append("type", "CC")
+                    formData.append("code", courseCode)
+                    return searchCourses(formData)
+                })
+                const groupedResults = await Promise.all(searches)
+                const seen = new Set<string>()
+                results = groupedResults.flat().filter(course => {
+                    const clean = course.code.replace(/\s+/g, "").toUpperCase()
+                    if (seen.has(clean)) return false
+                    seen.add(clean)
+                    return true
+                })
+            } else {
+                const formData = new FormData()
+                formData.append("year", year)
+                formData.append("sem", sem)
+                formData.append("type", searchType)
+
+                if (searchType === "CC") {
+                    formData.append("code", code)
+                } else {
+                    formData.append("college", college)
+                    formData.append("dept", dept)
+                }
+
+                results = await searchCourses(formData)
+            }
+
             setCourses(results)
             if (results.length === 0) {
                 setError("No courses found matching your criteria.")
@@ -180,6 +446,12 @@ export default function CatalogPage() {
             // Hide Full Filter (Hide if no sections left)
             if (hideFull && course.sections.length === 0) return false
 
+            // Show Remaining Only Filter
+            if (showRemainingOnly) {
+                const cleanC = course.code.replace(/\s+/g, "").toUpperCase()
+                if (!remainingCourses.has(cleanC)) return false
+            }
+
             return true
         })
         .sort((a, b) => {
@@ -223,6 +495,20 @@ export default function CatalogPage() {
         if (seats < 10) return "bg-amber-500"
         return "bg-emerald-500"
     }
+    const getElectiveLabel = (courseCode: string) => {
+        if (!plan || !plan.electives) return null
+        const cleanCode = courseCode.toUpperCase().replace(/\s+/g, "")
+        const matched = plan.electives.find((e: any) => e.code.toUpperCase().replace(/\s+/g, "") === cleanCode)
+        if (matched && matched.electiveListType) {
+            let label = matched.electiveListType
+            if (label.includes("List 1:")) label = "IS Concentration Elective (List 1)"
+            if (label.includes("List 2:")) label = "General Major Elective (List 2)"
+            if (label.includes("List 3:")) label = "Business Elective (List 3)"
+            if (label.includes("General Studies")) label = "General Studies Elective"
+            return label
+        }
+        return null
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
@@ -261,7 +547,9 @@ export default function CatalogPage() {
 
                 {/* Main Content - Only show if website is available */}
                 {!checkingAvailability && websiteAvailable && (
-                    <>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        {/* Left Column: Search & Results */}
+                        <div className="lg:col-span-8 space-y-8">
                         {/* Header */}
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div className="space-y-1">
@@ -379,6 +667,74 @@ export default function CatalogPage() {
                                     )}
                                 </div>
 
+                                {user && hasPlanAndTranscript && remainingCourseOptions.length > 0 && (
+                                    <div className="rounded-xl border border-emerald-200/70 bg-emerald-50/40 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/10">
+                                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                            <div>
+                                                <Label className="text-sm font-bold text-slate-800 dark:text-slate-100">
+                                                    Search remaining courses together
+                                                </Label>
+                                                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                                    Select remaining plan courses, then search them in one combined result.
+                                                </p>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    size="sm"
+                                                    className="h-8 text-xs"
+                                                    onClick={() => setAllRemainingSearchCodes(true)}
+                                                >
+                                                    Select all
+                                                </Button>
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    size="sm"
+                                                    className="h-8 text-xs"
+                                                    onClick={() => setAllRemainingSearchCodes(false)}
+                                                    disabled={selectedRemainingCodes.size === 0}
+                                                >
+                                                    Clear
+                                                </Button>
+                                            </div>
+                                        </div>
+
+                                        <div className="mt-3 max-h-44 overflow-y-auto rounded-lg border border-emerald-100 bg-white dark:border-emerald-900/50 dark:bg-slate-950/40">
+                                            {remainingCourseOptions.map((course) => {
+                                                const clean = course.code.replace(/\s+/g, "").toUpperCase()
+                                                const checked = selectedRemainingCodes.has(clean)
+                                                return (
+                                                    <button
+                                                        key={clean}
+                                                        type="button"
+                                                        onClick={() => toggleRemainingSearchCode(clean)}
+                                                        className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-xs transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-950/20 ${checked ? "bg-emerald-50/80 dark:bg-emerald-950/30" : ""}`}
+                                                    >
+                                                        <span className="min-w-0">
+                                                            <span className="font-mono font-bold text-slate-900 dark:text-slate-100">{course.code}</span>
+                                                            <span className="ml-2 text-slate-500 dark:text-slate-400">{course.title}</span>
+                                                        </span>
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={checked}
+                                                            onChange={() => {}}
+                                                            className="h-4 w-4 shrink-0 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600"
+                                                        />
+                                                    </button>
+                                                )
+                                            })}
+                                        </div>
+
+                                        {selectedRemainingCodes.size > 0 && (
+                                            <p className="mt-2 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+                                                {selectedRemainingCodes.size} remaining course{selectedRemainingCodes.size === 1 ? "" : "s"} selected. Search will use these course codes.
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+
                                 {/* Submit */}
                                 <div className="flex justify-end">
                                     <Button type="submit" size="lg" className="px-8 bg-emerald-600 hover:bg-emerald-700 text-white" disabled={loading}>
@@ -390,7 +746,7 @@ export default function CatalogPage() {
                                         ) : (
                                             <>
                                                 <Search className="mr-2 h-4 w-4" />
-                                                Search Courses
+                                                {selectedRemainingCodes.size > 0 ? `Search ${selectedRemainingCodes.size} Courses` : "Search Courses"}
                                             </>
                                         )}
                                     </Button>
@@ -496,6 +852,34 @@ export default function CatalogPage() {
                                                 </Label>
                                             </div>
 
+                                            {/* Remaining Courses Filter */}
+                                            {user && hasPlanAndTranscript ? (
+                                                <div className="flex items-center space-x-2 pt-2">
+                                                    <input
+                                                        type="checkbox"
+                                                        id="showRemainingOnly"
+                                                        checked={showRemainingOnly}
+                                                        onChange={(e) => setShowRemainingOnly(e.target.checked)}
+                                                        className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600 dark:border-slate-700 dark:bg-slate-800"
+                                                    />
+                                                    <Label htmlFor="showRemainingOnly" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+                                                        <span>Show remaining courses only</span>
+                                                        <span className="text-[9px] px-1.5 py-0.5 bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 rounded-full font-bold">Plan Active</span>
+                                                    </Label>
+                                                </div>
+                                            ) : (
+                                                <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-2 bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-lg border border-slate-100 dark:border-slate-800/60 flex items-center gap-2">
+                                                    <span className="text-sm">💡</span>
+                                                    <span>
+                                                        Upload your Study Plan & Transcript in the{" "}
+                                                        <Link href="/dashboard" className="text-emerald-600 dark:text-emerald-400 font-semibold underline hover:text-emerald-700">
+                                                            Dashboard
+                                                        </Link>{" "}
+                                                        to filter out completed/in-progress courses automatically.
+                                                    </span>
+                                                </div>
+                                            )}
+
                                         </div>
                                     )}
 
@@ -534,6 +918,15 @@ export default function CatalogPage() {
                                                             <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
                                                                 {course.title}
                                                             </h3>
+                                                            {(() => {
+                                                                const label = getElectiveLabel(course.code)
+                                                                if (!label) return null
+                                                                return (
+                                                                    <Badge variant="outline" className="text-[10px] font-semibold border-emerald-350 text-emerald-700 dark:text-emerald-400 bg-emerald-50/20 py-0.5 px-2 rounded-full">
+                                                                        {label}
+                                                                    </Badge>
+                                                                )
+                                                            })()}
                                                         </div>
                                                         {course.prereqs && (
                                                             <div className="flex items-start gap-1.5 text-sm text-slate-500 dark:text-slate-400 mt-2">
@@ -551,6 +944,10 @@ export default function CatalogPage() {
                                                 <div className="divide-y divide-slate-100 dark:divide-slate-800">
                                                     {course.sections.map((section, sIdx) => {
                                                         const isOpen = section.status?.includes("OPEN");
+                                                        const activeSchedulesWithThisSec = getSchedulesWithSection(course.code, section.section);
+                                                        const activeSchedulesWithOtherSec = getSchedulesWithCourse(course.code).filter(
+                                                            (schName: string) => !activeSchedulesWithThisSec.includes(schName)
+                                                        );
                                                         return (
                                                             <div key={sIdx} className="p-5 sm:p-6 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                                                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -575,6 +972,25 @@ export default function CatalogPage() {
                                                                 <span className="inline-flex items-center rounded-sm bg-slate-100 dark:bg-slate-800 px-2 py-1 text-xs font-medium text-slate-600 dark:text-slate-300">
                                                                     {section.classType}
                                                                 </span>
+                                                            )}
+                                                            {activeSchedulesWithThisSec.length > 0 && (
+                                                                <div className="flex flex-wrap gap-1 mt-1.5 justify-end md:justify-start">
+                                                                    {activeSchedulesWithThisSec.map(name => (
+                                                                        <span key={name} className="inline-flex items-center gap-1 rounded bg-emerald-100 dark:bg-emerald-950/50 text-[10px] font-bold text-emerald-800 dark:text-emerald-400 px-1.5 py-0.5 border border-emerald-200 dark:border-emerald-800/40">
+                                                                            <CheckCircle2 className="w-2.5 h-2.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                                                                            {name}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                            {activeSchedulesWithOtherSec.length > 0 && (
+                                                                <div className="flex flex-wrap gap-1 mt-1.5 justify-end md:justify-start">
+                                                                    {activeSchedulesWithOtherSec.map(name => (
+                                                                        <span key={name} className="inline-flex items-center gap-1 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-bold text-slate-500 dark:text-slate-400 px-1.5 py-0.5 border border-slate-200 dark:border-slate-800/40">
+                                                                            Other Sec in {name}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
                                                             )}
                                                         </div>
                                                     </div>
@@ -642,12 +1058,46 @@ export default function CatalogPage() {
                                                             <div className={`flex-1 h-2 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800`}>
                                                                 <div
                                                                     className={`h-full rounded-full transition-all duration-500 ${getProgressBarColor(section.availableSeats, section.status)}`}
-                                                                    style={{ width: isOpen ? '60%' : '100%' }} // Static width for visual flair
+                                                                    style={{ width: isOpen ? '60%' : '105%' }} // Static width for visual flair
                                                                 />
                                                             </div>
                                                             <div className={`text-xs font-bold whitespace-nowrap ${getSeatColor(section.availableSeats, section.status)}`}>
                                                                 {section.availableSeats} Seats
                                                             </div>
+                                                        </div>
+
+                                                        <div className="flex justify-end pt-1">
+                                                            <Popover>
+                                                                <PopoverTrigger asChild>
+                                                                    <Button size="sm" variant="outline" className="h-8 px-2 text-xs gap-1 border-emerald-600/30 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-500/30 dark:text-emerald-400 dark:hover:bg-emerald-950/20">
+                                                                        <Plus className="w-3.5 h-3.5" />
+                                                                        <span>Add to Schedule</span>
+                                                                    </Button>
+                                                                </PopoverTrigger>
+                                                                <PopoverContent className="w-48 p-2" align="end">
+                                                                    <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 px-2 py-1 border-b mb-1">
+                                                                        Choose Schedule
+                                                                    </div>
+                                                                    <button
+                                                                        onClick={() => handleAddSection("schedule-1", "Schedule 1", section, course.code, course.title)}
+                                                                        className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
+                                                                    >
+                                                                        Schedule 1
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => handleAddSection("schedule-2", "Schedule 2", section, course.code, course.title)}
+                                                                        className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
+                                                                    >
+                                                                        Schedule 2
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => handleAddSection("schedule-3", "Schedule 3", section, course.code, course.title)}
+                                                                        className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
+                                                                    >
+                                                                        Schedule 3
+                                                                    </button>
+                                                                </PopoverContent>
+                                                            </Popover>
                                                         </div>
                                                     </div>
 
@@ -660,10 +1110,129 @@ export default function CatalogPage() {
                                         ))}
                                     </div>
                                 </div>
-                            </>
-                        )}
+                            </div> {/* End of left column */}
+
+                            {/* Right Column: My Schedule Sidebar */}
+                            <div className="lg:col-span-4 space-y-6">
+                                <Card className="border border-slate-200 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900 sticky top-20">
+                                    <CardHeader className="pb-3 border-b">
+                                        <div className="flex items-center justify-between">
+                                            <CardTitle className="text-base font-bold flex items-center gap-2 text-slate-800 dark:text-slate-200">
+                                                <Calendar className="w-5 h-5 text-emerald-600" />
+                                                My Schedule Selection
+                                            </CardTitle>
+                                        </div>
+                                        {/* Schedule ID Selector Buttons */}
+                                        <div className="flex gap-1.5 mt-3 pt-2">
+                                            {Object.values(savedSchedules).map((sch: any) => (
+                                                <button
+                                                    key={sch.id}
+                                                    type="button"
+                                                    onClick={() => setActiveScheduleId(sch.id)}
+                                                    className={`flex-1 py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                                                        activeScheduleId === sch.id
+                                                            ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
+                                                            : "bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                                                    }`}
+                                                >
+                                                    {sch.name.split(" ")[1] || sch.name} ({sch.sections?.length || 0})
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="p-0">
+                                        {!savedSchedules[activeScheduleId]?.sections || savedSchedules[activeScheduleId].sections.length === 0 ? (
+                                            <div className="p-8 text-center text-slate-500 dark:text-slate-400 space-y-2">
+                                                <div className="inline-flex p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400">
+                                                    <Calendar className="w-6 h-6" />
+                                                </div>
+                                                <h4 className="text-sm font-semibold">Schedule is empty</h4>
+                                                <p className="text-xs max-w-[200px] mx-auto text-slate-400">
+                                                    Select a course section on the left and add it to your schedule.
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <div className="divide-y divide-slate-100 dark:divide-slate-800 max-h-[420px] overflow-y-auto scrollbar-thin">
+                                                {savedSchedules[activeScheduleId].sections.map((sec: any) => (
+                                                    <div key={sec.courseCode} className="p-3.5 flex items-start justify-between gap-3 hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                                                        <div className="min-w-0 flex-1">
+                                                            <div className="flex items-center gap-1.5 flex-wrap">
+                                                                <span className="font-extrabold text-xs text-slate-900 dark:text-white leading-none">
+                                                                    {sec.courseCode}
+                                                                </span>
+                                                                <span className="text-[10px] font-bold px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-slate-500">
+                                                                    Sec {sec.section}
+                                                                </span>
+                                                            </div>
+                                                            <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-tight max-w-[200px] truncate mt-1">
+                                                                {sec.courseTitle}
+                                                            </p>
+                                                            <div className="pt-2 text-[10px] space-y-1 text-slate-500 dark:text-slate-400 font-medium">
+                                                                <div className="flex items-center gap-1">
+                                                                    <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                                                                    <span>{sec.days} ({sec.time})</span>
+                                                                </div>
+                                                                <div className="flex items-center gap-1">
+                                                                    <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                                                                    <span className="truncate">{sec.location || "TBA"}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <Button
+                                                            size="sm"
+                                                            variant="ghost"
+                                                            onClick={() => handleRemoveSection(activeScheduleId, sec.courseCode)}
+                                                            className="h-8 w-8 p-0 text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/20 shrink-0"
+                                                        >
+                                                            <Trash2 className="w-3.5 h-3.5" />
+                                                        </Button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </CardContent>
+                                    <CardFooter className="p-4 border-t bg-slate-50/50 dark:bg-slate-900/50">
+                                        <Link href="/scheduler" className="w-full">
+                                            <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-9 gap-1.5">
+                                                <span>Open Week Timeline</span>
+                                                <ArrowRight className="w-3.5 h-3.5" />
+                                            </Button>
+                                        </Link>
+                                    </CardFooter>
+                                </Card>
+                            </div> {/* End of right column */}
+                        </div>
+                    )}
 
                     </div>
+                    
+                    {/* Floating Toast Notification */}
+                    {notification && (
+                        <div className={`fixed bottom-6 right-6 z-50 p-4 rounded-xl border shadow-lg max-w-sm animate-in fade-in slide-in-from-bottom-5 duration-300 flex items-start gap-3 ${
+                            notification.type === "success" 
+                                ? "bg-emerald-50 border-emerald-200 text-emerald-800 dark:bg-emerald-950/90 dark:border-emerald-800 dark:text-emerald-200" 
+                                : notification.type === "warning"
+                                ? "bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-950/90 dark:border-amber-800 dark:text-amber-200"
+                                : "bg-red-50 border-red-200 text-red-800 dark:bg-red-950/90 dark:border-red-800 dark:text-red-200"
+                        }`}>
+                            <div className="mt-0.5">
+                                {notification.type === "success" ? (
+                                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                                ) : notification.type === "warning" ? (
+                                    <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                                ) : (
+                                    <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
+                                )}
+                            </div>
+                            <div className="flex-1">
+                                <p className="text-sm font-semibold">{notification.type === "success" ? "Success" : notification.type === "warning" ? "Schedule Warning" : "Error"}</p>
+                                <p className="text-xs mt-0.5 leading-relaxed whitespace-pre-line">{notification.message}</p>
+                            </div>
+                            <button onClick={() => setNotification(null)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-xs font-bold px-1.5 py-0.5 rounded">
+                                ×
+                            </button>
+                        </div>
+                    )}
                 </div>
             )
         }
