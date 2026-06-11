@@ -149,6 +149,7 @@ export async function searchCourses(formData: FormData) {
                 const status = $sec.find("span:contains('Section Status:')").next().text().trim()
                 const examRoom = $sec.find("span:contains('Exam Room:')").next().text().trim()
                 const examDateFull = $table.find(".row:contains('Exam Date:')").find(".large-10").text().trim()
+                const examTimeFull = $table.find(".row:contains('Exam Time:')").find(".large-10").text().trim()
 
                 // Helper to extract text relative to a label within a context
                 const getTextAfterLabel = (context: cheerio.Cheerio, label: string) => {
@@ -190,7 +191,7 @@ export async function searchCourses(formData: FormData) {
                     instructor,
                     availableSeats,
                     examDate: examDateFull,
-                    examTime: "",
+                    examTime: examTimeFull,
                     examRoom,
                     days,
                     time,

@@ -87,8 +87,7 @@ async function parseInstructor(html: string) {
                 data: {
                     photoUrl,
                     office,
-                    email: email || existing.email, // Prefer scraped email
-                    collegeSubdomain
+                    email: email || existing.email // Prefer scraped email
                 }
             })
         } else {
@@ -98,8 +97,7 @@ async function parseInstructor(html: string) {
                     name,
                     photoUrl,
                     office,
-                    email,
-                    collegeSubdomain
+                    email
                 }
             })
         }

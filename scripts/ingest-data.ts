@@ -41,7 +41,7 @@ async function main() {
     let courseCount = 0
     for (const course of courses) {
         // Ensure instructor exists
-        let instructorId: string | undefined
+        let instructorId: number | undefined
         if (course.instructorName) {
             // Simple name-based upsert for now (not ideal for real world but good for dummy data)
             const instructor = await prisma.instructor.findFirst({ where: { name: course.instructorName } })

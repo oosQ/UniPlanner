@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { authService, UserSession } from "@/lib/auth-service"
 import { supabase, isSupabaseConfigured } from "@/lib/supabase"
@@ -48,60 +48,66 @@ export default function GetStartedPage() {
     const [analyzeError, setAnalyzeError] = useState("")
     const [statusMessage, setStatusMessage] = useState("")
 
+    const restoreAcademicDataAndRedirect = useCallback(async (currentUser: UserSession) => {
+        const storedPlan = readStoredPlan()
+        const storedTranscript = readStoredTranscript()
+
+        if (storedPlan && storedTranscript) {
+            router.push("/dashboard")
+            return true
+        }
+
+        if (currentUser.isGuest || !currentUser.id || !isSupabaseConfigured || !supabase) {
+            return false
+        }
+
+        const client = supabase
+        try {
+            const { data: profile, error } = await client
+                .from("profiles")
+                .select("plan_data, transcript_data")
+                .eq("id", currentUser.id)
+                .single()
+
+            if (error) return false
+
+            const nextPlanData = storedPlan ?? profile?.plan_data ?? null
+            const nextTranscriptData = storedTranscript ?? profile?.transcript_data ?? null
+
+            if (nextPlanData) {
+                writeStoredPlan(nextPlanData)
+            }
+            if (nextTranscriptData) {
+                writeStoredTranscript(nextTranscriptData)
+            }
+
+            if (nextPlanData && nextTranscriptData) {
+                router.push("/dashboard")
+                return true
+            }
+
+            return false
+        } catch {
+            return false
+        }
+    }, [router])
+
     useEffect(() => {
-        // If user already logged in, restore session and skip upload step when data already exists
+        // If user already logged in, restore session and skip upload step when both files already exist.
         const currentUser = authService.getCurrentUser()
         if (!currentUser) return
 
         setUser(currentUser)
 
-        const storedPlan = readStoredPlan()
-        const storedTranscript = readStoredTranscript()
-        if (storedPlan || storedTranscript) {
-            router.push("/dashboard")
-            return
-        }
-
-        if (currentUser.isGuest || !currentUser.id || !isSupabaseConfigured || !supabase) {
-            setStep(2)
-            return
-        }
-
-        const client = supabase
-        const loadExistingProfileData = async () => {
-            try {
-                const { data: profile, error } = await client
-                    .from("profiles")
-                    .select("plan_data, transcript_data")
-                    .eq("id", currentUser.id)
-                    .single()
-
-                if (error) {
-                    setStep(2)
-                    return
-                }
-
-                const hasProfileData = !!(profile?.plan_data || profile?.transcript_data)
-                if (profile?.plan_data) {
-                    writeStoredPlan(profile.plan_data)
-                }
-                if (profile?.transcript_data) {
-                    writeStoredTranscript(profile.transcript_data)
-                }
-
-                if (hasProfileData) {
-                    router.push("/dashboard")
-                    return
-                }
-
-                setStep(2)
-            } catch {
+        const restoreExistingData = async () => {
+            const redirected = await restoreAcademicDataAndRedirect(currentUser)
+            if (!redirected) {
                 setStep(2)
             }
         }
 
-        loadExistingProfileData()
-    }, [router])
+        restoreExistingData()
+    }, [restoreAcademicDataAndRedirect])
 
     const handleAuth = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -131,7 +137,10 @@ export default function GetStartedPage() {
                 const res = await authService.signIn(username, password)
                 if (res.success && res.user) {
                     setUser(res.user)
-                    setStep(2)
+                    const redirected = await restoreAcademicDataAndRedirect(res.user)
+                    if (!redirected) {
+                        setStep(2)
+                    }
                 } else {
                     setAuthError(res.error || "Login failed")
                 }
@@ -147,7 +156,10 @@ export default function GetStartedPage() {
         setAuthLoading(true)
         const guestSession = await authService.continueAsGuest()
         setUser(guestSession)
-        setStep(2)
+        const redirected = await restoreAcademicDataAndRedirect(guestSession)
+        if (!redirected) {
+            setStep(2)
+        }
         setAuthLoading(false)
     }
 

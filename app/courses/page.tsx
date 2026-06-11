@@ -13,7 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription }
 import { Badge } from "@/components/ui/badge"
 import { getDepartments, searchCourses, Course, checkWebsiteAvailability } from "@/app/actions/uob-proxy"
 import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter, AlertCircle, Plus, AlertTriangle, CheckCircle2, Trash2, ArrowRight } from "lucide-react"
-import { readStoredSchedules, addSectionToSchedule, removeSectionFromSchedule, readStoredPlan, readStoredTranscript, addPickedSection, readPickedSections } from "@/lib/storage"
+import { readStoredSchedules, addSectionToSchedule, removeSectionFromSchedule, readStoredPlan, readStoredTranscript, addPickedSection } from "@/lib/storage"
 import { authService } from "@/lib/auth-service"
 import { FALLBACK_ELECTIVES } from "@/lib/fallback-electives"
 import { checkTimeClash, checkExamClash } from "@/lib/schedule-utils"
@@ -27,6 +27,7 @@ export default function CatalogPage() {
     // State
     const [year, setYear] = useState("2025")
     const [sem, setSem] = useState("2")
+    const [courseSearchTab, setCourseSearchTab] = useState<"catalog" | "remaining">("catalog")
     const [searchType, setSearchType] = useState("CD") // CC or CD
     const [code, setCode] = useState("")
     const [college, setCollege] = useState("7")
@@ -52,7 +53,6 @@ export default function CatalogPage() {
     // Notification state for schedule actions
     const [notification, setNotification] = useState<{ message: string; type: "success" | "warning" | "error" } | null>(null)
     const [savedSchedules, setSavedSchedules] = useState<Record<string, any>>({})
-    const [pickedSectionsCount, setPickedSectionsCount] = useState(0)
 
     const [user, setUser] = useState<any>(null)
     const [hasPlanAndTranscript, setHasPlanAndTranscript] = useState(false)
@@ -65,7 +65,6 @@ export default function CatalogPage() {
 
     useEffect(() => {
         setSavedSchedules(readStoredSchedules())
-        setPickedSectionsCount(readPickedSections().length)
         
         const currentUser = authService.getCurrentUser()
         setUser(currentUser)
@@ -147,7 +146,6 @@ export default function CatalogPage() {
 
         const handleStorageChange = () => {
             setSavedSchedules(readStoredSchedules())
-            setPickedSectionsCount(readPickedSections().length)
             setUser(authService.getCurrentUser())
             
             const p = readStoredPlan<any>()
@@ -239,6 +237,7 @@ export default function CatalogPage() {
             days: section.days,
             time: section.time,
             examDate: section.examDate,
+            examTime: section.examTime,
             examRoom: section.examRoom,
             location: section.location,
             classType: section.classType
@@ -294,6 +293,7 @@ export default function CatalogPage() {
             days: section.days,
             time: section.time,
             examDate: section.examDate,
+            examTime: section.examTime,
             examRoom: section.examRoom,
             location: section.location,
             classType: section.classType,
@@ -302,7 +302,6 @@ export default function CatalogPage() {
             credits: 3
         })
 
-        setPickedSectionsCount(readPickedSections().length)
         setNotification({
             message: result.added
                 ? `Added ${courseCode} section ${section.section} to the schedule picker.`
@@ -387,7 +386,13 @@ export default function CatalogPage() {
         try {
             let results: Course[] = []
 
-            if (selectedRemainingCodes.size > 0) {
+            if (courseSearchTab === "remaining") {
+                if (selectedRemainingCodes.size === 0) {
+                    setError("Select at least one remaining course to search.")
+                    setLoading(false)
+                    return
+                }
+
                 const selectedCodes = Array.from(selectedRemainingCodes)
                 const searches = selectedCodes.map(async (courseCode) => {
                     const formData = new FormData()
@@ -656,69 +661,98 @@ export default function CatalogPage() {
                         {/* Search Card */}
                         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-8">
                             <form onSubmit={handleSearch} className="space-y-6">
-
-                                {/* Search Type Radio */}
-                                <div className="space-y-3">
-                                    <Label>Search By</Label>
-                                    <RadioGroup value={searchType} onValueChange={setSearchType} className="flex gap-6">
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="CD" id="CD" />
-                                            <Label htmlFor="CD" className="font-normal cursor-pointer">College & Department</Label>
-                                        </div>
-                                        <div className="flex items-center space-x-2">
-                                            <RadioGroupItem value="CC" id="CC" />
-                                            <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
-                                        </div>
-                                    </RadioGroup>
+                                <div className="flex gap-1 rounded-xl border border-slate-200 bg-slate-50 p-1 dark:border-slate-800 dark:bg-slate-950/40">
+                                    <button
+                                        type="button"
+                                        onClick={() => setCourseSearchTab("catalog")}
+                                        className={`flex-1 rounded-lg px-3 py-2 text-sm font-bold transition-colors ${
+                                            courseSearchTab === "catalog"
+                                                ? "bg-white text-emerald-700 shadow-sm dark:bg-slate-900 dark:text-emerald-400"
+                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                                        }`}
+                                    >
+                                        Catalog Search
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setCourseSearchTab("remaining")}
+                                        disabled={!user || !hasPlanAndTranscript}
+                                        className={`flex-1 rounded-lg px-3 py-2 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50 ${
+                                            courseSearchTab === "remaining"
+                                                ? "bg-white text-emerald-700 shadow-sm dark:bg-slate-900 dark:text-emerald-400"
+                                                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                                        }`}
+                                    >
+                                        Remaining Courses
+                                    </button>
                                 </div>
 
-                                {/* Dynamic Inputs */}
-                                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800 transition-all">
-                                    {searchType === "CC" ? (
-                                        <div className="space-y-2">
-                                            <Label htmlFor="code">Course Code</Label>
-                                            <Input
-                                                id="code"
-                                                placeholder="e.g. ITIS460"
-                                                value={code}
-                                                onChange={(e) => setCode(e.target.value)}
-                                                className="max-w-md bg-white dark:bg-slate-900"
-                                            />
+                                {courseSearchTab === "catalog" && (
+                                    <>
+                                        {/* Search Type Radio */}
+                                        <div className="space-y-3">
+                                            <Label>Search By</Label>
+                                            <RadioGroup value={searchType} onValueChange={setSearchType} className="flex gap-6">
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="CD" id="CD" />
+                                                    <Label htmlFor="CD" className="font-normal cursor-pointer">College & Department</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="CC" id="CC" />
+                                                    <Label htmlFor="CC" className="font-normal cursor-pointer">Course Code</Label>
+                                                </div>
+                                            </RadioGroup>
                                         </div>
-                                    ) : (
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div className="space-y-2">
-                                                <Label htmlFor="college">College</Label>
-                                                <Select value={college} onValueChange={handleCollegeChange}>
-                                                    <SelectTrigger id="college" className="bg-white dark:bg-slate-900">
-                                                        <SelectValue placeholder="Select College" />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {COLLEGES.map(c => (
-                                                            <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            </div>
 
-                                            <div className="space-y-2">
-                                                <Label htmlFor="dept">Department</Label>
-                                                <Select value={dept} onValueChange={setDept} disabled={departments.length === 0}>
-                                                    <SelectTrigger id="dept" className="bg-white dark:bg-slate-900">
-                                                        <SelectValue placeholder={departments.length === 0 ? "Select a college first" : "Select Department"} />
-                                                    </SelectTrigger>
-                                                    <SelectContent>
-                                                        {departments.map(d => (
-                                                            <SelectItem key={d.value} value={d.value}>{d.label}</SelectItem>
-                                                        ))}
-                                                    </SelectContent>
-                                                </Select>
-                                            </div>
+                                        {/* Dynamic Inputs */}
+                                        <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-100 dark:border-slate-800 transition-all">
+                                            {searchType === "CC" ? (
+                                                <div className="space-y-2">
+                                                    <Label htmlFor="code">Course Code</Label>
+                                                    <Input
+                                                        id="code"
+                                                        placeholder="e.g. ITIS460"
+                                                        value={code}
+                                                        onChange={(e) => setCode(e.target.value)}
+                                                        className="max-w-md bg-white dark:bg-slate-900"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <div className="space-y-2">
+                                                        <Label htmlFor="college">College</Label>
+                                                        <Select value={college} onValueChange={handleCollegeChange}>
+                                                            <SelectTrigger id="college" className="bg-white dark:bg-slate-900">
+                                                                <SelectValue placeholder="Select College" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {COLLEGES.map(c => (
+                                                                    <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </div>
+
+                                                    <div className="space-y-2">
+                                                        <Label htmlFor="dept">Department</Label>
+                                                        <Select value={dept} onValueChange={setDept} disabled={departments.length === 0}>
+                                                            <SelectTrigger id="dept" className="bg-white dark:bg-slate-900">
+                                                                <SelectValue placeholder={departments.length === 0 ? "Select a college first" : "Select Department"} />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {departments.map(d => (
+                                                                    <SelectItem key={d.value} value={d.value}>{d.label}</SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
-                                    )}
-                                </div>
+                                    </>
+                                )}
 
-                                {user && hasPlanAndTranscript && remainingCourseOptions.length > 0 && (
+                                {courseSearchTab === "remaining" && user && hasPlanAndTranscript && remainingCourseOptions.length > 0 && (
                                     <div className="rounded-xl border border-emerald-200/70 bg-emerald-50/40 p-4 dark:border-emerald-900/60 dark:bg-emerald-950/10">
                                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                             <div>
@@ -786,6 +820,18 @@ export default function CatalogPage() {
                                     </div>
                                 )}
 
+                                {courseSearchTab === "remaining" && (!user || !hasPlanAndTranscript) && (
+                                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-400">
+                                        Upload both your study plan and transcript in the Dashboard to use remaining-course search.
+                                    </div>
+                                )}
+
+                                {courseSearchTab === "remaining" && user && hasPlanAndTranscript && remainingCourseOptions.length === 0 && (
+                                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-400">
+                                        No remaining courses are available to search.
+                                    </div>
+                                )}
+
                                 {/* Submit */}
                                 <div className="flex justify-end">
                                     <Button type="submit" size="lg" className="px-8 bg-emerald-600 hover:bg-emerald-700 text-white" disabled={loading}>
@@ -797,7 +843,7 @@ export default function CatalogPage() {
                                         ) : (
                                             <>
                                                 <Search className="mr-2 h-4 w-4" />
-                                                {selectedRemainingCodes.size > 0 ? `Search ${selectedRemainingCodes.size} Courses` : "Search Courses"}
+                                                {courseSearchTab === "remaining" && selectedRemainingCodes.size > 0 ? `Search ${selectedRemainingCodes.size} Courses` : "Search Courses"}
                                             </>
                                         )}
                                     </Button>
@@ -1095,9 +1141,14 @@ export default function CatalogPage() {
                                                                 <Calendar className="w-3.5 h-3.5" />
                                                                 Exam
                                                             </div>
-                                                            <div className="text-sm font-medium text-slate-900 dark:text-slate-100 whitespace-nowrap">
+                                                            <div className="text-sm font-medium text-slate-900 dark:text-slate-100 leading-snug">
                                                                 {section.examDate || "TBA"}
                                                             </div>
+                                                            {section.examTime && (
+                                                                <div className="text-xs font-medium text-slate-500">
+                                                                    Time: {section.examTime}
+                                                                </div>
+                                                            )}
                                                             {section.examRoom && section.examRoom !== "To be announced" && (
                                                                 <div className="text-xs text-slate-500">
                                                                     Room: {section.examRoom}
@@ -1138,24 +1189,15 @@ export default function CatalogPage() {
                                                                     <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 px-2 py-1 border-b mb-1">
                                                                         Choose Schedule
                                                                     </div>
-                                                                    <button
-                                                                        onClick={() => handleAddSection("schedule-1", "Schedule 1", section, course.code, course.title)}
-                                                                        className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
-                                                                    >
-                                                                        Schedule 1
-                                                                    </button>
-                                                                    <button
-                                                                        onClick={() => handleAddSection("schedule-2", "Schedule 2", section, course.code, course.title)}
-                                                                        className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
-                                                                    >
-                                                                        Schedule 2
-                                                                    </button>
-                                                                    <button
-                                                                        onClick={() => handleAddSection("schedule-3", "Schedule 3", section, course.code, course.title)}
-                                                                        className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
-                                                                    >
-                                                                        Schedule 3
-                                                                    </button>
+                                                                    {Object.values(savedSchedules).map((schedule: any) => (
+                                                                        <button
+                                                                            key={schedule.id}
+                                                                            onClick={() => handleAddSection(schedule.id, schedule.name, section, course.code, course.title)}
+                                                                            className="w-full text-left px-2 py-1.5 text-sm rounded hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
+                                                                        >
+                                                                            {schedule.name}
+                                                                        </button>
+                                                                    ))}
                                                                 </PopoverContent>
                                                             </Popover>
                                                         </div>
@@ -1195,7 +1237,7 @@ export default function CatalogPage() {
                                                             : "bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700"
                                                     }`}
                                                 >
-                                                    {sch.name.split(" ")[1] || sch.name} ({sch.sections?.length || 0})
+                                                    {sch.name.split(" ")[1] || sch.name}
                                                 </button>
                                             ))}
                                         </div>
@@ -1252,9 +1294,9 @@ export default function CatalogPage() {
                                         )}
                                     </CardContent>
                                     <CardFooter className="p-4 border-t bg-slate-50/50 dark:bg-slate-900/50">
-                                        <Link href="/scheduler" className="w-full">
+                                        <Link href={`/scheduler?tab=saved&schedule=${activeScheduleId}`} className="w-full">
                                             <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-9 gap-1.5">
-                                                <span>Open Week Timeline{pickedSectionsCount > 0 ? ` (${pickedSectionsCount} picked)` : ""}</span>
+                                                <span>Open Week Timeline</span>
                                                 <ArrowRight className="w-3.5 h-3.5" />
                                             </Button>
                                         </Link>

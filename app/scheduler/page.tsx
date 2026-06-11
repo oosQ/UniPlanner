@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -36,6 +37,8 @@ import {
     addSectionToSchedule,
     removeSectionFromSchedule,
     clearSchedule,
+    addStoredSchedule,
+    deleteStoredSchedule,
     SavedSchedule,
     ScheduledSection,
     PickedSection,
@@ -79,6 +82,7 @@ const COURSE_COLORS = [
 ]
 
 export default function SchedulerPage() {
+    const searchParams = useSearchParams()
     // Page Tab: "generator" or "saved"
     const [activeTab, setActiveTab] = useState<"generator" | "picker" | "saved">("generator")
     
@@ -191,6 +195,7 @@ export default function SchedulerPage() {
     // Load initial data
     useEffect(() => {
         const loadAll = () => {
+            const storedSchedules = readStoredSchedules()
             const planData = readStoredPlan<any>()
             setPlan(planData)
             setPickedSections(readPickedSections())
@@ -270,7 +275,10 @@ export default function SchedulerPage() {
             }
             
             setRemainingCourses(rem)
-            setSavedSchedules(readStoredSchedules())
+            setSavedSchedules(storedSchedules)
+            if (!storedSchedules[activeScheduleId]) {
+                setActiveScheduleId(Object.keys(storedSchedules)[0])
+            }
         }
 
         loadAll()
@@ -278,6 +286,17 @@ export default function SchedulerPage() {
         window.addEventListener("storage", loadAll)
         return () => window.removeEventListener("storage", loadAll)
     }, [])
+
+    useEffect(() => {
+        const tab = searchParams.get("tab")
+        const schedule = searchParams.get("schedule")
+        if (tab === "saved" || tab === "picker" || tab === "generator") {
+            setActiveTab(tab)
+        }
+        if (schedule) {
+            setActiveScheduleId(schedule)
+        }
+    }, [searchParams])
 
     const showNotification = (message: string, type: "success" | "warning" | "error") => {
         setNotification({ message, type })
@@ -367,6 +386,7 @@ export default function SchedulerPage() {
                     days: sec.days || "TBA",
                     time: sec.time || "TBA",
                     examDate: sec.examDate || "TBA",
+                    examTime: sec.examTime || "",
                     examRoom: sec.examRoom || "TBA",
                     location: sec.location || "TBA",
                     availableSeats: sec.availableSeats || "0",
@@ -475,6 +495,30 @@ export default function SchedulerPage() {
             setSavedSchedules(readStoredSchedules())
             showNotification("Schedule cleared.", "success")
         }
+    }
+
+    const handleAddSchedule = () => {
+        const schedule = addStoredSchedule()
+        setSavedSchedules(readStoredSchedules())
+        setActiveScheduleId(schedule.id)
+        setActiveTab("saved")
+        showNotification(`Created ${schedule.name}.`, "success")
+    }
+
+    const handleDeleteSchedule = (scheduleId: string) => {
+        if (Object.keys(savedSchedules).length <= 1) {
+            showNotification("At least one schedule must remain.", "error")
+            return
+        }
+        if (!confirm("Delete this schedule?")) return
+
+        const deleted = deleteStoredSchedule(scheduleId)
+        const nextSchedules = readStoredSchedules()
+        setSavedSchedules(nextSchedules)
+        if (deleted && activeScheduleId === scheduleId) {
+            setActiveScheduleId(Object.keys(nextSchedules)[0])
+        }
+        showNotification(deleted ? "Schedule deleted." : "Could not delete schedule.", deleted ? "success" : "error")
     }
 
     // Get color theme for course rendering
@@ -693,48 +737,51 @@ export default function SchedulerPage() {
             <div className="max-w-7xl mx-auto space-y-6">
                 
                 {/* Navigation Tabs */}
-                <div className="flex border-b border-slate-200 dark:border-slate-800 overflow-x-auto gap-1">
+                <div className="grid grid-cols-3 gap-1 rounded-xl border border-slate-200 bg-white p-1 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:flex sm:overflow-x-auto sm:rounded-none sm:border-x-0 sm:border-t-0 sm:bg-transparent sm:p-0 sm:shadow-none">
                     <button
                         onClick={() => {
                             setActiveTab("generator")
                             setPreviewOption(null)
                         }}
-                        className={`py-3.5 px-5 text-sm font-semibold border-b-2 whitespace-nowrap transition-all flex items-center gap-2 ${
+                        className={`min-w-0 rounded-lg px-2 py-2.5 text-[11px] font-semibold transition-all flex flex-col items-center justify-center gap-1 sm:flex-row sm:rounded-none sm:border-b-2 sm:px-5 sm:py-3.5 sm:text-sm sm:whitespace-nowrap ${
                             activeTab === "generator"
-                                ? "border-emerald-600 text-emerald-600"
-                                : "border-transparent text-muted-foreground hover:text-foreground"
+                                ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/25 dark:text-emerald-400 sm:bg-transparent sm:border-emerald-600 sm:text-emerald-600"
+                                : "text-muted-foreground hover:text-foreground sm:border-transparent"
                         }`}
                     >
-                        <Sparkles className="h-4 w-4" />
-                        Intelligent Schedule Generator
+                        <Sparkles className="h-4 w-4 shrink-0" />
+                        <span className="block max-w-full truncate sm:hidden">Generator</span>
+                        <span className="hidden sm:block">Intelligent Schedule Generator</span>
                     </button>
                     <button
                         onClick={() => {
                             setActiveTab("picker")
                             setPreviewOption(null)
                         }}
-                        className={`py-3.5 px-5 text-sm font-semibold border-b-2 whitespace-nowrap transition-all flex items-center gap-2 ${
+                        className={`min-w-0 rounded-lg px-2 py-2.5 text-[11px] font-semibold transition-all flex flex-col items-center justify-center gap-1 sm:flex-row sm:rounded-none sm:border-b-2 sm:px-5 sm:py-3.5 sm:text-sm sm:whitespace-nowrap ${
                             activeTab === "picker"
-                                ? "border-blue-600 text-blue-600"
-                                : "border-transparent text-muted-foreground hover:text-foreground"
+                                ? "bg-blue-50 text-blue-700 dark:bg-blue-950/25 dark:text-blue-400 sm:bg-transparent sm:border-blue-600 sm:text-blue-600"
+                                : "text-muted-foreground hover:text-foreground sm:border-transparent"
                         }`}
                     >
-                        <CalendarCheck className="h-4 w-4" />
-                        Manual Picker ({pickedSections.length})
+                        <CalendarCheck className="h-4 w-4 shrink-0" />
+                        <span className="block max-w-full truncate sm:hidden">Picker ({pickedSections.length})</span>
+                        <span className="hidden sm:block">Manual Picker ({pickedSections.length})</span>
                     </button>
                     <button
                         onClick={() => {
                             setActiveTab("saved")
                             setPreviewOption(null)
                         }}
-                        className={`py-3.5 px-5 text-sm font-semibold border-b-2 whitespace-nowrap transition-all flex items-center gap-2 ${
+                        className={`min-w-0 rounded-lg px-2 py-2.5 text-[11px] font-semibold transition-all flex flex-col items-center justify-center gap-1 sm:flex-row sm:rounded-none sm:border-b-2 sm:px-5 sm:py-3.5 sm:text-sm sm:whitespace-nowrap ${
                             activeTab === "saved"
-                                ? "border-emerald-600 text-emerald-600"
-                                : "border-transparent text-muted-foreground hover:text-foreground"
+                                ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/25 dark:text-emerald-400 sm:bg-transparent sm:border-emerald-600 sm:text-emerald-600"
+                                : "text-muted-foreground hover:text-foreground sm:border-transparent"
                         }`}
                     >
-                        <BookmarkCheck className="h-4 w-4" />
-                        My Saved Schedules ({Object.values(savedSchedules).reduce((acc, s) => acc + s.sections.length, 0)})
+                        <BookmarkCheck className="h-4 w-4 shrink-0" />
+                        <span className="block max-w-full truncate sm:hidden">Saved ({Object.keys(savedSchedules).length})</span>
+                        <span className="hidden sm:block">My Saved Schedules ({Object.keys(savedSchedules).length})</span>
                     </button>
                 </div>
 
@@ -1094,29 +1141,17 @@ export default function SchedulerPage() {
                                                                 Preview
                                                             </Button>
                                                             
-                                                            {/* Save Dropdown Shorthand */}
                                                             <div className="flex gap-1 border rounded-lg overflow-hidden shrink-0">
-                                                                <button 
-                                                                    onClick={() => handleSaveOption(opt, "schedule-1")}
-                                                                    className="px-2 py-1.5 text-[10px] font-extrabold hover:bg-slate-100 dark:hover:bg-slate-800 border-r text-slate-600 dark:text-slate-300 transition-colors"
-                                                                    title="Save to Schedule 1"
-                                                                >
-                                                                    S1
-                                                                </button>
-                                                                <button 
-                                                                    onClick={() => handleSaveOption(opt, "schedule-2")}
-                                                                    className="px-2 py-1.5 text-[10px] font-extrabold hover:bg-slate-100 dark:hover:bg-slate-800 border-r text-slate-600 dark:text-slate-300 transition-colors"
-                                                                    title="Save to Schedule 2"
-                                                                >
-                                                                    S2
-                                                                </button>
-                                                                <button 
-                                                                    onClick={() => handleSaveOption(opt, "schedule-3")}
-                                                                    className="px-2 py-1.5 text-[10px] font-extrabold hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
-                                                                    title="Save to Schedule 3"
-                                                                >
-                                                                    S3
-                                                                </button>
+                                                                {Object.values(savedSchedules).map((schedule, index, list) => (
+                                                                    <button
+                                                                        key={schedule.id}
+                                                                        onClick={() => handleSaveOption(opt, schedule.id)}
+                                                                        className={`px-2 py-1.5 text-[10px] font-extrabold hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors ${index < list.length - 1 ? "border-r" : ""}`}
+                                                                        title={`Save to ${schedule.name}`}
+                                                                    >
+                                                                        {schedule.name.replace("Schedule ", "S")}
+                                                                    </button>
+                                                                ))}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1254,6 +1289,9 @@ export default function SchedulerPage() {
                                                         <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-900">
                                                             <span className="block text-muted-foreground">Final Exam</span>
                                                             <strong>{section.examDate || "TBA"}</strong>
+                                                            {section.examTime && (
+                                                                <span className="mt-1 block text-[10px] text-slate-500">Time: {section.examTime}</span>
+                                                            )}
                                                         </div>
                                                     </div>
                                                     <div className="flex flex-wrap gap-2 pt-1">
@@ -1284,38 +1322,52 @@ export default function SchedulerPage() {
                     <div className="space-y-6">
                         
                         {/* Saved Schedules Controls */}
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border shadow-sm">
-                            <div className="flex gap-2">
+                        <div className="flex flex-col lg:flex-row justify-between items-stretch lg:items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border shadow-sm">
+                            <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 lg:flex lg:w-auto lg:flex-wrap">
                                 {Object.values(savedSchedules).map(sch => (
                                     <Button
                                         key={sch.id}
                                         onClick={() => setActiveScheduleId(sch.id)}
                                         variant={activeScheduleId === sch.id ? "default" : "outline"}
-                                        className={`font-semibold text-xs h-9 px-4 ${
+                                        className={`min-w-0 justify-center px-2 text-xs font-semibold h-9 sm:px-4 ${
                                             activeScheduleId === sch.id 
                                                 ? "bg-emerald-600 hover:bg-emerald-700 text-white" 
                                                 : ""
                                         }`}
                                     >
-                                        {sch.name} ({sch.sections.length})
+                                        <span className="truncate">{sch.name}</span>
                                     </Button>
                                 ))}
                             </div>
                             
-                            <div className="flex gap-2 w-full sm:w-auto">
-                                <Link href="/courses" className="flex-1 sm:flex-initial">
+                            <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-4 lg:flex lg:w-auto">
+                                <Button onClick={handleAddSchedule} variant="outline" className="text-xs h-9 px-3">
+                                    <Plus className="w-3.5 h-3.5 mr-1" />
+                                    <span className="truncate">New</span>
+                                </Button>
+                                <Link href="/courses" className="min-w-0">
                                     <Button variant="outline" className="w-full text-xs h-9">
                                         <Plus className="w-3.5 h-3.5 mr-1" />
-                                        Add Section from Catalog
+                                        <span className="truncate sm:hidden">Catalog</span>
+                                        <span className="hidden truncate sm:inline">Add from Catalog</span>
                                     </Button>
                                 </Link>
+                                <Button
+                                    variant="outline"
+                                    onClick={() => handleDeleteSchedule(activeScheduleId)}
+                                    disabled={Object.keys(savedSchedules).length <= 1}
+                                    className="text-xs h-9 px-3 text-rose-600 hover:text-rose-700"
+                                >
+                                    Delete
+                                </Button>
                                 <Button 
                                     variant="destructive" 
                                     onClick={() => handleClearSchedule(activeScheduleId)}
                                     disabled={activeSections.length === 0}
-                                    className="text-xs h-9 px-3 shrink-0"
+                                    className="text-xs h-9 px-3"
                                 >
                                     <Trash2 className="w-3.5 h-3.5" />
+                                    <span className="ml-1 sm:hidden">Clear</span>
                                 </Button>
                             </div>
                         </div>
@@ -1440,6 +1492,7 @@ export default function SchedulerPage() {
                                                     .map(sec => ({
                                                         code: sec.courseCode,
                                                         examDate: sec.examDate,
+                                                        examTime: sec.examTime,
                                                         examRoom: sec.examRoom
                                                     }))
                                                     // Sort chronologically if dates are well formed
@@ -1466,6 +1519,11 @@ export default function SchedulerPage() {
                                                                 <div className="mt-1 text-xs text-slate-600 dark:text-slate-300 font-semibold">
                                                                     {exam.examDate}
                                                                 </div>
+                                                                {exam.examTime && (
+                                                                    <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+                                                                        Time: {exam.examTime}
+                                                                    </div>
+                                                                )}
                                                                 {exam.examRoom && exam.examRoom !== "To be announced" && exam.examRoom !== "------" && (
                                                                     <div className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">
                                                                         Room: {exam.examRoom}
