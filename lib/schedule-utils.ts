@@ -31,54 +31,91 @@ export interface GeneratedScheduleOption {
  * e.g. "U / T / H" -> [0, 2, 4], "MW" -> [1, 3]
  */
 export function parseDays(daysStr: string): number[] {
-    const clean = daysStr.toUpperCase().replace(/\s+/g, "")
+    const upper = (daysStr || "").toUpperCase()
+    const namedDays = [
+        { patterns: ["SUNDAY", "SUN"], index: 0 },
+        { patterns: ["MONDAY", "MON"], index: 1 },
+        { patterns: ["TUESDAY", "TUE"], index: 2 },
+        { patterns: ["WEDNESDAY", "WED"], index: 3 },
+        { patterns: ["THURSDAY", "THU"], index: 4 },
+        { patterns: ["FRIDAY", "FRI"], index: 5 },
+        { patterns: ["SATURDAY", "SAT"], index: 6 }
+    ]
+
+    const matchedNamedDays = namedDays
+        .filter(day => day.patterns.some(pattern => upper.includes(pattern)))
+        .map(day => day.index)
+
+    if (matchedNamedDays.length > 0) {
+        return Array.from(new Set(matchedNamedDays))
+    }
+
+    const clean = upper.replace(/\s+/g, "")
     
     // Check if it's separated by slash or comma
     if (clean.includes("/") || clean.includes(",")) {
         const parts = clean.split(/[/,]/)
         const daysSet = new Set<number>()
         for (const part of parts) {
-            if (part.includes("SUN") || part === "U") daysSet.add(0)
+            if (part.includes("SUN") || part === "U" || part === "S") daysSet.add(0)
             else if (part.includes("MON") || part === "M") daysSet.add(1)
             else if (part.includes("TUE") || part === "T") daysSet.add(2)
             else if (part.includes("WED") || part === "W") daysSet.add(3)
-            else if (part.includes("THU") || part === "H") daysSet.add(4)
+            else if (part.includes("THU") || part === "H" || part === "R") daysSet.add(4)
             else if (part.includes("FRI") || part === "F") daysSet.add(5)
-            else if (part.includes("SAT") || part === "S") daysSet.add(6)
+            else if (part.includes("SAT")) daysSet.add(6)
         }
         return Array.from(daysSet)
     }
 
     const days: number[] = []
     if (clean.includes("U")) days.push(0)
+    if (clean.includes("S")) days.push(0)
     if (clean.includes("M")) days.push(1)
     if (clean.includes("T")) days.push(2)
     if (clean.includes("W")) days.push(3)
     if (clean.includes("H")) days.push(4)
+    if (clean.includes("R")) days.push(4)
     if (clean.includes("F")) days.push(5)
-    if (clean.includes("S")) days.push(6)
     
-    return days
+    return Array.from(new Set(days))
 }
 
 /**
  * Parses a time string (e.g. "08:00 - 08:50") to start and end minutes from midnight.
  */
 export function parseTimeRange(rangeStr: string): { start: number; end: number } | null {
-    const parts = rangeStr.split("-").map(p => p.trim())
-    if (parts.length !== 2) return null
+    const normalizedRange = (rangeStr || "")
+        .replace(/[–—]/g, "-")
+        .replace(/\s+/g, " ")
+        .trim()
 
     const parseTimeToMinutes = (t: string) => {
-        const [hStr, mStr] = t.split(":")
-        const h = parseInt(hStr, 10)
-        const m = parseInt(mStr, 10)
+        const match = t.trim().match(/^(\d{1,2})(?::?(\d{2}))?(?::\d{2})?\s*(AM|PM)?$/i)
+        if (!match) return NaN
+
+        let h = parseInt(match[1], 10)
+        const m = match[2] ? parseInt(match[2], 10) : 0
+        const period = match[3]?.toUpperCase()
+        if (period === "PM" && h < 12) h += 12
+        if (period === "AM" && h === 12) h = 0
         if (isNaN(h) || isNaN(m)) return 0
         return h * 60 + m
     }
 
+    const timeTokens = normalizedRange.match(/\b\d{1,2}(?::?\d{2})?(?::\d{2})?\s*(?:AM|PM)?\b/gi) || []
+    const explicitParts = normalizedRange.split("-").map(p => p.trim()).filter(Boolean)
+    const parts = timeTokens.length >= 2 ? timeTokens : explicitParts
+
+    if (parts.length < 2) return null
+
+    const start = parseTimeToMinutes(parts[0])
+    const end = parseTimeToMinutes(parts[1])
+    if (isNaN(start) || isNaN(end) || end <= start) return null
+
     return {
-        start: parseTimeToMinutes(parts[0]),
-        end: parseTimeToMinutes(parts[1])
+        start,
+        end
     }
 }
 

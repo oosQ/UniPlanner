@@ -86,3 +86,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+.simulator-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(154 64% 45%) hsl(var(--muted));
+}
+
+.simulator-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.simulator-scrollbar::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 9999px;
+}
+
+.simulator-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #10b981 0%, #0f766e 100%);
+  border-radius: 9999px;
+  border: 2px solid hsl(var(--muted));
+}
+
+.simulator-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #059669 0%, #115e59 100%);
+}
