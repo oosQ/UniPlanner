@@ -29,14 +29,14 @@ export async function checkWebsiteAvailability(): Promise<{ available: boolean; 
             method: "HEAD",
             signal: AbortSignal.timeout(8000) // 8 second timeout for availability check
         })
-        
+
         if (!response.ok) {
             return {
                 available: false,
                 message: "UCS course system is currently unavailable. Please try again later."
             }
         }
-        
+
         return { available: true }
     } catch (error) {
         return {
@@ -53,11 +53,11 @@ export async function getDepartments(collegeId: string) {
         const response = await fetch(`https://ucs.uob.edu.bh/getdept.php?q=${collegeId}`, {
             signal: AbortSignal.timeout(10000) // 10 second timeout
         })
-        
+
         if (!response.ok) {
             throw new Error(`UCS website returned status ${response.status}`)
         }
-        
+
         const html = await response.text()
         const $ = cheerio.load(html)
         const departments: { value: string; label: string }[] = []
@@ -112,7 +112,7 @@ export async function searchCourses(formData: FormData) {
             body: body.toString(),
             signal: AbortSignal.timeout(15000) // 15 second timeout
         })
-        
+
         if (!response.ok) {
             throw new Error(`UOB website returned status ${response.status}`)
         }
@@ -154,7 +154,7 @@ export async function searchCourses(formData: FormData) {
                 const getTextAfterLabel = (context: cheerio.Cheerio, label: string) => {
                     let el = context.find(`font:contains('${label}')`).first()
                     if (el.length > 0) {
-                        return el[0].nextSibling?.nodeValue?.trim() || el.parent().text().replace(label, "").trim()
+                        return (el[0] as any).nextSibling?.nodeValue?.trim() || el.parent().text().replace(label, "").trim()
                     }
                     return context.find(`td:contains('${label}')`).first().text().replace(label, "").trim()
                 }

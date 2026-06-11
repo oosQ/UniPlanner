@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { authService, UserSession } from "@/lib/auth-service"
 import { supabase, isSupabaseConfigured } from "@/lib/supabase"
 import { readStoredPlan, readStoredTranscript, writeStoredPlan, writeStoredTranscript } from "@/lib/storage"
+import { FALLBACK_ELECTIVES } from "@/lib/fallback-electives"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -24,7 +25,8 @@ import {
     FileText, 
     AlertCircle,
     BarChart3,
-    Upload
+    Upload,
+    ChevronRight
 } from "lucide-react"
 
 // Study Plan interfaces
@@ -40,6 +42,8 @@ interface PlanCourse {
     matchedCode?: string
     matchedTitle?: string
     missingPrereqs?: string[]
+    isSelectedElective?: boolean
+    selectionKey?: string
 }
 
 interface PlanSemester {
@@ -51,11 +55,26 @@ interface ParsedStudyPlan {
     degreeName: string
     totalCredits: number
     semesters: PlanSemester[]
+    electives?: any[]
 }
 
 interface SimulatorCourse extends PlanCourse {
     simulatorId: string
     semesterName: string
+}
+
+const ELECTIVE_LISTS = {
+    concentration: "List 1: ITIS Concentration Major Elective",
+    generalMajor: "List 2: ITIS General Major Elective",
+    business: "List 3: Business Elective Courses",
+    generalStudies: "General Studies Elective Courses List"
+} as const
+
+const ELECTIVE_LIST_LABELS: Record<string, string> = {
+    [ELECTIVE_LISTS.concentration]: "ITIS Concentration Major Elective",
+    [ELECTIVE_LISTS.generalMajor]: "ITIS General Major Elective",
+    [ELECTIVE_LISTS.business]: "Business Elective Courses",
+    [ELECTIVE_LISTS.generalStudies]: "General Studies Elective Courses"
 }
 
 const GRADE_POINTS: Record<string, number> = {
@@ -92,6 +111,9 @@ export default function DashboardPage() {
     const [profileSuccess, setProfileSuccess] = useState("")
     const [historySearch, setHistorySearch] = useState("")
     const [historyFilter, setHistoryFilter] = useState<"all" | "repeatable" | "withdrawn">("all")
+    const [selectedElectiveMap, setSelectedElectiveMap] = useState<Record<string, string>>({})
+    const [electiveSearchMap, setElectiveSearchMap] = useState<Record<string, string>>({})
+    const [electiveMenuOpenMap, setElectiveMenuOpenMap] = useState<Record<string, boolean>>({})
 
     useEffect(() => {
         // Auth check
@@ -106,8 +128,22 @@ export default function DashboardPage() {
         const storedPlan = readStoredPlan<ParsedStudyPlan>()
         const storedTranscript = readStoredTranscript<ParsedTranscript>()
 
-        if (storedPlan) setPlan(storedPlan)
+        if (storedPlan) {
+            if (!storedPlan.electives || storedPlan.electives.length === 0) {
+                storedPlan.electives = FALLBACK_ELECTIVES
+            }
+            setPlan(storedPlan)
+        }
         if (storedTranscript) setTranscript(storedTranscript)
+
+        try {
+            const storedSelected = localStorage.getItem("selectedElectives")
+            if (storedSelected) {
+                setSelectedElectiveMap(JSON.parse(storedSelected))
+            }
+        } catch (e) {
+            console.error("Failed to load selectedElectives", e)
+        }
 
         // If logged in via Supabase, fetch cloud data to sync/override
         if (currentUser && !currentUser.isGuest && currentUser.id && isSupabaseConfigured && supabase) {
@@ -122,8 +158,12 @@ export default function DashboardPage() {
                     
                     if (profile && !error) {
                         if (profile.plan_data) {
-                            setPlan(profile.plan_data)
-                            writeStoredPlan(profile.plan_data)
+                            const cloudPlan = profile.plan_data as ParsedStudyPlan
+                            if (!cloudPlan.electives || cloudPlan.electives.length === 0) {
+                                cloudPlan.electives = FALLBACK_ELECTIVES
+                            }
+                            setPlan(cloudPlan)
+                            writeStoredPlan(cloudPlan)
                         }
                         if (profile.transcript_data) {
                             setTranscript(profile.transcript_data)
@@ -254,6 +294,48 @@ export default function DashboardPage() {
             }
         }
 
+        // Step 1.5: Match Manual User Selections for Placeholder Electives
+        const electivesList = plan.electives || FALLBACK_ELECTIVES
+        for (let sIdx = 0; sIdx < semestersCopy.length; sIdx++) {
+            const sem = semestersCopy[sIdx]
+            if (!sem || !sem.courses) continue
+            const semName = sem.semesterName || `Semester ${sIdx + 1}`
+            for (let cIdx = 0; cIdx < sem.courses.length; cIdx++) {
+                const course = sem.courses[cIdx]
+                const isPlaceholder = course.code.includes("XX") || course.code.includes("XXX") || (course.title || "").toLowerCase().includes("elective")
+                
+                if (isPlaceholder) {
+                    const key = `${semName}_${course.code}_${cIdx}`
+                    course.selectionKey = key
+                    
+                    const manualSelection = selectedElectiveMap[key]
+                    if (manualSelection) {
+                        const cleanSelected = manualSelection.toUpperCase().replace(/\s+/g, "")
+                        if (completedMap.has(cleanSelected)) {
+                            const match = completedMap.get(cleanSelected)!
+                            course.status = "Completed"
+                            course.grade = match.grade
+                            course.matchedCode = match.code
+                            course.matchedTitle = match.title
+                            unmatchedCompleted.delete(cleanSelected)
+                        } else if (inProgressSet.has(cleanSelected)) {
+                            course.status = "In Progress"
+                            course.matchedCode = manualSelection
+                            const elec = electivesList.find((e: any) => e.code.toUpperCase().replace(/\s+/g, "") === cleanSelected)
+                            course.matchedTitle = elec ? elec.title : ""
+                            inProgressSet.delete(cleanSelected)
+                        } else {
+                            course.status = "Available"
+                            course.matchedCode = manualSelection
+                            const elec = electivesList.find((e: any) => e.code.toUpperCase().replace(/\s+/g, "") === cleanSelected)
+                            course.matchedTitle = elec ? elec.title : ""
+                        }
+                        course.isSelectedElective = true
+                    }
+                }
+            }
+        }
+
         // Step 2: Match Placeholder Electives with Leftover Transcript Courses
         for (const sem of semestersCopy) {
             if (!sem || !sem.courses) continue
@@ -327,6 +409,19 @@ export default function DashboardPage() {
         return semestersCopy
     }
 
+    const handleSelectElective = (key: string, electiveCode: string | null) => {
+        const nextMap = { ...selectedElectiveMap }
+        if (electiveCode) {
+            nextMap[key] = electiveCode
+        } else {
+            delete nextMap[key]
+        }
+        setSelectedElectiveMap(nextMap)
+        localStorage.setItem("selectedElectives", JSON.stringify(nextMap))
+        // Dispatch window storage event to notify other tabs/components
+        window.dispatchEvent(new Event("storage"))
+    }
+
     // Prerequisite evaluation helper
     const evaluatePrerequisites = (prereqs: string, completedCodes: Set<string>, completedCredits: number): { met: boolean; missing: string[] } => {
         const clean = (c: string) => c.replace(/\s+/g, "").toUpperCase()
@@ -376,6 +471,241 @@ export default function DashboardPage() {
 
     const enrichedSemesters = getEnrichedPlanSemesters()
 
+    // Helpers to find completed & in-progress sets and matching elective options
+    const getCompletedAndInProgressSets = () => {
+        const completedSet = new Set<string>()
+        const inProgressSet = new Set<string>()
+        
+        if (transcript && transcript.semesters) {
+            for (const sem of transcript.semesters) {
+                if (!sem || !sem.courses) continue
+                for (const course of sem.courses) {
+                    if (course.courseCode && course.status !== "W") {
+                        const clean = course.courseCode.replace(/\s+/g, "").toUpperCase()
+                        if (course.grade && !["F", "FX", "U", "I", "IP"].includes(course.grade.toUpperCase())) {
+                            completedSet.add(clean)
+                        } else if (["I", "IP"].includes(course.grade.toUpperCase()) || !course.grade || course.grade === "N/A" || course.grade === "Enrolled") {
+                            inProgressSet.add(clean)
+                        }
+                    }
+                }
+            }
+        }
+        return { completedSet, inProgressSet }
+    }
+
+    const { completedSet: globalCompleted, inProgressSet: globalInProgress } = getCompletedAndInProgressSets()
+
+    const normalizeElectiveListName = (listName?: string) => {
+        const clean = (listName || "").toLowerCase().replace(/\s+/g, " ").trim()
+        if (clean.includes("list1") || clean.includes("list 1") || clean.includes("concentration")) return ELECTIVE_LISTS.concentration
+        if (clean.includes("list2") || clean.includes("list 2") || clean.includes("general major")) return ELECTIVE_LISTS.generalMajor
+        if (clean.includes("list3") || clean.includes("list 3") || clean.includes("business elective")) return ELECTIVE_LISTS.business
+        if (clean.includes("general studies") || clean.includes("humanities") || clean.includes("social science")) return ELECTIVE_LISTS.generalStudies
+        return listName || ""
+    }
+
+    const getAllElectives = () => {
+        const parsedElectives = Array.isArray((plan as any)?.electives) ? (plan as any).electives : []
+        const merged = [...FALLBACK_ELECTIVES, ...parsedElectives]
+        const seen = new Set<string>()
+
+        return merged
+            .filter((elective: any) => elective?.code && elective?.title)
+            .map((elective: any) => ({
+                ...elective,
+                electiveListType: normalizeElectiveListName(elective.electiveListType)
+            }))
+            .filter((elective: any) => {
+                const key = cleanCode(elective.code)
+                if (seen.has(key)) return false
+                seen.add(key)
+                return true
+            })
+    }
+
+    const getElectiveListName = (course: { code: string; type: string; title: string; matchedCode?: string; matchedTitle?: string }) => {
+        const codeClean = (course.code || "").toUpperCase().replace(/\s+/g, "")
+        const typeClean = (course.type || "").toUpperCase()
+        const titleClean = (course.title || "").toLowerCase()
+        const matchedCodeClean = (course.matchedCode || "").toUpperCase().replace(/\s+/g, "")
+
+        if (titleClean.includes("concentration")) return ELECTIVE_LISTS.concentration
+        if (titleClean.includes("general major elective")) return ELECTIVE_LISTS.generalMajor
+        if (titleClean.includes("business") || codeClean.startsWith("BUS") || matchedCodeClean.startsWith("BUS")) return ELECTIVE_LISTS.business
+        if (typeClean === "GSE" || codeClean.startsWith("GSE") || titleClean.includes("general studies") || titleClean.includes("humanities") || titleClean.includes("social")) {
+            return ELECTIVE_LISTS.generalStudies
+        }
+
+        const selectedCode = matchedCodeClean || codeClean
+        const selectedElective = getAllElectives().find(
+            (e: any) => cleanCode(e.code) === selectedCode
+        )
+        if (selectedElective?.electiveListType) return selectedElective.electiveListType
+
+        return ""
+    }
+
+    const getElectiveListLabel = (course: { code: string; type: string; title: string; matchedCode?: string; matchedTitle?: string }) => {
+        if (!isElectivePlaceholder(course)) return ""
+        const listName = getElectiveListName(course)
+        return listName ? (ELECTIVE_LIST_LABELS[listName] || listName) : ""
+    }
+
+    const getElectiveLabelClass = (listNameOrLabel?: string) => {
+        const listName = normalizeElectiveListName(listNameOrLabel)
+        if (listName === ELECTIVE_LISTS.concentration) return "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-900 dark:bg-sky-950/30 dark:text-sky-300"
+        if (listName === ELECTIVE_LISTS.generalMajor) return "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-900 dark:bg-violet-950/30 dark:text-violet-300"
+        if (listName === ELECTIVE_LISTS.business) return "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-300"
+        if (listName === ELECTIVE_LISTS.generalStudies) return "border-teal-200 bg-teal-50 text-teal-700 dark:border-teal-900 dark:bg-teal-950/30 dark:text-teal-300"
+        return "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+    }
+
+    const isElectivePlaceholder = (course: { code: string; type: string; title: string }) => {
+        const code = course.code || ""
+        const title = (course.title || "").toLowerCase()
+        return code.includes("XX") || code.includes("XXX") || title.includes("elective") || course.type === "GSE"
+    }
+
+    const getMatchingElectiveOptions = (course: { code: string; type: string; title: string; matchedCode?: string; matchedTitle?: string }) => {
+        const electivesList = getAllElectives()
+        const typeClean = course.type.toUpperCase()
+        
+        if (!isElectivePlaceholder(course)) return []
+
+        const targetListName = getElectiveListName(course)
+        const rawOptions: any[] = targetListName
+            ? electivesList.filter((e: any) => normalizeElectiveListName(e.electiveListType) === targetListName)
+            : electivesList.filter((e: any) => e.type === typeClean && normalizeElectiveListName(e.electiveListType) !== ELECTIVE_LISTS.business)
+
+        // Deduplicate options by clean code
+        const seen = new Set<string>()
+        const deduped: any[] = []
+        for (const opt of rawOptions) {
+            const clean = opt.code.toUpperCase().replace(/\s+/g, "")
+            if (!seen.has(clean)) {
+                seen.add(clean)
+                deduped.push(opt)
+            }
+        }
+
+        // Map status
+        return deduped.map(opt => {
+            const clean = opt.code.toUpperCase().replace(/\s+/g, "")
+            let status: "Completed" | "In Progress" | "Remaining" = "Remaining"
+            if (globalCompleted.has(clean)) {
+                status = "Completed"
+            } else if (globalInProgress.has(clean)) {
+                status = "In Progress"
+            }
+            return {
+                ...opt,
+                listLabel: ELECTIVE_LIST_LABELS[opt.electiveListType] || opt.electiveListType,
+                status
+            }
+        })
+    }
+
+    const renderElectiveSelector = (course: PlanCourse, fallbackKey: string) => {
+        if (!isElectivePlaceholder(course)) return null
+        if (course.status === "Completed") return null
+
+        const selectionKey = course.selectionKey || fallbackKey
+        const electiveOptions = getMatchingElectiveOptions(course)
+
+        const selectedCode = course.matchedCode || selectedElectiveMap[selectionKey] || ""
+        const listLabel = getElectiveListLabel(course)
+        const listName = getElectiveListName(course)
+        const selectedOption = electiveOptions.find((opt) => cleanCode(opt.code) === cleanCode(selectedCode))
+        const isMenuOpen = electiveMenuOpenMap[selectionKey] !== false
+        const searchQuery = (electiveSearchMap[selectionKey] || "").trim().toLowerCase()
+        const filteredOptions = electiveOptions.filter((opt) => {
+            if (!searchQuery) return true
+            return opt.code.toLowerCase().includes(searchQuery) ||
+                opt.title.toLowerCase().includes(searchQuery) ||
+                (opt.prerequisites || "").toLowerCase().includes(searchQuery)
+        })
+
+        return (
+            <div className="mt-3 rounded-xl border border-emerald-200/80 dark:border-emerald-900/60 bg-white/80 dark:bg-slate-950/30 p-3 space-y-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                    <button
+                        type="button"
+                        onClick={() => setElectiveMenuOpenMap(prev => ({ ...prev, [selectionKey]: !isMenuOpen }))}
+                        className="flex min-w-0 items-center gap-2 text-left text-[11px] font-bold text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+                    >
+                        <ChevronRight className={`h-3.5 w-3.5 shrink-0 transition-transform ${isMenuOpen ? "rotate-90" : ""}`} />
+                        <span>{isMenuOpen ? "Hide" : "Show"} course options</span>
+                    </button>
+                    <div className="flex flex-wrap items-center gap-2">
+                        {selectedOption && (
+                            <Badge variant="outline" className="text-[10px] border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300">
+                                Selected: {selectedOption.code}
+                            </Badge>
+                        )}
+                        {listLabel && (
+                            <Badge variant="outline" className={`text-[10px] ${getElectiveLabelClass(listName)}`}>
+                                {listLabel}
+                            </Badge>
+                        )}
+                    </div>
+                </div>
+                {isMenuOpen && (
+                    <>
+                        <Input
+                            value={electiveSearchMap[selectionKey] || ""}
+                            onChange={(event) => setElectiveSearchMap(prev => ({ ...prev, [selectionKey]: event.target.value }))}
+                            placeholder="Search course code, title, or prerequisite"
+                            className="h-9 bg-white text-xs dark:bg-slate-950"
+                        />
+                        {selectedCode && (
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                className="h-8 text-xs"
+                                onClick={() => handleSelectElective(selectionKey, null)}
+                            >
+                                Clear selected course
+                            </Button>
+                        )}
+                        {electiveOptions.length === 0 ? (
+                            <p className="text-[11px] font-medium text-rose-600 dark:text-rose-400">
+                                No options were found for this elective type.
+                            </p>
+                        ) : filteredOptions.length === 0 ? (
+                            <p className="text-[11px] font-medium text-muted-foreground">
+                                No courses match this search.
+                            </p>
+                        ) : (
+                            <div className="max-h-64 space-y-1.5 overflow-y-auto pr-1">
+                                {filteredOptions.map((opt) => {
+                                    const isSelected = cleanCode(selectedCode) === cleanCode(opt.code)
+                                    return (
+                                        <button
+                                            key={opt.code}
+                                            type="button"
+                                            onClick={() => handleSelectElective(selectionKey, isSelected ? null : opt.code)}
+                                            className={`w-full rounded-lg border px-3 py-2 text-left transition-colors ${isSelected ? "border-emerald-500 bg-emerald-50 text-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200" : "border-slate-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/40 dark:border-slate-800 dark:bg-slate-950/40 dark:hover:border-emerald-900"}`}
+                                        >
+                                            <span className="flex flex-wrap items-center gap-2">
+                                                <span className="font-mono text-xs font-bold">{opt.code}</span>
+                                                <span className="text-xs font-semibold">{opt.title}</span>
+                                                <Badge variant="outline" className={`ml-auto text-[10px] ${getElectiveLabelClass(opt.electiveListType)}`}>
+                                                    {isSelected ? "Selected" : "Select"}
+                                                </Badge>
+                                            </span>
+                                        </button>
+                                    )
+                                })}
+                            </div>
+                        )}
+                    </>
+                )}
+            </div>
+        )
+    }
+
     // 2. Calculations for Metrics
     const totalPlanCredits = plan?.totalCredits || 132
     
@@ -419,6 +749,39 @@ export default function DashboardPage() {
         return { label: "Pass status", color: "bg-slate-500/10 text-slate-600 dark:text-slate-400" }
     }
     const honors = getHonorsLabel(currentGPA)
+
+    const getPlanCourseStyle = (course: PlanCourse) => {
+        if (course.status === "Completed") {
+            return {
+                border: "border-emerald-200/80 dark:border-emerald-900/50",
+                surface: "bg-emerald-50/70 dark:bg-emerald-950/10",
+                badge: "bg-emerald-500 text-white",
+                label: `Completed${course.grade ? ` (${course.grade})` : ""}`
+            }
+        }
+        if (course.status === "In Progress") {
+            return {
+                border: "border-indigo-200/80 dark:border-indigo-900/50",
+                surface: "bg-indigo-50/70 dark:bg-indigo-950/10",
+                badge: "bg-indigo-500 text-white",
+                label: "In Progress"
+            }
+        }
+        if (course.status === "Available") {
+            return {
+                border: "border-blue-200/80 dark:border-blue-900/50",
+                surface: "bg-blue-50/70 dark:bg-blue-950/10",
+                badge: "bg-blue-500 text-white",
+                label: "Available"
+            }
+        }
+        return {
+            border: "border-rose-200/80 dark:border-rose-900/50",
+            surface: "bg-rose-50/70 dark:bg-rose-950/10",
+            badge: "bg-rose-500 text-white",
+            label: "Locked"
+        }
+    }
 
     // 3. GPA Simulator Logic
     const allSimulatorCourses: SimulatorCourse[] = enrichedSemesters.flatMap((sem, semesterIndex) =>
@@ -793,74 +1156,85 @@ export default function DashboardPage() {
                             </Card>
                         ) : (
                             enrichedSemesters.map((sem, sIdx) => (
-                                <Card key={sIdx} className="shadow-sm border border-slate-200 dark:border-slate-800/80">
-                                    <CardHeader className="bg-slate-50/50 dark:bg-slate-900/30 border-b py-4">
-                                        <CardTitle className="text-lg font-bold flex justify-between items-center flex-wrap gap-2">
-                                            <span>{sem.semesterName}</span>
-                                            <span className="text-xs text-muted-foreground font-normal">
-                                                Total Credits: <span className="font-semibold text-foreground">{sem.courses.reduce((s, c) => s + c.credits, 0)} CR</span>
-                                            </span>
-                                        </CardTitle>
+                                <Card key={sIdx} className="shadow-sm border border-slate-200 dark:border-slate-800/80 overflow-hidden">
+                                    <CardHeader className="bg-gradient-to-r from-slate-50 via-white to-emerald-50/60 dark:from-slate-950 dark:via-slate-950 dark:to-emerald-950/10 border-b py-5">
+                                        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                            <div>
+                                                <span className="text-[10px] uppercase tracking-[0.25em] font-bold text-emerald-600 dark:text-emerald-400">
+                                                    Semester {sIdx + 1}
+                                                </span>
+                                                <CardTitle className="text-xl font-black mt-1">{sem.semesterName}</CardTitle>
+                                            </div>
+                                            <div className="flex flex-wrap gap-2">
+                                                <Badge variant="outline" className="border-slate-300 font-semibold">
+                                                    {sem.courses.reduce((s, c) => s + c.credits, 0)} CR
+                                                </Badge>
+                                                <Badge variant="outline" className="border-emerald-300 text-emerald-700 dark:text-emerald-400 font-semibold">
+                                                    {sem.courses.filter((course) => course.status === "Completed").length} Completed
+                                                </Badge>
+                                                <Badge variant="outline" className="border-blue-300 text-blue-700 dark:text-blue-400 font-semibold">
+                                                    {sem.courses.filter((course) => course.status === "Available").length} Available
+                                                </Badge>
+                                            </div>
+                                        </div>
                                     </CardHeader>
-                                    <CardContent className="p-0">
-                                        <div className="divide-y divide-slate-100 dark:divide-slate-900">
-                                            {sem.courses.map((course, cIdx) => (
-                                                <div 
-                                                    key={cIdx} 
-                                                    className="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3 hover:bg-slate-50/40 dark:hover:bg-slate-900/10 transition-colors"
-                                                >
-                                                    <div className="space-y-1">
-                                                        <div className="flex items-center gap-2 flex-wrap">
-                                                            <span className="font-mono text-sm font-bold bg-slate-100 dark:bg-slate-850 px-2 py-0.5 rounded text-slate-700 dark:text-slate-350">
-                                                                {course.matchedCode || course.code}
-                                                            </span>
-                                                            <span className="text-sm font-semibold text-foreground">
-                                                                {course.matchedTitle || course.title}
-                                                            </span>
-                                                            <Badge variant="outline" className="text-[10px] font-semibold py-0 scale-95 border-slate-300">
-                                                                {course.type}
-                                                            </Badge>
-                                                        </div>
-                                                        <div className="flex items-center gap-4 text-xs text-muted-foreground flex-wrap">
-                                                            <span>Credits: <strong className="text-foreground">{course.credits}</strong></span>
-                                                            <span>Prerequisites: <strong className="text-foreground">{course.prerequisites}</strong></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex items-center gap-2 shrink-0">
-                                                        {course.status === "Completed" && (
-                                                            <Badge className="bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900 font-bold px-2.5 py-1">
-                                                                Completed ({course.grade})
-                                                            </Badge>
-                                                        )}
-                                                        {course.status === "In Progress" && (
-                                                            <Badge className="bg-indigo-50 text-indigo-700 dark:bg-indigo-950/30 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900 font-bold px-2.5 py-1 flex items-center gap-1">
-                                                                <Clock className="h-3 w-3 animate-spin" />
-                                                                Enrolled
-                                                            </Badge>
-                                                        )}
-                                                        {course.status === "Available" && (
-                                                            <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400 border-blue-200 dark:border-blue-900 font-semibold px-2.5 py-1 flex items-center gap-1">
-                                                                <Unlock className="h-3 w-3" />
-                                                                Available
-                                                            </Badge>
-                                                        )}
-                                                        {course.status === "Locked" && (
-                                                            <div className="flex items-center gap-1.5">
-                                                                <Badge className="bg-rose-50 text-rose-700 dark:bg-rose-950/30 dark:text-rose-400 border-rose-200 dark:border-rose-900 font-semibold px-2.5 py-1 flex items-center gap-1">
-                                                                    <Lock className="h-3 w-3" />
-                                                                    Locked
-                                                                </Badge>
-                                                                {course.missingPrereqs && (
-                                                                    <span className="text-[10px] text-rose-600 dark:text-rose-400 font-medium">
-                                                                        Needs: {course.missingPrereqs.join(", ")}
+                                    <CardContent className="p-4 md:p-5">
+                                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 items-start">
+                                            {sem.courses.map((course, cIdx) => {
+                                                const style = getPlanCourseStyle(course)
+                                                const electiveListLabel = getElectiveListLabel(course)
+                                                return (
+                                                    <div
+                                                        key={cIdx}
+                                                        className={`rounded-2xl border p-4 transition-colors hover:shadow-sm ${style.border} ${style.surface}`}
+                                                    >
+                                                        <div className="flex items-start justify-between gap-3">
+                                                            <div className="min-w-0 space-y-2">
+                                                                <div className="flex items-center gap-2 flex-wrap">
+                                                                    <span className="font-mono text-sm font-bold bg-white/80 dark:bg-slate-900/70 px-2 py-1 rounded-md text-slate-700 dark:text-slate-300">
+                                                                        {course.matchedCode || course.code}
                                                                     </span>
-                                                                )}
+                                                                    <Badge variant="outline" className="text-[10px] font-semibold border-slate-300 bg-transparent">
+                                                                        {course.type}
+                                                                    </Badge>
+                                                                    {electiveListLabel && (
+                                                                        <Badge variant="outline" className={`text-[10px] font-semibold ${getElectiveLabelClass(getElectiveListName(course))}`}>
+                                                                            {electiveListLabel}
+                                                                        </Badge>
+                                                                    )}
+                                                                </div>
+                                                                <p className="text-sm font-semibold leading-snug text-foreground">
+                                                                    {course.matchedTitle || course.title}
+                                                                </p>
+                                                            </div>
+                                                            <Badge className={`${style.badge} shrink-0 font-bold`}>
+                                                                {style.label}
+                                                            </Badge>
+                                                        </div>
+
+                                                        <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
+                                                            <div className="rounded-xl bg-white/70 dark:bg-slate-900/50 px-3 py-2">
+                                                                <span className="text-muted-foreground block">Credits</span>
+                                                                <strong className="text-foreground">{course.credits}</strong>
+                                                            </div>
+                                                            <div className="rounded-xl bg-white/70 dark:bg-slate-900/50 px-3 py-2">
+                                                                <span className="text-muted-foreground block">Prerequisites</span>
+                                                                <strong className="text-foreground">{course.prerequisites}</strong>
+                                                            </div>
+                                                        </div>
+
+                                                        {course.status === "Locked" && course.missingPrereqs && course.missingPrereqs.length > 0 && (
+                                                            <div className="mt-3 rounded-xl border border-rose-200/80 dark:border-rose-900/40 bg-rose-50/70 dark:bg-rose-950/10 px-3 py-2">
+                                                                <p className="text-[11px] font-semibold text-rose-700 dark:text-rose-400">
+                                                                    Needs: {course.missingPrereqs.join(", ")}
+                                                                </p>
                                                             </div>
                                                         )}
+
+                                                        {renderElectiveSelector(course, `${sem.semesterName}_${course.code}_${cIdx}`)}
                                                     </div>
-                                                </div>
-                                            ))}
+                                                )
+                                            })}
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -888,49 +1262,61 @@ export default function DashboardPage() {
                                 </div>
                             ) : (
                                 <div className="divide-y divide-slate-100 dark:divide-slate-900">
-                                    {remainingPlanCourses.map((course, idx) => (
-                                        <div 
-                                            key={idx} 
-                                            className="p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-3 hover:bg-slate-50/40 dark:hover:bg-slate-900/10 transition-colors"
-                                        >
-                                            <div className="space-y-1">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-mono text-sm font-bold bg-slate-100 dark:bg-slate-850 px-2 py-0.5 rounded text-slate-700 dark:text-slate-350">
-                                                        {course.code}
-                                                    </span>
-                                                    <span className="text-sm font-semibold text-foreground">
-                                                        {course.title}
-                                                    </span>
-                                                    <Badge variant="secondary" className="text-[10px] scale-90">
-                                                        {course.type}
-                                                    </Badge>
-                                                </div>
-                                                <div className="flex items-center gap-4 text-xs text-muted-foreground flex-wrap">
-                                                    <span>Credits: <strong className="text-foreground">{course.credits} CR</strong></span>
-                                                    <span>Prerequisites: <strong className="text-foreground">{course.prerequisites}</strong></span>
-                                                </div>
-                                            </div>
+                                    {remainingPlanCourses.map((course, idx) => {
+                                        const electiveListLabel = getElectiveListLabel(course)
+                                        return (
+                                            <div 
+                                                key={idx} 
+                                                className="p-4 flex flex-col gap-3 hover:bg-slate-50/40 dark:hover:bg-slate-900/10 transition-colors"
+                                            >
+                                                <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+                                                    <div className="space-y-1">
+                                                        <div className="flex items-center gap-2 flex-wrap">
+                                                            <span className="font-mono text-sm font-bold bg-slate-100 dark:bg-slate-850 px-2 py-0.5 rounded text-slate-700 dark:text-slate-350">
+                                                                {course.code}
+                                                            </span>
+                                                            <span className="text-sm font-semibold text-foreground">
+                                                                {course.title}
+                                                            </span>
+                                                            <Badge variant="secondary" className="text-[10px] scale-90">
+                                                                {course.type}
+                                                            </Badge>
+                                                            {electiveListLabel && (
+                                                                <Badge variant="outline" className={`text-[10px] ${getElectiveLabelClass(getElectiveListName(course))}`}>
+                                                                    {electiveListLabel}
+                                                                </Badge>
+                                                            )}
+                                                        </div>
+                                                        <div className="flex items-center gap-4 text-xs text-muted-foreground flex-wrap">
+                                                            <span>Credits: <strong className="text-foreground">{course.credits} CR</strong></span>
+                                                            <span>Prerequisites: <strong className="text-foreground">{course.prerequisites}</strong></span>
+                                                        </div>
+                                                    </div>
 
-                                            <div>
-                                                {course.status === "Available" ? (
-                                                    <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400 border-blue-200 dark:border-blue-900 font-semibold px-2.5 py-1 flex items-center gap-1">
-                                                        <Unlock className="h-3 w-3" />
-                                                        Ready to Take
-                                                    </Badge>
-                                                ) : course.status === "In Progress" ? (
-                                                    <Badge className="bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-400 border-amber-200 dark:border-amber-900 font-semibold px-2.5 py-1 flex items-center gap-1">
-                                                        <Clock className="h-3 w-3" />
-                                                        In Progress
-                                                    </Badge>
-                                                ) : (
-                                                    <Badge className="bg-rose-50 text-rose-700 dark:bg-rose-950/30 dark:text-rose-400 border-rose-200 dark:border-rose-900 font-semibold px-2.5 py-1 flex items-center gap-1">
-                                                        <Lock className="h-3 w-3" />
-                                                        Locked
-                                                    </Badge>
-                                                )}
+                                                    <div>
+                                                        {course.status === "Available" ? (
+                                                            <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400 border-blue-200 dark:border-blue-900 font-semibold px-2.5 py-1 flex items-center gap-1">
+                                                                <Unlock className="h-3 w-3" />
+                                                                Ready to Take
+                                                            </Badge>
+                                                        ) : course.status === "In Progress" ? (
+                                                            <Badge className="bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-400 border-amber-200 dark:border-amber-900 font-semibold px-2.5 py-1 flex items-center gap-1">
+                                                                <Clock className="h-3 w-3" />
+                                                                In Progress
+                                                            </Badge>
+                                                        ) : (
+                                                            <Badge className="bg-rose-50 text-rose-700 dark:bg-rose-950/30 dark:text-rose-400 border-rose-200 dark:border-rose-900 font-semibold px-2.5 py-1 flex items-center gap-1">
+                                                                <Lock className="h-3 w-3" />
+                                                                Locked
+                                                            </Badge>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {renderElectiveSelector(course, course.selectionKey || course.simulatorId)}
                                             </div>
-                                        </div>
-                                    ))}
+                                        )
+                                    })}
                                 </div>
                             )}
                         </CardContent>

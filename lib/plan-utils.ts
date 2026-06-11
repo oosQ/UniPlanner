@@ -5,6 +5,7 @@ export interface PlanCourse {
     type: string // "MR" | "CR" | "UR" | "MSR" | "ME" | "GSE"
     prerequisites: string
     isMajorGpa: boolean
+    electiveListType?: string
 }
 
 export interface PlanSemester {
@@ -16,6 +17,7 @@ export interface ParsedStudyPlan {
     degreeName: string
     totalCredits: number
     semesters: PlanSemester[]
+    electives?: PlanCourse[]
 }
 
 // Regex to find course codes (e.g. ITCS 113, ITIS 4XX, BUS XXX, GSE XXX)
@@ -69,10 +71,57 @@ export function parseStudyPlan(rawText: string): ParsedStudyPlan {
         }, 0)
     }
 
+    // 4. Extract Elective Courses from leftover lines after semester blocks
+    let stopIdx = -1
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i]
+        if (line.includes("Major Elective Courses") || line.includes("List 1:") || line.includes("List1:")) {
+            stopIdx = i
+            break
+        }
+    }
+
+    let electives: PlanCourse[] = []
+    if (stopIdx !== -1) {
+        const leftoverLines = lines.slice(stopIdx)
+        
+        interface Section {
+            name: string
+            startIndex: number
+        }
+        
+        const sections: Section[] = []
+        for (let i = 0; i < leftoverLines.length; i++) {
+            const line = leftoverLines[i]
+            if (line.includes("List 1:") || line.includes("List1:")) {
+                sections.push({ name: "List 1: ITIS Concentration Major Elective", startIndex: i })
+            } else if (line.includes("List 2:") || line.includes("List2:")) {
+                sections.push({ name: "List 2: ITIS General Major Elective", startIndex: i })
+            } else if (line.includes("List 3:") || line.includes("List3:")) {
+                sections.push({ name: "List 3: Business Elective Courses", startIndex: i })
+            } else if (line.includes("General Studies Elective Courses List") || line.includes("General Studies Elective")) {
+                sections.push({ name: "General Studies Elective Courses List", startIndex: i })
+            }
+        }
+        
+        for (let i = 0; i < sections.length; i++) {
+            const currentSec = sections[i]
+            const nextSecIdx = i + 1 < sections.length ? sections[i+1].startIndex : leftoverLines.length
+            const sectionLines = leftoverLines.slice(currentSec.startIndex, nextSecIdx)
+            
+            const sectionCourses = parseSemesterCourses(sectionLines, new Set<string>())
+            for (const course of sectionCourses) {
+                course.electiveListType = currentSec.name
+                electives.push(course)
+            }
+        }
+    }
+
     return {
         degreeName,
         totalCredits,
-        semesters
+        semesters,
+        electives
     }
 }
 
