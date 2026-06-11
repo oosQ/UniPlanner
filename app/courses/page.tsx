@@ -13,12 +13,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription }
 import { Badge } from "@/components/ui/badge"
 import { getDepartments, searchCourses, Course, checkWebsiteAvailability } from "@/app/actions/uob-proxy"
 import { Search, Loader2, Calendar, MapPin, Users, Clock, BookOpen, Settings2, Filter, AlertCircle, Plus, AlertTriangle, CheckCircle2, Trash2, ArrowRight } from "lucide-react"
-import { readStoredSchedules, addSectionToSchedule, removeSectionFromSchedule, readStoredPlan, readStoredTranscript } from "@/lib/storage"
+import { readStoredSchedules, addSectionToSchedule, removeSectionFromSchedule, readStoredPlan, readStoredTranscript, addPickedSection, readPickedSections } from "@/lib/storage"
 import { authService } from "@/lib/auth-service"
 import { FALLBACK_ELECTIVES } from "@/lib/fallback-electives"
 import { checkTimeClash, checkExamClash } from "@/lib/schedule-utils"
 
 import { COLLEGES } from "@/lib/config"
+
+const NORMAL_TERM_LIMIT = { maxCourses: 6, maxCredits: 18 }
+const SUMMER_TERM_LIMIT = { maxCourses: 3, maxCredits: 9 }
 
 export default function CatalogPage() {
     // State
@@ -49,6 +52,7 @@ export default function CatalogPage() {
     // Notification state for schedule actions
     const [notification, setNotification] = useState<{ message: string; type: "success" | "warning" | "error" } | null>(null)
     const [savedSchedules, setSavedSchedules] = useState<Record<string, any>>({})
+    const [pickedSectionsCount, setPickedSectionsCount] = useState(0)
 
     const [user, setUser] = useState<any>(null)
     const [hasPlanAndTranscript, setHasPlanAndTranscript] = useState(false)
@@ -61,6 +65,7 @@ export default function CatalogPage() {
 
     useEffect(() => {
         setSavedSchedules(readStoredSchedules())
+        setPickedSectionsCount(readPickedSections().length)
         
         const currentUser = authService.getCurrentUser()
         setUser(currentUser)
@@ -142,6 +147,7 @@ export default function CatalogPage() {
 
         const handleStorageChange = () => {
             setSavedSchedules(readStoredSchedules())
+            setPickedSectionsCount(readPickedSections().length)
             setUser(authService.getCurrentUser())
             
             const p = readStoredPlan<any>()
@@ -208,6 +214,23 @@ export default function CatalogPage() {
     }
 
     const handleAddSection = (scheduleId: string, scheduleName: string, section: any, courseCode: string, courseTitle: string) => {
+        const termLimit = sem === "3" ? SUMMER_TERM_LIMIT : NORMAL_TERM_LIMIT
+        const schedulesBeforeAdd = readStoredSchedules()
+        const scheduleBeforeAdd = schedulesBeforeAdd[scheduleId]
+        const cleanCode = (c: string) => c.replace(/\s+/g, "").toUpperCase()
+        const isReplacingExistingCourse = scheduleBeforeAdd?.sections?.some((existing: any) => cleanCode(existing.courseCode) === cleanCode(courseCode))
+        const nextCourseCount = (scheduleBeforeAdd?.sections?.length || 0) + (isReplacingExistingCourse ? 0 : 1)
+        const nextCredits = nextCourseCount * 3
+
+        if (nextCourseCount > termLimit.maxCourses || nextCredits > termLimit.maxCredits) {
+            setNotification({
+                message: `${sem === "3" ? "Summer" : "Normal"} semester limit is ${termLimit.maxCourses} courses / ${termLimit.maxCredits} credits.`,
+                type: "error"
+            })
+            setTimeout(() => setNotification(null), 5000)
+            return
+        }
+
         const scheduledSec = {
             courseCode,
             courseTitle,
@@ -221,12 +244,11 @@ export default function CatalogPage() {
             classType: section.classType
         }
 
-        const schedules = readStoredSchedules()
+        const schedules = schedulesBeforeAdd
         const schedule = schedules[scheduleId]
         const clashes: string[] = []
 
         if (schedule) {
-            const cleanCode = (c: string) => c.replace(/\s+/g, "").toUpperCase()
             const cleanTarget = cleanCode(courseCode)
 
             for (const existing of schedule.sections) {
@@ -261,6 +283,35 @@ export default function CatalogPage() {
         setTimeout(() => {
             setNotification(prev => prev && prev.message.includes(section.section) && prev.message.includes(courseCode) ? null : prev)
         }, 6000)
+    }
+
+    const handleAddToPicker = (section: any, courseCode: string, courseTitle: string) => {
+        const result = addPickedSection({
+            courseCode,
+            courseTitle,
+            section: section.section,
+            instructor: section.instructor,
+            days: section.days,
+            time: section.time,
+            examDate: section.examDate,
+            examRoom: section.examRoom,
+            location: section.location,
+            classType: section.classType,
+            year,
+            semester: sem,
+            credits: 3
+        })
+
+        setPickedSectionsCount(readPickedSections().length)
+        setNotification({
+            message: result.added
+                ? `Added ${courseCode} section ${section.section} to the schedule picker.`
+                : `${courseCode} section ${section.section} is already in the picker.`,
+            type: result.added ? "success" : "warning"
+        })
+        setTimeout(() => {
+            setNotification(null)
+        }, 4000)
     }
 
     // Check website availability on mount
@@ -1066,7 +1117,16 @@ export default function CatalogPage() {
                                                             </div>
                                                         </div>
 
-                                                        <div className="flex justify-end pt-1">
+                                                        <div className="flex flex-wrap justify-end gap-2 pt-1">
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="h-8 px-2 text-xs gap-1 border-blue-600/30 text-blue-600 hover:bg-blue-50 dark:border-blue-500/30 dark:text-blue-400 dark:hover:bg-blue-950/20"
+                                                                onClick={() => handleAddToPicker(section, course.code, course.title)}
+                                                            >
+                                                                <Plus className="w-3.5 h-3.5" />
+                                                                <span>Add to Picker</span>
+                                                            </Button>
                                                             <Popover>
                                                                 <PopoverTrigger asChild>
                                                                     <Button size="sm" variant="outline" className="h-8 px-2 text-xs gap-1 border-emerald-600/30 text-emerald-600 hover:bg-emerald-50 dark:border-emerald-500/30 dark:text-emerald-400 dark:hover:bg-emerald-950/20">
@@ -1194,7 +1254,7 @@ export default function CatalogPage() {
                                     <CardFooter className="p-4 border-t bg-slate-50/50 dark:bg-slate-900/50">
                                         <Link href="/scheduler" className="w-full">
                                             <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-9 gap-1.5">
-                                                <span>Open Week Timeline</span>
+                                                <span>Open Week Timeline{pickedSectionsCount > 0 ? ` (${pickedSectionsCount} picked)` : ""}</span>
                                                 <ArrowRight className="w-3.5 h-3.5" />
                                             </Button>
                                         </Link>

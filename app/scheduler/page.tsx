@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Badge } from "@/components/ui/badge"
 import { 
     Calendar, 
     Clock, 
@@ -36,7 +37,11 @@ import {
     removeSectionFromSchedule,
     clearSchedule,
     SavedSchedule,
-    ScheduledSection
+    ScheduledSection,
+    PickedSection,
+    readPickedSections,
+    removePickedSection,
+    clearPickedSections
 } from "@/lib/storage"
 import { FALLBACK_ELECTIVES } from "@/lib/fallback-electives"
 
@@ -58,6 +63,9 @@ const ELECTIVE_LISTS = {
     generalStudies: "General Studies Elective Courses List"
 } as const
 
+const NORMAL_TERM_LIMIT = { maxCourses: 6, maxCredits: 18 }
+const SUMMER_TERM_LIMIT = { maxCourses: 3, maxCredits: 9 }
+
 // Color palette for courses on the calendar
 const COURSE_COLORS = [
     { bg: "bg-blue-100 dark:bg-blue-950/40", text: "text-blue-800 dark:text-blue-300", border: "border-blue-200 dark:border-blue-900/60 font-semibold" },
@@ -72,7 +80,7 @@ const COURSE_COLORS = [
 
 export default function SchedulerPage() {
     // Page Tab: "generator" or "saved"
-    const [activeTab, setActiveTab] = useState<"generator" | "saved">("generator")
+    const [activeTab, setActiveTab] = useState<"generator" | "picker" | "saved">("generator")
     
     // Remaining courses from study plan
     const [remainingCourses, setRemainingCourses] = useState<{ code: string; title: string; credits: number }[]>([])
@@ -92,6 +100,7 @@ export default function SchedulerPage() {
     // Saved Schedules from local storage
     const [savedSchedules, setSavedSchedules] = useState<Record<string, SavedSchedule>>({})
     const [activeScheduleId, setActiveScheduleId] = useState("schedule-1")
+    const [pickedSections, setPickedSections] = useState<PickedSection[]>([])
     
     // Generation States
     const [isGenerating, setIsGenerating] = useState(false)
@@ -104,6 +113,8 @@ export default function SchedulerPage() {
     const [plan, setPlan] = useState<any>(null)
 
     const cleanCourseCode = (code?: string | null) => (code || "").replace(/\s+/g, "").toUpperCase()
+
+    const getTermLimit = (semester?: string) => semester === "3" ? SUMMER_TERM_LIMIT : NORMAL_TERM_LIMIT
 
     const normalizeElectiveListName = (listName?: string) => {
         const clean = (listName || "").toLowerCase().replace(/\s+/g, " ").trim()
@@ -182,6 +193,7 @@ export default function SchedulerPage() {
         const loadAll = () => {
             const planData = readStoredPlan<any>()
             setPlan(planData)
+            setPickedSections(readPickedSections())
             const transcript = readStoredTranscript<any>()
             
             const completedSet = new Set<string>()
@@ -278,9 +290,15 @@ export default function SchedulerPage() {
     const handleAddManualCourse = () => {
         const clean = manualCourseInput.trim().toUpperCase()
         if (!clean) return
+        const limit = NORMAL_TERM_LIMIT
         
         if (selectedCourses.includes(clean)) {
             showNotification(`${clean} is already selected.`, "error")
+            return
+        }
+
+        if (selectedCourses.length >= limit.maxCourses || (selectedCourses.length + 1) * 3 > limit.maxCredits) {
+            showNotification(`Normal semester limit is ${limit.maxCourses} courses / ${limit.maxCredits} credits.`, "warning")
             return
         }
         
@@ -295,8 +313,9 @@ export default function SchedulerPage() {
             if (prev.includes(clean)) {
                 return prev.filter(c => c !== clean)
             } else {
-                if (prev.length >= 6) {
-                    showNotification("To ensure fast search on the live UOB site, you can select up to 6 courses at once.", "warning")
+                const limit = NORMAL_TERM_LIMIT
+                if (prev.length >= limit.maxCourses || (prev.length + 1) * 3 > limit.maxCredits) {
+                    showNotification(`Normal semester limit is ${limit.maxCourses} courses / ${limit.maxCredits} credits.`, "warning")
                     return prev
                 }
                 return [...prev, clean]
@@ -389,8 +408,47 @@ export default function SchedulerPage() {
         }
     }
 
+    const handleRemovePicked = (section: PickedSection) => {
+        removePickedSection(section.courseCode, section.section, section.time)
+        setPickedSections(readPickedSections())
+        showNotification(`Removed ${section.courseCode} section ${section.section} from picker.`, "success")
+    }
+
+    const handleClearPicker = () => {
+        clearPickedSections()
+        setPickedSections([])
+        showNotification("Picker cleared.", "success")
+    }
+
+    const handleAddPickedToSchedule = (section: PickedSection, targetId: string) => {
+        const schedules = readStoredSchedules()
+        const schedule = schedules[targetId]
+        if (!schedule) return
+
+        const limit = getTermLimit(section.semester)
+        const targetCode = cleanCourseCode(section.courseCode)
+        const replacing = schedule.sections.some(existing => cleanCourseCode(existing.courseCode) === targetCode)
+        const nextCourseCount = schedule.sections.length + (replacing ? 0 : 1)
+        const nextCredits = nextCourseCount * 3
+
+        if (nextCourseCount > limit.maxCourses || nextCredits > limit.maxCredits) {
+            showNotification(`Cannot add ${section.courseCode}: ${section.semester === "3" ? "summer" : "normal"} semester limit is ${limit.maxCourses} courses / ${limit.maxCredits} credits.`, "error")
+            return
+        }
+
+        const result = addSectionToSchedule(targetId, section)
+        setSavedSchedules(readStoredSchedules())
+        showNotification(`${result.replaced ? "Replaced" : "Added"} ${section.courseCode} section ${section.section} in ${schedule.name}.`, "success")
+    }
+
     // Save Option to Schedule ID
     const handleSaveOption = (option: GeneratedScheduleOption, targetId: string) => {
+        const limit = NORMAL_TERM_LIMIT
+        if (option.sections.length > limit.maxCourses || option.details.totalCredits > limit.maxCredits) {
+            showNotification(`Cannot save: normal semester limit is ${limit.maxCourses} courses / ${limit.maxCredits} credits.`, "error")
+            return
+        }
+
         const schedules = readStoredSchedules()
         const schedule = schedules[targetId]
         if (!schedule) return
@@ -649,6 +707,20 @@ export default function SchedulerPage() {
                     >
                         <Sparkles className="h-4 w-4" />
                         Intelligent Schedule Generator
+                    </button>
+                    <button
+                        onClick={() => {
+                            setActiveTab("picker")
+                            setPreviewOption(null)
+                        }}
+                        className={`py-3.5 px-5 text-sm font-semibold border-b-2 whitespace-nowrap transition-all flex items-center gap-2 ${
+                            activeTab === "picker"
+                                ? "border-blue-600 text-blue-600"
+                                : "border-transparent text-muted-foreground hover:text-foreground"
+                        }`}
+                    >
+                        <CalendarCheck className="h-4 w-4" />
+                        Manual Picker ({pickedSections.length})
                     </button>
                     <button
                         onClick={() => {
@@ -1088,6 +1160,123 @@ export default function SchedulerPage() {
 
                         </div>
 
+                    </div>
+                )}
+
+                {activeTab === "picker" && (
+                    <div className="space-y-6">
+                        <Card className="border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <CardHeader className="pb-3">
+                                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                    <div>
+                                        <CardTitle className="text-lg font-bold flex items-center gap-2">
+                                            <CalendarCheck className="w-5 h-5 text-blue-600" />
+                                            Manual Section Picker
+                                        </CardTitle>
+                                        <CardDescription>
+                                            Review picked sections from Courses and manually add each section to Schedule 1, 2, or 3.
+                                        </CardDescription>
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={handleClearPicker}
+                                        disabled={pickedSections.length === 0}
+                                        className="shrink-0"
+                                    >
+                                        Clear Picker
+                                    </Button>
+                                </div>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div className="rounded-xl border border-blue-100 bg-blue-50/50 p-3 text-xs text-blue-800 dark:border-blue-900/50 dark:bg-blue-950/20 dark:text-blue-300">
+                                    Multiple sections of the same course can stay in the picker as alternatives. Adding one to a saved schedule will replace any existing section for that same course in that schedule.
+                                    Limits are normal semester {NORMAL_TERM_LIMIT.maxCourses} courses / {NORMAL_TERM_LIMIT.maxCredits} credits and summer {SUMMER_TERM_LIMIT.maxCourses} courses / {SUMMER_TERM_LIMIT.maxCredits} credits.
+                                </div>
+
+                                {pickedSections.length === 0 ? (
+                                    <div className="rounded-2xl border border-dashed p-10 text-center">
+                                        <Calendar className="mx-auto h-10 w-10 text-slate-400" />
+                                        <h3 className="mt-3 text-base font-bold text-slate-900 dark:text-white">No picked sections</h3>
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            Open Courses and use Add to Picker on section rows.
+                                        </p>
+                                        <Link href="/courses">
+                                            <Button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white">
+                                                Open Courses
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                        {pickedSections.map((section) => (
+                                            <Card key={`${section.courseCode}-${section.section}-${section.time}`} className="border border-slate-200 dark:border-slate-800 shadow-sm">
+                                                <CardHeader className="pb-3">
+                                                    <div className="flex items-start justify-between gap-3">
+                                                        <div className="min-w-0">
+                                                            <div className="flex items-center gap-2 flex-wrap">
+                                                                <span className="font-mono text-sm font-black text-slate-900 dark:text-white">{section.courseCode}</span>
+                                                                <Badge variant="secondary" className="text-[10px]">Sec {section.section}</Badge>
+                                                                {section.semester === "3" && (
+                                                                    <Badge variant="outline" className="text-[10px] border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-300">
+                                                                        Summer
+                                                                    </Badge>
+                                                                )}
+                                                            </div>
+                                                            <CardTitle className="mt-1 text-base leading-snug">{section.courseTitle}</CardTitle>
+                                                        </div>
+                                                        <Button
+                                                            type="button"
+                                                            variant="ghost"
+                                                            size="sm"
+                                                            className="h-8 w-8 p-0 text-rose-600"
+                                                            onClick={() => handleRemovePicked(section)}
+                                                        >
+                                                            <Trash2 className="h-3.5 w-3.5" />
+                                                        </Button>
+                                                    </div>
+                                                </CardHeader>
+                                                <CardContent className="space-y-3">
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                                        <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-900">
+                                                            <span className="block text-muted-foreground">Time</span>
+                                                            <strong>{section.days || "TBA"} {section.time || "TBA"}</strong>
+                                                        </div>
+                                                        <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-900">
+                                                            <span className="block text-muted-foreground">Location</span>
+                                                            <strong>{section.location || "TBA"}</strong>
+                                                        </div>
+                                                        <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-900">
+                                                            <span className="block text-muted-foreground">Instructor</span>
+                                                            <strong>{section.instructor || "TBA"}</strong>
+                                                        </div>
+                                                        <div className="rounded-lg bg-slate-50 p-2 dark:bg-slate-900">
+                                                            <span className="block text-muted-foreground">Final Exam</span>
+                                                            <strong>{section.examDate || "TBA"}</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex flex-wrap gap-2 pt-1">
+                                                        {Object.values(savedSchedules).map(schedule => (
+                                                            <Button
+                                                                key={schedule.id}
+                                                                type="button"
+                                                                variant="outline"
+                                                                size="sm"
+                                                                className="h-8 text-xs"
+                                                                onClick={() => handleAddPickedToSchedule(section, schedule.id)}
+                                                            >
+                                                                Add to {schedule.name}
+                                                            </Button>
+                                                        ))}
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        ))}
+                                    </div>
+                                )}
+                            </CardContent>
+                        </Card>
                     </div>
                 )}
 
