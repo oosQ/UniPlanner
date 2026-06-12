@@ -296,7 +296,7 @@ function extractSemesterData(lines: string[], startIndex: number) {
         const line = lines[i].trim()
 
         // Stop when we hit semester summary or status section
-        if (line.includes("Semester Cr. Attended") || line === "Status" || line === "Rep.") {
+        if (line.includes("Semester Cr. Attended")) {
             break
         }
         
@@ -333,6 +333,7 @@ function extractSemesterData(lines: string[], startIndex: number) {
 
         i++
     }
+
     
     // First, assign pre-listed grades to courses without inline grades (in order)
     let preGradeIndex = 0

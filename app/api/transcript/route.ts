@@ -1,16 +1,8 @@
 import { NextResponse } from "next/server"
-import { exec } from "child_process"
-import { promisify } from "util"
-import { writeFile, unlink } from "fs/promises"
-import path from "path"
-import os from "os"
+import { extractPdfText } from "@/lib/pdf-utils"
 import { parseUOBTranscript } from "@/lib/transcript-utils"
 
-const execAsync = promisify(exec)
-
 export async function POST(request: Request) {
-    let tempFilePath: string | null = null
-
     try {
         const formData = await request.formData()
         const file = formData.get("transcript") as File
@@ -39,21 +31,10 @@ export async function POST(request: Request) {
             )
         }
 
-        // Convert file to buffer and save to temp file
+        // Convert file to Uint8Array and extract text using native JS utility
         const arrayBuffer = await file.arrayBuffer()
-        const buffer = Buffer.from(arrayBuffer)
-        
-        // Create temp file
-        tempFilePath = path.join(os.tmpdir(), `transcript-${Date.now()}.pdf`)
-        await writeFile(tempFilePath, buffer)
-
-        // Use pdftotext to extract text
-        const { stdout } = await execAsync(`pdftotext "${tempFilePath}" -`)
-        const rawText = stdout
-
-        // Clean up temp file
-        await unlink(tempFilePath)
-        tempFilePath = null
+        const uint8Array = new Uint8Array(arrayBuffer)
+        const rawText = await extractPdfText(uint8Array)
 
         // Parse the raw text into structured data
         const parsedData = parseUOBTranscript(rawText)
@@ -68,15 +49,6 @@ export async function POST(request: Request) {
     } catch (error) {
         console.error("Transcript parsing error:", error)
         
-        // Clean up temp file if it exists
-        if (tempFilePath) {
-            try {
-                await unlink(tempFilePath)
-            } catch (e) {
-                // Ignore cleanup errors
-            }
-        }
-
         return NextResponse.json(
             {
                 success: false,
