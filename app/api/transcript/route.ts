@@ -2,6 +2,62 @@ import { NextResponse } from "next/server"
 import { extractPdfText } from "@/lib/pdf-utils"
 import { parseUOBTranscript } from "@/lib/transcript-utils"
 
+function checkCompatibility(transcriptCollege: string, transcriptProgram: string, planCollege: string, planProgram: string): { compatible: boolean; error?: string } {
+    if (!transcriptCollege || !transcriptProgram) {
+        return { 
+            compatible: false, 
+            error: "Could not extract college or program from the transcript PDF. Please ensure the transcript is a UOB transcript containing college/program headers." 
+        }
+    }
+
+    const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "")
+
+    const tcClean = clean(transcriptCollege)
+    const pcClean = clean(planCollege)
+    
+    // Check college compatibility (e.g. "College of Information Technology" vs "CIT")
+    const isCollegeMatch = tcClean.includes(pcClean) || pcClean.includes(tcClean) || 
+                          (tcClean.includes("informationtechnology") && pcClean.includes("cit")) ||
+                          (tcClean.includes("cit") && pcClean.includes("informationtechnology")) ||
+                          (tcClean.includes("business") && pcClean.includes("cob")) ||
+                          (tcClean.includes("cob") && pcClean.includes("business")) ||
+                          (tcClean.includes("engineering") && pcClean.includes("engineering")) ||
+                          (tcClean.includes("science") && pcClean.includes("science")) ||
+                          (tcClean.includes("arts") && pcClean.includes("arts")) ||
+                          (tcClean.includes("law") && pcClean.includes("law")) ||
+                          (tcClean.includes("teachers") && pcClean.includes("teachers"))
+
+    if (!isCollegeMatch) {
+        return {
+            compatible: false,
+            error: `Mismatched colleges! Your transcript belongs to '${transcriptCollege}', but you selected/uploaded a plan from '${planCollege}'.`
+        }
+    }
+
+    // Check program compatibility by matching keywords
+    const getKeywords = (s: string) => {
+        const stopWords = ["bachelor", "bsc", "ba", "science", "in", "of", "and", "undergraduate", "program", "major", "minor", "degree"]
+        return s.toLowerCase()
+            .split(/[^a-z]/)
+            .filter(w => w.length > 2 && !stopWords.includes(w))
+    }
+
+    const tpKeywords = getKeywords(transcriptProgram)
+    const ppKeywords = getKeywords(planProgram)
+
+    const commonKeywords = tpKeywords.filter(k => ppKeywords.includes(k))
+    const isProgramMatch = commonKeywords.length > 0
+
+    if (!isProgramMatch) {
+        return {
+            compatible: false,
+            error: `Mismatched programs! Your transcript is for '${transcriptProgram}', but you selected/uploaded the study plan for '${planProgram}'.`
+        }
+    }
+
+    return { compatible: true }
+}
+
 export async function POST(request: Request) {
     try {
         const formData = await request.formData()
@@ -38,6 +94,25 @@ export async function POST(request: Request) {
 
         // Parse the raw text into structured data
         const parsedData = parseUOBTranscript(rawText)
+
+        // Check compatibility if plan info is provided
+        const planCollege = formData.get("planCollege") as string
+        const planProgram = formData.get("planProgram") as string
+
+        if (planCollege && planProgram) {
+            const compatResult = checkCompatibility(
+                parsedData.college || "",
+                parsedData.program || "",
+                planCollege,
+                planProgram
+            )
+            if (!compatResult.compatible) {
+                return NextResponse.json(
+                    { success: false, error: compatResult.error },
+                    { status: 400 }
+                )
+            }
+        }
 
         // Return both raw text (for debugging) and parsed data
         return NextResponse.json({

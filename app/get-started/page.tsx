@@ -48,6 +48,31 @@ export default function GetStartedPage() {
     const [analyzeError, setAnalyzeError] = useState("")
     const [statusMessage, setStatusMessage] = useState("")
 
+    // Official Study Plan selection state
+    const [planSource, setPlanSource] = useState<"official" | "upload">("official")
+    const [colleges, setColleges] = useState<any[]>([])
+    const [selectedCollege, setSelectedCollege] = useState("")
+    const [selectedProgram, setSelectedProgram] = useState("")
+    const [selectedYear, setSelectedYear] = useState("")
+
+    // Load official plans manifest on component mount
+    useEffect(() => {
+        async function fetchManifest() {
+            try {
+                const res = await fetch("/api/plan")
+                if (res.ok) {
+                    const json = await res.json()
+                    if (json && json.success) {
+                        setColleges(json.data)
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to load official plans manifest:", err)
+            }
+        }
+        fetchManifest()
+    }, [])
+
     const restoreAcademicDataAndRedirect = useCallback(async (currentUser: UserSession) => {
         const storedPlan = readStoredPlan()
         const storedTranscript = readStoredTranscript()
@@ -171,8 +196,25 @@ export default function GetStartedPage() {
             let transcriptData = null
             let planData = null
 
-            // 1. Analyze study plan if uploaded
-            if (planFile) {
+            // 1. Fetch study plan
+            if (planSource === "official") {
+                if (selectedCollege || selectedProgram || selectedYear) {
+                    if (!selectedCollege || !selectedProgram || !selectedYear) {
+                        throw new Error("Please complete the official study plan selection (College, Program, and Year).")
+                    }
+                    setStatusMessage("Fetching official study plan...")
+                    const planRes = await fetch(`/api/plan?college=${selectedCollege}&program=${selectedProgram}&year=${selectedYear}`)
+                    if (!planRes.ok) {
+                        throw new Error("Failed to fetch official study plan")
+                    }
+                    const planJson = await planRes.json()
+                    if (planJson.success) {
+                        planData = planJson.data
+                    } else {
+                        throw new Error(planJson.error || "Failed to load study plan")
+                    }
+                }
+            } else if (planFile) {
                 setStatusMessage("Uploading and analyzing study plan...")
                 const formData = new FormData()
                 formData.append("plan", planFile)
@@ -183,11 +225,21 @@ export default function GetStartedPage() {
                 })
 
                 if (!planRes.ok) {
-                    const errorJson = await planRes.json()
-                    throw new Error(errorJson.error || "Failed to analyze study plan")
+                    let errorMessage = "Failed to analyze study plan"
+                    try {
+                        if (planRes.headers.get("content-type")?.includes("application/json")) {
+                            const errorJson = await planRes.json()
+                            errorMessage = errorJson.error || errorMessage
+                        } else {
+                            errorMessage = `Server error (${planRes.status}): Unexpected response format`
+                        }
+                    } catch {
+                        errorMessage = `Server error (${planRes.status})`
+                    }
+                    throw new Error(errorMessage)
                 }
 
-                const planJson = await planRes.json()
+                let planJson = await planRes.json()
                 if (planJson.success) {
                     planData = planJson.data
                 } else {
@@ -201,17 +253,47 @@ export default function GetStartedPage() {
                 const formData = new FormData()
                 formData.append("transcript", transcriptFile)
 
+                // Pass selected plan info for compatibility checking
+                if (planSource === "official" && selectedCollege && selectedProgram) {
+                    const col = colleges.find(c => c.slug === selectedCollege)
+                    const prog = col?.programs.find((p: any) => p.slug === selectedProgram)
+                    if (col && prog) {
+                        formData.append("planCollege", col.college)
+                        formData.append("planProgram", prog.name)
+                    }
+                } else if (planData) {
+                    formData.append("planCollege", planData.college || "")
+                    formData.append("planProgram", planData.degreeName || "")
+                } else {
+                    // Fallback to stored plan info if any
+                    const storedPlan = readStoredPlan() as any
+                    if (storedPlan) {
+                        formData.append("planCollege", storedPlan.college || "")
+                        formData.append("planProgram", storedPlan.degreeName || "")
+                    }
+                }
+
                 const transRes = await fetch("/api/transcript", {
                     method: "POST",
                     body: formData,
                 })
 
                 if (!transRes.ok) {
-                    const errorJson = await transRes.json()
-                    throw new Error(errorJson.error || "Failed to analyze transcript")
+                    let errorMessage = "Failed to analyze transcript"
+                    try {
+                        if (transRes.headers.get("content-type")?.includes("application/json")) {
+                            const errorJson = await transRes.json()
+                            errorMessage = errorJson.error || errorMessage
+                        } else {
+                            errorMessage = `Server error (${transRes.status}): Unexpected response format`
+                        }
+                    } catch {
+                        errorMessage = `Server error (${transRes.status})`
+                    }
+                    throw new Error(errorMessage)
                 }
 
-                const transJson = await transRes.json()
+                let transJson = await transRes.json()
                 if (transJson.success) {
                     transcriptData = transJson.data
                 } else {
@@ -223,8 +305,8 @@ export default function GetStartedPage() {
             const nextPlanData = planData ?? readStoredPlan()
             const nextTranscriptData = transcriptData ?? readStoredTranscript()
 
-            writeStoredPlan(nextPlanData)
-            writeStoredTranscript(nextTranscriptData)
+            if (nextPlanData) writeStoredPlan(nextPlanData)
+            if (nextTranscriptData) writeStoredTranscript(nextTranscriptData)
 
             // Sync to Supabase if logged in
             const currentUser = authService.getCurrentUser()
@@ -475,36 +557,128 @@ export default function GetStartedPage() {
                                 )}
 
                                 {/* File 1: Study Plan */}
-                                <div className="space-y-2">
+                                <div className="space-y-4">
                                     <Label className="text-sm font-semibold flex items-center gap-2">
-                                        <FileUp className="h-4 w-4 text-emerald-600" />
-                                        University Study Plan PDF (Optional)
+                                        <GraduationCap className="h-4 w-4 text-emerald-600" />
+                                        University Study Plan
                                     </Label>
-                                    <label
-                                        className={`flex items-center gap-3 px-4 py-4 border-2 border-dashed rounded-xl cursor-pointer hover:border-emerald-500 hover:bg-emerald-50/20 dark:hover:bg-emerald-950/10 transition-all ${
-                                            planFile ? "border-emerald-500 bg-emerald-50/10" : "border-slate-300 dark:border-slate-800"
-                                        }`}
-                                    >
-                                        <div className={`p-2 rounded-lg ${planFile ? "bg-emerald-100 dark:bg-emerald-900 text-emerald-600" : "bg-slate-100 dark:bg-slate-800 text-muted-foreground"}`}>
-                                            <Upload className="h-5 w-5" />
+                                    
+                                    <div className="grid grid-cols-2 gap-2 p-1 bg-slate-100 dark:bg-slate-900/60 rounded-xl">
+                                        <button
+                                            type="button"
+                                            onClick={() => setPlanSource("official")}
+                                            className={`py-2 px-3 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+                                                planSource === "official"
+                                                    ? "bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                                                    : "text-muted-foreground hover:text-foreground"
+                                            }`}
+                                        >
+                                            Official Study Plan
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setPlanSource("upload")}
+                                            className={`py-2 px-3 text-xs sm:text-sm font-semibold rounded-lg transition-all ${
+                                                planSource === "upload"
+                                                    ? "bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 shadow-sm"
+                                                    : "text-muted-foreground hover:text-foreground"
+                                            }`}
+                                        >
+                                            Upload Plan PDF
+                                        </button>
+                                    </div>
+
+                                    {planSource === "official" ? (
+                                        <div className="space-y-3 p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800">
+                                            {/* College Dropdown */}
+                                            <div className="space-y-1.5">
+                                                <Label htmlFor="college-select" className="text-xs font-semibold text-muted-foreground">College</Label>
+                                                <select
+                                                    id="college-select"
+                                                    value={selectedCollege}
+                                                    onChange={(e) => {
+                                                        setSelectedCollege(e.target.value)
+                                                        setSelectedProgram("")
+                                                        setSelectedYear("")
+                                                    }}
+                                                    className="w-full h-10 px-3 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                                                >
+                                                    <option value="">Select College</option>
+                                                    {colleges.map((col) => (
+                                                        <option key={col.slug} value={col.slug}>{col.college}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+
+                                            {/* Program Dropdown */}
+                                            <div className="space-y-1.5">
+                                                <Label htmlFor="program-select" className="text-xs font-semibold text-muted-foreground">Academic Program</Label>
+                                                <select
+                                                    id="program-select"
+                                                    value={selectedProgram}
+                                                    onChange={(e) => {
+                                                        setSelectedProgram(e.target.value)
+                                                        setSelectedYear("")
+                                                    }}
+                                                    disabled={!selectedCollege}
+                                                    className="w-full h-10 px-3 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none disabled:opacity-50"
+                                                >
+                                                    <option value="">Select Program</option>
+                                                    {colleges
+                                                        .find((c) => c.slug === selectedCollege)
+                                                        ?.programs.map((prog: any) => (
+                                                            <option key={prog.slug} value={prog.slug}>{prog.name}</option>
+                                                        ))}
+                                                </select>
+                                            </div>
+
+                                            {/* Year Dropdown */}
+                                            <div className="space-y-1.5">
+                                                <Label htmlFor="year-select" className="text-xs font-semibold text-muted-foreground">Study Plan Year</Label>
+                                                <select
+                                                    id="year-select"
+                                                    value={selectedYear}
+                                                    onChange={(e) => setSelectedYear(e.target.value)}
+                                                    disabled={!selectedProgram}
+                                                    className="w-full h-10 px-3 rounded-lg border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none disabled:opacity-50"
+                                                >
+                                                    <option value="">Select Plan Year</option>
+                                                    {colleges
+                                                        .find((c) => c.slug === selectedCollege)
+                                                        ?.programs.find((p: any) => p.slug === selectedProgram)
+                                                        ?.years.map((y: string) => (
+                                                            <option key={y} value={y}>{y}</option>
+                                                        ))}
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div className="flex-1 text-left">
-                                            <span className="text-sm font-medium block truncate max-w-[320px]">
-                                                {planFile ? planFile.name : "Select degree plan PDF (IT, Business, etc.)"}
-                                            </span>
-                                            <span className="text-xs text-muted-foreground block">
-                                                {planFile ? `${(planFile.size / 1024).toFixed(1)} KB` : "Recommended for custom semester plan tracking"}
-                                            </span>
-                                        </div>
-                                        {planFile && <CheckCircle2 className="h-5 w-5 text-emerald-600" />}
-                                        <input
-                                            type="file"
-                                            accept=".pdf"
-                                            onChange={(e) => setPlanFile(e.target.files?.[0] || null)}
-                                            className="hidden"
-                                            disabled={analyzeLoading}
-                                        />
-                                    </label>
+                                    ) : (
+                                        <label
+                                            className={`flex items-center gap-3 px-4 py-4 border-2 border-dashed rounded-xl cursor-pointer hover:border-emerald-500 hover:bg-emerald-50/20 dark:hover:bg-emerald-950/10 transition-all ${
+                                                planFile ? "border-emerald-500 bg-emerald-50/10" : "border-slate-300 dark:border-slate-800"
+                                            }`}
+                                        >
+                                            <div className={`p-2 rounded-lg ${planFile ? "bg-emerald-100 dark:bg-emerald-900 text-emerald-600" : "bg-slate-100 dark:bg-slate-800 text-muted-foreground"}`}>
+                                                <Upload className="h-5 w-5" />
+                                            </div>
+                                            <div className="flex-1 text-left">
+                                                <span className="text-sm font-medium block truncate max-w-[320px]">
+                                                    {planFile ? planFile.name : "Select degree plan PDF (IT, Business, etc.)"}
+                                                </span>
+                                                <span className="text-xs text-muted-foreground block">
+                                                    {planFile ? `${(planFile.size / 1024).toFixed(1)} KB` : "Recommended for custom semester plan tracking"}
+                                                </span>
+                                            </div>
+                                            {planFile && <CheckCircle2 className="h-5 w-5 text-emerald-600" />}
+                                            <input
+                                                type="file"
+                                                accept=".pdf"
+                                                onChange={(e) => setPlanFile(e.target.files?.[0] || null)}
+                                                className="hidden"
+                                                disabled={analyzeLoading}
+                                            />
+                                        </label>
+                                    )}
                                 </div>
 
                                 {/* File 2: Academic Transcript */}

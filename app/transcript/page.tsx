@@ -96,7 +96,33 @@ export default function TranscriptPage() {
                 body: formData,
             })
 
-            const parseResult: TranscriptParseResult = await response.json()
+            let parseResult: TranscriptParseResult
+            if (response.ok) {
+                try {
+                    parseResult = await response.json()
+                } catch {
+                    parseResult = {
+                        success: false,
+                        error: "Failed to parse server response"
+                    }
+                }
+            } else {
+                let errorMessage = "Failed to upload transcript"
+                try {
+                    if (response.headers.get("content-type")?.includes("application/json")) {
+                        const errorJson = await response.json()
+                        errorMessage = errorJson.error || errorMessage
+                    } else {
+                        errorMessage = `Server error (${response.status}): Unexpected response format`
+                    }
+                } catch {
+                    errorMessage = `Server error (${response.status})`
+                }
+                parseResult = {
+                    success: false,
+                    error: errorMessage
+                }
+            }
             setResult(parseResult)
         } catch (error) {
             setResult({
