@@ -1,0 +1,976 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 128,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ACC112",
+          "title": "Financial Accounting I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ECON140",
+          "title": "Microeconomics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL145",
+          "title": "English for Business I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS103",
+          "title": "Mathematics for Business Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MGT230",
+          "title": "Organization and Management",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ACC113",
+          "title": "Financial Accounting II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ACC112",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ECON141",
+          "title": "Macroeconomics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ECON140",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MGT233",
+          "title": "Organizational Behavior",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MGT230",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL146",
+          "title": "English for Business II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "ENGL145",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS104",
+          "title": "Mathematics for Business Management II MATHS10",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "ITIS204",
+          "title": "Fundamentals of IT",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LAW238",
+          "title": "Commercial Law",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "FIN220",
+          "title": "Financial Management I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ACC113",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MKT250",
+          "title": "Marketing Management I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MGT230",
+          "isMajorGpa": false
+        },
+        {
+          "code": "unknown",
+          "title": "QM250 Introduction to Statistics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS104",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "ECON141",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MKT255",
+          "title": "Marketing Management II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MKT250",
+          "isMajorGpa": false
+        },
+        {
+          "code": "FIN221",
+          "title": "QM350 Operations Research",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "QM250",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ECON330",
+          "title": "Microeconomics Analysis ECON",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "141 &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSEXXX",
+          "title": "General Studies Elective",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "None",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "ENGL341",
+          "title": "Report Writing for Business",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "ENGL146",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ECON440",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ECON141 ECON 332 Macroeconomics Analysis ECON 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ECON 332",
+          "title": "Macroeconomics Analysis ECON",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "141 &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON 441",
+          "title": "Econometrics QM350",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "&",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 439",
+          "title": "International Business",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MGT233",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON351",
+          "title": "Environmental Economics &",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ECON141",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF270",
+          "title": "Islamic Banking and Finance",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ACC113",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MKT 463",
+          "title": "International Marketing",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MKT 255",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENTR475",
+          "title": "Franchising",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MKT 255",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN 426",
+          "title": "International Financial Management",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FIN 221",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT233",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "& 96",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON 495",
+          "title": "Applied Research in International 107 Business and Economics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "credits &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT437",
+          "title": "Business Ethics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MGT233",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ECON 496",
+          "title": "Industrial Training",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MGT340",
+          "title": "Supply chain Management",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON449",
+          "title": "Economic Forecasting",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON450",
+          "title": "",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "ECON332",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT445",
+          "title": "",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "MGT233",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON478",
+          "title": "Global Business Risk",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON435",
+          "title": "",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "ECON441",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON360",
+          "title": "Digital Economy",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON451",
+          "title": "Intermediate Econometrics",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "ECON441",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MKT472",
+          "title": "Social Media Marketing",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON340",
+          "title": "Managerial Economics",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON460",
+          "title": "",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "ECON141",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON470",
+          "title": "Energy and the Global Economy",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "ECON332",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON497",
+          "title": "Extended Industrial Training",
+          "credits": 6,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FREN 141",
+          "title": "French I",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ FREN 142 French II 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "FREN 142",
+          "title": "French II",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "FREN 141 CHL 101 Introduction to Chinese Language 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHL 101",
+          "title": "Introduction to Chinese Language",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ CHL 102 Basic Chinese Language 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHL 102",
+          "title": "Basic Chinese Language",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "CHL 101 Teaching and Learning EDTC 100 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EDTC 100",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Technology Psychology of Learning and EDPS 144 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EDPS 144",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Memory Fundamentals of Music and Its ART 133 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ART 133",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Appreciation ART 141 Drawing and Painting 2 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ART 141",
+          "title": "Drawing and Painting",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Traditional Music of Bahrain and ART 221 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ART 221",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Its Application EDAR 126 Playing on Piano and Org 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EDAR 126",
+          "title": "Playing on Piano and Org",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ JAPN 101 Japanese Level I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "JAPN 101",
+          "title": "Japanese Level I",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ JAPN 102 Japanese Level II 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "JAPN 102",
+          "title": "Japanese Level II",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "JAPN 101 GERM 101 Introduction to German 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "GERM 101",
+          "title": "Introduction to German",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ KL 101 Korean Language I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "GERM 101",
+          "title": "Introduction to German 3 0 3 GSE ------ KL 101 Korean Language I",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ KL 102 Korean Language II 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "GERM 101",
+          "title": "Introduction to German 3 0 3 GSE ------ KL 101 Korean Language I 3 0 3 GSE ------ KL 102 Korean Language II",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "KL 101 TL 101 Turkish Language 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "GERM 101",
+          "title": "Introduction to German 3 0 3 GSE ------ KL 101 Korean Language I 3 0 3 GSE ------ KL 102 Korean Language II 3 0 3 GSE KL 101 TL 101 Turkish Language",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ ENGL 130 Introduction to Literature 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 130",
+          "title": "Introduction to Literature",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ PSYC 103 Introduction to Psychology 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PSYC 103",
+          "title": "Introduction to Psychology",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ PSYC 120 Psychology of Marriage 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PSYC 120",
+          "title": "Psychology of Marriage",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ PSYC 211 Educational Psychology 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PSYC 211",
+          "title": "Educational Psychology",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ PSYC 103 or PSYC 281 Thinking Skills 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PSYC 281",
+          "title": "Thinking Skills",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "EDPS 241 SOCIO 161 Introduction to Sociology 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SOCIO 161",
+          "title": "Introduction to Sociology",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ SOCIO 181 Introduction to Anthropology 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SOCIO 181",
+          "title": "Introduction to Anthropology",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ 8 Citizenship, Identity and SOCIO 191 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SOCIO 191",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Globalization SOCIO 224 Sociology of Health 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SOCIO 224",
+          "title": "Sociology of Health",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ SOCIO 226 Sociology of Arabian Gulf 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SOCIO 226",
+          "title": "Sociology of Arabian Gulf",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Contemporary History of The HISTO 212 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HISTO 212",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Arab World HISTO 281 Landmarks of Islamic Civilisation 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HISTO 281",
+          "title": "Landmarks of Islamic Civilisation",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ ARAB 141 Modern Arabic Lit. 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 141",
+          "title": "Modern Arabic Lit.",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Arabic Poetry In The Renaissance ARAB 242 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 242",
+          "title": "",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Period ISLM 114 Quranic Sciences 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 114",
+          "title": "Quranic Sciences",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ ISLM 136 Biography of The Prophet 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 136",
+          "title": "Biography of The Prophet",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ ISLM 141 Introduction to Shari'A 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 141",
+          "title": "Introduction to Shari'A",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ ISLM 252 Islamic Doctrine 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 252",
+          "title": "Islamic Doctrine",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ LAW 101 Introduction to Legal Studies 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LAW 101",
+          "title": "Introduction to Legal Studies",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ LAW 102 History of Law 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LAW 102",
+          "title": "History of Law",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ LAW 106 Constitutional Law I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LAW 106",
+          "title": "Constitutional Law I",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ PHYCS 181 Elementary Astronomy 2 3 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 181",
+          "title": "Elementary Astronomy",
+          "credits": 3,
+          "type": "GSE",
+          "prerequisites": "------ Department GSE XXX Other electives X X 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MGT 434",
+          "title": "Strategic Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC 131",
+          "title": "Financial Accounting II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENTR301",
+          "title": "Introduction to Entrepreneurship",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENTR451",
+          "title": "Leadership and Entrepreneurial",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENTR403",
+          "title": "Entrepreneurial Strategies",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENTR404",
+          "title": "Contemporary Issues in",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENTR450",
+          "title": "Digital Entrepreneurship",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC211",
+          "title": "Intermediate Accounting I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC221",
+          "title": "Cost Accounting",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC335",
+          "title": "Auditing and Assurance Services",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC330",
+          "title": "Managerial Accounting",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC444",
+          "title": "Accounting Information",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN320",
+          "title": "Financial Management II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "BANK323",
+          "title": "Commercial Banking",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "BANK248",
+          "title": "FIN441",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN441",
+          "title": "Financial Econometrics",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN435",
+          "title": "3",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN330",
+          "title": "Sustainable Finance",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF 271",
+          "title": "Islamic Law of Contracts",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF 470",
+          "title": "Islamic Accounting Standards",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF273",
+          "title": "Islamic Commercial Jurisprudence I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF370",
+          "title": "Islamic Capital Markets",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF472",
+          "title": "Islamic Insurance and Risk",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EDPS 241",
+          "title": "SOCIO 161",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSE XXX",
+          "title": "Other electives",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATH 103",
+          "title": "Course Title:",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATH 104",
+          "title": "Course Title:",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS202",
+          "title": "Course Title:",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT223",
+          "title": "Course Title:",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

@@ -1,0 +1,563 @@
+{
+  "degreeName": "Bachelor of Science in Civil Engineering (Batches 2022-2024)",
+  "totalCredits": 132,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "CHEMY101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CENG103",
+          "title": "2",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "CENG131",
+          "title": "Surveying",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG160",
+          "title": "Engineering Graphics & CAD",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG103",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "CENG201",
+          "title": "Civil Engineering Materials",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEMY101",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG211",
+          "title": "Statics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "&",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST122",
+          "title": "Modern History of Bahrain & Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT276",
+          "title": "Statistical Data Analysis for Engineering",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL242",
+          "title": "Report writing and Presentation",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL101",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "CENG202",
+          "title": "Numerical Analysis",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS205",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG212",
+          "title": "Mechanics of Materials",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG211",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG231",
+          "title": "Fluid Mechanics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ISLM101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "--",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CENG209",
+          "title": "Introduction to Engineering Profession",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ENGL242",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "CENG302",
+          "title": "Construction Engineering",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG201",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG307",
+          "title": "Structural Analysis",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG321",
+          "title": "Hydraulics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG231",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG331",
+          "title": "Highway Engineering",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG345",
+          "title": "Soil Mechanics and Behavior",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "CENG212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HRLC107",
+          "title": "Human Rights Principles",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "CENG305",
+          "title": "Introduction to Quantity Surveying",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG302",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG315",
+          "title": "Reinforced Concrete Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG322",
+          "title": "Water Supply & Sewerage",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG321",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG317",
+          "title": "Structural Steel Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG307",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG328",
+          "title": "Civil Engineering Projects and Seminar",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG302",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MENG303",
+          "title": "Engineering Economics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CENG395",
+          "title": "Industrial Training",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "CENG404",
+          "title": "Software Applications in Civil Eng.",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG315",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG426",
+          "title": "Wastewater Treatment",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG322",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG431",
+          "title": "Traffic Engineering",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG495",
+          "title": "Senior Project I",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG4XX",
+          "title": "Elective I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "CENG406",
+          "title": "Construction Management",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG442",
+          "title": "Foundations",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG345",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "CENG4xx Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per list",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG496",
+          "title": "Senior Project II",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "CENG495",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "CENG460",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG315",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG468",
+          "title": "Design of Reinforced Concrete Structures",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG315",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG470",
+          "title": "Design of Steel Structures",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG317",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG4XX",
+          "title": "Elective I",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per list",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG495",
+          "title": "Senior Project I",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "CENG472",
+          "title": "Topics in Building Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG460",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG476",
+          "title": "Design of Reinforced Concrete Foundations",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG468",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "CENG4xx Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per list",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG496",
+          "title": "Senior Project II",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "CENG495",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "CENG466",
+          "title": "Construction Contracts and Law",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG302",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG492",
+          "title": "Construction Technology",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG302",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG493",
+          "title": "Project and Site Management",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG302",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG4XX",
+          "title": "Elective 1 (structures)",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per list",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG495",
+          "title": "Senior Design Project I",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "CENG494",
+          "title": "Management",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG493",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG482",
+          "title": "Building Information Modeling",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CENG302",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "CENG4xx Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per list",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CENG496",
+          "title": "Senior Design Project II",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "CENG495",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

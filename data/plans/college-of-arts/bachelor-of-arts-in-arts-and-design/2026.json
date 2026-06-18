@@ -1,0 +1,815 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 265,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 115",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "FAD 111",
+          "title": "ي",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ENGL 116",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 115",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 210",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ARAB 110",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 105",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "FAD 122",
+          "title": "I الرسم",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 123",
+          "title": "االتصال المرئ",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ي ------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 204",
+          "title": "CR",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "FAD 211",
+          "title": "LEC PRAC CRD",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "I تاري خ الفن والتصميم FAD 211 ------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 212",
+          "title": "History of Art and Design I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------ الفنالتصوير الضوئ ي ي FAD 212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 213",
+          "title": "Artistic Photography",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------ مناهج البحث الفن ي FAD 213",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 214",
+          "title": "Artistic Research Methodologies",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 122 Iاستديو FAD 214",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 215",
+          "title": "Studio I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 122 ورشة نظرية التلوين FAD 215",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 216",
+          "title": "Color Theory Workshop II الرسم",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 216 FAD 122",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "FAD 221",
+          "title": "LEC PRAC CRD",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "بالحاسوبالتصميم الجرافيك FAD 221 ي FAD 212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 222",
+          "title": "Computer Graphics التلوينالممارسات المهنية ف ي",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 122 FAD 222",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 223",
+          "title": "Professional Practices in Painting",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "والتسويق الرقماإلعالم االجتماع FAD 223 ي ي ------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 224",
+          "title": "Social Media and Digital Marketing التوضيحفن الرسم الرقم",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ي ي FAD 224 FAD 122",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 225",
+          "title": "Art of Digital Illustration",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "تصميم العالمة التجارية والهوية البرصية FAD 225 FAD 111",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 226",
+          "title": "Brand & Identity Design مهارات إنتاج الفيديو",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 226 FAD 212",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "FAD 310",
+          "title": "LEC PRAC CRD كة ثنائية األبعادالرسوم المتحر",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 310 FAD 224",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 311",
+          "title": "Minor",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 312",
+          "title": "FAD 223",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 313",
+          "title": "FAD 225",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 314",
+          "title": "FAD 226",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 315",
+          "title": "FAD 221",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "GRD 320",
+          "title": "تصميم المطبوعات واإلخراج الفن",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 321",
+          "title": "1",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 322",
+          "title": "1",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 323",
+          "title": "تصور الرسومات البيانية والتوضيحية",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 324",
+          "title": "مجال التصميم الجرافيكالعمل ف",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "ENGL 222",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "GRD 411",
+          "title": "2",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 412",
+          "title": "GRD 315",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 497",
+          "title": "GRD 321",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "GRD 498",
+          "title": "1",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 499",
+          "title": "Innovation and Entrepreneurship in",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 115",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ENGL 116",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 115",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 210",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ARAB 110",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 105",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "FAD 122",
+          "title": "I الرسم",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FAD 123",
+          "title": "االتصال المرئ",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ي ------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "unknown",
+          "title": "LEC PRAC CRD",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "I تاري خ الفن والتصميم FAD 211 ------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "History of Art and Design I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------ الفنالتصوير الضوئ ي ي FAD 212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Artistic Photography",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------ مناهج البحث الفن ي FAD 213",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Artistic Research Methodologies",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 122 Iاستديو FAD 214",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Studio I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 122 ورشة نظرية التلوين FAD 215",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Color Theory Workshop II الرسم",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 216 FAD 122",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "unknown",
+          "title": "LEC PRAC CRD",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "بالحاسوبالتصميم الجرافيك FAD 221 ي FAD 212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Computer Graphics التلوينالممارسات المهنية ف ي",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 122 FAD 222",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Professional Practices in Painting",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "والتسويق الرقماإلعالم االجتماع FAD 223 ي ي ------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Social Media and Digital Marketing التوضيحفن الرسم الرقم",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ي ي FAD 224 FAD 122",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Art of Digital Illustration",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "تصميم العالمة التجارية والهوية البرصية FAD 225 FAD 111",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Brand & Identity Design مهارات إنتاج الفيديو",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 226 FAD 212",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "ARTS 311",
+          "title": "LEC PRAC CRD كة ثنائية األبعادالرسوم المتحر",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "FAD 310 FAD 224",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 312",
+          "title": "-",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 313",
+          "title": "FAD 214",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 314",
+          "title": "FAD 211",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 315",
+          "title": "FAD 122",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "ARTS 320",
+          "title": "جماليات الفن (األستطيقا)",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 321",
+          "title": "Art Criticism",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 322",
+          "title": "FAD 122",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 323",
+          "title": "بية الفنيةعلوم الي",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 324",
+          "title": "Arts Curation and Cultural",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "ENGL 222",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ART 411",
+          "title": "ي",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 412",
+          "title": "ARTS 313",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 497",
+          "title": "ARTS 313",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "ARTS 498",
+          "title": "1",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 411",
+          "title": "Art and Design Seminar",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 333",
+          "title": "3D for Interior Design and Architecture",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 334",
+          "title": "E-Learning Content Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 335",
+          "title": "Comics Drawing",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 336",
+          "title": "Content Management Systems",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 337",
+          "title": "Introduction to Game Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 433",
+          "title": "Virtual Reality Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 434",
+          "title": "Virtual Gallery Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GRD 436",
+          "title": "Creative Technologies",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 333",
+          "title": "Calligraphy",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 335",
+          "title": "Printed Textile Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 337",
+          "title": "Traditional Arts in the Arabian Gulf",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARTS 338",
+          "title": "Black-Ink Portrait",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

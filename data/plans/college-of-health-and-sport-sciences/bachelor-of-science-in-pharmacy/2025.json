@@ -1,0 +1,383 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 146,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "PHAM 140",
+          "title": "Pharmaceutics I 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LFS 118",
+          "title": "Anatomy and Physiology I 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENG 115",
+          "title": "English for Healthcare Professionals I 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SBS 316",
+          "title": "3",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "PHAM 210",
+          "title": "Pharmaceutics II 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 140",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 212",
+          "title": "Pharmaceutical Organic Chemistry 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENG 125",
+          "title": "English for Healthcare Professionals II 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "ENG 115",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LFS 128",
+          "title": "Anatomy and Physiology II 4",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "LFS 118",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights 2",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "-------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 1",
+      "courses": [
+        {
+          "code": "PHAM 220",
+          "title": "Pharmacology I 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "LFS 128",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LFS 227",
+          "title": "Pathophysiology 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHAM 226",
+          "title": "Inorganic Pharmaceutical Chemistry 2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LFS 217",
+          "title": "Microbiology 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MLS 205",
+          "title": "Biochemistry 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "PHAM 212",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHAM 312",
+          "title": "Pharmacy Practice 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM210",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 2",
+      "courses": [
+        {
+          "code": "PHAM 310",
+          "title": "Pharmacology II 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 220",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 228",
+          "title": "Medicinal Chemistry 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 314",
+          "title": "Law, Ethics and Professionalism 2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 220",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 318",
+          "title": "Pharmacokinetics 2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 210 &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 220",
+          "title": "PH 222 Biostatistics 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 1",
+      "courses": [
+        {
+          "code": "PHAM 320",
+          "title": "Pharmacology III 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 322",
+          "title": "Pharmacotherapy I 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 324",
+          "title": "Pharmacy Practicum I 4",
+          "credits": 12,
+          "type": "MR",
+          "prerequisites": "PHAM 312 & PHAM 314 PHAM 326 Natural Health Products 3 3 0 0",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHAM 326",
+          "title": "Natural Health Products 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "LFS 227",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 328",
+          "title": "Pharmaceutical Analysis 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 2",
+      "courses": [
+        {
+          "code": "PHAM 410",
+          "title": "Pharmaceutical Technology 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 328",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 412",
+          "title": "Pharmacotherapy II 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 322 PHAM 324",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 414",
+          "title": "Pharmacy Practicum II 4",
+          "credits": 12,
+          "type": "MR",
+          "prerequisites": "LFS 227 and PHAM 416 Non-Prescription Drugs 4 4 0 0",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHAM 416",
+          "title": "Non-Prescription Drugs 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 420",
+          "title": "Toxicology 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 320",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 1",
+      "courses": [
+        {
+          "code": "PHAM 422",
+          "title": "Pharmacotherapy III 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 424",
+          "title": "Pharmacy Practicum III 4",
+          "credits": 12,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 414",
+          "title": "PHAM 44X Major Elective (I) 3",
+          "credits": 0,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 411",
+          "title": "Evidence-Based Pharmacy Research 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HCA 301",
+          "title": "3",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 2",
+      "courses": [
+        {
+          "code": "PHAM 428",
+          "title": "Senior Research Project 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 432",
+          "title": "Pharmacy Field Practice 8",
+          "credits": 24,
+          "type": "MR",
+          "prerequisites": "PHAM 424",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "PHAM 44X Major Elective (II) 3",
+          "credits": 0,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 440",
+          "title": "Pharmacoeconomics 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHAM 322",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

@@ -1,0 +1,599 @@
+{
+  "degreeName": "B.Sc. in Electronic Engineering 2014",
+  "totalCredits": 137,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "MATHS 101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CSC 103",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "MATHS 102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 102",
+          "title": "Composition and Reading II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 273",
+          "title": "Probability and Statistics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "-------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 100",
+          "title": "Circuit Theory I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 230",
+          "title": "Thermal Sciences",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "-------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 204",
+          "title": "Computer Applications in Electrical Eng.",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 261",
+          "title": "Electronic Devices and Circuits",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 200",
+          "title": "Circuit Theory II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 242",
+          "title": "Technical Report Writing and Presentation",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "ENGL 102",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "EENG 290",
+          "title": "Junior Project",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "EENG 242",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 271",
+          "title": "Signals and Systems",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 262",
+          "title": "Analog Electronics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 261",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 205",
+          "title": "Numerical Analysis",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 205",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 251",
+          "title": "Digital Systems I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "EENG 302",
+          "title": "Electronic Instrumentation",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 352",
+          "title": "Digital Systems II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 251",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 343",
+          "title": "Electrical Machines",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 200",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 371",
+          "title": "Electromagnetics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 372",
+          "title": "Communication Systems I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 271",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 342",
+          "title": "",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "EENG 364",
+          "title": "Digital Integrated Circuits",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 261",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 373",
+          "title": "Communication Systems II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 353",
+          "title": "Microprocessors",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 381",
+          "title": "Control Systems",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MENG 300",
+          "title": "Engineering Economics",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 390",
+          "title": "Industrial Training",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "EENG 462",
+          "title": "Advanced Electronics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 262",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 417",
+          "title": "Power Systems",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 343",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 490",
+          "title": "& EENG 290 As per ME EENG 4xx Elective I",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 400",
+          "title": "Engineering Ethics",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "EENG 479",
+          "title": "Digital Signal Processing",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 271",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 433",
+          "title": "Power Electronics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 262",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 491",
+          "title": "As per ME EENG 4xx Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "list As per ME EENG 4xx Elective III",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 451",
+          "title": "Computer Organization",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 353",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 453",
+          "title": "Multimedia Systems",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 454",
+          "title": "Advanced Logic Design",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 353",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 456",
+          "title": "Computer Interfacing",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 353",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 457",
+          "title": "Computer Networks",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 458",
+          "title": "Embedded System Design",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 353",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 464",
+          "title": "VLSI Circuits",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 364",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 486",
+          "title": "Intelligent Control Systems",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 381",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 451",
+          "title": "Computer Organization",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 353",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 461",
+          "title": "RF Communication Circuits",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 463",
+          "title": "Integrated Circuits and Applications",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 262",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 464",
+          "title": "VLSI Circuits",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 364",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 466",
+          "title": "Communication Circuits",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 485",
+          "title": "Nonlinear Control Systems",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 484",
+          "title": "Biomedical Instrumentation",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 364",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 486",
+          "title": "Intelligent Control Systems",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 381",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 453",
+          "title": "Multimedia Systems",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 470",
+          "title": "Satellite Communications",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 472",
+          "title": "Optical Fibers Communications",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 371",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 473",
+          "title": "Mobile Communications",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 474",
+          "title": "Communication Networks",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 373",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 476",
+          "title": "Microwave Engineering",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 371",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 477",
+          "title": "Antenna and Propagation",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "EENG 371",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

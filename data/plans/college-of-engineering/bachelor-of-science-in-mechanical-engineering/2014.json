@@ -1,0 +1,439 @@
+{
+  "degreeName": "Bachelor of Science in Mechanical Engineering 2014",
+  "totalCredits": 139,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CSC 103",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 111",
+          "title": "Fundamentals of Physics",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ENGL 102",
+          "title": "Composition and Reading II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 110",
+          "title": "Workshop Processes",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------ YES MENG 160 Engineering Graphics 2 6 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 160",
+          "title": "Engineering Graphics",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "------ YES MENG 163 Statics 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 163",
+          "title": "Statics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS 111 YES PHYCS 209 Bulk Properties of Matter 3 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 209",
+          "title": "Bulk Properties of Matter",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "PHYCS 111",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 242",
+          "title": "Technical Report Writing and Presentation",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "ENGL 102",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 201",
+          "title": "Materials Science",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEMY 101",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MENG 231",
+          "title": "Engineering Thermodynamics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS 209",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MENG 263",
+          "title": "Dynamics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 163",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "MATHS 211",
+          "title": "Linear Algebra",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 210",
+          "title": "Manufacturing Processes I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 110 YES MENG 235 Applied Thermodynamics 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 235",
+          "title": "Applied Thermodynamics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 231 YES MENG 274 Numerical Analysis 2 3 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 274",
+          "title": "Numerical Analysis",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 205 YES MENG 160 & MENG 290 Junior Project 0 3 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 290",
+          "title": "Junior Project",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "YES MENG 242 STAT 273 Probability and Statistics 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 273",
+          "title": "Probability and Statistics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "EENG 301",
+          "title": "Elements of Electrical Engineering",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 310",
+          "title": "Manufacturing Processes II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 210 YES MENG 334 Fluid Mechanics 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 334",
+          "title": "Fluid Mechanics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 205 YES MENG 371 Mechanics of Materials 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 371",
+          "title": "Mechanics of Materials",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 201 YES MENG 373 Kinematics and Dynamics of Machinery 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 373",
+          "title": "Kinematics and Dynamics of Machinery",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 263 YES Computer Applications in Mechanical MENG 380 0 6 2",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 380",
+          "title": "",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "MENG 274 YES Engineering",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 300",
+          "title": "Engineering Economics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "YES of 60 credits MENG 375 Design of Mechanical Elements 2 3 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 375",
+          "title": "Design of Mechanical Elements",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 371 YES MENG 381 Measurements and Instrumentation 2 3 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 381",
+          "title": "Measurements and Instrumentation",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "EENG 301 YES MENG 384 Vibration 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 384",
+          "title": "Vibration",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 373 YES MENG 335 Heat Transfer 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 335",
+          "title": "Heat Transfer",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 334 YES Training Requirement Course Hours Course Pre Major Course Code Course Title Type requisite GPA LEC PRAC CRD MR- Completion MENG 390 Industrial Training 0 6 2 YES Training of 85 credits 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 390",
+          "title": "Industrial Training",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 400",
+          "title": "Engineering Ethics",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "YES of 85 credits MENG 420 Engineering Management 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 420",
+          "title": "Engineering Management",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 300 YES MENG 475 Design of Mechanical Systems 2 3 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 475",
+          "title": "Design of Mechanical Systems",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 375 YES MENG 485 Systems and Control 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 485",
+          "title": "Systems and Control",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 274 YES Completion MENG 490 Senior Design Project 0 9 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 490",
+          "title": "Senior Design Project",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "of 85 credits YES & MENG 290",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 430",
+          "title": "Power Plant and Desalination",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 335 YES MENG 440 Refrigeration and Air Conditioning 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 440",
+          "title": "Refrigeration and Air Conditioning",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MENG 335 YES Completion MENG 491 Seminar 0 2 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 491",
+          "title": "Seminar",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "YES of 85 credits MENG 4xx Major Elective I 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 491",
+          "title": "Seminar 0 2 1 MR YES of 85 credits MENG 4xx Major Elective I",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per ME list YES MENG 4xx Major Elective II 3 1 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 491",
+          "title": "Seminar 0 2 1 MR YES of 85 credits MENG 4xx Major Elective I 3 1 3 ME As per ME list YES MENG 4xx Major Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per ME list YES 4",
+          "isMajorGpa": false
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

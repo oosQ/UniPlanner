@@ -1,0 +1,521 @@
+{
+  "degreeName": "Bachelor of Science in Chemical Engineering 2022",
+  "totalCredits": 134,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "------ NO ENGL 101 Communication Skills I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------ NO ISLM 101 Islamic Culture 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------ NO 0 MATHS 101 Calculus I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------ NO PHYCS 111 Fundamentals of Physics 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 111",
+          "title": "Fundamentals of Physics",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------ NO Total 15 4 17",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------ NO CHEMY 102 General Chemistry II 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills 3 0 3 UR ------ NO CHEMY 102 General Chemistry II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "CHEMY 101 NO CHEMY 101 CHEN 101 Chemical Engineering Principles I 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 101",
+          "title": "Chemical Engineering Principles I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES MATHS 101 HIST 122 Modern History of Bahrain and Citizenship 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------ NO MATHS 102 Calculus II 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101 NO Total 14 4 16",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "BIOLS 261",
+          "title": "Introductory Biology for Engineering",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------ NO Organic Chemistry for Chemical CHEMY 220 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEMY 220",
+          "title": "",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "CHEMY 102 NO Engineering CHEN 101 CHEN 202 Chemical Engineering Principles II 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 202",
+          "title": "Chemical Engineering Principles II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEMY 102 HRLC 107 Human Rights 2 0 2",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------ NO MATHS 203 Calculus III 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102 NO MATHS 205 Differential Equations 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102 NO Total 14 7 17 1",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "CHEN 203",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 202 YES Chemical Engineering CHEN 211 Chemical Engineering Thermodynamics I 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 211",
+          "title": "Chemical Engineering Thermodynamics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 202 YES CHEN 202 CHEN 213 Fluid Mechanics 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 213",
+          "title": "Fluid Mechanics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES MATHS 205 MATHS 101 EENG 263 Circuits and Electronics 3 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 263",
+          "title": "Circuits and Electronics",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "NO PHYCS 111 ENGL 242 Report Writing and Presentation 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 242",
+          "title": "Report Writing and Presentation",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 101 NO Total 10 12 15",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "CHEN 304",
+          "title": "Linear Algebra and Numerical Methods",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES MATHS 205 CHEN 312 Chemical Engineering Thermodynamics II 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 312",
+          "title": "Chemical Engineering Thermodynamics II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 211 YES CHEN 314 Heat Transfer 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 314",
+          "title": "Heat Transfer",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 213 YES CHEN 315 Mass Transfer 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 315",
+          "title": "Mass Transfer",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 213 YES CHEN 316 Applied Physical Chemistry 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 316",
+          "title": "Applied Physical Chemistry",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 202 YES Completion of MENG 303 Engineering Economics 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 303",
+          "title": "Engineering Economics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "NO 70 credits Total 13 10 18",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "CHEN 305",
+          "title": "Properties and Strength of Materials",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES PHYCS 111 BIOLS 261 CHEN 317 Chemical Reactor Analysis and Design 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 317",
+          "title": "Chemical Reactor Analysis and Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 314 YES CHEN 316 2 CHEN 312 CHEN 321 Chemical Engineering Laboratory I 0 6 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 321",
+          "title": "Chemical Engineering Laboratory I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 314 YES ENGL 242 CHEN 312 CHEN 323 Equilibrium Stage Separation Processes 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 323",
+          "title": "Equilibrium Stage Separation Processes",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 315 STAT 276 Statistical Data Analysis for Engineering 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 276",
+          "title": "Statistical Data Analysis for Engineering",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102 NO Total 9 12 15 Training Requirement Course Hours Course Pre Major Course Code Course Title Type requisite GPA LEC PRAC CRD Completion * CHEN 390 Industrial Training 0 3 1 MRT YES of 90 credits * 300 hours of supervised training. 3 Option 1: Process Systems Process Systems option includes a package of five major electives shown in italic: CHEN 431, CHEN 432, CHEN 433, CHEN 434, and CHEN 4xx.",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 390",
+          "title": "Industrial Training",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "CHEN 424",
+          "title": "Process Control",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 314 CHEN 425 Process Equipment Design 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 425",
+          "title": "Process Equipment Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 317 CHEN 426 Process Design and Economics 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 426",
+          "title": "Process Design and Economics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 431 Process Optimization 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 431",
+          "title": "Process Optimization",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "CHEN 304 YES CHEN 304 CHEN 432 Computer-Aided Modeling and Simulation 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 432",
+          "title": "Computer-Aided Modeling and Simulation",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "CHEN 317 YES CHEN 323 Completion CHEN 495 Senior Project I 0 3 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 495",
+          "title": "Senior Project I",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "YES of 90 credits Total 12 12 17",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "CHEN 422",
+          "title": "Chemical Engineering Laboratory II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 424 CHEN 425 CHEN 427 Capstone Plant Design 0 6 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 427",
+          "title": "Capstone Plant Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 426 CHEN 211 CHEN 433 Heat Integration 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 433",
+          "title": "Heat Integration",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES CHEN 314 CHEN 424 CHEN 434 Plantwide Process Control 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 434",
+          "title": "Plantwide Process Control",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES CHEN 431 CHEN 496 Senior Project II 0 9 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 496",
+          "title": "Senior Project II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 495 YES CHEN 4xx Elective 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 495",
+          "title": "YES CHEN 4xx Elective",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES Total 6 27 18 Total Credits Hours required in the B.Sc. Program = 134 Credits 4 OPTION 2: OIL AND GAS Oil and Gas option includes a package of five major electives shown in italic: CHEN 441, CHEN 442, CHEN 443, CHEN 444, and CHEN 4xx.",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "CHEN 424",
+          "title": "Process Control",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 314 CHEN 425 Process Equipment Design 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 425",
+          "title": "Process Equipment Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 317 CHEN 426 Process Design and Economics 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 426",
+          "title": "Process Design and Economics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 213 CHEN 441 Petroleum Engineering 3 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 441",
+          "title": "Petroleum Engineering",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "CHEMY 220 YES CHEN 315 CHEN 323 CHEN 442 Petroleum Refinery Engineering 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 442",
+          "title": "Petroleum Refinery Engineering",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "CHEN 317 YES CHEMY 220 Completion CHEN 495 Senior Project I 0 3 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 495",
+          "title": "Senior Project I",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "YES of 90 credits Total 13 12 17",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 217",
+          "title": "CHEN 424",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "CHEN 422",
+          "title": "Chemical Engineering Laboratory II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 323 CHEN 424 CHEN 425 CHEN 427 Capstone Plant Design 0 6 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 427",
+          "title": "Capstone Plant Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES CHEN 426 CHEN 323 CHEN 443 Natural Gas Processing 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 443",
+          "title": "Natural Gas Processing",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES CHEMY 220 CHEN 323 CHEN 444 Petrochemical Processing 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 444",
+          "title": "Petrochemical Processing",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "CHEN 317 YES CHEMY 220 CHEN 496 Senior Project II 0 9 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 496",
+          "title": "Senior Project II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "CHEN 495 YES CHEN 4xx Elective 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEN 495",
+          "title": "YES CHEN 4xx Elective",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES Total 6 27 18 Total Credits Hours required in the B.Sc. Program = 134 Credits 5",
+          "isMajorGpa": false
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

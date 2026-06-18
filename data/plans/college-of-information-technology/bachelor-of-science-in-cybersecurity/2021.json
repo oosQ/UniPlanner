@@ -1,0 +1,412 @@
+{
+  "degreeName": "Bachelor of Science in Cybersecurity 2021",
+  "totalCredits": 131,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "ARABIC LANGUAGE SKILLS",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 154",
+          "title": "LANGUAGE DEVELOPMENT I",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 113",
+          "title": "COMPUTER PROGRAMMING I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 103",
+          "title": "FUNDAMENTALS OF INFORMATION SYSTEMS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 101",
+          "title": "CALCULUS I",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ACC 112",
+          "title": "FINANCIAL ACCOUNTING I",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 155",
+          "title": "LANGUAGE DEVELOPMENT II",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "MODERN HISTORY OF BAHRAIN AND CITIZENSHIP",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 114",
+          "title": "COMPUTER PROGRAMMING II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 110",
+          "title": "INTRODUCTION TO COMPUTER AND NETWORK",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "ENGL 219",
+          "title": "TECHNICAL REPORT WRITING",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "HUMAN RIGHTS",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 214",
+          "title": "DATA STRUCTURES",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 201",
+          "title": "FUNDAMENTALS OF CYBERSECURITY",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 213",
+          "title": "DATABASE MANAGEMENT SYSTEMS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 231",
+          "title": "COMPUTER NETWORKS I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "ITCS 254",
+          "title": "DISCRETE STRUCTURES I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 252",
+          "title": "CLOUD COMPUTING I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 240",
+          "title": "NETWORK OPERATING SYSTEMS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 241",
+          "title": "COMPUTER NETWORKS II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 352",
+          "title": "NETWORK PROGRAMMING",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "ITCS 333",
+          "title": "INTERNET SOFTWARE DEVELOPMENT",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCS 342",
+          "title": "DESIGN OF ALGORITHMS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 266",
+          "title": "IT PROJECT MANAGEMENT I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 341",
+          "title": "NETWORK SECURITY I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "STAT 273",
+          "title": "PROBABILITY AND STATISTICS",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "CHL 101",
+          "title": "INTRODUCTION TO CHINESE LANGUAGE",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCY 351",
+          "title": "CRYPTOGRAPHY",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 354",
+          "title": "SECURE SOFTWARE ENGINEERING",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 322",
+          "title": "ENTREPRENEURSHIP AND DIGITAL INNOVATION",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITIS 362",
+          "title": "GOVERNANCE AND MANAGEMENT OF ENTERPRISE IT",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 230",
+          "title": "ORGANIZATION AND MANAGEMENT",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "HRLC 107",
+          "title": "HUMAN RIGHTS",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "ISLAMIC CULTURE",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "ITCY 401",
+          "title": "INFORMATION SECURITY",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 470",
+          "title": "IT AUDITING AND BUSINESS CONTINUITY",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 481",
+          "title": "ETHICAL HACKING",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 490",
+          "title": "SELECTED TOPICS IN CYBERSECURITY I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 499",
+          "title": "SENIOR PROJECT",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 5 - Semester 9",
+      "courses": [
+        {
+          "code": "ITCY 410",
+          "title": "DIGITAL FORENSICS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 432",
+          "title": "INTERNET OF THINGS (IOT) SECURITY",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 460",
+          "title": "SECURITY RISK ASSESSMENT AND COUNTERMEASURES",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 480",
+          "title": "CYBERETHICS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 493",
+          "title": "BLOCKCHAIN TECHNOLOGY AND APPLICATIONS",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCY 494",
+          "title": "CLOUD SECURITY",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

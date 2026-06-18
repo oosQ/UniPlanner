@@ -1,0 +1,465 @@
+{
+  "degreeName": "Bachelor of Interior Architecture 2022",
+  "totalCredits": 168,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "HIST 122",
+          "title": "Modern Bahrani History",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None ARAB 110 Arabic Language Skills 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None MATHS 106 Mathematics For Built Environment 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 106",
+          "title": "Mathematics For Built Environment",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "None INTA 110 Design Fundamentals 1 0 6 3 Major None INTA 111 Technical Graphics 1 0 6 3 Major None INTA 112 Freehand Drawings 0 2 2 Major None 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "INTA 110",
+          "title": "Design Fundamentals 1",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 111",
+          "title": "Technical Graphics 1",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 112",
+          "title": "Freehand Drawings",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "None HRLC 107 Human Rights 2 0 2",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "None INTA 120 Design Fundamentals 2 0 6 3 Major INTA 110 INTA 121 Technical Graphics 2 0 6 3 Major INTA 111 INTA 111 & INTA 122 Design Visual Communication 1 4 3 Major INTA 112 INTA 123 Creative Thinking 1 2 2 Major None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "INTA 120",
+          "title": "Design Fundamentals 2",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 121",
+          "title": "Technical Graphics 2",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 122",
+          "title": "Design Visual Communication",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 123",
+          "title": "Creative Thinking",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "PHYCS 107",
+          "title": "Physics for Building Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "None INTA 120 & INTA 210 Interior Architecture Studio I 0 8 4 Major INTA 121 INTA 211 History and Theory of Interior Architecture I 3 0 3 Major INTA 120 INTA 212 Building Construction I 1 2 2 Major INTA 121 INTA 213 CAD Application 1 4 3 Major INTA 121 INTA 214 Material Application 1 2 2 Major INTA 120 INTA 215 Human Behavior Factors in Design 1 2 2 Major INTA 120",
+          "isMajorGpa": false
+        },
+        {
+          "code": "INTA 210",
+          "title": "Interior Architecture Studio I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 211",
+          "title": "History and Theory of Interior Architecture I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 212",
+          "title": "Building Construction I",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 213",
+          "title": "CAD Application",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 214",
+          "title": "Material Application",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 215",
+          "title": "Human Behavior Factors in Design",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "INTA 220",
+          "title": "Interior Architecture Studio",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 221",
+          "title": "History and Theory of Interior Architecture II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 222",
+          "title": "Building Construction II",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 223",
+          "title": "Digital Design Visualisation",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 224",
+          "title": "Environmental Control Systems 1",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "INTA 310",
+          "title": "Interior Architecture Studio III",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 311",
+          "title": "History of Islamic Interiors",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 312",
+          "title": "Advance Knowledge on Structure",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 313",
+          "title": "Advanced Modelling and Visualisation",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 314",
+          "title": "Environmental Control Systems 2",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 315",
+          "title": "Production Drawing I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "INTA 320",
+          "title": "Interior Architecture Studio IV",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 321",
+          "title": "Furniture Design and Production",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 322",
+          "title": "Lighting",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 323",
+          "title": "Landscape Design",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 324",
+          "title": "Production Drawing II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 399",
+          "title": "Interior Design Training",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "INTA 410",
+          "title": "Interior Architecture Studio V",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 411",
+          "title": "Colours Theory",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 412",
+          "title": "Material and Quantity Surveying",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None INTA 420 Interior Architecture Studio VI 0 10 5 Major INTA 410 Major INTA 410 INTA 421 Research Methods 3 0 3 Major INTA 410 INTA 422 Design, Culture and Environment 2 2 3 All Level 300 INTA 42X Elective courses All Level 300 INTA 42X Elective courses",
+          "isMajorGpa": false
+        },
+        {
+          "code": "INTA 420",
+          "title": "Interior Architecture Studio VI",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 421",
+          "title": "Research Methods",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 422",
+          "title": "Design, Culture and Environment",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 5 - Semester 9",
+      "courses": [
+        {
+          "code": "INTA 510",
+          "title": "Interior Architecture Studio VII",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 511",
+          "title": "Graduation: Programming Stage",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 512",
+          "title": "Design Project Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA513",
+          "title": "Vernacular Architecture",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 5 - Semester 10",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "None INTA 520 Graduation: Design Stage 0 14 7 Major INTA 510 INTA 521 Entrepreneurship 3 0 3 Major INTA 512 INTA 522 Architectural Interior Conservation 3 0 3 Major INTA 510",
+          "isMajorGpa": false
+        },
+        {
+          "code": "INTA 520",
+          "title": "Graduation: Design Stage",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 521",
+          "title": "Entrepreneurship",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "INTA 522",
+          "title": "Architectural Interior Conservation",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

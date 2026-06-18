@@ -1,0 +1,896 @@
+{
+  "degreeName": "B.Sc. in Business Management 2020",
+  "totalCredits": 128,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ACC 112",
+          "title": "Financial Accounting I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON 140",
+          "title": "Microeconomics",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 145",
+          "title": "English for Business I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 103",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 1,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ACC 113",
+          "title": "Financial Accounting II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ECON 141",
+          "title": "Macroeconomics",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 146",
+          "title": "English for Business II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 230",
+          "title": "Organization and Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 104",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "BIS 202",
+          "title": "3-2-3",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HIST 122",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN 220",
+          "title": "Financial Management I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 233",
+          "title": "Organizational Behavior",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MKT 261",
+          "title": "Marketing Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "FIN 221",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LAW 238",
+          "title": "Commercial Law",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MKT 264",
+          "title": "Intermediate Marketing",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 437",
+          "title": "Business Ethics",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSE XXX",
+          "title": "General Studies Elective",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "MGT 236",
+          "title": "Production Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 239",
+          "title": "Managing Small Businesses",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 429",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 341",
+          "title": "Report Writing for Business",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "MGT 340",
+          "title": "Supply Chain Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 430",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 436",
+          "title": "Management of Change",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBF 270",
+          "title": "Islamic Banking and Finance",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "MGT 434",
+          "title": "Strategic Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 438",
+          "title": "Tourism Management",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MGT 445",
+          "title": "3-0-3",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "MGT 498",
+          "title": "Internship and Graduation Project",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": [
+    {
+      "code": "FREN 141",
+      "title": "French I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ FREN 142 French II 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FREN 142",
+      "title": "French II",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "FREN 141 CHL 101 Introduction to Chinese Language 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHL 101",
+      "title": "Introduction to Chinese Language",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ CHL 102 Basic Chinese Language 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHL 102",
+      "title": "Basic Chinese Language",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "CHL 101 EDTC 100 Teaching and Learning Technology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDTC 100",
+      "title": "Teaching and Learning Technology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ EDPS 144 Psychology of Learning and Memory 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDPS 144",
+      "title": "Psychology of Learning and Memory",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ Fundamentals of Music and Its ART 133 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ART 133",
+      "title": "",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ Appreciation ART 141 Drawing and Painting 2 1 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ART 141",
+      "title": "Drawing and Painting",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ Traditional Music of Bahrain and Its ART 221 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ART 221",
+      "title": "",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ Application 7 Course Hours Course Pre Course Code Course Title Lec Prac CRD Type requisite EDAR 126 Playing on Piano and Org 1 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDAR 126",
+      "title": "Playing on Piano and Org 1",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ JAPN 101 Japanese Level I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "JAPN 101",
+      "title": "Japanese Level I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ JAPN 102 Japanese Level II 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "JAPN 102",
+      "title": "Japanese Level II",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "JAPN 101 GERM 101 Introduction to German 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GERM 101",
+      "title": "Introduction to German",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ KL 101 Korean Language I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GERM 101",
+      "title": "Introduction to German 3 0 3 GSE ------ KL 101 Korean Language I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ KL 102 Korean Language II 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GERM 101",
+      "title": "Introduction to German 3 0 3 GSE ------ KL 101 Korean Language I 3 0 3 GSE ------ KL 102 Korean Language II",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "KL 101 TL 101 Turkish Language 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GERM 101",
+      "title": "Introduction to German 3 0 3 GSE ------ KL 101 Korean Language I 3 0 3 GSE ------ KL 102 Korean Language II 3 0 3 GSE KL 101 TL 101 Turkish Language",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ENGL 130 Introduction to Literature 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 130",
+      "title": "Introduction to Literature",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 103 Introduction to Psychology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 103",
+      "title": "Introduction to Psychology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 120 Psychology of Marriage 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 120",
+      "title": "Psychology of Marriage",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 211 Educational Psychology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 211",
+      "title": "Educational Psychology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 103 or PSYC 281 Thinking Skills 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 281",
+      "title": "Thinking Skills",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "EDPS 241 SOCIO 161 Introduction to Sociology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 161",
+      "title": "Introduction to Sociology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 181 Introduction to Anthropology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 181",
+      "title": "Introduction to Anthropology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 191 Citizenship, Identity and Globalization 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 191",
+      "title": "Citizenship, Identity and Globalization",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 224 Sociology of Health 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 224",
+      "title": "Sociology of Health",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 226 Sociology of Arabian Gulf 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 226",
+      "title": "Sociology of Arabian Gulf",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ HISTO 212 Contemporary History of The Arab World 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "HISTO 212",
+      "title": "Contemporary History of The Arab World",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ HISTO 281 Landmarks of Islamic Civilisation 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "HISTO 281",
+      "title": "Landmarks of Islamic Civilisation",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ARAB 141 Modern Arabic Lit. 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ARAB 141",
+      "title": "Modern Arabic Lit.",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ARAB 242 Arabic Poetry In The Renaissance Period 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ARAB 242",
+      "title": "Arabic Poetry In The Renaissance Period",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 114 Quranic Sciences 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 114",
+      "title": "Quranic Sciences",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 136 Biography of The Prophet 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 136",
+      "title": "Biography of The Prophet",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 141 Introduction to Shari'A 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 141",
+      "title": "Introduction to Shari'A",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 252 Islamic Doctrine 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 252",
+      "title": "Islamic Doctrine",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ LAW 101 Introduction to Legal Studies 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 101",
+      "title": "Introduction to Legal Studies",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ LAW 102 History of Law 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 102",
+      "title": "History of Law",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ LAW 106 Constitutional Law I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 106",
+      "title": "Constitutional Law I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PHYCS 181 Elementary Astronomy 2 3 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 181",
+      "title": "Elementary Astronomy",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------------ Department GSE XXX Other electives X X 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDPS 241",
+      "title": "SOCIO 161",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GSE XXX",
+      "title": "Other electives",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 340",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 341",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 427",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 440",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 441",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FIN 222",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FIN 320",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BANK 323",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BANK 411",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FIN 424",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FIN 426",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ACC 112",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ACC 113",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 140",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ECON 141",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FIN 220",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FIN 221",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 145",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 146",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 341",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 103",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 104",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIS 202",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 238",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    }
+  ]
+}

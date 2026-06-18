@@ -1,0 +1,424 @@
+[
+  {
+    "college": "Bahrain Teachers College",
+    "slug": "bahrain-teachers-college",
+    "programs": [
+      {
+        "name": "Bachelor In Education (-)",
+        "slug": "bachelor-in-education",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "Bachelor Of Primary Education",
+        "slug": "bachelor-of-primary-education",
+        "years": [
+          "2024"
+        ]
+      }
+    ]
+  },
+  {
+    "college": "College of Engineering",
+    "slug": "college-of-engineering",
+    "programs": [
+      {
+        "name": "Bachelor Of Science In Mechanical Engineering",
+        "slug": "bachelor-of-science-in-mechanical-engineering",
+        "years": [
+          "2014",
+          "2022"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Civil Engineering",
+        "slug": "bachelor-of-science-in-civil-engineering",
+        "years": [
+          "2025"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Civil Engineering (batches -)",
+        "slug": "bachelor-of-science-in-civil-engineering-batches",
+        "years": [
+          "2022"
+        ]
+      },
+      {
+        "name": "B.Sc. In Civil Engineering",
+        "slug": "b-sc-in-civil-engineering",
+        "years": [
+          "2014"
+        ]
+      },
+      {
+        "name": "Bachelor In Interior Architecture",
+        "slug": "bachelor-in-interior-architecture",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "Bachelor Of Interior Architecture",
+        "slug": "bachelor-of-interior-architecture",
+        "years": [
+          "2022"
+        ]
+      },
+      {
+        "name": "Bachelor Of Landscape Architecture",
+        "slug": "bachelor-of-landscape-architecture",
+        "years": [
+          "2018"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Chemical Engineering",
+        "slug": "bachelor-of-science-in-chemical-engineering",
+        "years": [
+          "2014",
+          "2022",
+          "2025"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Instrumentation And Control Engineering",
+        "slug": "bachelor-of-science-in-instrumentation-and-control-engineering",
+        "years": [
+          "2022",
+          "2025"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Process Instrumentation And Control",
+        "slug": "bachelor-of-science-in-process-instrumentation-and-control",
+        "years": [
+          "2014"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Electrical Engineering",
+        "slug": "bachelor-of-science-in-electrical-engineering",
+        "years": [
+          "2025"
+        ]
+      },
+      {
+        "name": "B.Sc. In Electrical Engineering",
+        "slug": "b-sc-in-electrical-engineering",
+        "years": [
+          "2014"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Electronics And Communications",
+        "slug": "bachelor-of-science-in-electronics-and-communications",
+        "years": [
+          "2025"
+        ]
+      },
+      {
+        "name": "B.Sc. In Electronics And Communications Engineering",
+        "slug": "b-sc-in-electronics-and-communications-engineering",
+        "years": [
+          "2022"
+        ]
+      },
+      {
+        "name": "B.Sc. In Electronic Engineering",
+        "slug": "b-sc-in-electronic-engineering",
+        "years": [
+          "2014"
+        ]
+      }
+    ]
+  },
+  {
+    "college": "College of Information Technology",
+    "slug": "college-of-information-technology",
+    "programs": [
+      {
+        "name": "Bachelor of Science in Cybersecurity",
+        "slug": "bachelor-of-science-in-cybersecurity",
+        "years": [
+          "2021"
+        ]
+      },
+      {
+        "name": "Associate Diploma In Information Technology",
+        "slug": "associate-diploma-in-information-technology",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Computer Engineering",
+        "slug": "b-sc-in-computer-engineering",
+        "years": [
+          "2018",
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Network Engineering",
+        "slug": "b-sc-in-network-engineering",
+        "years": [
+          "2017",
+          "2021",
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Information Systems",
+        "slug": "b-sc-in-information-systems",
+        "years": [
+          "2017",
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Computer Science",
+        "slug": "b-sc-in-computer-science",
+        "years": [
+          "2016",
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Software Engineering",
+        "slug": "b-sc-in-software-engineering",
+        "years": [
+          "2017",
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Computer Science - Cloud Computing",
+        "slug": "b-sc-in-computer-science-cloud-computing",
+        "years": [
+          "2020"
+        ]
+      }
+    ]
+  },
+  {
+    "college": "College of Science",
+    "slug": "college-of-science",
+    "programs": [
+      {
+        "name": "Bachelor Of Science In Physics",
+        "slug": "bachelor-of-science-in-physics",
+        "years": [
+          "2017",
+          "2025"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Mathematics",
+        "slug": "bachelor-of-science-in-mathematics",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Mathematics (single Track)",
+        "slug": "b-sc-in-mathematics-single-track",
+        "years": [
+          "2017"
+        ]
+      },
+      {
+        "name": "B.Sc. In Actuarial Sciences",
+        "slug": "b-sc-in-actuarial-sciences",
+        "years": [
+          "2018"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Statistics And Data Science",
+        "slug": "bachelor-of-science-in-statistics-and-data-science",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Chemistry",
+        "slug": "bachelor-of-science-in-chemistry",
+        "years": [
+          "2017",
+          "2024"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Biology",
+        "slug": "bachelor-of-science-in-biology",
+        "years": [
+          "2017",
+          "2024"
+        ]
+      }
+    ]
+  },
+  {
+    "college": "College of Arts",
+    "slug": "college-of-arts",
+    "programs": [
+      {
+        "name": "Bachelor Of Arts In Arts And Design",
+        "slug": "bachelor-of-arts-in-arts-and-design",
+        "years": [
+          "2026"
+        ]
+      },
+      {
+        "name": "Bachelor Of Arts In English Language And Literature",
+        "slug": "bachelor-of-arts-in-english-language-and-literature",
+        "years": [
+          "2020",
+          "2025"
+        ]
+      },
+      {
+        "name": "Bachelor Of Arts In History",
+        "slug": "bachelor-of-arts-in-history",
+        "years": [
+          "2025"
+        ]
+      }
+    ]
+  },
+  {
+    "college": "College of Business Administration",
+    "slug": "college-of-business-administration",
+    "programs": [
+      {
+        "name": "B.Sc. In Business Analytic",
+        "slug": "b-sc-in-business-analytic",
+        "years": [
+          "2020"
+        ]
+      },
+      {
+        "name": "B.Sc. In Entrepreneurship",
+        "slug": "b-sc-in-entrepreneurship",
+        "years": [
+          "2025"
+        ]
+      },
+      {
+        "name": "B.Sc. In International Business And Economics",
+        "slug": "b-sc-in-international-business-and-economics",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Islamic Banking & Finance",
+        "slug": "bachelor-of-science-in-islamic-banking-finance",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Islamic Banking And Finance",
+        "slug": "b-sc-in-islamic-banking-and-finance",
+        "years": [
+          "2012",
+          "2020"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Marketing",
+        "slug": "bachelor-of-science-in-marketing",
+        "years": [
+          "2025"
+        ]
+      },
+      {
+        "name": "B.Sc. In Marketing",
+        "slug": "b-sc-in-marketing",
+        "years": [
+          "2013",
+          "2019",
+          "2020"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Business Management",
+        "slug": "bachelor-of-science-in-business-management",
+        "years": [
+          "2025"
+        ]
+      },
+      {
+        "name": "B.Sc. In Business Management",
+        "slug": "b-sc-in-business-management",
+        "years": [
+          "2013",
+          "2019",
+          "2020"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Banking & Finance",
+        "slug": "bachelor-of-science-in-banking-finance",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Banking And Finance",
+        "slug": "b-sc-in-banking-and-finance",
+        "years": [
+          "2013",
+          "2019",
+          "2020"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Accounting",
+        "slug": "bachelor-of-science-in-accounting",
+        "years": [
+          "2024"
+        ]
+      },
+      {
+        "name": "B.Sc. In Accounting",
+        "slug": "b-sc-in-accounting",
+        "years": [
+          "2013"
+        ]
+      }
+    ]
+  },
+  {
+    "college": "College of Health and Sport Sciences",
+    "slug": "college-of-health-and-sport-sciences",
+    "programs": [
+      {
+        "name": "Bachelor Of Science In Nursing",
+        "slug": "bachelor-of-science-in-nursing",
+        "years": [
+          "2023"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Pharmacy",
+        "slug": "bachelor-of-science-in-pharmacy",
+        "years": [
+          "2018",
+          "2025"
+        ]
+      },
+      {
+        "name": "Bachelor Of Science In Radiologic Technology – Diagnostic",
+        "slug": "bachelor-of-science-in-radiologic-technology-diagnostic",
+        "years": [
+          "2018",
+          "2025"
+        ]
+      }
+    ]
+  }
+]

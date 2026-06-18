@@ -15,6 +15,7 @@ export interface PlanSemester {
 
 export interface ParsedStudyPlan {
     degreeName: string
+    college?: string
     totalCredits: number
     semesters: PlanSemester[]
     electives?: PlanCourse[]
@@ -35,6 +36,13 @@ export function parseStudyPlan(rawText: string): ParsedStudyPlan {
         if (firstLine.includes("B.Sc.") || firstLine.toLowerCase().includes("bachelor") || firstLine.toLowerCase().includes("plan")) {
             degreeName = firstLine
         }
+    }
+
+    // Extract College Name
+    let college = ""
+    const collegeLine = lines.slice(0, 15).find(line => line.toLowerCase().includes("college of"))
+    if (collegeLine) {
+        college = collegeLine.trim()
     }
 
     // 2. Extract Total Credits (e.g., search for "Total Credit (CRD)" or similar)
@@ -119,6 +127,7 @@ export function parseStudyPlan(rawText: string): ParsedStudyPlan {
 
     return {
         degreeName,
+        college,
         totalCredits,
         semesters,
         electives

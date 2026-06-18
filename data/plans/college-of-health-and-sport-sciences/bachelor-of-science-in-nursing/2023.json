@@ -1,0 +1,399 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 105,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ENG115",
+          "title": "3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LFS118",
+          "title": "Anatomy and Physiology I 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "SBS117",
+          "title": "Introduction to Sociology 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "NUR115",
+          "title": "Introduction to Nursing 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ARAB110",
+          "title": "Arabic Language Skills 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC107",
+          "title": "Human Rights 2",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "CGS125",
+          "title": "Biochemistry 3",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LFS128",
+          "title": "Anatomy and Physiology II 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "LFS118 None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "NUR125",
+          "title": "Fundamentals of Nursing I 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR126",
+          "title": "2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "NUR115 None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBS125",
+          "title": "Introduction to Psychology 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST122",
+          "title": "3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "LFS217",
+          "title": "Microbiology 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENG125",
+          "title": "3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "ENG115 None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHA320",
+          "title": "Pharmacology for Nursing 3",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "LFS128 None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "NUR210",
+          "title": "Health Assessment 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR215",
+          "title": "Fundamentals of Nursing II 2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "PHA320",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR216",
+          "title": "3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "&",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "LFS233",
+          "title": "Clinical Nutrition 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "CGS125 None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LFS227",
+          "title": "Pathophysiology 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "LFS128 None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "NUR225",
+          "title": "Adult Health Nursing I 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "NUR215 & None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR226",
+          "title": "3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "NUR225",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR220",
+          "title": "Gerontological Nursing 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBS225",
+          "title": "2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "SBS125 None",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "STAT 272",
+          "title": "Introduction to Biostatics 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        },
+        {
+          "code": "NUR313",
+          "title": "Mental Health Nursing 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "& None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR314",
+          "title": "3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "NUR313",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR315",
+          "title": "Adult Health Nursing II 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR316",
+          "title": "3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "NUR315",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ISLM101",
+          "title": "Islamic Culture 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "None None",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "NUR320",
+          "title": "3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR321",
+          "title": "3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "NUR320",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR322",
+          "title": "Pediatric Nursing 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR323",
+          "title": "Pediatric Nursing –Clinical 3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "NUR316 NUR322",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR312",
+          "title": "3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR225",
+          "title": "NUR* Elective Course 2",
+          "credits": 0,
+          "type": "ME",
+          "prerequisites": "None None",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "NUR416",
+          "title": "Community Health Nursing 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR417",
+          "title": "3",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "NUR416",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR418",
+          "title": "2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR419",
+          "title": "2",
+          "credits": 6,
+          "type": "MR",
+          "prerequisites": "NUR418",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR430",
+          "title": "3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "NUR312 None",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR413",
+          "title": "2",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "None",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "NUR421",
+          "title": "6",
+          "credits": 18,
+          "type": "MR",
+          "prerequisites": "NUR416 & NUR422",
+          "isMajorGpa": true
+        },
+        {
+          "code": "NUR422",
+          "title": "6",
+          "credits": 18,
+          "type": "MR",
+          "prerequisites": "NUR421",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

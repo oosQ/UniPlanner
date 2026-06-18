@@ -1,0 +1,335 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 133,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ENG 114",
+          "title": "English for the Profession I 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "RAD 102",
+          "title": "Introduction to Radiology 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "LFS 118",
+          "title": "Anatomy and Physiology I 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "RAD 104",
+          "title": "Hospital Practice and Care of Patients 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LFS 217",
+          "title": "Microbiology 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CGS 201",
+          "title": "X-Ray Physics (I) 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills 3",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "CGS 202",
+          "title": "X-Ray Physics (II) 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "CGS 201",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENG 124",
+          "title": "English for the Professions II 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "ENG 114",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 272",
+          "title": "Introduction to Biostatistics 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "RAD 206",
+          "title": "Fundamentals of Imaging 4",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LFS 128",
+          "title": "Anatomy and Physiology II 4",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights 2",
+          "credits": 0,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "RAD 217",
+          "title": "Radiography (I) 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 227",
+          "title": "Clinical Skills (I) 5",
+          "credits": 15,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHAM 321",
+          "title": "Pharmacology for Radiology 2",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "Co-",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LFS 227",
+          "title": "RAD 206 & RAD 33X Major Elective (I) 3",
+          "credits": 0,
+          "type": "ME",
+          "prerequisites": "CGS 202 &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBS 316",
+          "title": "3",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "RAD 316",
+          "title": "Radiography (II) 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 326",
+          "title": "Clinical Skills (II) 5",
+          "credits": 15,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LFS 227",
+          "title": "Pathophysiology 4",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LFS 128",
+          "title": "RAD 206 & RAD 33X Major Elective (II) 3",
+          "credits": 0,
+          "type": "ME",
+          "prerequisites": "CGS 202 &",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "RAD 317",
+          "title": "Advanced imaging (I) 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "RAD 316 &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 327",
+          "title": "Clinical Skills (III) 5",
+          "credits": 15,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HCA 301",
+          "title": "3",
+          "credits": 0,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "RAD 341",
+          "title": "Radiology Quality Control 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "SBS 320",
+          "title": "Research Methods 3",
+          "credits": 0,
+          "type": "CR",
+          "prerequisites": "CGS 211",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "RAD 416",
+          "title": "Advanced Imaging (II) 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "RAD 317 &",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 426",
+          "title": "Clinical Skills (IV) 5",
+          "credits": 15,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 431",
+          "title": "Radiobiology 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 432",
+          "title": "Forensic Imaging 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "RAD 316 &",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "RAD 417",
+          "title": "Advanced Imaging (III) 5",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 450",
+          "title": "Field Practice 7",
+          "credits": 21,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "RAD 408",
+          "title": "Graduation Project 3",
+          "credits": 0,
+          "type": "MR",
+          "prerequisites": "SBS 320",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

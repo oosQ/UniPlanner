@@ -1,0 +1,1369 @@
+{
+  "degreeName": "Bachelor of Landscape Architecture 2018",
+  "totalCredits": 130,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "LNDA 110",
+          "title": "Design Theories and Practice",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 111",
+          "title": "Design Communication I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 112",
+          "title": "Site Studies",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 106",
+          "title": "Mathematics for Built Environment",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "LNDA 120",
+          "title": "Visual and Spatial Design",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 110",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 121",
+          "title": "Design Communication II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 111",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 122",
+          "title": "Plants in the Gulf Region",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 112",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 102",
+          "title": "Composition and Reading",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "GSE XXX",
+          "title": "General Studies Elective I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "LNDA 210",
+          "title": "Landscape Design I",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 211",
+          "title": "Theories of Landscape Architecture",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 212",
+          "title": "Geography and Landscape",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 213",
+          "title": "Materials and Construction I",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 111",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 214",
+          "title": "Computer Aided Design I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 215",
+          "title": "",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 112",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "LNDA 220",
+          "title": "Landscape Design II",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 221",
+          "title": "History of Landscape Architecture",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 211",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 222",
+          "title": "Environment and Sustainability",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 212",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 223",
+          "title": "Materials and Construction II",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 213",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 224",
+          "title": "Computer Aided Design II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 214",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 225",
+          "title": "Human Factors of Design",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 215",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "LNDA 310",
+          "title": "Landscape Design III",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "LNDA 220",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 311",
+          "title": "Urban Studies",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 221",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 312",
+          "title": "Urban Agriculture",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 313",
+          "title": "Working Drawings",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 223",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 314",
+          "title": "Geographical Information Systems",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "LNDA 320",
+          "title": "Landscape Design IV",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 321",
+          "title": "Design Culture and Environment",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 322",
+          "title": "Water and Soil Management",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 312",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 323",
+          "title": "Outdoor Furniture Design",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 313",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 324",
+          "title": "Design Implementation",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 313",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "LNDA 399",
+          "title": "PROFESSIONAL TRAINING",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "LNDA 410",
+          "title": "Landscape Design V",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "LNDA 320",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 411",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 320",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 412",
+          "title": "Lighting and Illumination of Landscapes",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 323",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 413",
+          "title": "Services in Landscapes",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "LNDA 313",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 414",
+          "title": "Contemporary Landscape Architecture",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 310",
+          "title": "LNDA xxx Major Elective I from list 1",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "As per list1",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "LNDA 420",
+          "title": "Graduation Project II - Design Stage",
+          "credits": 5,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 421",
+          "title": "Landscape Professional Practice",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 324",
+          "isMajorGpa": true
+        },
+        {
+          "code": "LNDA 422",
+          "title": "Landscape Management",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "LNDA 413",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSE XXX",
+          "title": "LNDA xxx Major Elective II from list 2",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    }
+  ],
+  "electives": [
+    {
+      "code": "LNDA 110",
+      "title": "Design Theories and Practice",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "-----",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 111",
+      "title": "Design Communication I",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "-----",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 112",
+      "title": "Site Studies",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "-----",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 106",
+      "title": "Mathematics for Built Environment",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ARAB 110",
+      "title": "Arabic Language Skills",
+      "credits": 3,
+      "type": "UR",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 101",
+      "title": "Communication Skills",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 120",
+      "title": "Visual and Spatial Design",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 110",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 121",
+      "title": "Design Communication II",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 111",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 122",
+      "title": "Plants in the Gulf Region",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 112",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 102",
+      "title": "Composition and Reading",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "ENGL 101",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "HRLC 107",
+      "title": "Human Rights",
+      "credits": 2,
+      "type": "UR",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 210",
+      "title": "Landscape Design I",
+      "credits": 4,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 211",
+      "title": "Theories of Landscape Architecture",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 212",
+      "title": "Geography and Landscape",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 213",
+      "title": "Materials and Construction I",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 111",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 214",
+      "title": "Computer Aided Design I",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "-----",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 215",
+      "title": "",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 112",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 220",
+      "title": "Landscape Design II",
+      "credits": 4,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 221",
+      "title": "History of Landscape Architecture",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 211",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 222",
+      "title": "Environment and Sustainability",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 212",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 223",
+      "title": "Materials and Construction II",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 213",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 224",
+      "title": "Computer Aided Design II",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 214",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 225",
+      "title": "Human Factors of Design",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 215",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 310",
+      "title": "Landscape Design III",
+      "credits": 4,
+      "type": "MR",
+      "prerequisites": "LNDA 220",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 311",
+      "title": "Urban Studies",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 221",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 312",
+      "title": "Urban Agriculture",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 313",
+      "title": "Working Drawings",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 223",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 314",
+      "title": "Geographical Information Systems",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 101",
+      "title": "Islamic Culture",
+      "credits": 3,
+      "type": "UR",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 320",
+      "title": "Landscape Design IV",
+      "credits": 4,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 321",
+      "title": "Design Culture and Environment",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 322",
+      "title": "Water and Soil Management",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 312",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 323",
+      "title": "Outdoor Furniture Design",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 313",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 324",
+      "title": "Design Implementation",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 313",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "HIST 122",
+      "title": "Modern History of Bahrain and Citizenship",
+      "credits": 3,
+      "type": "UR",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 410",
+      "title": "Landscape Design V",
+      "credits": 4,
+      "type": "MR",
+      "prerequisites": "LNDA 320",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 411",
+      "title": "",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 320",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 412",
+      "title": "Lighting and Illumination of Landscapes",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 323",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 413",
+      "title": "Services in Landscapes",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "LNDA 313",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 414",
+      "title": "Contemporary Landscape Architecture",
+      "credits": 2,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 310",
+      "title": "LNDA xxx Major Elective I from list 1",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "As per list1",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 420",
+      "title": "Graduation Project II - Design Stage",
+      "credits": 5,
+      "type": "MR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 421",
+      "title": "Landscape Professional Practice",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 324",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 422",
+      "title": "Landscape Management",
+      "credits": 3,
+      "type": "MR",
+      "prerequisites": "LNDA 413",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 101",
+      "title": "LNDA xxx Major Elective II from list 2",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "-----",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 121",
+      "title": "LNDA 120 &",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 122",
+      "title": "LNDA 213",
+      "credits": 1,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 399",
+      "title": "PROFESSIONAL TRAINING",
+      "credits": 1,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 415",
+      "title": "Courtyard Design",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "LNDA 321",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 416",
+      "title": "Neighbourhood Design",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "LNDA 225",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 417",
+      "title": "Computer Animations",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "LNDA 224",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 423",
+      "title": "Advanced Building Technologies",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "LNDA 313",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 424",
+      "title": "Islamic Gardens",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "LNDA 321",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 425",
+      "title": "Special Topics in Landscape Architecture",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "LNDA 414",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 103",
+      "title": "Introduction to Psychology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 161 Introduction to Sociology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 161",
+      "title": "Introduction to Sociology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 181 Introduction to Anthropology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 181",
+      "title": "Introduction to Anthropology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ FA 121 Artistic Photography (1) 2 2 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 181",
+      "title": "Introduction to Anthropology 3 0 3 GSE ------ FA 121 Artistic Photography (1)",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ FA 312 Still Life 1 4 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 181",
+      "title": "Introduction to Anthropology 3 0 3 GSE ------ FA 121 Artistic Photography (1) 2 2 3 GSE ------ FA 312 Still Life",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ FA 316 Islamic Art 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 181",
+      "title": "Introduction to Anthropology 3 0 3 GSE ------ FA 121 Artistic Photography (1) 2 2 3 GSE ------ FA 312 Still Life 1 4 3 GSE ------ FA 316 Islamic Art",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ Department GSE XXX Other electives X X 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GSE XXX",
+      "title": "Other electives",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 110",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 111",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 112",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 120",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 121",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 122",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 210",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 211",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 212",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 213",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 214",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 215",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 220",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 221",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 222",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 223",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 224",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 225",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 310",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 311",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 312",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 313",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 314",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 320",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 321",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 322",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 323",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 324",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 399",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 410",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 411",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 412",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 413",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 414",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 420",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 421",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 422",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 415",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 416",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 417",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 423",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 424",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LNDA 425",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 106",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    }
+  ]
+}

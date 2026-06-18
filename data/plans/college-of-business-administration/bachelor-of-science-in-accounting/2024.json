@@ -1,0 +1,94 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 33,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ACC610",
+          "title": "Advanced Financial Accounting",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC612",
+          "title": "Financial Reporting and Analysis",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC620",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN635",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ACC622",
+          "title": "Advanced Auditing Theory and Practice",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC625",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ACC6XX",
+          "title": "Accounting ACC6XX/ Elective course",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        },
+        {
+          "code": "FIN6XX",
+          "title": "ACC6XX/ Elective course",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "-",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "ACC695",
+          "title": "Thesis",
+          "credits": 9,
+          "type": "MR",
+          "prerequisites": "including",
+          "isMajorGpa": false
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

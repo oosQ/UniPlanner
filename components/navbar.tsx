@@ -108,7 +108,7 @@ export function Navbar() {
             <ThemeToggle />
             {user ? (
               user.isGuest ? (
-                <Link href="/get-started">
+                <Link href="/get-started" onClick={handleSignOut}>
                   <Button size="sm" className="inline-flex bg-emerald-600 hover:bg-emerald-700 font-semibold px-3">
                     Login
                   </Button>
@@ -197,7 +197,10 @@ export function Navbar() {
                 <div className="mt-auto border-t border-slate-200 dark:border-slate-800 px-3 py-4 space-y-2">
                   {user ? (
                     user.isGuest ? (
-                      <Link href="/get-started" onClick={() => setMobileMenuOpen(false)}>
+                      <Link href="/get-started" onClick={async () => {
+                        setMobileMenuOpen(false);
+                        await handleSignOut();
+                      }}>
                         <Button className="w-full bg-emerald-600 hover:bg-emerald-700 font-semibold">
                           Login
                         </Button>

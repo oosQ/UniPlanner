@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { extractPdfText } from "@/lib/pdf-utils"
 import { parseStudyPlan } from "@/lib/plan-utils"
+import { supabase, isSupabaseConfigured } from "@/lib/supabase"
 import * as fs from "fs"
 import * as path from "path"
 
@@ -15,6 +16,27 @@ export async function GET(request: Request) {
 
         // If specific plan parameters are provided, return that plan
         if (college && program && year) {
+            if (isSupabaseConfigured && supabase) {
+                try {
+                    const { data, error } = await supabase
+                        .from("study_plans")
+                        .select("plan_data")
+                        .eq("college_slug", college)
+                        .eq("program_slug", program)
+                        .eq("year", year.toString())
+                        .maybeSingle()
+
+                    if (data && !error) {
+                        return NextResponse.json({
+                            success: true,
+                            data: data.plan_data
+                        })
+                    }
+                } catch (dbErr) {
+                    console.error("Supabase plan fetch error, falling back:", dbErr)
+                }
+            }
+
             // Sanitize inputs to prevent directory traversal
             const cleanCollege = college.replace(/[^a-zA-Z0-9_-]/g, "")
             const cleanProgram = program.replace(/[^a-zA-Z0-9_-]/g, "")
@@ -35,6 +57,57 @@ export async function GET(request: Request) {
                 success: true,
                 data: planData
             })
+        }
+
+        // Check Supabase first if configured to get dynamic manifest
+        if (isSupabaseConfigured && supabase) {
+            try {
+                const { data, error } = await supabase
+                    .from("study_plans")
+                    .select("college_name, college_slug, program_name, program_slug, year")
+
+                if (data && !error && data.length > 0) {
+                    const collegeMap = new Map<string, { college: string; slug: string; programs: Map<string, { name: string; slug: string; years: Set<string> }> }>()
+
+                    for (const row of data) {
+                        if (!collegeMap.has(row.college_slug)) {
+                            collegeMap.set(row.college_slug, {
+                                college: row.college_name,
+                                slug: row.college_slug,
+                                programs: new Map()
+                            })
+                        }
+
+                        const colObj = collegeMap.get(row.college_slug)!
+                        if (!colObj.programs.has(row.program_slug)) {
+                            colObj.programs.set(row.program_slug, {
+                                name: row.program_name,
+                                slug: row.program_slug,
+                                years: new Set()
+                            })
+                        }
+
+                        colObj.programs.get(row.program_slug)!.years.add(row.year)
+                    }
+
+                    const manifestData = Array.from(collegeMap.values()).map(col => ({
+                        college: col.college,
+                        slug: col.slug,
+                        programs: Array.from(col.programs.values()).map(prog => ({
+                            name: prog.name,
+                            slug: prog.slug,
+                            years: Array.from(prog.years).sort((a, b) => b.localeCompare(a))
+                        })).sort((a, b) => a.name.localeCompare(b.name))
+                    }))
+
+                    return NextResponse.json({
+                        success: true,
+                        data: manifestData
+                    })
+                }
+            } catch (dbErr) {
+                console.error("Supabase manifest fetch error, falling back:", dbErr)
+            }
         }
 
         // Otherwise return the manifest

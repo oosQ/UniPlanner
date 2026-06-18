@@ -1,0 +1,431 @@
+{
+  "degreeName": "Bachelor of Science in Electrical Engineering 2025",
+  "totalCredits": 133,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "MATHS101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "NO CHEMY 101 General Chemistry I 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "NO PHYCS101 General Physics I 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "NO ITCS110 Computer Programming for Scientists and 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS110",
+          "title": "Computer Programming for Scientists and",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "NO Engineers ENGL101 Communication Skills I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "NO Total 15 6 18",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "MATHS101",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "NO PHYCS102 General Physics II 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYS101 NO ENGL242 Report Writing and Presentation 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL242",
+          "title": "Report Writing and Presentation",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL101 NO ISLM 101 Islamic Culture 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "NO EENG100 Circuit Theory I 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG100",
+          "title": "Circuit Theory I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS101 YES Total 14 4 16 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "HRLC107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "NO Total 14 6 17",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT276",
+          "title": "Statistical Data",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS205",
+          "title": "Differential",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG200",
+          "title": "Circuit Theory II",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG251",
+          "title": "Digital Systems I",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG261",
+          "title": "Electronic Devices",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "MATHS203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS342",
+          "title": "Linear Algebra and",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MENG228",
+          "title": "Thermal Sciences",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG207",
+          "title": "Numerical",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG262",
+          "title": "Analog Electronics",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG271",
+          "title": "Signals and",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "HIST 122",
+          "title": "Modern History of",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG382",
+          "title": "Control Systems",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG333",
+          "title": "Power Electronics I",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG341",
+          "title": "Electrical",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG370",
+          "title": "Communication",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG371",
+          "title": "Electromagnetics",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "ARAB110",
+          "title": "Arabic Language",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "NO Skills MENG302 Engineering 3 0 3 Completion Economics",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG302",
+          "title": "Engineering",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG353",
+          "title": "Microprocessors",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG311",
+          "title": "Power Systems I",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG334",
+          "title": "Power Electronics",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG342",
+          "title": "Electrical",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG396",
+          "title": "Industrial Training",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "EENG4XX",
+          "title": "Elective I",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES EENG4XX Elective II 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG4XX",
+          "title": "Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES Total 14 5 16",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG409",
+          "title": "Professional",
+          "credits": 2,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG443",
+          "title": "Electric Drives",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG412",
+          "title": "Power Systems II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG497",
+          "title": "Senior Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "EENG4XX",
+          "title": "Elective III",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES EENG4XX Elective IV 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG4XX",
+          "title": "Elective IV",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES Total 12 9 15 Total 113 56 139 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG498",
+          "title": "Senior Design",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG413",
+          "title": "Power Systems",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG446",
+          "title": "Solar and Wind",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG335",
+          "title": "EENG4XX",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

@@ -1,0 +1,359 @@
+{
+  "degreeName": "Bachelor of Science in Process Instrumentation and Control",
+  "totalCredits": 138,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CSC 103",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "EENG 109",
+          "title": "Circuit Theory",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "PHYCS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 102",
+          "title": "Composition and Reading II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS 101",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "EENG 269",
+          "title": "Electronics",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "EENG 109",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "unknown",
+          "title": "PICENG 213 Transport Processes I",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "PICENG 111",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "PICENG 215 Sensors and Transducers",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS 102",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "EENG 209",
+          "title": "Introduction to Signals and Systems",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 259",
+          "title": "Digital Systems",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "EENG 269",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102",
+          "isMajorGpa": false
+        },
+        {
+          "code": "unknown",
+          "title": "Computer Applications in Instrumentation PICENG 111 PICENG 214",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "and Control & CSC 103 PICENG 216 Transport Processes II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PICENG 213",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "PICENG 226 Instrumentation I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PICENG 215",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "PICENG 215 PICENG 290 Junior Project",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "& PICENG",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEMY 313",
+          "title": "",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "CHEMY101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 349",
+          "title": "Electrical Machines",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 273",
+          "title": "Probability and Statistics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHENG 316",
+          "title": "Numerical Analysis",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "MENG 300",
+          "title": "PICENG 322 Analytical Measurement Systems I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PICENG 226",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "CSC 103 & PICENG 325 Microprocessors in Process Automation",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "EENG 259",
+          "title": "PICENG 226 PICENG 326 Process Instrumentation/Control Lab I",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "& PICENG",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "unknown",
+          "title": "PICENG 425 Analytical Measurement Systems II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PICENG 322",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Completion of 85 credits PICENG 490 Senior Project",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "& PICENG 290 As per ME list PICENG 4xx Elective I",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "unknown",
+          "title": "Completion PICENG 400 Engineering Ethics",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "of 85 credits PICENG 226 PICENG 411 Process Instrumentation/Control Lab II",
+          "credits": 2,
+          "type": "MR",
+          "prerequisites": "& PICENG",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "332 PICENG 422 Process Control Design Project",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PICENG 433",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "Completion PICENG 491 Seminar",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "of 85 credits As per ME PICENG 4xx Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

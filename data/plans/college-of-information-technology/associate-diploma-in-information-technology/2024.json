@@ -1,0 +1,842 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 72,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ITCS 113",
+          "title": "Computer Programming I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 154",
+          "title": "Language Development I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ITCS 114",
+          "title": "Computer Programming II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ITCS 113",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITNE 110",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 155",
+          "title": "Language Development II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 154",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "ITCS 214",
+          "title": "Data Structures",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ITCS 114",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITSE 201",
+          "title": "Introduction to Software Engineering",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ITCS114",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 219",
+          "title": "Technical Report Writing",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 155",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCC 240",
+          "title": "Fundamental of Cloud Computing",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCS 114",
+          "title": "AS per ME ITXX 1XX/2XX ITXX 1XX/2XX Major Elective 1 – List 1",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "ITCS 285",
+          "title": "Database Management Systems",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ITCS 214",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITXX 1XX",
+          "title": "AS per ME ITXX 1XX/2XX ITXX 1XX/2XX Major Elective 2 – List 1",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITAD 299",
+          "title": "Internship",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "ITCS 333",
+          "title": "Internet Software Development",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ITCS 285",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": [
+    {
+      "code": "ITCS 222",
+      "title": "Computer Organization",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITNE 231",
+      "title": "Computer Networks I",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 113 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITNE 241",
+      "title": "Computer Networks II",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITNE 240",
+      "title": "Network Operating Systems",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 214 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITIS 241",
+      "title": "Software Development",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCS 254",
+      "title": "Discrete Structures I",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "MATHS 101",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCS 255",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITSE 220",
+      "title": "Software Requirements Engineering",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITSE 201",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 113 & Fundamentals of Cybersecurity",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITNE 110",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCS 214",
+      "title": "ITNE 231",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCS 114",
+      "title": "ITCS 254",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCY 201",
+      "title": "ITNE 110",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCE 112",
+      "title": "Digital Design I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "ITCS 396",
+      "title": "Professional Issues and Ethics",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ENGL 219",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 316",
+      "title": "Human-Computer Interaction",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 214",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 317",
+      "title": "Formal Languages and Automata",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 214 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 325",
+      "title": "Operating Systems",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 222 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCC 341",
+      "title": "Cloud Computing Architecture",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCC 240 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCC 345",
+      "title": "Cloud Development",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCC 240 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCC 343",
+      "title": "Cloud Operations",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCC 240 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 301",
+      "title": "Software Project Management",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 201",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 302",
+      "title": "Software Design and Architecture",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 220",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 305",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 301 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 302",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 214 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 254",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 241",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 341",
+      "title": "Network Security I",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 214 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 231",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 241",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 350",
+      "title": "Network Management and Administration",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 231",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 351",
+      "title": "Routing and Switching",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 241",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 360",
+      "title": "Wireless Networks",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 341",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 361",
+      "title": "Network Security II",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 201 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 352",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 201",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITIS 322",
+      "title": "Entrepreneurship and Digital Innovation Governance and Management of",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 201",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITIS 362",
+      "title": "Enterprise IT",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITIS 362",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITIS 460",
+      "title": "Strategic IT Planning",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCY 201",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCY 470",
+      "title": "IT Auditing and Business Continuity",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCY 201 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITIS 362",
+      "title": "Security Risk Assessment and",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCY 201 &",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITIS 362",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 231",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCE 418",
+      "title": "Network Engineering and Design",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITNE 361",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 411",
+      "title": "Cryptography and Computer Security",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 342",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 440",
+      "title": "Intelligent Systems",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 342",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCC 445",
+      "title": "Advanced Cloud Development",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCC 345",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCC 442",
+      "title": "Cloud Security",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCC 341",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 441",
+      "title": "Parallel and Distributed Computing",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 325",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 444",
+      "title": "Mobile Application Development",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 333",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 453",
+      "title": "Multimedia and Hypermedia Systems",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 214",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 455",
+      "title": "Semantic Web",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 333",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 458",
+      "title": "Big Data Analytics",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 255",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 461",
+      "title": "Advanced Database Management Systems",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 285",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 464",
+      "title": "Information Retrieval",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 333",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 496",
+      "title": "Physical Implementation of DBMS",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITCS 285",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 403",
+      "title": "Software Testing and Quality Assurance",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 305",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 450",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 302",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 453",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 302",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 476",
+      "title": "Free and Open Source Software",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 305",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITSE 469",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "ITSE 220",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITAD 393",
+      "title": "",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "Department",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 255",
+      "title": "ITCS 325",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 285",
+      "title": "ITCC 343",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 342",
+      "title": "Design of Algorithms",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCY 354",
+      "title": "Secure Software Engineering",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCY 410",
+      "title": "Digital Forensics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCY 460",
+      "title": "Countermeasures",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITNE 480",
+      "title": "Ethical Hacking",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCC240",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ENGL154",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ENGL155",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ENGL219",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "MATHS101",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS113",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS114",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS214",
+      "title": "CourseTitle:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    }
+  ]
+}

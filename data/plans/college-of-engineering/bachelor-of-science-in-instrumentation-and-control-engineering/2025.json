@@ -1,0 +1,399 @@
+{
+  "degreeName": "Bachelor of Science in Instrumentation and Control Engineering",
+  "totalCredits": 139,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "------ NO Computer Programming for ITCS 110 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 110",
+          "title": "",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------ NO Engineers ENGL 101 Communication Skills I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 101",
+          "title": "Communication Skills I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------ NO MATHS 101 Calculus I 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 101",
+          "title": "Calculus I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "------ NO PHYCS 101 General Physics I 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "------ NO Total 15 6 18",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "EENG 100",
+          "title": "Circuit Theory I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS 101 NO ENGL 242 Report Writing and Presentation 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 242",
+          "title": "Report Writing and Presentation",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 101 NO HRLC 107 Human Rights 2 0 2",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "------ NO Introduction to MATHS 101 & Instrumentation and ICENG 111 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 111",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES PHYCS 101 Control Engineering MATHS 102 Calculus II 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 102",
+          "title": "Calculus II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 101 NO PHYCS 102 General Physics II 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS 101 NO Total 15 6 18",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "ICENG 202",
+          "title": "Thermofluids",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS 101 YES EENG 251 Digital Systems I 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 251",
+          "title": "Digital Systems I",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "EENG 100 YES EENG 261 Electronic Devices and Circuits 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 261",
+          "title": "Electronic Devices and Circuits",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "EENG 100 NO MATHS 205 Differential Equations 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102 NO PHYCS 206 Bulk Properties of Matter 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 206",
+          "title": "Bulk Properties of Matter",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS 101 NO 2 Total 12 8 16",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "ICENG 220",
+          "title": "Measurement Systems I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES 261 & PHYCS 102 EENG 100 & EENG 271 Signals and Systems 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "EENG 271",
+          "title": "Signals and Systems",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "YES MATHS 102 Computer Applications for MATHS 205 ICENG 208 Instrumentation and Control 0 6 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 208",
+          "title": "Instrumentation and Control",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES & ITCS 110 Engineering ICENG 217 Data Communication Networks 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 217",
+          "title": "Data Communication Networks",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "ITCS110 YES MATHS 203 Calculus III 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 203",
+          "title": "Calculus III",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102 NO Statistical Data Analysis for STAT 276 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 276",
+          "title": "",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "MATHS 102 NO Engineering Total 14 10 19",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "---------- NO Linear Algebra and Numerical ICENG 208 & ICENG 304 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 304",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES Methods STAT 276 Microprocessors in Process ITCS110 &EENG ICENG 318 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 318",
+          "title": "",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "Automation 251 YES Signal Conditioning and Electronic ICENG 220 ICENG 324 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 324",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES Instruments ICENG 208 & ICENG 332 Process Dynamics and Simulation 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 332",
+          "title": "Process Dynamics and Simulation",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES ICENG 202 Total 12 8 16",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "ICENG 325",
+          "title": "Measurement Systems II",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "YES EENG 271 ICENG 324 ICENG 326 Analytical Instrumentation 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 326",
+          "title": "Analytical Instrumentation",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES & PHYCS 206 ICENG 304 ICENG 333 Process Control I 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 333",
+          "title": "Process Control I",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "& ICENG 332 YES ICENG 217 & ICENG ICENG 334 Programmable Logic Controller 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 334",
+          "title": "Programmable Logic Controller",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES 318 3 Completion MENG 302 Engineering Economics 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MENG 302",
+          "title": "Engineering Economics",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "of 70 credits NO Total 13 8 17 Training Requirement Course Hours Course Pre Major Course Code Course Title Type requisite GPA LEC PRAC CRD Completion of ICENG 396 Industrial Training 0 6 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 396",
+          "title": "Industrial Training",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES 85 credits * 300 hours of supervised training. 4",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "HIST 122",
+          "title": "",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "---- NO Citizenship ICENG 220 & Final Control Elements and EENG ICENG 424 3 2 4",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 424",
+          "title": "",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "YES Actuators 271 ICENG 333 ICENG 435 Digital Control Systems 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 435",
+          "title": "Digital Control Systems",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES & ICENG 318 ICENG 333 & ICENG 436 Process Control II 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 436",
+          "title": "Process Control II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES MATHS 203 Completion of ICENG 497 Senior Project I 0 3 1",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 497",
+          "title": "Senior Project I",
+          "credits": 1,
+          "type": "MR",
+          "prerequisites": "YES 90 credits Completion of ICENG 4xx Elective I 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 497",
+          "title": "Senior Project I 0 3 1 MR YES 90 credits Completion of ICENG 4xx Elective I",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES 90 credits Total 12 11 17",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "ICENG 439",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES Systems Instrumentation and Control Design ICENG 436 & ICENG 438 0 6 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 438",
+          "title": "",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "YES Project ICENG 424 ICENG 498 Senior Project II 0 9 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 498",
+          "title": "Senior Project II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "ICENG 497 YES Completion of ICENG 4xx Elective II 2 2 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ICENG 497",
+          "title": "YES Completion of ICENG 4xx Elective II",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "YES 90 credits ISLM 101 Islamic Culture 3 0 3",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "------------ NO Total 7 19 15 5",
+          "isMajorGpa": false
+        }
+      ]
+    }
+  ],
+  "electives": []
+}

@@ -1,0 +1,2012 @@
+{
+  "degreeName": "University Study Plan",
+  "totalCredits": 129,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 125",
+          "title": "English for Science I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 121",
+          "title": "Calculus and Analytic Geometry I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ITCS 113",
+          "title": "Computer Programming I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 122",
+          "title": "Calculus and Analytic Geometry II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "MATHS",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 126",
+          "title": "English for Science II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "BIOLS 102",
+          "title": "General Biology I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 211",
+          "title": "Linear Algebra",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 209",
+          "title": "Bulk Properties of Matter",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 222",
+          "title": "Modern Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "CHEMY 102",
+          "title": "General Chemistry II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "CHEMY",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 221",
+          "title": "Methods of Mathematical Physics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS 102",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 241",
+          "title": "Introductory Electronics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSE XXX",
+          "title": "Humanities / Social Science",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 314",
+          "title": "Classical Mechanics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 326",
+          "title": "Quantum Mechanics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 331",
+          "title": "Physical Optics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 348",
+          "title": "Electromagnetic Theory",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 365",
+          "title": "Thermal Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "PHYCS 324",
+          "title": "Atomic and Molecular Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 351",
+          "title": "Solid State Physics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 398",
+          "title": "Internship",
+          "credits": 1,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "PHYCS 499",
+          "title": "Senior Research Project",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "Department",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "PHYCS 425",
+          "title": "Computational Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 432",
+          "title": "Laser Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 471",
+          "title": "Nuclear Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 4XX",
+          "title": "Major Elective 6",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 125",
+          "title": "English for Science I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 121",
+          "title": "Calculus and Analytic Geometry I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ITCS 113",
+          "title": "Computer Programming I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 122",
+          "title": "Calculus and Analytic Geometry II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "MATHS",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ENGL 126",
+          "title": "English for Science II",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "BIOLS 102",
+          "title": "General Biology I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 211",
+          "title": "Linear Algebra",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 209",
+          "title": "Bulk Properties of Matter",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 222",
+          "title": "Modern Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "CHEMY 102",
+          "title": "General Chemistry II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "CHEMY",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "MATHS",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 221",
+          "title": "Methods of Mathematical Physics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 241",
+          "title": "Introductory Electronics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 314",
+          "title": "Classical Mechanics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 326",
+          "title": "Quantum Mechanics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 348",
+          "title": "Electromagnetic Theory",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 365",
+          "title": "Thermal Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "PHYCS 324",
+          "title": "Atomic and Molecular Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 331",
+          "title": "Physical Optics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 351",
+          "title": "Solid State Physics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "PHYCS 499",
+          "title": "Senior Research Project",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "PHYCS 425",
+          "title": "Computational Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 432",
+          "title": "Laser Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 471",
+          "title": "Nuclear Physics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "PHYCS",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": [
+    {
+      "code": "ARAB 141",
+      "title": "Modern Arabic Lit.",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ARAB 242 Arabic Poetry In The Renaissance Period 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ARAB 242",
+      "title": "Arabic Poetry In The Renaissance Period",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ART 133 Fundamentals of Music and Its Appreciation 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ART 133",
+      "title": "Fundamentals of Music and Its Appreciation",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ART 141 Drawing and Painting 2 1 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ART 141",
+      "title": "Drawing and Painting",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ART 221 Traditional Music of Bahrain and Its 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ART 221",
+      "title": "Traditional Music of Bahrain and Its",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ Application CHL 101 Introduction to Chinese Language 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHL 101",
+      "title": "Introduction to Chinese Language",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ CHL 102 Basic Chinese Language 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHL 102",
+      "title": "Basic Chinese Language",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "CHL 101 EDAR 126 Playing on Piano and Org 1 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDAR 126",
+      "title": "Playing on Piano and Org 1",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ EDPS 144 Psychology of Learning and Memory 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDPS 144",
+      "title": "Psychology of Learning and Memory",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ EDTC 100 Teaching and Learning Technology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDTC 100",
+      "title": "Teaching and Learning Technology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ENGL 130 Introduction to Literature 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ENGL 130",
+      "title": "Introduction to Literature",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ FREN 141 French I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FREN 141",
+      "title": "French I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ FREN 142 French II 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "FREN 142",
+      "title": "French II",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "FREN 141 GERM 101 Introduction to German 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GERM 101",
+      "title": "Introduction to German",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ HISTO 212 Contemporary History of The Arab World 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "HISTO 212",
+      "title": "Contemporary History of The Arab World",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ HISTO 281 Landmarks of Islamic Civilisation 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "HISTO 281",
+      "title": "Landmarks of Islamic Civilisation",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 114 Quranic Sciences 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 114",
+      "title": "Quranic Sciences",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 136 Biography of The Prophet 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 136",
+      "title": "Biography of The Prophet",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 141 Introduction to Shari'A 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 141",
+      "title": "Introduction to Shari'A",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ ISLM 252 Islamic Doctrine 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ISLM 252",
+      "title": "Islamic Doctrine",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ JAPN 101 Japanese Level I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "JAPN 101",
+      "title": "Japanese Level I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ JAPN 102 Japanese Level II 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "JAPN 102",
+      "title": "Japanese Level II",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "JAPN 101 KL 101 Korean Language I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "JAPN 101",
+      "title": "KL 101 Korean Language I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ KL 102 Korean Language II 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "JAPN 101",
+      "title": "KL 101 Korean Language I 3 0 3 GSE ------ KL 102 Korean Language II",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "KL 101 LAW 101 Introduction to Legal Studies 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 101",
+      "title": "Introduction to Legal Studies",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ LAW 102 History of Law 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 102",
+      "title": "History of Law",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ LAW 106 Constitutional Law I 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "LAW 106",
+      "title": "Constitutional Law I",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PHEDE 214 Principles of Educational Statistics 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHEDE 214",
+      "title": "Principles of Educational Statistics",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 103 Introduction to Psychology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 103",
+      "title": "Introduction to Psychology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 120 Psychology of Marriage 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 120",
+      "title": "Psychology of Marriage",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 211 Educational Psychology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 211",
+      "title": "Educational Psychology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ PSYC 281 Thinking Skills 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PSYC 281",
+      "title": "Thinking Skills",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "PSYC 103 or EDPS 241 SOCIO 161 Introduction to Sociology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 161",
+      "title": "Introduction to Sociology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 181 Introduction to Anthropology 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 181",
+      "title": "Introduction to Anthropology",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 191 Citizenship, Identity and Globalization 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 191",
+      "title": "Citizenship, Identity and Globalization",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 224 Sociology of Health 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 224",
+      "title": "Sociology of Health",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ SOCIO 226 Sociology of Arabian Gulf 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 226",
+      "title": "Sociology of Arabian Gulf",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ TL 101 Turkish Language 3 0 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "SOCIO 226",
+      "title": "Sociology of Arabian Gulf 3 0 3 GSE ------ TL 101 Turkish Language",
+      "credits": 3,
+      "type": "GSE",
+      "prerequisites": "------ GSE XXX Other electives X X 3",
+      "isMajorGpa": false,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 485",
+      "title": "Astronomical Data Analysis",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "PHYCS 385",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 441",
+      "title": "Application of Group Theory of Inorganic",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "CHEMY",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 411",
+      "title": "Analytical Chemistry III",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "CHEMY",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 432",
+      "title": "Physical Chemistry III",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "CHEMY",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 421",
+      "title": "Organic Chemistry III",
+      "credits": 3,
+      "type": "ME",
+      "prerequisites": "CHEMY",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "EDPS 241",
+      "title": "SOCIO 161",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "GSE XXX",
+      "title": "Other electives",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 282",
+      "title": "The Cosmic Perspective",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 283",
+      "title": "Planets and the Solar System",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 381",
+      "title": "Stellar Astrophysics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 383",
+      "title": "Space Science and Technology",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 384",
+      "title": "Galaxies and the Universe",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 385",
+      "title": "Observational Astronomy",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 481",
+      "title": "Solar System Dynamics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 482",
+      "title": "High-Energy Astrophysics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "PHYCS 483",
+      "title": "Extragalactic Astrophysics and",
+      "credits": 1,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 103",
+      "title": "General Biology II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 250",
+      "title": "Microbiology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 222",
+      "title": "Plant Morphology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 234",
+      "title": "Chordate Zoology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 300",
+      "title": "Cell Biology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 340",
+      "title": "General Ecology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 441",
+      "title": "Environmental Impact Assessment",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 442",
+      "title": "Conservation Biology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 451",
+      "title": "Immunology",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 452",
+      "title": "Biology of Prokaryotes",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "BIOLS 481",
+      "title": "Fish and Fisheries",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 2XX",
+      "title": "X",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY XXX",
+      "title": "X",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 211",
+      "title": "Analytical Chemistry I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 221",
+      "title": "Organic Chemistry I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 231",
+      "title": "Physical Chemistry I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 241",
+      "title": "Inorganic Chemistry I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 300",
+      "title": "Professional and Transferable Skills for",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 311",
+      "title": "Analytical Chemistry II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 321",
+      "title": "Organic Chemistry II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 331",
+      "title": "Physical Chemistry II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 332",
+      "title": "Practical Physical Chemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 333",
+      "title": "Quantum Chemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 341",
+      "title": "Inorganic Chemistry II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 348",
+      "title": "Industrial Inorganic Chemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 351",
+      "title": "Principles and applications of Green",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 422",
+      "title": "Physical Organic Chemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 423",
+      "title": "Selected Topics in Heterocyclic",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 424",
+      "title": "Natural Products",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 425",
+      "title": "Mechanism in organic Chemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 426",
+      "title": "Food Chemistry",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 428",
+      "title": "Industrial Organic Chemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 431",
+      "title": "Chemical Dynamics: Catalyst and Surface",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 434",
+      "title": "Polymer Chemistry",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 435",
+      "title": "Advance Thermodynamics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 438",
+      "title": "Electrochemistry",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 442",
+      "title": "Bio-inorganic Chemistry",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 443",
+      "title": "Inorganic Reaction Mechanisms",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 452",
+      "title": "Environmental Chemistry",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "CHEMY 453",
+      "title": "Organic Environmental Chemistry",
+      "credits": 2,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 114",
+      "title": "Computer Programming II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 214",
+      "title": "Data Structures",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 285",
+      "title": "Database Management Systems",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 316",
+      "title": "Human-Computer Interaction",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 389",
+      "title": "Software Engineering I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 333",
+      "title": "Internet Software Development",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 444",
+      "title": "Mobile Application Development",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 453",
+      "title": "Multimedia and Hypermedia Systems",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 489",
+      "title": "Software Engineering II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 494",
+      "title": "Selected Topics in Computer Science",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "ITCS 496",
+      "title": "Physical Implementation of DBMS",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 204",
+      "title": "Calculus and Analytic Geometry III",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 205",
+      "title": "Calculus and Analytic Geometry III OR",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 211",
+      "title": "Linear Algebra",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 303",
+      "title": "Analysis I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 304",
+      "title": "Analysis II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 305",
+      "title": "History of Mathematics",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 307",
+      "title": "Introduction to Lie Group for Differential",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 311",
+      "title": "Abstract Algebra I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 312",
+      "title": "Abstract Algebra II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 331",
+      "title": "Numerical Analysis I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 332",
+      "title": "Numerical Analysis II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 341",
+      "title": "Complex Analysis I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 352",
+      "title": "Number Theory",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 381",
+      "title": "Methods of Applied Mathematics",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 385",
+      "title": "Analytical Mechanics",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 387",
+      "title": "Fluid Mechanics",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 388",
+      "title": "Vector Analysis and Tensor Analysis",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 395",
+      "title": "Problem Solving in Mathematics",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 401",
+      "title": "Applied Mathematics I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 402",
+      "title": "Applied Mathematics II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 405",
+      "title": "Theory of Differential Equations",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 411",
+      "title": "Commutative Algebra",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 415",
+      "title": "Topology I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 416",
+      "title": "Topology II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 417",
+      "title": "Functional Analysis",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 441",
+      "title": "Complex Analysis II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 451",
+      "title": "Topics in Geometry",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 452",
+      "title": "Differential Geometry",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "MATHS 461",
+      "title": "Elementary Partial Differential Equation",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 271",
+      "title": "Introduction to Probability",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 371",
+      "title": "Probability and Statistics I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 372",
+      "title": "Probability and Statistics II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 373",
+      "title": "Statistical Packages and Simulation",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 374",
+      "title": "Regression Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 378",
+      "title": "Surveys and Sampling",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 381",
+      "title": "Time Series Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 382",
+      "title": "Biostatistics and Epidemiology",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 383",
+      "title": "Demography and Population Studies",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 384",
+      "title": "Bayesian Inference",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 385",
+      "title": "Econometrics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 391",
+      "title": "Non Parametric Statistics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 392",
+      "title": "Operational Research I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 393",
+      "title": "Operational Research II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 394",
+      "title": "Linear programming",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 471",
+      "title": "Decision Theory",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 472",
+      "title": "Analysis and Design of Experiments",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 473",
+      "title": "Introduction to Multivariate Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 474",
+      "title": "Statistical Modelling",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 476",
+      "title": "Queuing systems",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 478",
+      "title": "Introduction to Stochastic Processes",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    },
+    {
+      "code": "STAT 479",
+      "title": "Reliability",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "General Studies Elective Courses List"
+    }
+  ]
+}

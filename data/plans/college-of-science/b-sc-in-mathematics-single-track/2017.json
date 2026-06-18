@@ -1,0 +1,1447 @@
+{
+  "degreeName": "B.Sc. in Mathematics (Single Track) 2017",
+  "totalCredits": 127,
+  "semesters": [
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 125",
+          "title": "English for Science I (SCI)",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 113",
+          "title": "Computer Programming I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 121",
+          "title": "Calculus and Analytic Geometry I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "ENGL 126",
+          "title": "English for Science II (SCI)",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 125",
+          "isMajorGpa": false
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 122",
+          "title": "Calculus and Analytic Geometry II",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "ITCS 114",
+          "title": "Computer Programming II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "ITCS 113",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "ITCS 214",
+          "title": "Data Structures",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "ITCS 114",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 204",
+          "title": "Calculus and Analytic Geometry III",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 122",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 122",
+          "isMajorGpa": true
+        },
+        {
+          "code": "BIOLS 102",
+          "title": "General Biology I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 211",
+          "title": "Linear Algebra",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 253",
+          "title": "Set Theory",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "STAT 271",
+          "title": "Introduction to Probability",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSE XXX",
+          "title": "Humanities / Social Science",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "MATHS 303",
+          "title": "Analysis I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 204",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 311",
+          "title": "Abstract Algebra I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 211",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 331",
+          "title": "Numerical Analysis I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "STAT 371",
+          "title": "Probability and Statistics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "unknown",
+          "title": "& STAT 271 As per ME MATHS 3/4XX Major Elective 1 from list 1",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "MATHS 304",
+          "title": "Analysis II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 303",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 312",
+          "title": "Abstract Algebra II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 311",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 381",
+          "title": "Methods of Applied Mathematics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 341",
+          "title": "Complex Analysis I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 204",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 2 from list 2",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "MATHS 401",
+          "title": "Applied Mathematics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 381",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 395",
+          "title": "Problem Solving in Mathematics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 381",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 3 from from list 3",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "GSE XXX",
+          "title": "list As per ME MATHS 3/4XX Major Elective 4 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "GSE XXX",
+          "title": "LEC PRAC CRD As per ME MATHS 3/4XX Major Elective 5 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 6 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 7 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 8 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 1",
+      "courses": [
+        {
+          "code": "ARAB 110",
+          "title": "Arabic Language Skills",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 113",
+          "title": "Computer Programming I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 125",
+          "title": "English for Science I (SCI)",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 121",
+          "title": "Calculus and Analytic Geometry I",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 101",
+          "title": "General Physics I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 1 - Semester 2",
+      "courses": [
+        {
+          "code": "HRLC 107",
+          "title": "Human Rights",
+          "credits": 2,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "MATHS 122",
+          "title": "Calculus and Analytic Geometry II",
+          "credits": 4,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "PHYCS 102",
+          "title": "General Physics II",
+          "credits": 4,
+          "type": "MSR",
+          "prerequisites": "PHYCS 101",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 114",
+          "title": "Computer Programming II",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "ITCS 113",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ENGL 126",
+          "title": "English for Science II (SCI)",
+          "credits": 3,
+          "type": "CR",
+          "prerequisites": "ENGL 125",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 3",
+      "courses": [
+        {
+          "code": "MATHS 204",
+          "title": "Calculus and Analytic Geometry III",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 122",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 205",
+          "title": "Differential Equations",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 122",
+          "isMajorGpa": true
+        },
+        {
+          "code": "CHEMY 101",
+          "title": "General Chemistry I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ISLM 101",
+          "title": "Islamic Culture",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "STAT 271",
+          "title": "Introduction to Probability",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 2 - Semester 4",
+      "courses": [
+        {
+          "code": "MATHS 211",
+          "title": "Linear Algebra",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 253",
+          "title": "Set Theory",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 121",
+          "isMajorGpa": true
+        },
+        {
+          "code": "BIOLS 102",
+          "title": "General Biology I",
+          "credits": 4,
+          "type": "CR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "HIST 122",
+          "title": "Modern History of Bahrain and Citizenship",
+          "credits": 3,
+          "type": "UR",
+          "prerequisites": "-----",
+          "isMajorGpa": false
+        },
+        {
+          "code": "ITCS 214",
+          "title": "Data Structures",
+          "credits": 3,
+          "type": "MSR",
+          "prerequisites": "ITCS 114",
+          "isMajorGpa": false
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 5",
+      "courses": [
+        {
+          "code": "MATHS 303",
+          "title": "Analysis I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 204",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 331",
+          "title": "Numerical Analysis I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "STAT 371",
+          "title": "Probability and Statistics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 3 - Semester 6",
+      "courses": [
+        {
+          "code": "MATHS 304",
+          "title": "Analysis II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 303",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 311",
+          "title": "Abstract Algebra I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 211",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 381",
+          "title": "Methods of Applied Mathematics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 341",
+          "title": "Complex Analysis I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 204",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 7",
+      "courses": [
+        {
+          "code": "MATHS 312",
+          "title": "Abstract Algebra II",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 311",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 395",
+          "title": "Problem Solving in Mathematics",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 381",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 401",
+          "title": "Applied Mathematics I",
+          "credits": 3,
+          "type": "MR",
+          "prerequisites": "MATHS 381",
+          "isMajorGpa": true
+        }
+      ]
+    },
+    {
+      "semesterName": "Year 4 - Semester 8",
+      "courses": [
+        {
+          "code": "unknown",
+          "title": "LEC PRAC CRD As per ME MATHS 3/4XX Major Elective 1 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 2 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        },
+        {
+          "code": "MATHS 4XX",
+          "title": "Major Elective 3 from list 4",
+          "credits": 3,
+          "type": "ME",
+          "prerequisites": "------",
+          "isMajorGpa": true
+        }
+      ]
+    }
+  ],
+  "electives": [
+    {
+      "code": "STAT 374",
+      "title": "Regression Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 372",
+      "title": "STAT 378",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 378",
+      "title": "Surveys and Sampling",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 381",
+      "title": "Time Series Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 382",
+      "title": "Biostatistics and Epidemiology",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 383",
+      "title": "Demography and Population Studies",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 384",
+      "title": "Bayesian Inference",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 385",
+      "title": "Econometrics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 271",
+      "title": "STAT 391",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 391",
+      "title": "Non Parametric Statistics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 392",
+      "title": "Operational Research I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 393",
+      "title": "Operational Research II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 394",
+      "title": "Linear programming",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 471",
+      "title": "Decision Theory",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 472",
+      "title": "Analysis and Design of Experiments",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 473",
+      "title": "Introduction to Multivariate Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 474",
+      "title": "Statistical Modelling",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 476",
+      "title": "Queuing systems",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 478",
+      "title": "Introduction to Stochastic Processes",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "STAT 479",
+      "title": "Reliability",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 209",
+      "title": "Bulk Properties of Matter",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 102",
+      "title": "PHYCS 221",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 221",
+      "title": "Methods of Mathematical Physics I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 222",
+      "title": "Modern Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 324",
+      "title": "Atomic and Molecular Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 241",
+      "title": "Introductory Electronics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 221",
+      "title": "PHYCS 314",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 314",
+      "title": "Classical Mechanics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 326",
+      "title": "Quantum Mechanics I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 348",
+      "title": "Electromagnetic Theory",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 365",
+      "title": "Thermal Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 1: ITIS Concentration Major Elective"
+    },
+    {
+      "code": "PHYCS 221",
+      "title": "PHYCS 425",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 314",
+      "title": "Classical Mechanics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "MATHS 205",
+      "title": "PHYCS 331",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 331",
+      "title": "Physical Optics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 348",
+      "title": "Electromagnetic Theory",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 365",
+      "title": "Thermal Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 351",
+      "title": "Solid State Physics I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 425",
+      "title": "Computational Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 471",
+      "title": "Nuclear Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 333",
+      "title": "Oscillations and Waves",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 344",
+      "title": "Plasma Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 353",
+      "title": "Physics of Materials",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 364",
+      "title": "Meteorology",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 366",
+      "title": "Environmental Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 382",
+      "title": "Astronomy",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 383",
+      "title": "Space Science and Technology",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 408",
+      "title": "Medical Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 421",
+      "title": "Mathematical Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 422",
+      "title": "Particle Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 427",
+      "title": "Quantum Mechanics II",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 428",
+      "title": "Space and Time",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 444",
+      "title": "Electrodynamics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 462",
+      "title": "Statistical Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 465",
+      "title": "Solar Energy",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 492",
+      "title": "Selected Topics in Modern Physics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 282",
+      "title": "The Cosmic Perspective",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 283",
+      "title": "Planets and the Solar System",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 381",
+      "title": "Stellar Astrophysics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 384",
+      "title": "Galaxies and the Universe",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 385",
+      "title": "Observational Astronomy",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 481",
+      "title": "Solar System Dynamics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 482",
+      "title": "High-Energy Astrophysics",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 483",
+      "title": "Extragalactic Astrophysics and Cosmology",
+      "credits": 1,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 485",
+      "title": "Astronomical Data Analysis",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCE 250",
+      "title": "Digital Logic",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 113",
+      "title": "--",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 114",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCE 314",
+      "title": "Computer Networks I",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 285",
+      "title": "Database Management Systems",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 316",
+      "title": "Human-Computer Interaction",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 389",
+      "title": "Software Engineering I",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 333",
+      "title": "Internet Software Development",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 444",
+      "title": "Mobile Application Development",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 453",
+      "title": "Multimedia and Hypermedia Systems",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 489",
+      "title": "Software Engineering II",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 494",
+      "title": "Selected Topics in Computer Science",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ITCS 496",
+      "title": "Physical Implementation of DBMS",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "CHEMY 101",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "BIOLS 102",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "PHYCS 101",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "MATHS 121",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "CR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ENGL 125",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ENGL 126",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "MSR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ARAB 110",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "UR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "HIST 122",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "UR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    },
+    {
+      "code": "ISLM 101",
+      "title": "Course Title:",
+      "credits": 3,
+      "type": "UR",
+      "prerequisites": "------",
+      "isMajorGpa": true,
+      "electiveListType": "List 2: ITIS General Major Elective"
+    }
+  ]
+}

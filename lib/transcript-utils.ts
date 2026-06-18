@@ -104,8 +104,8 @@ function extractStudentName(lines: string[]): string {
 }
 
 function extractCollege(lines: string[]): string {
-    // Look for "College of" pattern
-    const collegeLine = lines.find(line => line.includes("College of"))
+    // Look for "College of" pattern in the first 25 lines
+    const collegeLine = lines.slice(0, 25).find(line => line.includes("College of"))
     if (collegeLine) {
         return collegeLine.trim()
     }
